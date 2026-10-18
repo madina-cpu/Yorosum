@@ -8,6 +8,8 @@ Sales, marketing and B2B materials for launching an OEM-manufactured collagen su
 |---|---|---|
 | [`docs/01-market-entry-plan.md`](docs/01-market-entry-plan.md) | Full sales & marketing plan: market sequencing, channels, positioning, pricing, 12-month roadmap, solo time budget, KPIs, risks | Your internal master plan |
 | [`docs/02-regulatory-checklist.md`](docs/02-regulatory-checklist.md) | Claims rules, Korean 식품표시광고법 screen, EAEU (СГР) and Uzbekistan registration, document pack, pre-publish checklist | Before any registration or any public/partner-facing copy |
+| [`docs/03-product-fact-sheet.md`](docs/03-product-fact-sheet.md) | Verified facts for YOROSUM Glow Peptide with sources (carton, 품목제조보고서, COA, raw-material label) | Single source for every number you publish |
+| [`docs/04-label-compliance-review.md`](docs/04-label-compliance-review.md) | Carton claims check ("이너뷰티" flagged), approved claim bank KO/EN/RU, CA label notes | Before any listing, ad or reprint |
 | [`docs/b2b/A-product-one-pager.md`](docs/b2b/A-product-one-pager.md) | 1-page product sheet (EN) | Attach to first outreach |
 | [`docs/b2b/B-oem-quality-brief.md`](docs/b2b/B-oem-quality-brief.md) | Explains the OEM model, quality chain and documents, with buyer FAQs | After first reply / before the call |
 | [`docs/b2b/C-partnership-proposal.md`](docs/b2b/C-partnership-proposal.md) | Commercial proposal and 10-slide deck outline: price tiers, margin structure, exclusivity, marketing support, 90-day launch | After a positive call |

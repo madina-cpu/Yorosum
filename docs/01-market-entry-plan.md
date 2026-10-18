@@ -23,6 +23,15 @@ You are one person with one SKU, so your job is **not** to run four markets your
 
 ## 2. Facts to pin down first (they change the plan)
 
+> **Answered from your product documents (see `03-product-fact-sheet.md`):**
+> - **Factory:** Korea CNS Pharm, Eumseong, Korea, so **"Manufactured in Korea"** is confirmed. Collagen raw material is Indian freshwater fish (ATHOS), so say "Made in Korea", not "Korean collagen".
+> - **Classification:** 기타가공품 (general food). **Composition-only claims in Korea.** The carton's "이너뷰티 루틴" line is flagged; see `04-label-compliance-review.md`.
+> - **Source:** freshwater fish (tilapia, catla, mrigal), with no pork/bovine collagen. A strong point for UZ/KZ/KG. Halal certificate still to be investigated.
+> - **Format:** 3 g powder stick × 30, peach, 24-month shelf life. Light and easy to ship.
+> - **Batch:** first run 2,700 boxes (RA88201, best before 2028-09-15).
+> - **Still open:** unit cost, re-order MOQ/lead time, master carton data, HACCP/GMP certificates, trademark filings abroad.
+
+
 | Question | Why it matters |
 |---|---|
 | **Where is the OEM factory?** (Korea or elsewhere) | "Made in Korea" is a major selling point in Central Asia. If the product isn't Korean-made, Korea becomes an *import* market (MFDS import declaration) and your Central Asia positioning changes. |
@@ -74,7 +83,7 @@ You are one person with one SKU, so your job is **not** to run four markets your
 ## 4. Positioning & messaging
 
 ### Positioning statement (fill in)
-> For **[distributors/pharmacies/K-beauty retailers]** in **[market]** who want a **premium, easy-to-sell beauty supplement**, **[BRAND]** is a **Korean-made [type] collagen** produced by **[OEM type, e.g., "a GMP-certified Korean health-food manufacturer"]**. Unlike generic imports, it comes with **full export documentation, flexible MOQs and direct founder support**.
+> For **pharmacies, K-beauty retailers and marketplace sellers** in **Kazakhstan, Kyrgyzstan and Uzbekistan** who want a **premium, easy-to-sell collagen product**, **YOROSUM Glow Peptide** is a **Korean-made fish collagen stick (2,000 mg collagen peptide, 300 Da, + 100 mg vitamin C)** produced by **a licensed Korean food manufacturer (Korea CNS Pharm)**. Unlike grey imports, it comes with **batch COAs, registration support, small trial orders and direct founder support**.
 
 ### Message pillars — B2B vs. consumer
 

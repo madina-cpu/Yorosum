@@ -1,6 +1,6 @@
-# [BRAND] [Product Name] — Product Sheet for Distributors & Retailers
+# YOROSUM Glow Peptide — Product Sheet for Distributors & Retailers
 
-*Korean-made [marine/fish] collagen [peptide] · [format, e.g., 30 sticks × 3 g]*
+*Low-molecular fish collagen daily stick · Manufactured in Korea · 3 g × 30 sticks*
 
 ---
 
@@ -8,40 +8,43 @@
 
 | | |
 |---|---|
-| **Product** | [Product name] |
-| **Format / pack** | [e.g., powder stick 3 g × 30 / liquid 20 ml × 14 / tablets × 60] |
-| **Key ingredient** | [Fish collagen peptide], [1,000] mg per serving, avg. molecular weight [~500 Da] *(per raw-material spec)* |
-| **Other ingredients** | [Vitamin C x mg, hyaluronic acid x mg, elastin, biotin…] |
-| **Flavour** | [e.g., grapefruit] |
-| **Daily serving** | [1 stick per day] |
-| **Shelf life** | [24 months] from manufacture |
-| **Storage** | Room temperature, away from direct sunlight |
-| **Origin** | Made in the Republic of Korea |
-| **Manufacturer** | [OEM name or "a GMP & HACCP-certified Korean health-food manufacturer"] |
-| **Certifications** | [GMP] · [HACCP] · [ISO 22000] · [Halal — body] |
-| **Registration status** | KR: [class] · EAEU (KZ/KG): [planned / in progress / СГР No.] · UZ: [planned / No.] |
-| **Barcode (EAN-13)** | [ ] |
-| **Carton** | [x] units per carton · [dimensions] · [gross weight] kg |
-| **MOQ (trial order)** | [x] units / [x] cartons |
-| **Lead time** | [x] weeks from PO (stock / production) |
-| **Incoterms** | EXW [city] / FOB [Busan/Incheon] / CIP [Almaty/Tashkent] on request |
+| **Product** | YOROSUM Glow Peptide (여러숨 글로우 펩타이드) |
+| **Format / pack** | Powder stick, 3 g × 30 sticks (90 g) per box, a 30-day supply |
+| **Key ingredient** | **Fish collagen peptide 2,000 mg per stick**, average molecular weight **300 Da** |
+| **Also contains** | Vitamin C 100 mg (100% of daily value) · elastin hydrolysate · bamboo sap extract powder |
+| **Nutrition per stick** | 10 kcal · sugars < 0.5 g · fat 0 g · protein 2 g |
+| **Flavour** | Peach. Mix one stick with water, once a day |
+| **Collagen source** | Freshwater fish (Nile tilapia, catla, mrigal). **No porcine or bovine collagen** |
+| **Allergens** | Contains milk, peach (shared-facility statement available) |
+| **Shelf life** | 24 months from manufacture |
+| **Storage** | Room temperature, cool and dry, away from direct sunlight |
+| **Manufacturer** | Korea CNS Pharm Co., Ltd. (Eumseong, Chungbuk, Korea), licensed food manufacturer |
+| **Brand owner** | Silla Global Trading, Daejeon, Korea |
+| **Korean status** | Registered food product, 품목보고번호 20030445025-912 |
+| **Quality control** | Certificate of Analysis for every batch (fill weight, moisture, vitamin C, metal detection, E. coli) |
+| **Registration (CA)** | EAEU (KZ/KG): [planned / in progress] · Uzbekistan: [planned / in progress] |
+| **Barcode (EAN-13)** | 8800342991316 |
+| **Master carton** | [x] boxes · [dimensions] · [weight] kg |
+| **Trial order** | From [x] boxes |
+| **Lead time** | [x] weeks (from stock) / [x] weeks (new production) |
+| **Incoterms** | EXW Daejeon / FOB Busan or Incheon / CIP Almaty or Tashkent on request |
 
 ---
 
-### Why partners choose [BRAND]
+### Why partners choose YOROSUM Glow Peptide
 
-1. **"Made in Korea": an easy sell.** Korean beauty and health products enjoy strong consumer trust in Central Asia. Your sales team has a story ready on day one.
-2. **Certified manufacturing, full documents.** Produced by an established Korean manufacturer in a [GMP/HACCP]-certified facility. COA for every batch. We provide the complete registration dossier.
-3. **Clean, transparent formula.** [Fish] collagen, [no added sugar / no artificial colours], [halal certified]. Fits customers who read labels.
-4. **Healthy margin structure.** Pricing is built from the target shelf price, leaving room for distributor and retailer margins (see Partnership Proposal).
-5. **Small start, low risk.** Trial order from [x] units. No large upfront stock commitment.
-6. **Direct founder support.** You deal directly with the brand owner: quick answers, flexible terms, ready-made marketing content in local languages.
+1. **High dose in a small stick.** 2,000 mg of collagen peptide per serving, plus 100 mg of vitamin C. Easy to compare on the shelf.
+2. **Low molecular weight: 300 Da.** A clear, technical point of difference that pharmacists and informed customers ask about.
+3. **Fish collagen, not pork.** Freshwater fish collagen suits customers in Muslim-majority markets and anyone avoiding porcine ingredients.
+4. **Fits label-readers.** 10 kcal, almost no sugar, zero fat, pleasant peach flavour, one stick a day.
+5. **Manufactured in Korea, with documents.** Produced by a licensed Korean food manufacturer; every batch is tested and comes with a COA. We provide the documents for registration.
+6. **Small start, direct support.** Trial orders from [x] boxes, and you deal directly with the brand owner.
 
 ---
 
-### Marketing kit included for partners
+### Marketing kit for partners
 - Product photos (white background + lifestyle) and infographics
-- Marketplace listing texts (RU / KZ / UZ / KO)
+- Marketplace texts in Russian / Kazakh / Uzbek / Korean (compliance-checked)
 - Short vertical videos with local subtitles
 - Pharmacist / sales staff training sheet
 - Launch samples for influencers and pharmacies
@@ -49,8 +52,8 @@
 ---
 
 ### Contact
-**[Your name]**, Founder, [Company name]
+**[Your name]**, Founder, Silla Global Trading
 📧 [email] · 📱 WhatsApp / Telegram / KakaoTalk: [number] · 🌐 [website]
-[Company address, Republic of Korea]
+1F #103, 46 Eungubiseo-ro 24beon-gil, Yuseong-gu, Daejeon, Republic of Korea
 
-<sub>This product is a food supplement and is not intended to diagnose, treat, cure or prevent any disease. Product wording in each market follows local registration and labelling rules.</sub>
+<sub>Food product. Not intended to diagnose, treat, cure or prevent any disease. Wording on packaging and in advertising follows each market's registration and labelling rules.</sub>

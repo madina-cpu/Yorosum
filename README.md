@@ -3,7 +3,7 @@
 Sales, marketing and B2B materials for launching an OEM-manufactured collagen supplement in **South Korea, Kazakhstan, Kyrgyzstan and Uzbekistan**, run by a solo founder.
 
 ## Sales kit (ready to send)
-- [`sales-kit/YOROSUM-Glow-Peptide-B2B-Sales-Kit.pdf`](sales-kit/YOROSUM-Glow-Peptide-B2B-Sales-Kit.pdf): 4-page A4 kit (cover, product specification sheet, OEM manufacturing & quality with COA, partnership terms). Fill the highlighted fields first.
+- [`sales-kit/YOROSUM-Glow-Peptide-B2B-Sales-Kit.pdf`](sales-kit/YOROSUM-Glow-Peptide-B2B-Sales-Kit.pdf): 3-page visual A4 kit (cover, product specification in mg per stick, OEM manufacturing & batch quality). Add your contact details first.
 - [`sales-kit/yorosum-sales-kit.html`](sales-kit/yorosum-sales-kit.html): editable source; re-render to PDF after edits.
 
 ## Contents

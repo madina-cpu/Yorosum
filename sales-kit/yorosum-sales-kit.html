@@ -2,39 +2,49 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: a stack of A4 "sheets" (cover, spec sheet, OEM quality, commercial) on a tinted desk; each sheet prints as one page. Palette taken from the carton: blush, raspberry, sage panel, gold arc. */
+/* Layout: three A4 sheets on a tinted desk (cover, what's inside, how it's made); each prints as one page. Palette from the carton: blush, raspberry, sage band, peach, gold arc. */
 :root {
-  --desk: #EFE6E9;
+  --desk: #EDE3E7;
   --sheet: #FFFFFF;
-  --ink: #2B1A21;
-  --muted: #6E5A62;
-  --rule: #E6D6DC;
-  --blush: #F3DDE4;
+  --ink: #2A1A20;
+  --muted: #6F5C64;
+  --rule: #EBDDE2;
+  --blush: #F5E1E8;
   --raspberry: #8E2447;
-  --sage: #E4E9D6;
-  --sage-ink: #45512F;
+  --sage: #E5EAD8;
+  --sage-ink: #44502F;
+  --peach: #F2A178;
   --gold: #C99A3B;
-  --todo-bg: #FFF4D6;
+  --ok: #2F7A49;
+  --todo-bg: #FFF2CF;
   --todo-ink: #7A5A00;
-  --ok: #2F6B3F;
+  /* product illustration: the real pack colours, same in both themes */
+  --pk-box: #F1D2DC;
+  --pk-side: #DDB3C1;
+  --pk-band: #E3E8D3;
+  --pk-ink: #8E2447;
+  --pk-text: #3A2A30;
+  --pk-peach1: #F7B58A;
+  --pk-peach2: #E9796A;
+  --pk-leaf: #6E9A4E;
   --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
   --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --desk: #170F13; --sheet: #22171C; --ink: #F3E9ED; --muted: #BBA6AF; --rule: #3D2D34;
-    --blush: #3A2229; --raspberry: #F08DAE; --sage: #2A3022; --sage-ink: #CBD8AE; --gold: #E0B862;
-    --todo-bg: #3B3014; --todo-ink: #F2D27A; --ok: #8FD3A0; color-scheme: dark;
+    --desk: #160E12; --sheet: #22171C; --ink: #F4EAEE; --muted: #BCA8B0; --rule: #3B2B32;
+    --blush: #36212A; --raspberry: #F290B1; --sage: #283021; --sage-ink: #CFDBB2; --peach: #F5B08C;
+    --gold: #E2BA66; --ok: #8AD6A2; --todo-bg: #3B3014; --todo-ink: #F2D27A; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --desk: #170F13; --sheet: #22171C; --ink: #F3E9ED; --muted: #BBA6AF; --rule: #3D2D34;
-  --blush: #3A2229; --raspberry: #F08DAE; --sage: #2A3022; --sage-ink: #CBD8AE; --gold: #E0B862;
-  --todo-bg: #3B3014; --todo-ink: #F2D27A; --ok: #8FD3A0; color-scheme: dark;
+  --desk: #160E12; --sheet: #22171C; --ink: #F4EAEE; --muted: #BCA8B0; --rule: #3B2B32;
+  --blush: #36212A; --raspberry: #F290B1; --sage: #283021; --sage-ink: #CFDBB2; --peach: #F5B08C;
+  --gold: #E2BA66; --ok: #8AD6A2; --todo-bg: #3B3014; --todo-ink: #F2D27A; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -46,388 +56,383 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.kit { display: flex; flex-direction: column; gap: 28px; align-items: center; }
+.sheet > * { flex-shrink: 0; }
+.kit { display: flex; flex-direction: column; align-items: center; gap: 28px; }
 .sheet {
   background: var(--sheet); width: 100%; max-width: 210mm; min-height: 297mm;
-  padding: 18mm 16mm; display: flex; flex-direction: column; gap: 22px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 10px 30px rgb(80 20 40 / .08);
-  position: relative;
+  padding: 16mm 16mm 12mm; display: flex; flex-direction: column; gap: 26px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / .05), 0 12px 32px rgb(90 20 45 / .09);
+  overflow: hidden;
 }
-h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; line-height: 1.1; }
-h2 { font-size: 26px; font-weight: 700; color: var(--raspberry); letter-spacing: -.01em; }
-h3 { font-size: 15px; font-weight: 700; letter-spacing: .01em; }
-p { margin: 0; max-width: 68ch; }
-.eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.sheet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; flex-wrap: wrap; }
-.sheet-foot { margin-top: auto; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
-.todo { background: var(--todo-bg); color: var(--todo-ink); padding: 0 5px; border-radius: 3px; font-family: var(--font-mono); font-size: .9em; white-space: nowrap; }
-.draft-note { max-width: 210mm; width: 100%; background: var(--todo-bg); color: var(--todo-ink); padding: 10px 14px; border-radius: 6px; font-size: 13px; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); line-height: 1.08; text-wrap: balance; }
+h2 { font-size: 30px; font-weight: 800; color: var(--raspberry); letter-spacing: -.02em; }
+h3 { font-size: 15px; font-weight: 700; }
+p { margin: 0; max-width: 62ch; }
+.eyebrow { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.lead { font-size: 15.5px; color: var(--muted); }
+.todo { background: var(--todo-bg); color: var(--todo-ink); padding: 1px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 11.5px; }
+.icon { width: 22px; height: 22px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
-/* logo mark: dot + two arcs, as on the carton */
-.mark { display: inline-flex; align-items: center; gap: 3px; }
-.mark i { width: 7px; height: 7px; border-radius: 50%; background: var(--raspberry); display: block; }
-.mark b { width: 9px; height: 18px; border: 2.5px solid var(--raspberry); border-left: 0; border-top-color: transparent; border-bottom-color: transparent; border-radius: 0 50% 50% 0 / 0 50% 50% 0; display: block; border-right-color: var(--raspberry); }
-.mark b + b { height: 24px; width: 11px; border-right-color: var(--gold); margin-left: -4px; }
-.wordmark { font-family: var(--font-display); font-weight: 800; letter-spacing: .32em; color: var(--raspberry); font-size: 15px; }
+/* brand mark */
 .brandline { display: flex; align-items: center; gap: 10px; }
-.brandline small { font-size: 12px; color: var(--muted); letter-spacing: 0; font-weight: 500; }
+.mark { width: 26px; height: 22px; flex: none; }
+.wordmark { font-family: var(--font-display); font-weight: 800; letter-spacing: .34em; color: var(--raspberry); font-size: 15px; }
+.brandline small { color: var(--muted); font-size: 12px; }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.sheet-foot { margin-top: auto; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 11px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
 
-/* COVER */
-.cover { background: var(--blush); gap: 0; padding: 0; overflow: hidden; }
-.cover-top { padding: 18mm 16mm 0; display: flex; flex-direction: column; gap: 40px; }
-.cover h1 { font-size: clamp(40px, 9vw, 68px); font-weight: 800; color: var(--raspberry); letter-spacing: -.025em; }
-.cover h1 span { display: block; font-family: var(--font-body); font-weight: 600; font-size: .5em; letter-spacing: 0; color: var(--ink); margin-top: 10px; }
-.cover .lede { font-size: 17px; max-width: 46ch; color: var(--ink); }
-.cover-figures { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid color-mix(in srgb, var(--raspberry) 35%, transparent); margin: 34px 16mm 0; }
-.cover-figures div { padding: 16px 12px 16px 0; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.cover-figures strong { font-family: var(--font-display); font-size: clamp(26px, 5vw, 40px); font-weight: 700; color: var(--raspberry); font-variant-numeric: tabular-nums; line-height: 1; }
-.cover-figures span { font-size: 12.5px; color: var(--muted); }
-.cover-panel { background: var(--sage); color: var(--sage-ink); margin-top: auto; padding: 14mm 16mm; display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; }
-.cover-panel h3 { color: var(--sage-ink); margin-bottom: 8px; }
-.cover-panel ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
-.contents li { font-variant-numeric: tabular-nums; }
-.cover-meta { font-size: 13px; display: grid; gap: 6px; align-content: start; }
-.cover-meta div { display: grid; gap: 1px; }
-.cover-meta dt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
-.cover-meta dd { margin: 0; }
+/* ===== COVER ===== */
+.cover { background: var(--blush); padding: 0; gap: 0; }
+.cover-inner { padding: 16mm 16mm 0; display: grid; grid-template-columns: 1fr 1.15fr; grid-template-rows: auto 1fr; gap: 10px 16px; align-items: center; flex: 1 0 auto; }
+.cover-inner .brandline { grid-column: 1 / -1; }
+.cover-copy { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.cover h1 { font-size: clamp(46px, 9vw, 84px); font-weight: 800; color: var(--raspberry); letter-spacing: -.035em; line-height: .95; }
+.cover h1 small { display: block; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: 0; margin-top: 14px; line-height: 1.3; }
+.cover .lead { color: var(--ink); max-width: 30ch; font-size: 17px; }
+.hero-art { width: 100%; max-width: 100%; height: auto; display: block; }
+.cover-band { margin-top: auto; background: var(--sage); color: var(--sage-ink); padding: 12mm 16mm; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+.fact { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.fact .icon { width: 28px; height: 28px; color: var(--raspberry); }
+.fact strong { font-family: var(--font-display); font-size: 30px; font-weight: 800; line-height: 1; color: var(--raspberry); font-variant-numeric: tabular-nums; }
+.fact span { font-size: 12.5px; line-height: 1.35; }
+.made-in { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--raspberry); border: 1.5px solid currentColor; border-radius: 999px; padding: 5px 12px; align-self: flex-start; }
 
-/* SPEC SHEET */
-.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
-.spec-block { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.spec-block h3 { color: var(--raspberry); border-bottom: 2px solid var(--raspberry); padding-bottom: 4px; font-size: 12.5px; text-transform: uppercase; letter-spacing: .1em; }
-table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
-th, td { text-align: left; vertical-align: top; padding: 5px 0; border-bottom: 1px solid var(--rule); }
-th { font-weight: 500; color: var(--muted); width: 42%; padding-right: 10px; }
-td { font-variant-numeric: tabular-nums; }
-.mono { font-family: var(--font-mono); font-size: 12px; }
-.nutri th { width: auto; }
-.nutri td, .nutri th:not(:first-child) { text-align: right; }
-.nutri thead th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; border-bottom: 2px solid var(--ink); }
-.ingredients { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
-.ingredients b { color: var(--ink); }
-.callout { background: var(--sage); color: var(--sage-ink); padding: 10px 12px; font-size: 12px; border-radius: 4px; }
+/* ===== INSIDE ===== */
+.inside { display: grid; grid-template-columns: 120px 1fr; gap: 26px; align-items: center; }
+.stick-art { width: 120px; height: auto; display: block; }
+.amounts { display: flex; flex-direction: column; }
+.amount { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+.amount:first-child { border-top: 1px solid var(--rule); }
+.amount .badge { width: 44px; height: 44px; border-radius: 50%; background: var(--blush); color: var(--raspberry); display: grid; place-items: center; }
+.amount h3 { font-size: 16px; }
+.amount p { font-size: 12.5px; color: var(--muted); }
+.amount .mg { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--raspberry); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; line-height: 1; }
+.amount .mg small { font-size: 15px; font-weight: 700; margin-left: 2px; }
+.amount.hero .mg { font-size: 40px; }
+.section-title { display: flex; align-items: baseline; gap: 12px; }
+.section-title h3 { font-size: 18px; color: var(--ink); }
+.section-title::after { content: ""; flex: 1; border-bottom: 1px solid var(--rule); }
 
-/* OEM */
-.flow { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0; border: 1px solid var(--rule); }
-.flow > div { padding: 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; position: relative; }
-.flow > div + div { border-left: 1px solid var(--rule); }
-.flow .role { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
-.flow strong { font-family: var(--font-display); font-size: 16px; }
-.flow p { font-size: 12.5px; color: var(--muted); }
-.flow .owner { background: var(--blush); }
-.benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; }
-.benefit { display: grid; gap: 3px; min-width: 0; }
-.benefit h3 { font-size: 14.5px; }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+.tile { background: var(--blush); border-radius: 10px; padding: 11px 12px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tile .icon { color: var(--raspberry); margin-bottom: 4px; }
+.tile b { font-size: 10.5px; font-family: var(--font-mono); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.tile span { font-size: 14px; font-weight: 600; line-height: 1.3; }
+.nutri { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border: 1.5px solid var(--ink); border-radius: 10px; overflow: hidden; }
+.nutri div { padding: 12px; text-align: center; display: grid; gap: 2px; min-width: 0; }
+.nutri div + div { border-left: 1px solid var(--rule); }
+.nutri strong { font-family: var(--font-display); font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.nutri span { font-size: 12px; color: var(--muted); }
+.howto { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+.step { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.step .circle { width: 52px; height: 52px; border-radius: 50%; border: 1.5px dashed var(--raspberry); color: var(--raspberry); display: grid; place-items: center; flex: none; }
+.step .circle .icon { width: 26px; height: 26px; }
+.step b { display: block; font-size: 14px; }
+.step span { font-size: 12.5px; color: var(--muted); }
+.note { font-size: 12px; color: var(--muted); }
+
+/* ===== OEM ===== */
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0; position: relative; }
+.node { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 0 8px; position: relative; min-width: 0; }
+.node .disc { width: 74px; height: 74px; border-radius: 50%; background: var(--blush); color: var(--raspberry); display: grid; place-items: center; position: relative; z-index: 1; border: 4px solid var(--sheet); box-shadow: 0 0 0 1.5px var(--raspberry); }
+.node .disc .icon { width: 32px; height: 32px; }
+.node:not(:last-child)::after { content: ""; position: absolute; top: 37px; left: calc(50% + 37px); right: calc(-50% + 37px); border-top: 2px dashed var(--raspberry); opacity: .55; }
+.node h3 { font-size: 14.5px; }
+.node p { font-size: 12px; color: var(--muted); }
+.node .where { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.node.factory .disc { background: var(--raspberry); color: var(--sheet); }
+
+.benefits { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.benefit { display: flex; gap: 14px; padding: 16px; border: 1px solid var(--rule); border-radius: 12px; min-width: 0; }
+.benefit .icon { width: 30px; height: 30px; color: var(--raspberry); }
+.benefit h3 { font-size: 15px; margin-bottom: 3px; }
 .benefit p { font-size: 12.5px; color: var(--muted); }
-.qa { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: step; }
-.qa li { counter-increment: step; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
-.qa li::before { content: counter(step); font-family: var(--font-display); font-weight: 700; color: var(--raspberry); font-size: 18px; line-height: 1; }
-.qa b { display: block; font-size: 13px; }
-.coa td:last-child, .coa th:last-child { text-align: right; }
-.coa th { width: auto; }
-.coa thead th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; border-bottom: 2px solid var(--ink); color: var(--ink); }
-.pass { color: var(--ok); font-weight: 600; }
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.two > * { min-width: 0; }
 
-/* COMMERCIAL */
-.terms th { width: 34%; }
-.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; font-size: 12.5px; }
-.checklist li { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
-.tag { font-family: var(--font-mono); font-size: 10.5px; padding: 1px 6px; border-radius: 3px; white-space: nowrap; align-self: center; }
-.tag.have { background: var(--sage); color: var(--sage-ink); }
-.tag.req { background: var(--todo-bg); color: var(--todo-ink); }
-.steps { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; counter-reset: s; }
-.steps div { border-top: 3px solid var(--raspberry); padding-top: 8px; font-size: 12.5px; counter-increment: s; min-width: 0; }
-.steps div::before { content: "Step " counter(s); display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.contact { background: var(--raspberry); color: var(--sheet); padding: 16px 18px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+.qc { background: var(--sage); color: var(--sage-ink); border-radius: 14px; padding: 18px; display: grid; grid-template-columns: 170px 1fr; gap: 18px; align-items: center; }
+.seal { width: 150px; height: 150px; display: block; }
+.checks { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 16px; }
+.check { display: flex; gap: 10px; align-items: flex-start; min-width: 0; }
+.check .icon { color: var(--ok); width: 20px; height: 20px; margin-top: 1px; }
+.check b { display: block; font-size: 13px; color: var(--ink); }
+.check span { font-size: 12px; }
+.qc-head { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.qc-head h3 { font-size: 17px; color: var(--ink); }
+.contact { background: var(--raspberry); color: var(--sheet); border-radius: 12px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
 .contact strong { font-family: var(--font-display); font-size: 18px; }
 .contact .todo { background: color-mix(in srgb, var(--sheet) 22%, transparent); color: var(--sheet); }
-.disclaimer { font-size: 10.5px; color: var(--muted); }
+.contact small { display: block; font-size: 12px; opacity: .85; }
 
-@media (max-width: 640px) {
-  .sheet { min-height: 0; padding: 22px 18px; }
-  .cover-top { padding: 26px 18px 0; }
-  .cover-figures { margin: 26px 18px 0; grid-template-columns: 1fr 1fr; }
-  .cover-panel { grid-template-columns: 1fr; padding: 22px 18px; }
-  .spec-grid, .benefits, .two { grid-template-columns: 1fr; }
-  .flow { grid-template-columns: 1fr; }
-  .flow > div + div { border-left: 0; border-top: 1px solid var(--rule); }
-  .steps { grid-template-columns: 1fr 1fr; }
+@media (max-width: 680px) {
+  .sheet { min-height: 0; padding: 24px 18px; }
+  .cover { padding: 0; }
+  .cover-inner { grid-template-columns: 1fr; padding: 26px 18px 0; }
+  .cover-band { grid-template-columns: 1fr 1fr; padding: 24px 18px; }
+  .inside { grid-template-columns: 1fr; justify-items: center; }
+  .amounts { width: 100%; }
+  .tiles, .nutri { grid-template-columns: 1fr 1fr; }
+  .nutri div:nth-child(3) { border-left: 0; }
+  .nutri div:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .howto, .benefits, .checks { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr 1fr; row-gap: 22px; }
+  .node:not(:last-child)::after { display: none; }
+  .qc { grid-template-columns: 1fr; justify-items: center; }
 }
 
 @page { size: A4; margin: 0; }
 @media print {
   :root, :root[data-theme="dark"] {
-    --desk: #fff; --sheet: #FFFFFF; --ink: #2B1A21; --muted: #6E5A62; --rule: #E6D6DC; --blush: #F3DDE4;
-    --raspberry: #8E2447; --sage: #E4E9D6; --sage-ink: #45512F; --gold: #C99A3B; --todo-bg: #FFF4D6; --todo-ink: #7A5A00; --ok: #2F6B3F;
-    color-scheme: light;
+    --desk: #FFFFFF; --sheet: #FFFFFF; --ink: #2A1A20; --muted: #6F5C64; --rule: #EBDDE2; --blush: #F5E1E8;
+    --raspberry: #8E2447; --sage: #E5EAD8; --sage-ink: #44502F; --peach: #F2A178; --gold: #C99A3B; --ok: #2F7A49;
+    --todo-bg: #FFF2CF; --todo-ink: #7A5A00; color-scheme: light;
   }
   body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .kit { gap: 0; }
-  .sheet { box-shadow: none; width: 210mm; height: 296mm; min-height: 0; max-width: none; break-after: page; overflow: hidden; padding: 13mm 14mm; gap: 15px; }
+  .sheet { box-shadow: none; width: 210mm; max-width: none; height: 296mm; min-height: 0; break-after: page; }
   .sheet:last-child { break-after: auto; }
-  .cover { padding: 0; }
-  .cover-top { padding: 15mm 14mm 0; }
-  .cover-panel { padding: 11mm 14mm; }
-  table { font-size: 11.5px; }
-  th, td { padding: 3.5px 0; }
-  .spec-grid { gap: 12px 20px; }
-  .ingredients { font-size: 10.5px; line-height: 1.4; }
-  .callout { padding: 7px 10px; font-size: 11.5px; }
-  .draft-note { display: none; }
+  .sheet { gap: 19px; padding: 14mm 16mm 10mm; }
+  .cover { padding: 0; gap: 0; }
 }
 </style>
 
+<!-- reusable symbols: brand mark + line icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12c3-5 9-6 13-3l4-3v12l-4-3c-4 3-10 2-13-3z"/><circle cx="8" cy="11" r=".8"/></symbol>
+    <symbol id="i-molecule" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.3"/><circle cx="18" cy="7" r="2.3"/><circle cx="12" cy="17" r="2.3"/><path d="M8 8.3l3 6.6M16 8.3l-3 6.6M8.3 7h7.4"/></symbol>
+    <symbol id="i-citrus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><path d="M12 7v10M7 12h10M8.5 8.5l7 7M15.5 8.5l-7 7"/></symbol>
+    <symbol id="i-bamboo" viewBox="0 0 24 24"><path d="M10 3v18M10 8h0M10 14h0"/><path d="M8 8h4M8 14h4"/><path d="M10 6c3-2 6-2 8-1-2 2-5 3-8 1zM10 12c-3-2-5-2-7-1 2 2 4 3 7 1z"/></symbol>
+    <symbol id="i-spring" viewBox="0 0 24 24"><path d="M5 5c4 0 4 3 7 3s3-3 7-3M5 11c4 0 4 3 7 3s3-3 7-3M5 17c4 0 4 3 7 3s3-3 7-3"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-4 3-7 1 2 2 3 3 3 0-2-1-4 0-7z"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-peach" viewBox="0 0 24 24"><path d="M12 7c-5-2-9 2-8 7 1 4 4 7 8 7s7-3 8-7c1-5-3-9-8-7z"/><path d="M12 7c0 4 1 8 0 14"/><path d="M12 7c1-3 4-4 6-3-1 2-3 3-6 3z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/><path d="M3 21l18-18"/></symbol>
+    <symbol id="i-milk" viewBox="0 0 24 24"><path d="M8 3h8M9 3v3l-2 3v12h10V9l-2-3V3"/><path d="M7 13h10"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L20 18M8.5 16.5L20 6"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><path d="M6 3h12l-1.5 17a1.5 1.5 0 0 1-1.5 1.4H9a1.5 1.5 0 0 1-1.5-1.4z"/><path d="M6.7 10h10.6"/><path d="M10 14l1 1 2-2"/></symbol>
+    <symbol id="i-once" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l5 3V10l5 3V10l5 3V4h3v17z"/><path d="M7 17h2M12 17h2M17 17h1"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></symbol>
+    <symbol id="i-cert" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="13" rx="1.5"/><path d="M8 7h8M8 10h5"/><circle cx="15" cy="17" r="3"/><path d="M13.5 19.5L13 23l2-1 2 1-.5-3.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M20 3v5h-5M4 21v-5h5"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 24 24"><path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M16 3v4h4M9 12h7M9 16h7"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M3 20h18M6 20V12M11 20V8M16 20v-5M21 20V4"/></symbol>
+    <symbol id="i-expert" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/><path d="M15.5 11.5l1.5 1.5 3-3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></symbol>
+  </defs>
+</svg>
+
 <main class="kit">
 
-<p class="draft-note"><strong>Draft.</strong> Highlighted fields like <span class="todo">this</span> need your figures (price, carton data, contact details) before the kit goes to partners.</p>
-
-<!-- ============ 1. COVER ============ -->
+<!-- ================= 1. COVER ================= -->
 <section class="sheet cover" aria-label="Cover">
-  <div class="cover-top">
-    <div class="brandline"><span class="mark" aria-hidden="true"><i></i><b></b><b></b></span><span class="wordmark">YOROSUM</span><small>여러숨</small></div>
-    <div>
-      <p class="eyebrow">B2B Sales Kit · Distributors &amp; Retail Partners · 2026</p>
-      <h1 style="margin-top:12px">Glow Peptide<span>Low-molecular fish collagen daily stick</span></h1>
+  <div class="cover-inner">
+    <div class="brandline">
+      <svg class="mark" viewBox="0 0 26 22" aria-hidden="true"><circle cx="4" cy="11" r="3" fill="var(--raspberry)"/><path d="M10 5a8 8 0 0 1 0 12" stroke="var(--raspberry)" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M15 2a12 12 0 0 1 0 18" stroke="var(--gold)" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+      <span class="wordmark">YOROSUM</span><small>여러숨</small>
     </div>
-    <p class="lede">A 30-day box of single-serve peach-flavoured sticks, manufactured in Korea by a licensed food manufacturer. Every batch is tested and ships with its own Certificate of Analysis.</p>
+
+    <div class="cover-copy">
+      <p class="eyebrow">Product introduction for partners</p>
+      <h1>Glow<br>Peptide<small>Low-molecular fish collagen daily stick<br>여러숨 글로우 펩타이드</small></h1>
+      <p class="lead">One stick a day: 2,000 mg of fish collagen with vitamin C, in a light peach flavour.</p>
+      <span class="made-in"><svg class="icon" style="width:16px;height:16px"><use href="#i-pin"/></svg>Manufactured in Korea</span>
+    </div>
+
+    <!-- product illustration: carton + sticks -->
+    <svg class="hero-art" viewBox="-30 30 390 410" role="img" aria-label="YOROSUM Glow Peptide carton with two sticks">
+      <defs>
+        <radialGradient id="peachG" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="var(--pk-peach1)"/><stop offset="1" stop-color="var(--pk-peach2)"/></radialGradient>
+        <linearGradient id="shade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
+      </defs>
+      <ellipse cx="180" cy="418" rx="150" ry="12" fill="#000" opacity=".08"/>
+      <!-- back stick -->
+      <g transform="rotate(-12 300 230)">
+        <rect x="272" y="80" width="46" height="300" rx="5" fill="var(--pk-box)" stroke="var(--pk-side)" stroke-width="1.5"/>
+        <rect x="272" y="340" width="46" height="40" fill="#F4EEE6"/>
+        <text x="295" y="230" transform="rotate(90 295 230)" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-weight="700" font-size="17" fill="var(--pk-ink)">여러숨 글로우 펩타이드</text>
+      </g>
+      <!-- carton side + front -->
+      <polygon points="232,62 262,48 262,392 232,410" fill="var(--pk-side)"/>
+      <polygon points="40,62 232,62 262,48 70,48" fill="#F7E3EA"/>
+      <rect x="40" y="62" width="192" height="348" fill="var(--pk-box)"/>
+      <rect x="40" y="300" width="192" height="110" fill="var(--pk-band)"/>
+      <rect x="40" y="62" width="192" height="348" fill="url(#shade)"/>
+      <circle cx="58" cy="86" r="2.6" fill="var(--pk-ink)"/>
+      <path d="M63 81a7 7 0 0 1 0 10" stroke="var(--pk-ink)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M67 78a11 11 0 0 1 0 16" stroke="var(--gold)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <text x="76" y="90" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="10.5" letter-spacing="3" fill="var(--pk-ink)">YOROSUM</text>
+      <text x="54" y="132" font-family="IBM Plex Sans KR, sans-serif" font-weight="700" font-size="25" fill="var(--pk-ink)">여러숨</text>
+      <text x="54" y="162" font-family="IBM Plex Sans KR, sans-serif" font-weight="700" font-size="25" fill="var(--pk-ink)">글로우 펩타이드</text>
+      <text x="54" y="182" font-family="IBM Plex Sans KR, sans-serif" font-weight="500" font-size="10.5" fill="var(--pk-ink)">YOROSUM GLOW PEPTIDE</text>
+      <text x="54" y="208" font-family="IBM Plex Sans KR, sans-serif" font-weight="700" font-size="9.5" fill="var(--pk-text)">저분자 생선콜라겐 데일리 스틱</text>
+      <line x1="54" y1="236" x2="218" y2="236" stroke="var(--gold)" stroke-width=".8"/>
+      <g font-family="IBM Plex Sans KR, sans-serif" fill="var(--pk-ink)" font-weight="700" font-size="13">
+        <text x="54" y="256">2,000mg</text><text x="118" y="256">100mg</text><text x="172" y="256">300Da</text>
+      </g>
+      <g font-family="IBM Plex Sans KR, sans-serif" fill="var(--pk-text)" font-size="7.5">
+        <text x="54" y="270">생선콜라겐</text><text x="118" y="270">비타민 C</text><text x="172" y="270">평균분자량</text>
+      </g>
+      <!-- peach -->
+      <path d="M196 320c10-10 26-10 30-6-6 8-18 12-30 6z" fill="var(--pk-leaf)"/>
+      <circle cx="186" cy="356" r="30" fill="url(#peachG)"/>
+      <path d="M186 328c-6 10-6 40 0 56" stroke="#D96A5A" stroke-width="1.4" fill="none" opacity=".6"/>
+      <circle cx="152" cy="378" r="16" fill="url(#peachG)"/>
+      <g font-family="IBM Plex Sans KR, sans-serif" fill="var(--pk-text)" font-size="8">
+        <text x="54" y="330">엘라스틴가수분해물</text><text x="54" y="344">대나무수액추출분말</text><text x="54" y="358">복숭아맛</text>
+        <text x="54" y="396" font-size="7">3 g × 30포</text>
+      </g>
+      <!-- front stick -->
+      <g transform="translate(-22 0) rotate(8 120 300)">
+        <rect x="0" y="170" width="44" height="250" rx="5" fill="var(--pk-box)" stroke="var(--pk-side)" stroke-width="1.5"/>
+        <rect x="0" y="384" width="44" height="36" fill="#F4EEE6"/>
+        <text x="22" y="290" transform="rotate(90 22 290)" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="13" letter-spacing="1" fill="var(--pk-ink)">YOROSUM GLOW PEPTIDE</text>
+        <text x="22" y="404" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="9" font-weight="700" fill="var(--pk-text)">3g</text>
+      </g>
+    </svg>
   </div>
 
-  <div class="cover-figures">
-    <div><strong>2,000 mg</strong><span>fish collagen peptide per stick</span></div>
-    <div><strong>300 Da</strong><span>average molecular weight</span></div>
-    <div><strong>100 mg</strong><span>vitamin C per stick (100% DV)</span></div>
-    <div><strong>10 kcal</strong><span>per stick, sugars &lt; 0.5 g</span></div>
-    <div><strong>3 g × 30</strong><span>sticks per box</span></div>
-    <div><strong>24 mo</strong><span>shelf life</span></div>
-  </div>
-
-  <div class="cover-panel">
-    <div>
-      <h3>In this kit</h3>
-      <ul class="contents">
-        <li>Product specification sheet</li>
-        <li>OEM manufacturing &amp; quality assurance</li>
-        <li>Batch test results (COA RA88201)</li>
-        <li>Partnership terms, document pack &amp; next steps</li>
-      </ul>
-    </div>
-    <dl class="cover-meta">
-      <div><dt>Brand owner</dt><dd>Silla Global Trading, Daejeon, Korea</dd></div>
-      <div><dt>Manufacturer</dt><dd>Korea CNS Pharm Co., Ltd., Eumseong, Korea</dd></div>
-      <div><dt>Contact</dt><dd><span class="todo">Name · email · WhatsApp/Telegram</span></dd></div>
-    </dl>
+  <div class="cover-band">
+    <div class="fact"><svg class="icon"><use href="#i-fish"/></svg><strong>2,000 mg</strong><span>fish collagen in every stick</span></div>
+    <div class="fact"><svg class="icon"><use href="#i-molecule"/></svg><strong>300 Da</strong><span>average molecular weight of the collagen</span></div>
+    <div class="fact"><svg class="icon"><use href="#i-citrus"/></svg><strong>100 mg</strong><span>vitamin C in every stick</span></div>
+    <div class="fact"><svg class="icon"><use href="#i-flame"/></svg><strong>10 kcal</strong><span>per stick, with less than 0.5 g sugar</span></div>
   </div>
 </section>
 
-<!-- ============ 2. SPEC SHEET ============ -->
-<section class="sheet" aria-label="Product specification sheet">
+<!-- ================= 2. PRODUCT SPECIFICATION ================= -->
+<section class="sheet" aria-label="Product specification">
   <header class="sheet-head">
-    <h2>Product Specification Sheet</h2>
-    <span class="eyebrow">YOROSUM Glow Peptide · 여러숨 글로우 펩타이드</span>
+    <div>
+      <p class="eyebrow">Product specification</p>
+      <h2>What's in one stick</h2>
+    </div>
+    <div class="brandline"><svg class="mark" viewBox="0 0 26 22" aria-hidden="true"><circle cx="4" cy="11" r="3" fill="var(--raspberry)"/><path d="M10 5a8 8 0 0 1 0 12" stroke="var(--raspberry)" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M15 2a12 12 0 0 1 0 18" stroke="var(--gold)" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg><span class="wordmark">YOROSUM</span></div>
   </header>
 
-  <div class="spec-grid">
-    <div class="spec-block">
-      <h3>Identity</h3>
-      <table>
-        <tr><th>Product name</th><td>YOROSUM Glow Peptide<br>여러숨 글로우 펩타이드</td></tr>
-        <tr><th>Descriptor</th><td>Low-molecular fish collagen daily stick</td></tr>
-        <tr><th>Korean food type</th><td>기타가공품 (processed food)</td></tr>
-        <tr><th>Product report no.</th><td class="mono">20030445025-912</td></tr>
-        <tr><th>Barcode (EAN-13)</th><td class="mono">8800342991316</td></tr>
-        <tr><th>Country of manufacture</th><td>Republic of Korea</td></tr>
-      </table>
-    </div>
+  <div class="inside">
+    <svg class="stick-art" viewBox="0 0 150 420" role="img" aria-label="One 3 g stick">
+      <rect x="45" y="10" width="60" height="400" rx="7" fill="var(--pk-box)" stroke="var(--pk-side)" stroke-width="1.5"/>
+      <path d="M45 34h60" stroke="var(--pk-side)" stroke-dasharray="4 3"/>
+      <text x="75" y="28" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="7" fill="var(--pk-side)">EASY CUT</text>
+      <circle cx="58" cy="52" r="2.2" fill="var(--pk-ink)"/>
+      <text x="64" y="55" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="7.5" letter-spacing="1.8" fill="var(--pk-ink)">YOROSUM</text>
+      <text x="80" y="200" transform="rotate(90 80 200)" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-weight="700" font-size="19" fill="var(--pk-ink)">여러숨 글로우 펩타이드</text>
+      <text x="62" y="200" transform="rotate(90 62 200)" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="500" font-size="10" letter-spacing=".6" fill="var(--pk-ink)">YOROSUM GLOW PEPTIDE</text>
+      <rect x="45" y="350" width="60" height="60" fill="#F4EEE6"/>
+      <rect x="45" y="350" width="60" height="60" rx="0" fill="none"/>
+      <text x="75" y="388" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-weight="700" font-size="14" fill="var(--pk-text)">3 g</text>
+    </svg>
 
-    <div class="spec-block">
-      <h3>Format &amp; use</h3>
-      <table>
-        <tr><th>Format</th><td>Powder in single-serve stick, "easy cut" notch</td></tr>
-        <tr><th>Pack</th><td>3 g × 30 sticks = 90 g per box</td></tr>
-        <tr><th>Appearance</th><td>Light pink powder</td></tr>
-        <tr><th>Flavour</th><td>Peach</td></tr>
-        <tr><th>Directions</th><td>1 stick per day, with water</td></tr>
-        <tr><th>Shelf life</th><td>24 months from manufacture</td></tr>
-        <tr><th>Storage</th><td>Cool, dry place away from direct sunlight</td></tr>
-      </table>
-    </div>
-
-    <div class="spec-block">
-      <h3>Key components per stick</h3>
-      <table>
-        <tr><th>Fish collagen peptide</th><td><strong>2,000 mg</strong> (66.67% of formula)</td></tr>
-        <tr><th>Average molecular weight</th><td><strong>300 Da</strong></td></tr>
-        <tr><th>Vitamin C</th><td><strong>100 mg</strong> (100% Korean DV)</td></tr>
-        <tr><th>Elastin hydrolysate</th><td>0.1%</td></tr>
-        <tr><th>Bamboo sap extract powder</th><td>1%</td></tr>
-        <tr><th>Collagen source</th><td>Freshwater fish: Nile tilapia 40%, catla 30%, mrigal 30% (India). No porcine or bovine collagen.</td></tr>
-      </table>
-    </div>
-
-    <div class="spec-block">
-      <h3>Nutrition</h3>
-      <table class="nutri">
-        <thead><tr><th>Per 3 g stick</th><th>Amount</th><th>% DV</th></tr></thead>
-        <tr><th>Energy</th><td>10 kcal</td><td>—</td></tr>
-        <tr><th>Sodium</th><td>10 mg</td><td>1%</td></tr>
-        <tr><th>Carbohydrate</th><td>&lt; 1 g</td><td>0%</td></tr>
-        <tr><th>&nbsp;&nbsp;Sugars</th><td>&lt; 0.5 g</td><td>0%</td></tr>
-        <tr><th>Fat (sat. / trans)</th><td>0 g</td><td>0%</td></tr>
-        <tr><th>Protein</th><td>2 g</td><td>4%</td></tr>
-        <tr><th>Vitamin C</th><td>100 mg</td><td>100%</td></tr>
-      </table>
-    </div>
-
-    <div class="spec-block">
-      <h3>Logistics</h3>
-      <table>
-        <tr><th>Master carton</th><td><span class="todo">__ boxes</span></td></tr>
-        <tr><th>Carton size / weight</th><td><span class="todo">__ × __ × __ cm · __ kg</span></td></tr>
-        <tr><th>Trial order</th><td><span class="todo">from __ boxes</span></td></tr>
-        <tr><th>Lead time</th><td><span class="todo">__ wks stock · __ wks production</span></td></tr>
-        <tr><th>Incoterms</th><td>EXW Daejeon · FOB Busan/Incheon · CIP Almaty/Tashkent on request</td></tr>
-      </table>
-    </div>
-
-    <div class="spec-block">
-      <h3>Allergens &amp; packaging</h3>
-      <table>
-        <tr><th>Contains</th><td>Milk, peach</td></tr>
-        <tr><th>Shared facility</th><td>Facility also handles egg, buckwheat, peanut, soy, wheat, mackerel, crab, shrimp, pork, tomato, sulphites, walnut, chicken, beef, squid, shellfish, pine nut</td></tr>
-        <tr><th>Inner / outer pack</th><td>PE stick · paper carton</td></tr>
-      </table>
+    <div class="amounts">
+      <div class="amount hero">
+        <span class="badge"><svg class="icon"><use href="#i-fish"/></svg></span>
+        <div><h3>Fish collagen peptide</h3><p>Low-molecular, average 300 Da · from freshwater fish (tilapia, catla, mrigal)</p></div>
+        <span class="mg">2,000<small>mg</small></span>
+      </div>
+      <div class="amount">
+        <span class="badge"><svg class="icon"><use href="#i-citrus"/></svg></span>
+        <div><h3>Vitamin C</h3><p>Full Korean daily reference amount</p></div>
+        <span class="mg">100<small>mg</small></span>
+      </div>
+      <div class="amount">
+        <span class="badge"><svg class="icon"><use href="#i-bamboo"/></svg></span>
+        <div><h3>Bamboo sap extract powder</h3></div>
+        <span class="mg">30<small>mg</small></span>
+      </div>
+      <div class="amount">
+        <span class="badge"><svg class="icon"><use href="#i-spring"/></svg></span>
+        <div><h3>Elastin hydrolysate</h3></div>
+        <span class="mg">3<small>mg</small></span>
+      </div>
     </div>
   </div>
 
-  <div class="spec-block">
-    <h3>Full ingredient list</h3>
-    <p class="ingredients"><b>Fish collagen</b> (Nile tilapia, catla, mrigal / India), <b>peach-flavour powder</b> [crystalline fructose, anhydrous dextrose, peach concentrate powder {dextrin, peach concentrate (peach: USA)}, flavouring (peach), dextrin, citric acid, silicon dioxide, enzyme-treated stevia, purified salt (Korea)], anhydrous dextrose, flavour preparation (dextrin, propylene glycol, synthetic flavouring, ethanol, gum arabic, ethyl acetate), <b>vitamin C</b>, xylitol, anhydrous citric acid, DL-malic acid, <b>bamboo sap extract powder</b> (India), enzyme-treated stevia, <b>elastin hydrolysate</b>, milk protein concentrate powder, sucralose. <b>Contains milk, peach.</b></p>
+  <div class="section-title"><h3>Nutrition per stick</h3></div>
+  <div class="nutri">
+    <div><strong>10 kcal</strong><span>Energy</span></div>
+    <div><strong>2 g</strong><span>Protein</span></div>
+    <div><strong>&lt; 0.5 g</strong><span>Sugars</span></div>
+    <div><strong>0 g</strong><span>Fat</span></div>
   </div>
 
-  <p class="callout">Registration in Kazakhstan, Kyrgyzstan (EAEU) and Uzbekistan: <span class="todo">planned / in progress / certificate no.</span> We supply the technical dossier and local-language label artwork.</p>
+  <div class="section-title"><h3>Product facts</h3></div>
+  <div class="tiles">
+    <div class="tile"><svg class="icon"><use href="#i-box"/></svg><b>Pack</b><span>30 sticks × 3 g</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-peach"/></svg><b>Flavour</b><span>Peach</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-calendar"/></svg><b>Shelf life</b><span>24 months</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-sun"/></svg><b>Storage</b><span>Cool, dry, out of sunlight</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-fish"/></svg><b>Collagen source</b><span>Fish only, no pork or beef</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-milk"/></svg><b>Allergens</b><span>Contains milk, peach</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-pin"/></svg><b>Made in</b><span>Republic of Korea</span></div>
+    <div class="tile"><svg class="icon"><use href="#i-docs"/></svg><b>Korean registration</b><span>No. 20030445025-912</span></div>
+  </div>
 
-  <footer class="sheet-foot"><span>Source: product carton, 품목제조보고서 (2026-09-08), COA RA88201</span><span>YOROSUM · Spec v1.0 · Oct 2026</span></footer>
+  <div class="section-title"><h3>How to take</h3></div>
+  <div class="howto">
+    <div class="step"><span class="circle"><svg class="icon"><use href="#i-scissors"/></svg></span><div><b>Open</b><span>Tear at the easy-cut notch</span></div></div>
+    <div class="step"><span class="circle"><svg class="icon"><use href="#i-glass"/></svg></span><div><b>Mix</b><span>Stir into a glass of water</span></div></div>
+    <div class="step"><span class="circle"><svg class="icon"><use href="#i-once"/></svg></span><div><b>Once a day</b><span>One stick per day</span></div></div>
+  </div>
+
+  <footer class="sheet-foot"><span>Amounts per 3 g stick, from the registered product formula and label</span><span>YOROSUM Glow Peptide</span></footer>
 </section>
 
-<!-- ============ 3. OEM & QUALITY ============ -->
+<!-- ================= 3. OEM MANUFACTURING & QUALITY ================= -->
 <section class="sheet" aria-label="OEM manufacturing and quality">
   <header class="sheet-head">
-    <h2>OEM Manufacturing &amp; Quality</h2>
-    <span class="eyebrow">Who makes it, how it is controlled</span>
+    <div>
+      <p class="eyebrow">OEM manufacturing</p>
+      <h2>How it's made and checked</h2>
+    </div>
+    <div class="brandline"><svg class="mark" viewBox="0 0 26 22" aria-hidden="true"><circle cx="4" cy="11" r="3" fill="var(--raspberry)"/><path d="M10 5a8 8 0 0 1 0 12" stroke="var(--raspberry)" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M15 2a12 12 0 0 1 0 18" stroke="var(--gold)" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg><span class="wordmark">YOROSUM</span></div>
   </header>
 
-  <p>YOROSUM is a brand company: we own the formula, the brand and the market relationship. Production is done by a specialised, licensed Korean food manufacturer. Most leading supplement and K-beauty brands in Korea work the same way. You get factory-grade production with a small brand's flexibility and direct attention.</p>
+  <p class="lead">YOROSUM designs the formula and owns the brand. A specialised, licensed Korean food manufacturer produces it, the same way most leading Korean supplement brands work.</p>
 
   <div class="flow" role="list">
-    <div role="listitem"><span class="role">Raw material</span><strong>ATHOS Collagen, India</strong><p>Low-molecular freshwater fish collagen peptide. Imported into Korea by Yerba Korea with specification and origin documents.</p></div>
-    <div role="listitem"><span class="role">Manufacturer (OEM)</span><strong>Korea CNS Pharm Co., Ltd.</strong><p>Licensed food manufacturer (식품제조가공업 no. 20030445025), Eumseong, Chungbuk. Produced in its own facility, with no sub-contracting.</p></div>
-    <div role="listitem" class="owner"><span class="role">Brand owner</span><strong>Silla Global Trading</strong><p>Formula, specification, brand and registrations. Your single point of contact for supply, documents and marketing.</p></div>
+    <div class="node" role="listitem"><span class="disc"><svg class="icon"><use href="#i-fish"/></svg></span><span class="where">Raw material</span><h3>Fish collagen</h3><p>Low-molecular collagen peptide from freshwater fish, supplied with specification</p></div>
+    <div class="node factory" role="listitem"><span class="disc"><svg class="icon"><use href="#i-factory"/></svg></span><span class="where">Eumseong, Korea</span><h3>Korea CNS Pharm</h3><p>Licensed food manufacturer, produced in its own facility</p></div>
+    <div class="node" role="listitem"><span class="disc"><svg class="icon"><use href="#i-flask"/></svg></span><span class="where">Every batch</span><h3>Laboratory testing</h3><p>Weight, vitamin C, moisture, metal detection and E. coli</p></div>
+    <div class="node" role="listitem"><span class="disc"><svg class="icon"><use href="#i-cert"/></svg></span><span class="where">Before release</span><h3>Certificate of Analysis</h3><p>Issued for each batch and available to partners</p></div>
   </div>
 
+  <div class="section-title"><h3>What OEM manufacturing gives you</h3></div>
   <div class="benefits">
-    <div class="benefit"><h3>Consistent quality, batch after batch</h3><p>Every batch is released against a fixed specification and tested before shipment. You receive the COA for your lot.</p></div>
-    <div class="benefit"><h3>Documents ready for registration</h3><p>Product report, formula ratios, specification and test reports already exist. That shortens EAEU and Uzbek registration.</p></div>
-    <div class="benefit"><h3>Supply that scales with you</h3><p>First production run: 2,700 boxes. Re-orders run on the same line and specification: <span class="todo">__ boxes/month capacity</span>.</p></div>
-    <div class="benefit"><h3>More margin in your channel</h3><p>We don't carry factory overhead, so more of the shelf price goes to distributor and retailer margins.</p></div>
-    <div class="benefit"><h3>Adapted to your market</h3><p>Local-language labels, pack sizes and bundles can be arranged with the factory for your market.</p></div>
-    <div class="benefit"><h3>Private label option</h3><p>Want your own brand? Through the same manufacturer we can develop a private-label collagen stick for you.</p></div>
+    <div class="benefit"><svg class="icon"><use href="#i-repeat"/></svg><div><h3>The same product every time</h3><p>One fixed formula, made on professional production lines, batch after batch.</p></div></div>
+    <div class="benefit"><svg class="icon"><use href="#i-shield"/></svg><div><h3>Korean food-safety oversight</h3><p>The factory is licensed and supervised under Korean food law (MFDS).</p></div></div>
+    <div class="benefit"><svg class="icon"><use href="#i-docs"/></svg><div><h3>Complete documentation</h3><p>Registered formula, specifications and batch test reports ready for import registration.</p></div></div>
+    <div class="benefit"><svg class="icon"><use href="#i-expert"/></svg><div><h3>Specialist know-how</h3><p>Stick-powder production by a manufacturer that focuses on health foods.</p></div></div>
   </div>
 
-  <div class="two">
-    <div class="spec-block">
-      <h3 style="color:var(--raspberry);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--raspberry);padding-bottom:4px">Quality assurance chain</h3>
-      <ol class="qa">
-        <li><span><b>Raw material intake</b>Supplier spec, origin and lot records checked</span></li>
-        <li><span><b>Production</b>Formula fixed in the registered product report</span></li>
-        <li><span><b>In-process control</b>Fill weight (3 g ± 3%), seal and print checks</span></li>
-        <li><span><b>Finished-product testing</b>Moisture, vitamin C, metal detection, E. coli</span></li>
-        <li><span><b>Release with COA</b>Pass verdict signed before any lot ships</span></li>
-      </ol>
-    </div>
-    <div class="spec-block">
-      <h3 style="color:var(--raspberry);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--raspberry);padding-bottom:4px">Latest COA · batch RA88201</h3>
-      <table class="coa">
-        <thead><tr><th>Test</th><th>Standard</th><th>Result</th></tr></thead>
-        <tr><td>Fill weight</td><td>3 g ± 3%</td><td>3.00 g</td></tr>
-        <tr><td>Total weight</td><td>90 g ± 2%</td><td>90.02 g</td></tr>
-        <tr><td>Moisture</td><td>≤ 10.0%</td><td>3.90%</td></tr>
-        <tr><td>Vitamin C</td><td>80–150 mg</td><td>125.33 mg</td></tr>
-        <tr><td>Metal foreign matter</td><td>Not detected</td><td>Not detected</td></tr>
-        <tr><td>E. coli</td><td>n=5, c=1, m=0, M=10</td><td>0, 0, 0, 0, 0</td></tr>
-        <tr><td>Appearance, seal, print</td><td>Must conform</td><td>Conforms</td></tr>
-        <tr><th>Overall verdict</th><td></td><td class="pass">PASS (적합)</td></tr>
-      </table>
-      <p class="disclaimer" style="margin-top:6px">Manufactured 2026-09-16 · best before 2028-09-15 · issued by Korea CNS Pharm, 2026-10-08</p>
-    </div>
-  </div>
-
-  <footer class="sheet-foot"><span>Factory certificates (HACCP etc.): <span class="todo">add when on file</span></span><span>YOROSUM · OEM &amp; Quality</span></footer>
-</section>
-
-<!-- ============ 4. COMMERCIAL ============ -->
-<section class="sheet" aria-label="Partnership terms">
-  <header class="sheet-head">
-    <h2>Working With Us</h2>
-    <span class="eyebrow">Terms, documents, next steps</span>
-  </header>
-
-  <div class="two">
-    <div class="spec-block">
-      <h3 style="color:var(--raspberry);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--raspberry);padding-bottom:4px">Partnership terms (summary)</h3>
-      <table class="terms">
-        <tr><th>Price (EXW)</th><td>Trial <span class="todo">$__</span> · Standard <span class="todo">$__</span> · Volume <span class="todo">$__</span> per box</td></tr>
-        <tr><th>Payment</th><td>50% with order, 50% before shipment. Better terms after two repeat orders</td></tr>
-        <tr><th>Territory</th><td>One partner per country: Kazakhstan, Kyrgyzstan, Uzbekistan</td></tr>
-        <tr><th>Exclusivity</th><td>Non-exclusive 6-month trial, then exclusive once the agreed annual volume is met</td></tr>
-        <tr><th>Shelf life on delivery</th><td>Minimum 18 months remaining</td></tr>
-        <tr><th>Registration</th><td>We supply the dossier; registration holder agreed in contract</td></tr>
-        <tr><th>Trademark</th><td>Remains with YOROSUM / Silla Global Trading</td></tr>
-      </table>
-    </div>
-    <div class="spec-block">
-      <h3 style="color:var(--raspberry);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--raspberry);padding-bottom:4px">Document pack</h3>
-      <ul class="checklist">
-        <li>Product report (품목제조보고서) <span class="tag have">Available</span></li>
-        <li>Formula and ingredient ratios <span class="tag have">Available</span></li>
-        <li>Certificate of Analysis per batch <span class="tag have">Available</span></li>
-        <li>Raw-material label and origin <span class="tag have">Available</span></li>
-        <li>Label artwork (Korean) <span class="tag have">Available</span></li>
-        <li>Molecular-weight test report <span class="tag req">On request</span></li>
-        <li>Factory HACCP / GMP certificates <span class="tag req">On request</span></li>
-        <li>Certificate of Origin, export health certificate <span class="tag req">Per shipment</span></li>
-        <li>Label artwork RU / KZ / KY / UZ <span class="tag req">With registration</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="spec-block">
-    <h3 style="color:var(--raspberry);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--raspberry);padding-bottom:4px">Marketing support for partners</h3>
-    <div class="benefits">
-      <div class="benefit"><h3>Content pack</h3><p>Product photos, infographics and short vertical videos with Russian, Kazakh or Uzbek subtitles.</p></div>
-      <div class="benefit"><h3>Marketplace listings</h3><p>Ready texts for Kaspi, Uzum Market, Wildberries and Ozon, checked against local claim rules.</p></div>
-      <div class="benefit"><h3>Staff training sheet</h3><p>One-page product guide and FAQ for pharmacists and sales staff, plus one online session.</p></div>
-      <div class="benefit"><h3>Launch samples</h3><p><span class="todo">__</span> free boxes for influencer and pharmacy seeding at launch.</p></div>
-    </div>
-  </div>
-
-  <div class="spec-block">
-    <h3 style="color:var(--raspberry);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--raspberry);padding-bottom:4px">Next steps</h3>
-    <div class="steps">
-      <div>Intro call: your channels and needs</div>
-      <div>Samples and document pack sent to you</div>
-      <div>Price and terms agreed; registration starts</div>
-      <div>Trial order and launch support</div>
+  <div class="qc">
+    <div class="qc-head"><h3>Latest batch test results</h3><span class="eyebrow" style="color:var(--sage-ink)">Batch RA88201 · tested Oct 2026</span></div>
+    <svg class="seal" viewBox="0 0 150 150" role="img" aria-label="Batch passed all tests">
+      <defs><path id="sealPath" d="M75 75m-56 0a56 56 0 1 1 112 0a56 56 0 1 1-112 0"/></defs>
+      <circle cx="75" cy="75" r="70" fill="var(--sheet)"/>
+      <circle cx="75" cy="75" r="70" fill="none" stroke="var(--ok)" stroke-width="2"/>
+      <circle cx="75" cy="75" r="44" fill="none" stroke="var(--ok)" stroke-width="1" stroke-dasharray="2 3"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="2.5" fill="var(--ok)"><textPath href="#sealPath">ALL TESTS PASSED · CERTIFICATE OF ANALYSIS ·</textPath></text>
+      <path d="M58 76l11 11 23-24" fill="none" stroke="var(--ok)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="checks">
+      <div class="check"><svg class="icon"><use href="#i-check"/></svg><div><b>Stick weight</b><span>3.00 g measured (3 g declared)</span></div></div>
+      <div class="check"><svg class="icon"><use href="#i-check"/></svg><div><b>Vitamin C</b><span>125 mg measured (100 mg declared)</span></div></div>
+      <div class="check"><svg class="icon"><use href="#i-check"/></svg><div><b>E. coli</b><span>Not detected</span></div></div>
+      <div class="check"><svg class="icon"><use href="#i-check"/></svg><div><b>Metal particles</b><span>Not detected</span></div></div>
+      <div class="check"><svg class="icon"><use href="#i-check"/></svg><div><b>Moisture</b><span>Within limit</span></div></div>
+      <div class="check"><svg class="icon"><use href="#i-check"/></svg><div><b>Seal, print, appearance</b><span>Conform</span></div></div>
     </div>
   </div>
 
   <div class="contact">
-    <div><strong>Silla Global Trading · YOROSUM</strong><br>1F #103, 46 Eungubiseo-ro 24beon-gil, Yuseong-gu, Daejeon, Korea</div>
-    <div><span class="todo">Name · email · WhatsApp / Telegram</span></div>
+    <div><strong>YOROSUM · Silla Global Trading</strong><small>Daejeon, Republic of Korea</small></div>
+    <span class="todo">Name · email · WhatsApp / Telegram</span>
   </div>
 
-  <p class="disclaimer">Food product. Not intended to diagnose, treat, cure or prevent any disease. Product wording in each market follows that market's registration and labelling rules.</p>
+  <footer class="sheet-foot"><span>Food product. Not intended to diagnose, treat, cure or prevent any disease.</span><span>YOROSUM Glow Peptide</span></footer>
 </section>
 
 </main>

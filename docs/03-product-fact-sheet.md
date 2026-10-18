@@ -29,8 +29,8 @@ Sources: **[BOX]** retail carton and stick · **[RPT]** 품목제조보고서 / 
 | **Fish collagen peptide** | **2,000 mg per stick** (66.6667% of formula) | BOX, RPT |
 | **Average molecular weight** | **300 Da** | BOX (keep the raw-material supplier's spec as evidence) |
 | **Vitamin C** | **100 mg per stick** (100% of Korean daily value) | BOX |
-| Elastin hydrolysate | 0.1% | BOX, RPT |
-| Bamboo sap extract powder (India) | 1% | BOX, RPT |
+| Elastin hydrolysate | 0.1% = **3 mg per stick** | BOX, RPT (0.1% × 3 g) |
+| Bamboo sap extract powder (India) | 1% = **30 mg per stick** | BOX, RPT (1% × 3 g) |
 | Peach-flavour powder | 10% | BOX |
 | Sweeteners | Xylitol, enzyme-treated stevia, sucralose | BOX, RPT |
 | Allergens | **Contains milk, peach.** Made in a facility that also handles egg, buckwheat, peanut, soy, wheat, mackerel, crab, shrimp, pork, tomato, walnut, chicken, beef, squid, shellfish, pine nut, sulphites | BOX |

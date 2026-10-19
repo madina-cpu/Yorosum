@@ -218,10 +218,10 @@ PAGES = """
         <p class="eb">{ing_head}</p>
         <div class="ing-row"><div><b>{ing1}</b><small>{ing1_d}</small></div><span class="v">{ing1_v}</span></div>
         <div class="ing-row"><div><b>{ing2}</b><small>{ing2_d}</small></div><span class="v">{ing2_v}</span></div>
-        <div class="ing-row"><div><b>{ing3}</b></div><span class="v">{ing3_v}</span></div>
-        <div class="ing-row"><div><b>{ing4}</b></div><span class="v">{ing4_v}</span></div>
-        <div class="ing-row"><div><b>{ing6}</b></div><span class="v">{ing6_v}</span></div>
+        <div class="ing-row"><div><b>{ing3}</b></div><span class="v t">{ing3_v}</span></div>
         <div class="ing-row"><div><b>{ing5}</b></div><span class="v t">{ing5_v}</span></div>
+        <div class="ing-row"><div><b>{ing4}</b></div><span class="v t">{ing4_v}</span></div>
+        <div class="ing-row"><div><b>{ing6}</b></div><span class="v">{ing6_v}</span></div>
       </div>
       <div>
         <div class="box-photo"><img src="../assets/img/box.jpg" alt=""></div>

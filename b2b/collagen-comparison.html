@@ -1,11 +1,11 @@
 <title>Collagen Stick Buyer Benchmark</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Side-by-side scoring of nine Korean low-molecular fish collagen stick products for B2B buyers: dose, molecular size (Da), vitamin C, formulation honesty and price per gram of collagen.">
+<meta name="description" content="Picture ranking of nine Korean fish collagen stick products, followed by a plain-language guide to collagen, molecular size, vitamin C and reading the label.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;600&display=swap">
 <style>
-/* Layout: a lab benchmark sheet. Verdict first, full matrix second, buyer primer and product files after. */
+/* Layout: page 1 is a picture ranking; pages 2-9 are one lesson each (picture + three short sentences); specialist details last. */
 :root {
   --bg: #f4f7f7;
   --surface: #ffffff;
@@ -14,372 +14,577 @@
   --line: #d5dfe1;
   --accent: #0b6e73;
   --accent-soft: #dcefee;
-  --good: #2b7a4b;
-  --warn: #b7791f;
-  --bad: #c2462a;
-  --bar-track: #e4ecee;
+  --good: #2b8a4f;
+  --ok: #c99a1c;
+  --warn: #dd7a26;
+  --bad: #c9442a;
+  --track: #e4ecee;
+  --skin: #f3d2c1;
+  --skin-deep: #e7b49f;
+  --vitc: #f29a1f;
   --f-display: "Archivo", "Noto Sans KR", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", "Noto Sans KR", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #94a6ad; --line: #24353e;
-    --accent: #52c2c0; --accent-soft: #163a3d; --good: #6fcf97; --warn: #e3b25a; --bad: #f08a6e; --bar-track: #1c2c34;
+    --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #97a8af; --line: #26373f;
+    --accent: #52c2c0; --accent-soft: #163a3d; --good: #5fcb8a; --ok: #e5c04e; --warn: #f0a05a; --bad: #f0806a; --track: #1e2e36;
+    --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #94a6ad; --line: #24353e;
-  --accent: #52c2c0; --accent-soft: #163a3d; --good: #6fcf97; --warn: #e3b25a; --bad: #f08a6e; --bar-track: #1c2c34;
+  --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #97a8af; --line: #26373f;
+  --accent: #52c2c0; --accent-soft: #163a3d; --good: #5fcb8a; --ok: #e5c04e; --warn: #f0a05a; --bad: #f0806a; --track: #1e2e36;
+  --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-body {
-  background: var(--bg); color: var(--fg);
-  font-family: var(--f-body); font-size: 15px; line-height: 1.6;
-}
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16.5px; line-height: 1.6; }
 .wrap {
-  max-width: 1120px; margin: 0 auto;
+  max-width: 1160px; margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 40px 72px;
-  display: grid; gap: 56px;
+  padding-block: 36px 72px;
+  display: grid; gap: 80px;
 }
 h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15; }
-h1 { font-size: clamp(30px, 5vw, 48px); font-weight: 800; font-stretch: 85%; letter-spacing: -0.01em; }
-h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 700; font-stretch: 90%; }
-h3 { font-size: 18px; font-weight: 700; }
-p { margin: 0; max-width: 68ch; }
-.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; font-stretch: 85%; }
+h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; font-stretch: 88%; }
+h3 { font-size: 19px; font-weight: 700; }
+p { margin: 0; max-width: 62ch; }
+b { font-weight: 600; }
 .muted { color: var(--muted); }
-.mono, td.num, .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
-section { display: grid; gap: 20px; min-width: 0; }
-.stack { display: grid; gap: 12px; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.page { display: grid; gap: 24px; min-width: 0; }
+.page + .page { border-top: 1px solid var(--line); padding-top: 48px; }
+.page-no { font-family: var(--f-mono); font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.page-head { display: grid; gap: 10px; }
+.lead { font-size: 18.5px; }
+.svg-text { fill: var(--fg); font-family: var(--f-body); }
+.svg-muted { fill: var(--muted); font-family: var(--f-body); }
 
-header.top { display: grid; gap: 14px; }
-.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); }
-
-/* Verdict */
-.verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-.verdict { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
-.verdict .tag { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; }
-.verdict.q .tag { color: var(--accent); }
-.verdict.v .tag { color: var(--good); }
-.verdict.x .tag { color: var(--bad); }
-.verdict .name { font-family: var(--f-display); font-weight: 700; font-size: 19px; line-height: 1.25; }
-.verdict p { font-size: 14px; color: var(--muted); }
-
-/* Ranking */
+/* ---------- Page 1: picture ranking ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.toolbar span { font-size: 13px; color: var(--muted); margin-right: 4px; }
-.seg { font: 500 13px var(--f-body); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.toolbar > span { font-size: 14px; color: var(--muted); }
+.seg { font: 600 14px var(--f-body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
 .seg[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-.seg:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.rank { display: grid; gap: 6px; }
-.rrow { display: grid; grid-template-columns: 28px minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
-.rrow.head { font-family: var(--f-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-top: 0; }
-.rrow .pos { font-family: var(--f-mono); color: var(--muted); }
-.rrow .pname { font-weight: 600; line-height: 1.3; min-width: 0; }
-.rrow .pname small { display: block; font-weight: 400; color: var(--muted); font-size: 12.5px; }
-.bar { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: center; }
-.bar b { font-family: var(--f-mono); font-weight: 500; font-size: 13.5px; font-variant-numeric: tabular-nums; }
-.bar i { display: block; height: 8px; border-radius: 4px; background: var(--bar-track); position: relative; overflow: hidden; }
-.bar i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--c, var(--accent)); border-radius: 4px; }
-.rrow.is-sorted-overall .c-overall b, .rrow.is-sorted-quality .c-quality b, .rrow.is-sorted-value .c-value b { color: var(--accent); }
-@media (max-width: 640px) {
-  .rrow { grid-template-columns: 22px minmax(0, 1fr) 76px; }
-  .rrow .c-quality, .rrow .c-value { display: none; }
-  .rrow.mode-quality .c-overall, .rrow.mode-value .c-overall { display: none; }
-  .rrow.mode-quality .c-quality, .rrow.mode-value .c-value { display: grid; }
-  .bar { grid-template-columns: 30px 1fr; }
+button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.ranking { display: grid; gap: 10px; }
+.rhead, .ritem {
+  display: grid;
+  grid-template-columns: 44px 92px minmax(170px, 1.3fr) 100px repeat(5, minmax(0, 1fr));
+  gap: 14px; align-items: center;
 }
+.rhead { font-family: var(--f-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); padding: 0 15px; }
+.rhead .ic { display: flex; align-items: center; gap: 6px; line-height: 1.25; }
+.ritem { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.ritem.own { border: 2px solid var(--accent); padding: 11px 13px; }
+.medal { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 700 18px var(--f-display); background: var(--track); color: var(--fg); }
+.medal.m1 { background: #e8c25a; color: #3a2b00; }
+.medal.m2 { background: #c9d3d8; color: #1f2b31; }
+.medal.m3 { background: #d79a68; color: #3a1d06; }
+.thumb { width: 92px; height: 92px; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; }
+.pname { font-weight: 600; line-height: 1.3; min-width: 0; }
+.pname small { display: block; color: var(--muted); font-weight: 400; font-size: 13.5px; margin-top: 3px; }
+.badge { display: grid; justify-items: center; gap: 4px; }
+.badge .big { font: 800 30px/1 var(--f-display); font-stretch: 85%; color: var(--tone); }
+.badge .big small { font-size: 14px; color: var(--muted); font-weight: 600; }
+.badge .word { font: 600 11.5px var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; background: var(--tone); color: var(--surface); white-space: nowrap; }
+.meter { display: grid; gap: 4px; min-width: 0; }
+.meter .lab { display: none; font-size: 12.5px; color: var(--muted); }
+.blocks { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; }
+.blocks i { height: 12px; border-radius: 2px; background: var(--track); }
+.blocks i.on { background: var(--tone); }
+.meter .val { font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.ic svg { width: 22px; height: 22px; flex: none; }
+@media (max-width: 900px) {
+  .rhead { display: none; }
+  .ritem { grid-template-columns: 40px 76px minmax(0, 1fr) 84px; grid-template-areas: "m t n b" "s s s s"; }
+  .ritem .medal { grid-area: m; } .ritem .thumb { grid-area: t; width: 76px; height: 76px; }
+  .ritem .pname { grid-area: n; } .ritem .badge { grid-area: b; }
+  .ritem .meters { grid-area: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+  .meter .lab { display: block; }
+}
+@media (min-width: 901px) { .ritem .meters { display: contents; } }
+.foot-note { font-size: 13.5px; color: var(--muted); }
 
-/* Matrix */
-.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
-table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
-th, td { padding: 9px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
-thead th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; position: sticky; top: 0; background: var(--surface); }
-.matrix th:first-child, .matrix td:first-child { position: sticky; left: 0; background: var(--surface); min-width: 170px; max-width: 200px; z-index: 1; box-shadow: 1px 0 0 var(--line); }
-.matrix td { white-space: nowrap; }
-.matrix td:first-child { white-space: normal; font-weight: 600; line-height: 1.3; }
-.matrix tbody tr:last-child td { border-bottom: 0; }
-.chip { display: inline-block; font-family: var(--f-mono); font-size: 11.5px; padding: 1px 7px; border-radius: 4px; margin-left: 6px; border: 1px solid currentColor; }
-.s-hi { color: var(--good); } .s-mid { color: var(--warn); } .s-lo { color: var(--bad); }
-.flag { color: var(--warn); font-family: var(--f-mono); font-size: 12px; }
-tr.own td { background: var(--accent-soft); }
-.matrix tr.own td:first-child { background: var(--accent-soft); }
+/* ---------- Lesson pages ---------- */
+.lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: center; }
+.lesson.flip > .art { order: 2; }
+@media (max-width: 820px) { .lesson { grid-template-columns: 1fr; } .lesson.flip > .art { order: 0; } }
+.art { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; min-width: 0; }
+.art svg { width: 100%; height: auto; display: block; }
+.points { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.points li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+.points .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font: 700 15px var(--f-display); }
+.rule { display: flex; gap: 14px; align-items: center; background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 17px; font-weight: 600; max-width: 70ch; }
+.rule svg { width: 30px; height: 30px; flex: none; }
+.typecards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.typecard { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 6px; align-content: start; }
+.typecard.hl { border: 2px solid var(--accent); padding: 13px; }
+.typecard .t { font: 800 24px var(--f-display); color: var(--accent); }
+.typecard svg { width: 44px; height: 44px; }
+.typecard p { font-size: 15px; }
 
-/* Primer */
-.primer { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px 40px; }
-.primer > div { display: grid; gap: 12px; align-content: start; min-width: 0; }
-.primer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 68ch; }
-.scale { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; }
-.scale-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 12px; align-items: center; font-size: 13.5px; }
-.scale-row .lbl { line-height: 1.3; }
-.scale-row .lbl small { display: block; color: var(--muted); font-family: var(--f-mono); font-size: 12px; }
-.scale-row .bar i::after { background: var(--c); }
-.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; font-size: 14.5px; }
+/* Bar charts */
+.chart { display: grid; gap: 8px; }
+.crow { display: grid; grid-template-columns: 40px minmax(110px, 200px) minmax(0, 1fr); gap: 10px; align-items: center; font-size: 14px; }
+.crow img { width: 40px; height: 40px; object-fit: contain; background: #fff; border-radius: 6px; }
+.crow .cn { line-height: 1.25; min-width: 0; }
+.ctrack { position: relative; height: 26px; background: var(--track); border-radius: 4px; }
+.cfill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--tone); }
+.cval { position: absolute; top: 50%; transform: translateY(-50%); font: 500 13px var(--f-mono); color: var(--fg); white-space: nowrap; padding-left: 8px; }
+.target { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--fg); }
+.chart-key { font-size: 13.5px; color: var(--muted); padding-top: 6px; }
+@media (max-width: 640px) { .crow { grid-template-columns: 34px minmax(0, 1fr); } .crow .ctrack { grid-column: 1 / -1; } .crow img { width: 34px; height: 34px; } }
 
-.dv { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-.dv div { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
-.dv b { font-family: var(--f-mono); font-size: 22px; font-weight: 500; display: block; }
-.dv span { font-size: 12.5px; color: var(--muted); }
+/* Tiny-dose comparison */
+.drops { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.drop { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.drop svg { width: 100%; height: auto; }
+.drop .big { font: 800 28px var(--f-display); color: var(--bad); font-stretch: 85%; }
 
-/* Method */
-.weights { display: grid; max-width: 760px; }
-.weights div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
-.weights div b { font-family: var(--f-mono); font-weight: 500; }
-.weights .grp { font-family: var(--f-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 0; padding-top: 14px; }
+/* Label reading */
+.label-demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 820px) { .label-demo { grid-template-columns: 1fr; } }
+.math { display: grid; gap: 10px; }
+.mstep { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.mstep .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--bg); font: 700 15px var(--f-display); }
+.mstep .eq { font: 500 19px var(--f-mono); margin-top: 2px; }
+.gloss { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--surface); }
+.gloss td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.gloss td:first-child { font-family: "Noto Sans KR", var(--f-body); font-weight: 600; white-space: nowrap; }
+.warnbox { border: 2px solid var(--warn); border-radius: 12px; padding: 16px; display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; background: var(--surface); }
+.warnbox img { width: 96px; height: 96px; object-fit: contain; background: #fff; border-radius: 8px; }
+@media (max-width: 520px) { .warnbox { grid-template-columns: 1fr; } }
 
-/* Product files */
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
-.card.own { border-color: var(--accent); }
-.card .hd { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
-.card .hd .ko { font-size: 13px; color: var(--muted); margin-top: 2px; }
-.score { font-family: var(--f-mono); font-size: 22px; font-weight: 500; line-height: 1; white-space: nowrap; }
-.score small { font-size: 12px; color: var(--muted); }
-.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 13.5px; margin: 0; }
-.kv dt { color: var(--muted); }
-.kv dd { margin: 0; font-family: var(--f-mono); font-size: 13px; text-align: right; }
-.card h4 { margin: 0; font: 600 12px var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; }
-.card .pro h4 { color: var(--good); }
-.card .con h4 { color: var(--bad); }
-.card ul { margin: 4px 0 0; padding-left: 18px; font-size: 13.5px; display: grid; gap: 4px; }
-.card .src { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+/* Checklist */
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.checks li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; font-size: 15.5px; }
+.checks svg { width: 28px; height: 28px; }
 
-.checklist { columns: 2 300px; column-gap: 40px; margin: 0; padding-left: 20px; }
-.checklist li { break-inside: avoid; margin-bottom: 10px; }
-footer { font-size: 12.5px; color: var(--muted); display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 20px; }
-footer p { max-width: 90ch; }
-@media (prefers-reduced-motion: no-preference) { .bar i::after { transition: width .4s ease; } }
+/* Specialist details */
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+details > summary { cursor: pointer; padding: 14px 16px; font-weight: 600; }
+details > div { padding: 0 16px 16px; display: grid; gap: 14px; min-width: 0; }
+.scroll { overflow-x: auto; }
+table.matrix { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.matrix th, .matrix td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; }
+.matrix th { font: 500 11.5px var(--f-mono); text-transform: uppercase; color: var(--muted); }
+.matrix td.wrap { white-space: normal; min-width: 230px; }
+.weights { display: grid; max-width: 760px; font-size: 14.5px; }
+.weights div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+footer { font-size: 13px; color: var(--muted); display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 20px; }
+footer p { max-width: 95ch; }
+@media (prefers-reduced-motion: no-preference) { .cfill { transition: width .5s ease; } }
 </style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-dose" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2" style="fill:none;stroke:var(--accent);stroke-width:2"/><rect x="9" y="9" width="6" height="11" rx="1" style="fill:var(--accent)"/></symbol>
+    <symbol id="i-size" viewBox="0 0 24 24"><circle cx="5" cy="12" r="3" style="fill:var(--accent)"/><circle cx="12" cy="12" r="3" style="fill:var(--accent)"/><circle cx="19" cy="12" r="3" style="fill:var(--accent)"/></symbol>
+    <symbol id="i-vitc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" style="fill:var(--vitc)"/><text x="12" y="16.5" text-anchor="middle" style="font:700 13px sans-serif;fill:#fff">C</text></symbol>
+    <symbol id="i-clean" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z" style="fill:none;stroke:var(--accent);stroke-width:2"/><path d="M8 12l3 3 5-6" style="fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"/></symbol>
+    <symbol id="i-price" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" style="fill:none;stroke:var(--accent);stroke-width:2"/><text x="12" y="16.5" text-anchor="middle" style="font:700 12px sans-serif;fill:var(--accent)">₩</text></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" style="fill:var(--good)"/><path d="M7 12.5l3.2 3.2L17 9" style="fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2z" style="fill:var(--ok)"/><rect x="9" y="19" width="6" height="3" rx="1" style="fill:var(--muted)"/></symbol>
+  </defs>
+</svg>
 
 <div class="wrap">
 
-<header class="top">
-  <div class="eyebrow">B2B buyer benchmark · Korean fish collagen sticks</div>
-  <h1>Which collagen stick actually delivers?</h1>
-  <p class="muted">Nine Korean low-molecular fish collagen stick products scored on what reaches the customer: collagen per stick, molecular size, vitamin C, formulation honesty, and price per gram of collagen. Ingredients dosed too low to do anything earn no points, however prominent they are on the box.</p>
-  <div class="meta"><span>9 products</span><span>Prices: last retail price checked (KRW)</span><span>Updated 19 Oct 2026</span></div>
-</header>
-
-<section aria-labelledby="verdict-h">
-  <h2 id="verdict-h">The short answer</h2>
-  <div class="verdicts">
-    <div class="verdict q"><span class="tag">Best quality</span><span class="name">YOROSUM Glow Peptide</span><p>2,000 mg collagen at 300 Da with a full 100 mg of vitamin C in every stick. The only product that scores 8 or above on dose, size and vitamin C at the same time.</p></div>
-    <div class="verdict v"><span class="tag">Best value per gram</span><span class="name">HURUM Small Molecular Fish Collagen</span><p>Lowest cost per gram of collagen (₩319/g) with 120 mg vitamin C. Yorosum is a close second at ₩332/g with 67% more collagen per stick.</p></div>
-    <div class="verdict x"><span class="tag">Avoid</span><span class="name">VITASUB Slim Collagen Plus</span><p>About 196 mg of actual collagen per stick, 0.2 mg vitamin C and micro-doses of glutathione, biotin and hyaluronic acid. The label lists more than the stick delivers.</p></div>
+<!-- ================= PAGE 1 ================= -->
+<section class="page" aria-labelledby="p1">
+  <div class="page-head">
+    <div class="page-no">Page 1 · The ranking</div>
+    <h1 id="p1">Which collagen stick should you buy?</h1>
+    <p class="lead">We checked the labels of 9 Korean fish collagen sticks. Higher score = better product. More coloured blocks = better.</p>
   </div>
-</section>
-
-<section aria-labelledby="rank-h">
-  <div class="stack">
-    <h2 id="rank-h">Ranking</h2>
-    <p class="muted">Quality = dose, molecular size, vitamin C and formulation honesty. Value = price per gram of collagen and collagen per box. Overall = 70% quality, 30% value. All scores out of 10.</p>
+  <div class="legend" aria-label="Colour key">
+    <span><i style="background:var(--good)"></i>Great (7.5 and up)</span>
+    <span><i style="background:var(--ok)"></i>Okay (5 to 7.4)</span>
+    <span><i style="background:var(--warn)"></i>Weak (3 to 4.9)</span>
+    <span><i style="background:var(--bad)"></i>Poor (under 3)</span>
   </div>
   <div class="toolbar" role="group" aria-label="Sort ranking">
     <span>Sort by</span>
-    <button class="seg" id="sort-overall" data-sort="overall" aria-pressed="true">Overall</button>
-    <button class="seg" id="sort-quality" data-sort="quality" aria-pressed="false">Quality</button>
-    <button class="seg" id="sort-value" data-sort="value" aria-pressed="false">Value</button>
+    <button class="seg" id="sort-overall" data-sort="overall" aria-pressed="true">Best overall</button>
+    <button class="seg" id="sort-quality" data-sort="quality" aria-pressed="false">Best quality</button>
+    <button class="seg" id="sort-value" data-sort="value" aria-pressed="false">Best price</button>
   </div>
-  <div class="rank" id="rank"></div>
+  <div class="ranking" id="ranking"></div>
+  <p class="foot-note">◆ = number from the seller's website, not printed on the box. Pages 2 to 8 explain each column in simple words. The exact formula is in "Details for specialists" at the end.</p>
 </section>
 
-<section aria-labelledby="matrix-h">
-  <div class="stack">
-    <h2 id="matrix-h">Full comparison</h2>
-    <p class="muted">Per-stick figures calculated from the percentages printed on each pack. Chips show the criterion score out of 10. <span class="flag">◆</span> marks figures not printed on the front of the pack; confirm them with the supplier's certificate of analysis.</p>
+<!-- ================= PAGE 2 ================= -->
+<section class="page" aria-labelledby="p2">
+  <div class="page-head">
+    <div class="page-no">Page 2 · What is collagen?</div>
+    <h2 id="p2">Collagen is the spring inside your skin</h2>
   </div>
-  <div class="scroll"><table class="matrix" id="matrix"></table></div>
+  <div class="lesson">
+    <div class="art">
+      <svg viewBox="0 0 520 300" role="img" aria-label="Two pieces of skin. Young skin has many collagen fibres. Older skin has fewer.">
+        <text x="130" y="24" text-anchor="middle" class="svg-text" style="font-weight:600;font-size:16px">Young skin</text>
+        <text x="390" y="24" text-anchor="middle" class="svg-text" style="font-weight:600;font-size:16px">Older skin</text>
+        <rect x="20" y="40" width="220" height="34" rx="6" style="fill:var(--skin-deep)"/>
+        <rect x="20" y="74" width="220" height="180" rx="6" style="fill:var(--skin)"/>
+        <g style="fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round">
+          <path d="M30 100 q25 -18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 130 q25 18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 160 q25 -18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 190 q25 18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 220 q25 -18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M60 90 v150 M120 90 v150 M180 90 v150"/>
+        </g>
+        <path d="M280 40 q30 8 55 0 t55 2 t55 -3 t55 4 v34 h-220z" style="fill:var(--skin-deep)"/>
+        <rect x="280" y="74" width="220" height="180" rx="6" style="fill:var(--skin)"/>
+        <g style="fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round;opacity:.75">
+          <path d="M290 120 q25 -10 50 0 t40 4"/>
+          <path d="M400 170 q25 12 45 0 t40 0"/>
+          <path d="M300 215 q30 -12 60 0"/>
+          <path d="M440 100 v40"/>
+        </g>
+        <text x="130" y="282" text-anchor="middle" class="svg-muted" style="font-size:14px">Many springs = firm</text>
+        <text x="390" y="282" text-anchor="middle" class="svg-muted" style="font-size:14px">Fewer springs = loose</text>
+      </svg>
+    </div>
+    <ul class="points">
+      <li><span class="dot">1</span><p>Collagen is a <b>protein</b>. It makes long, strong threads inside your skin, bones and joints.</p></li>
+      <li><span class="dot">2</span><p>Think of a mattress. Collagen threads are the <b>springs</b> that keep skin firm and bouncy.</p></li>
+      <li><span class="dot">3</span><p>As we get older, the body slowly <b>makes less</b> collagen. That is why people buy collagen drinks and sticks.</p></li>
+    </ul>
+  </div>
+
+  <h3>There are different types. For skin, you want Type I.</h3>
+  <div class="typecards">
+    <div class="typecard hl">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="16" style="fill:var(--skin)"/><circle cx="16.5" cy="19" r="2" style="fill:var(--fg)"/><circle cx="27.5" cy="19" r="2" style="fill:var(--fg)"/><path d="M15.5 26 q6.5 5 13 0" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round"/></svg>
+      <div class="t">Type I</div><p><b>Skin, hair, nails, bones.</b> About 9 out of 10 parts of your body's collagen. Comes from <b>fish</b> or cow.</p>
+    </div>
+    <div class="typecard">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="18" y="2" width="8" height="16" rx="4" style="fill:var(--muted)"/><circle cx="22" cy="22" r="6" style="fill:var(--accent)"/><rect x="18" y="26" width="8" height="16" rx="4" style="fill:var(--muted)"/></svg>
+      <div class="t">Type II</div><p><b>Joints and knees.</b> Comes from chicken. Not used for skin products.</p>
+    </div>
+    <div class="typecard">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M6 22 q8 -14 16 0 t16 0" style="fill:none;stroke:var(--bad);stroke-width:5;stroke-linecap:round"/></svg>
+      <div class="t">Type III</div><p><b>Skin and blood vessels.</b> Works next to Type I. Comes from cow or pig.</p>
+    </div>
+  </div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>All 9 products here use fish collagen. Fish collagen is Type I, the skin type. Good.</div>
 </section>
 
-<section aria-labelledby="primer-h">
-  <div class="stack">
-    <div class="eyebrow">Buyer primer</div>
-    <h2 id="primer-h">What separates good collagen from label decoration</h2>
+<!-- ================= PAGE 3 ================= -->
+<section class="page" aria-labelledby="p3">
+  <div class="page-head">
+    <div class="page-no">Page 3 · What is "Da"?</div>
+    <h2 id="p3">Da tells you how big the collagen pieces are. Smaller is better.</h2>
   </div>
-  <div class="primer">
+  <div class="lesson flip">
+    <div class="art">
+      <svg viewBox="0 0 520 340" role="img" aria-label="Big collagen pieces stop at the gut wall. Small pieces pass through into the blood.">
+        <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">Inside your gut</text>
+        <g transform="translate(70 96)">
+          <circle r="40" style="fill:none;stroke:var(--bad);stroke-width:4"/>
+          <path d="M-36 -10 q36 -30 72 0 M-38 8 q38 30 76 0 M-20 -34 q20 34 0 68 M18 -34 q-20 34 0 68" style="fill:none;stroke:var(--bad);stroke-width:3"/>
+        </g>
+        <text x="70" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">300,000 Da</text>
+        <g style="fill:var(--warn)">
+          <circle cx="160" cy="70" r="7"/><circle cx="175" cy="78" r="7"/><circle cx="190" cy="70" r="7"/><circle cx="205" cy="78" r="7"/><circle cx="220" cy="70" r="7"/>
+          <circle cx="235" cy="78" r="7"/><circle cx="250" cy="70" r="7"/><circle cx="250" cy="96" r="7"/><circle cx="235" cy="96" r="7"/><circle cx="220" cy="104" r="7"/>
+          <circle cx="205" cy="96" r="7"/><circle cx="190" cy="104" r="7"/><circle cx="175" cy="96" r="7"/><circle cx="160" cy="104" r="7"/><circle cx="175" cy="122" r="7"/>
+          <circle cx="190" cy="130" r="7"/><circle cx="205" cy="122" r="7"/><circle cx="220" cy="130" r="7"/><circle cx="235" cy="122" r="7"/><circle cx="250" cy="130" r="7"/>
+        </g>
+        <text x="205" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">2,000 Da</text>
+        <g style="fill:var(--ok)">
+          <circle cx="300" cy="96" r="7"/><circle cx="315" cy="88" r="7"/><circle cx="330" cy="96" r="7"/><circle cx="345" cy="88" r="7"/><circle cx="360" cy="96" r="7"/>
+          <circle cx="360" cy="118" r="7"/><circle cx="345" cy="110" r="7"/><circle cx="330" cy="118" r="7"/><circle cx="315" cy="110" r="7"/><circle cx="300" cy="118" r="7"/>
+        </g>
+        <text x="330" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">1,000 Da</text>
+        <g style="fill:var(--good)">
+          <circle cx="420" cy="100" r="7"/><circle cx="435" cy="100" r="7"/><circle cx="450" cy="100" r="7"/>
+          <circle cx="496" cy="160" r="7"/><circle cx="496" cy="175" r="7"/><circle cx="496" cy="190" r="7"/>
+          <circle cx="470" cy="264" r="7"/><circle cx="485" cy="264" r="7"/><circle cx="500" cy="264" r="7"/>
+        </g>
+        <text x="435" y="130" text-anchor="middle" class="svg-muted" style="font-size:13px">300 Da</text>
+        <g style="fill:var(--skin-deep)">
+          <rect x="10" y="200" width="472" height="22" rx="4"/>
+        </g>
+        <text x="20" y="242" class="svg-muted" style="font-size:13px">Gut wall: only very small pieces fit through the gap →</text>
+        <rect x="10" y="250" width="500" height="34" rx="6" style="fill:var(--bad);opacity:.16"/>
+        <text x="20" y="272" class="svg-text" style="font-size:14px;font-weight:600">Blood → skin</text>
+        <path d="M70 168 v24 M205 168 v24 M330 168 v24" style="stroke:var(--bad);stroke-width:3;stroke-linecap:round"/>
+        <g style="stroke:var(--bad);stroke-width:3;stroke-linecap:round"><path d="M62 184 l16 0 M197 184 l16 0 M322 184 l16 0"/></g>
+        <text x="20" y="318" class="svg-text" style="font-size:14px"><tspan style="fill:var(--bad);font-weight:700">✕</tspan> Big pieces get stuck.  <tspan style="fill:var(--good);font-weight:700">✓</tspan> Tiny pieces go straight in.</text>
+      </svg>
+    </div>
+    <ul class="points">
+      <li><span class="dot">1</span><p><b>Da</b> (dalton) is how scientists weigh very small things like molecules. Big number = big piece. Small number = small piece.</p></li>
+      <li><span class="dot">2</span><p>Collagen is a long chain of tiny beads. Makers cut the chain into short pieces so the body can take it in.</p></li>
+      <li><span class="dot">3</span><p>The gut takes in pieces of <b>2 or 3 beads</b> most easily. That is about <b>300 Da</b>. Pieces of 1,000 or 2,000 Da must be cut smaller by the body first.</p></li>
+    </ul>
+  </div>
+  <div class="art">
+    <svg viewBox="0 0 1000 124" role="img" aria-label="Scale: 300 Da is best, 1,000 Da is okay, 2,000 Da is weak, not shown on the box means ask the maker.">
+      <defs><linearGradient id="g-da" x1="0" x2="1"><stop offset="0" style="stop-color:var(--good)"/><stop offset=".4" style="stop-color:var(--ok)"/><stop offset=".72" style="stop-color:var(--warn)"/><stop offset="1" style="stop-color:var(--bad)"/></linearGradient></defs>
+      <rect x="20" y="40" width="960" height="22" rx="11" style="fill:url(#g-da)"/>
+      <g class="svg-text" style="font-size:17px;font-weight:600" text-anchor="middle">
+        <text x="110" y="28">300 Da</text><text x="390" y="28">1,000 Da</text><text x="660" y="28">2,000 Da</text><text x="890" y="28">Not on box</text>
+      </g>
+      <g class="svg-muted" style="font-size:14px" text-anchor="middle">
+        <text x="110" y="88" class="svg-text" style="font-weight:600">Best</text><text x="390" y="88" class="svg-text" style="font-weight:600">Okay</text><text x="660" y="88" class="svg-text" style="font-weight:600">Weak</text><text x="890" y="88" class="svg-text" style="font-weight:600">Ask the maker</text>
+        <text x="110" y="112">Yorosum, HURUM, SSF</text><text x="390" y="112">BB LAB (both)</text><text x="660" y="112">BOTO</text><text x="890" y="112">HURUM Biotin, VITASUB</text>
+      </g>
+    </svg>
+  </div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Look for "평균분자량" (average molecular weight) on the box. 300 Da or lower is the best you can buy.</div>
+</section>
+
+<!-- ================= PAGE 4 ================= -->
+<section class="page" aria-labelledby="p4">
+  <div class="page-head">
+    <div class="page-no">Page 4 · How much collagen?</div>
+    <h2 id="p4">Small pieces are good. But you also need enough of them.</h2>
+    <p class="lead">In skin studies, people took <b>2,500 mg or more</b> of collagen a day. The dashed line shows that amount. Longer bar = more collagen in one stick.</p>
+  </div>
+  <div class="art"><div class="chart" id="chart-dose"></div></div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Yorosum gives the most collagen per stick: 2,000 mg. VITASUB gives only 196 mg, 10 times less.</div>
+</section>
+
+<!-- ================= PAGE 5 ================= -->
+<section class="page" aria-labelledby="p5">
+  <div class="page-head">
+    <div class="page-no">Page 5 · Vitamin C</div>
+    <h2 id="p5">Vitamin C is the builder that turns collagen pieces into skin</h2>
+  </div>
+  <div class="lesson">
+    <div class="art">
+      <svg viewBox="0 0 520 300" role="img" aria-label="Without vitamin C the bricks stay in a pile. With vitamin C they become a strong wall.">
+        <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">Without vitamin C</text>
+        <g style="fill:var(--accent);opacity:.85">
+          <rect x="40" y="90" width="44" height="20" rx="3" transform="rotate(-12 62 100)"/>
+          <rect x="80" y="104" width="44" height="20" rx="3" transform="rotate(18 102 114)"/>
+          <rect x="60" y="126" width="44" height="20" rx="3" transform="rotate(4 82 136)"/>
+          <rect x="112" y="126" width="44" height="20" rx="3" transform="rotate(-25 134 136)"/>
+          <rect x="24" y="126" width="44" height="20" rx="3" transform="rotate(30 46 136)"/>
+        </g>
+        <text x="95" y="184" text-anchor="middle" class="svg-muted" style="font-size:13px">Pieces just sit there</text>
+        <text x="300" y="26" class="svg-text" style="font-weight:600;font-size:15px">With vitamin C</text>
+        <g style="fill:var(--accent)">
+          <rect x="300" y="140" width="44" height="20" rx="3"/><rect x="348" y="140" width="44" height="20" rx="3"/><rect x="396" y="140" width="44" height="20" rx="3"/>
+          <rect x="324" y="116" width="44" height="20" rx="3"/><rect x="372" y="116" width="44" height="20" rx="3"/><rect x="420" y="116" width="44" height="20" rx="3"/>
+          <rect x="300" y="92" width="44" height="20" rx="3"/><rect x="348" y="92" width="44" height="20" rx="3"/><rect x="396" y="92" width="44" height="20" rx="3"/>
+          <rect x="324" y="68" width="44" height="20" rx="3"/><rect x="372" y="68" width="44" height="20" rx="3"/>
+        </g>
+        <circle cx="470" cy="62" r="20" style="fill:var(--vitc)"/>
+        <text x="470" y="69" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">C</text>
+        <text x="380" y="184" text-anchor="middle" class="svg-muted" style="font-size:13px">Pieces become a strong wall</text>
+        <path d="M195 120 h70" style="stroke:var(--muted);stroke-width:3;stroke-linecap:round"/>
+        <path d="M257 112 l10 8 l-10 8" style="fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+        <rect x="20" y="214" width="480" height="66" rx="10" style="fill:var(--accent-soft)"/>
+        <text x="260" y="242" text-anchor="middle" class="svg-text" style="font-size:15px;font-weight:600">100 mg vitamin C = 100% of one day's need (Korea)</text>
+        <text x="260" y="265" text-anchor="middle" class="svg-muted" style="font-size:13px">USA: 90 mg · Europe: 80 mg</text>
+      </svg>
+    </div>
+    <ul class="points">
+      <li><span class="dot">1</span><p>Collagen pieces are like <b>bricks</b>. Vitamin C is the <b>builder</b>. Without it, the body cannot build strong new collagen.</p></li>
+      <li><span class="dot">2</span><p>Vitamin C does not push collagen into the blood. Its job comes after that: it helps <b>build</b> the collagen in your skin.</p></li>
+      <li><span class="dot">3</span><p>A good stick gives about <b>100 mg</b>, one full day of vitamin C. We give 10/10 at 100 mg or more.</p></li>
+    </ul>
+  </div>
+  <div class="art"><div class="chart" id="chart-vitc"></div></div>
+</section>
+
+<!-- ================= PAGE 6 ================= -->
+<section class="page" aria-labelledby="p6">
+  <div class="page-head">
+    <div class="page-no">Page 6 · Tiny extras</div>
+    <h2 id="p6">Don't be fooled by fancy words on the box</h2>
+    <p class="lead">Many boxes say "Glutathione", "Biotin" or "Hyaluronic acid" in big letters. But the amount inside is often a tiny drop. A tiny drop does nothing.</p>
+  </div>
+  <div class="drops" id="drops"></div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>A long list of extras is not a sign of quality. Check the amount in mg. If it is tiny, ignore it.</div>
+</section>
+
+<!-- ================= PAGE 7 ================= -->
+<section class="page" aria-labelledby="p7">
+  <div class="page-head">
+    <div class="page-no">Page 7 · Reading the box</div>
+    <h2 id="p7">Find the real collagen amount in 3 steps</h2>
+    <p class="lead">Many boxes show a <b>percentage (%)</b>, not milligrams. Here is how to turn it into mg. Example: HURUM Small Molecular.</p>
+  </div>
+  <div class="label-demo">
+    <div class="art">
+      <svg viewBox="0 0 440 260" role="img" aria-label="Example label: fish collagen 60 percent, 2 grams times 60 sticks.">
+        <rect x="10" y="10" width="420" height="240" rx="12" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+        <text x="30" y="48" class="svg-muted" style="font:600 15px 'Noto Sans KR',sans-serif">Box label (example)</text>
+        <rect x="26" y="66" width="388" height="44" rx="8" style="fill:none;stroke:var(--accent);stroke-width:3"/>
+        <text x="40" y="95" class="svg-text" style="font:600 18px 'Noto Sans KR',sans-serif">저분자피쉬콜라겐펩타이드 60 %</text>
+        <circle cx="414" cy="66" r="14" style="fill:var(--accent)"/><text x="414" y="71" text-anchor="middle" style="font:700 14px sans-serif;fill:var(--bg)">1</text>
+        <text x="40" y="146" class="svg-muted" style="font:15px 'Noto Sans KR',sans-serif">비타민C 6 %</text>
+        <rect x="26" y="176" width="260" height="44" rx="8" style="fill:none;stroke:var(--accent);stroke-width:3"/>
+        <text x="40" y="205" class="svg-text" style="font:600 18px 'Noto Sans KR',sans-serif">120 g (2 g × 60포)</text>
+        <circle cx="286" cy="176" r="14" style="fill:var(--accent)"/><text x="286" y="181" text-anchor="middle" style="font:700 14px sans-serif;fill:var(--bg)">2</text>
+      </svg>
+    </div>
+    <div class="math">
+      <div class="mstep"><span class="dot">1</span><div><p>Find the collagen <b>%</b>.</p><div class="eq">60%</div></div></div>
+      <div class="mstep"><span class="dot">2</span><div><p>Find the weight of <b>one stick</b> (포 = stick). 1 g = 1,000 mg.</p><div class="eq">2 g = 2,000 mg</div></div></div>
+      <div class="mstep"><span class="dot">3</span><div><p>Multiply. This is the real collagen in one stick.</p><div class="eq">2,000 × 60% = 1,200 mg</div></div></div>
+    </div>
+  </div>
+  <div class="warnbox">
+    <img src="img/ssf.jpg" alt="SSF pomegranate collagen jelly stick box" loading="lazy">
+    <div class="page-head" style="gap:6px">
+      <h3>Watch out for big box numbers</h3>
+      <p>The SSF box says <b>"100,000 mg"</b> collagen. That is for the <b>whole box of 100 sticks</b>. One stick has 1,000 mg. Always count per stick.</p>
+    </div>
+  </div>
+  <h3>Korean words to know on the box</h3>
+  <div class="scroll">
+    <table class="gloss">
+      <tr><td>저분자</td><td>Low molecular (small pieces)</td></tr>
+      <tr><td>피쉬콜라겐 / 생선콜라겐</td><td>Fish collagen</td></tr>
+      <tr><td>평균분자량</td><td>Average molecular weight (the Da number)</td></tr>
+      <tr><td>1포당</td><td>Per stick</td></tr>
+      <tr><td>비타민C</td><td>Vitamin C</td></tr>
+      <tr><td>기타가공품</td><td>General food. Not a health functional food (건강기능식품), so the box cannot promise health results.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= PAGE 8 ================= -->
+<section class="page" aria-labelledby="p8">
+  <div class="page-head">
+    <div class="page-no">Page 8 · Fair price</div>
+    <h2 id="p8">Compare price per gram of collagen, not price per box</h2>
+    <p class="lead">Boxes have 30 to 100 sticks, so the box price can trick you. Divide the price by the total grams of collagen in the box. Shorter bar = cheaper collagen.</p>
+  </div>
+  <div class="art"><div class="chart" id="chart-price"></div></div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>BOTO has the cheapest box (₩8,630). But its collagen costs more per gram than HURUM or Yorosum, and the pieces are big (2,000 Da).</div>
+</section>
+
+<!-- ================= PAGE 9 ================= -->
+<section class="page" aria-labelledby="p9">
+  <div class="page-head">
+    <div class="page-no">Page 9 · Your checklist</div>
+    <h2 id="p9">6 questions before you buy</h2>
+  </div>
+  <ul class="checks">
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Is it <b>fish collagen</b> (Type I)?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Is the Da on the box, and is it <b>300 Da or lower</b>?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Is there at least <b>1,000 mg</b> collagen per stick? 2,000 mg or more is best.</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Is there about <b>100 mg vitamin C</b> per stick?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Are the extras big enough to matter, or just <b>tiny drops</b>?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>What is the price per <b>gram of collagen</b>?</span></li>
+  </ul>
+  <h3>Ask the supplier for these papers</h3>
+  <ul class="checks">
+    <li><svg aria-hidden="true"><use href="#i-clean"/></svg><span><b>Test report (CoA)</b> showing collagen mg per stick.</span></li>
+    <li><svg aria-hidden="true"><use href="#i-size"/></svg><span><b>Size report</b> showing how much of the collagen is under 500 Da.</span></li>
+    <li><svg aria-hidden="true"><use href="#i-dose"/></svg><span><b>Full ingredient list</b> with the % of every ingredient.</span></li>
+    <li><svg aria-hidden="true"><use href="#i-price"/></svg><span><b>Safety tests</b> for heavy metals, plus HACCP or Halal if your market needs them.</span></li>
+  </ul>
+</section>
+
+<!-- ================= DETAILS ================= -->
+<section class="page" aria-labelledby="p10">
+  <div class="page-head">
+    <div class="page-no">Details for specialists</div>
+    <h2 id="p10">All numbers and the scoring formula</h2>
+  </div>
+  <details>
+    <summary>Full comparison table</summary>
+    <div><div class="scroll"><table class="matrix" id="matrix"></table></div>
+    <p class="muted" style="font-size:13px">◆ Not printed on the front pack (seller listing). Confirm with the supplier's certificate of analysis.</p></div>
+  </details>
+  <details>
+    <summary>How the scores are calculated</summary>
     <div>
-      <h3>Collagen types</h3>
-      <p>The body makes 28 types of collagen, but five do most of the work. For a skin and beauty product, Type I is the one that matters.</p>
-      <div class="scroll">
-        <table>
-          <thead><tr><th>Type</th><th>Where in the body</th><th>Usual source</th></tr></thead>
-          <tbody>
-            <tr><td><b>I</b></td><td>Skin, bone, tendon. About 90% of the body's collagen.</td><td>Fish (marine), bovine</td></tr>
-            <tr><td><b>II</b></td><td>Cartilage</td><td>Chicken sternum</td></tr>
-            <tr><td><b>III</b></td><td>Skin and blood vessels, alongside Type I</td><td>Bovine, porcine</td></tr>
-            <tr><td><b>IV</b></td><td>Basement membranes under skin layers</td><td>Not sold as a supplement</td></tr>
-            <tr><td><b>V</b></td><td>Hair, cell surfaces, placenta</td><td>Minor in supplements</td></tr>
-          </tbody>
-        </table>
+      <div class="weights">
+        <div><span>Collagen per stick: mg ÷ 250, max 10</span><b>20%</b></div>
+        <div><span>Molecular size: ≤300 Da 10, ≤600 8, ≤1,000 6, ≤2,000 4, not disclosed 3</span><b>20%</b></div>
+        <div><span>Vitamin C: mg ÷ 10, max 10</span><b>15%</b></div>
+        <div><span>Clean formula: extras at useful doses, no filler (judged)</span><b>15%</b></div>
+        <div><span>Price per gram of collagen: cheapest ÷ this product × 10</span><b>20%</b></div>
+        <div><span>Collagen per box: grams ÷ 10, max 10</span><b>10%</b></div>
       </div>
-      <p>All nine products here use fish collagen, which is mostly Type I. Once collagen is hydrolysed into peptides, the type label matters less than two numbers you can verify: <b>how many milligrams</b> are in each stick and <b>how small</b> the peptides are.</p>
+      <p class="muted" style="font-size:14px">Quality = first four rows. Value = last two. Overall = 70% quality + 30% value. Glutathione, biotin and hyaluronic acid earn no points below studied doses (glutathione 250–1,000 mg/day; hyaluronic acid 120–240 mg/day; biotin 30 µg only meets the daily adequate intake). VITASUB has no listed price, so its overall score is its quality score.</p>
     </div>
-
-    <div>
-      <h3>What "Da" means</h3>
-      <p>A dalton (Da) is the unit for molecular weight. One dalton is roughly the mass of a hydrogen atom. Collagen peptides are sold by their <b>average</b> molecular weight: the smaller the number, the shorter the protein fragments.</p>
-      <div class="scale" aria-label="Molecular weight scale, logarithmic">
-        <div class="scale-row"><div class="lbl">Native collagen<small>~300,000 Da</small></div><div class="bar"><b></b><i style="--w:100%;--c:var(--bad)"></i></div></div>
-        <div class="scale-row"><div class="lbl">Gelatin<small>~15,000–250,000 Da</small></div><div class="bar"><b></b><i style="--w:86%;--c:var(--bad)"></i></div></div>
-        <div class="scale-row"><div class="lbl">Standard hydrolysed collagen<small>~2,000–5,000 Da</small></div><div class="bar"><b></b><i style="--w:42%;--c:var(--warn)"></i></div></div>
-        <div class="scale-row"><div class="lbl">Low molecular<small>~1,000 Da</small></div><div class="bar"><b></b><i style="--w:29%;--c:var(--warn)"></i></div></div>
-        <div class="scale-row"><div class="lbl">Ultra-low molecular<small>~300 Da</small></div><div class="bar"><b></b><i style="--w:14%;--c:var(--good)"></i></div></div>
-        <div class="scale-row"><div class="lbl">Gly-Pro-Hyp tripeptide<small>285 Da</small></div><div class="bar"><b></b><i style="--w:13%;--c:var(--good)"></i></div></div>
-        <p class="muted" style="font-size:12px">Bar length on a log scale from 100 Da to 300,000 Da.</p>
-      </div>
-    </div>
-
-    <div>
-      <h3>Why lower Da matters</h3>
-      <ul>
-        <li>The gut absorbs dipeptides and tripeptides (two or three amino acids, roughly 150–400 Da) intact through a dedicated transporter called PepT1. Larger fragments must be broken down first.</li>
-        <li>Collagen-specific peptides such as Pro-Hyp (228 Da) have been measured in human blood after people drank collagen peptides, and lab studies suggest they signal skin cells (fibroblasts) to produce new collagen.</li>
-        <li>A 300 Da average means most of the dose is already at di/tripeptide size. A 2,000 Da average means most of it is not.</li>
-        <li>An average can hide a wide spread. Ask suppliers for the <b>molecular weight distribution</b> (for example, % below 500 Da by SEC-HPLC), not just the headline number.</li>
-      </ul>
-      <p class="callout">Size and dose work together. A small peptide at 200 mg still delivers 200 mg. Human skin studies on collagen peptides have generally used <b>2.5–10 g per day</b>, so 2,500 mg is our full-score benchmark for dose.</p>
-    </div>
-
-    <div>
-      <h3>Why vitamin C belongs in the stick</h3>
-      <p>Vitamin C does not help collagen peptides get absorbed. It does something more important: it is the required cofactor for the two enzymes (prolyl and lysyl hydroxylase) that lock new collagen fibres into their stable triple-helix shape. Without enough vitamin C the body cannot build sound collagen from the building blocks the stick provides. In Korea, vitamin C carries the recognised function "needed for the formation and maintenance of connective tissue."</p>
-      <div class="dv">
-        <div><b>100 mg</b><span>Korea daily reference value (영양성분 기준치)</span></div>
-        <div><b>90 mg</b><span>US Daily Value</span></div>
-        <div><b>80 mg</b><span>EU Nutrient Reference Value</span></div>
-      </div>
-      <p>We score vitamin C proportionally up to 100 mg (100% of the Korean daily value). 100 mg or more earns 10/10, 30 mg earns 3/10, and 4 mg earns 0.4/10.</p>
-    </div>
-
-    <div>
-      <h3>Ingredients that look good but do little at these doses</h3>
-      <ul>
-        <li><b>Glutathione:</b> oral studies on skin used 250–1,000 mg a day of the active compound. The products here deliver 25 mg, 2 mg and 0.2 mg.</li>
-        <li><b>Biotin:</b> 30 µg equals the daily adequate intake, a basic requirement most diets already meet. There is no evidence extra biotin improves skin or hair in people who are not deficient.</li>
-        <li><b>Hyaluronic acid:</b> oral studies generally used 120–240 mg a day. The products here contain 0.02–0.4 mg, several hundred times less.</li>
-      </ul>
-      <p>None of these score points unless they reach a meaningful dose. A long ingredient list built from micro-doses is a sign of marketing-led formulation.</p>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="method-h">
-  <div class="stack">
-    <h2 id="method-h">How the scores are calculated</h2>
-    <p class="muted">Every score below comes from a fixed formula applied to the same inputs, so any buyer can recompute it.</p>
-  </div>
-  <div class="weights">
-    <div class="grp">Quality · 70%</div>
-    <div><span>Collagen per stick · mg ÷ 250, max 10</span><b>20%</b></div>
-    <div><span>Molecular size · ≤300 Da 10, ≤600 8, ≤1,000 6, ≤2,000 4, undisclosed 3</span><b>20%</b></div>
-    <div><span>Vitamin C · mg ÷ 10, max 10</span><b>15%</b></div>
-    <div><span>Formulation honesty · extras at useful doses, no filler (judged)</span><b>15%</b></div>
-    <div class="grp">Value · 30%</div>
-    <div><span>Price per gram of collagen · cheapest ÷ this product × 10</span><b>20%</b></div>
-    <div><span>Collagen per box · grams ÷ 10, max 10</span><b>10%</b></div>
-  </div>
-  <p class="muted" style="font-size:13.5px">Box price alone is shown but not scored, because box sizes range from 30 to 100 sticks. Price per gram of collagen is the comparable figure. VITASUB has no listed price, so its overall score is its quality score.</p>
-</section>
-
-<section aria-labelledby="files-h">
-  <div class="stack">
-    <h2 id="files-h">Product files</h2>
-    <p class="muted">Ordered by overall score.</p>
-  </div>
-  <div class="cards" id="cards"></div>
-</section>
-
-<section aria-labelledby="ask-h">
-  <h2 id="ask-h">What to ask any supplier before you order</h2>
-  <ol class="checklist">
-    <li><b>Certificate of analysis</b> for collagen content per stick, not per box.</li>
-    <li><b>Molecular weight distribution</b> by SEC-HPLC, including % of peptides below 500 Da and 1,000 Da.</li>
-    <li><b>Fish species and country of origin</b> of the collagen raw material (for example, tilapia or pangasius, Vietnam).</li>
-    <li><b>Heavy metals and microbiology</b> test results per batch (lead, cadmium, mercury, arsenic).</li>
-    <li><b>Full ingredient list with percentages</b>, including sweeteners, acidulants and flavours that fill the rest of the stick.</li>
-    <li><b>Food category.</b> All nine are 기타가공품 (general processed food), not 건강기능식품 (health functional food), so efficacy claims such as whitening or wrinkle improvement are not permitted in Korean marketing.</li>
-    <li><b>Certifications</b> required for your market: HACCP, Halal, ISO 22000, and export health certificates.</li>
-    <li><b>MOQ, shelf life and private-label options</b>, including minimum run for custom flavour or packaging.</li>
-  </ol>
+  </details>
+  <details>
+    <summary>Strengths and weaknesses of each product</summary>
+    <div id="notes"></div>
+  </details>
 </section>
 
 <footer>
-  <p>Per-stick amounts are calculated from percentages and stick weights printed on each pack. MIPPEUM figures and the HURUM Small Molecular 300 Da figure come from seller listings because they are not legible or not printed on the front pack. Prices are the last retail prices checked and change often; use them for ratio comparison and request current wholesale quotes.</p>
-  <p>This sheet compares formulations for purchasing decisions. It is not medical advice and does not make health claims for any product. YOROSUM is the publisher's own brand; the scoring formula is shown in full so buyers can check it.</p>
+  <p>Per-stick amounts are calculated from percentages and stick weights printed on each pack. MIPPEUM figures and the HURUM Small Molecular 300 Da figure come from seller listings. Prices are the last retail prices checked; request current wholesale quotes.</p>
+  <p>This guide compares product labels for buying decisions. It is not medical advice and makes no health claims for any product. YOROSUM is the publisher's own brand; the full scoring formula is shown so anyone can check it.</p>
 </footer>
 </div>
 
 <script>
 const P = [
-  { id: "yorosum", own: true, name: "YOROSUM Glow Peptide", ko: "여러숨 글로우 펩타이드 · 저분자 생선콜라겐 데일리 스틱",
-    sticks: 30, stickG: 3, collagen: 2000, da: 300, daNote: "", vitc: 100, honesty: 5, price: 19900, kcal: 335 / 30,
-    extras: "Peach flavour powder 300 mg, bamboo sap extract 30 mg, elastin hydrolysate 3 mg",
-    pros: ["Highest collagen per stick in the set (2,000 mg)", "300 Da average molecular weight printed on pack", "Full 100 mg vitamin C, 100% of the Korean daily value", "Second-lowest cost per gram of collagen"],
-    cons: ["About 0.57 g per stick is not itemised on the front pack (flavour and sweetener system); publish the full list", "Elastin at 3 mg is a trace amount", "Higher price per stick (₩663) than 2 g formats"],
-    src: "All figures printed on pack." },
-  { id: "hurum-sm", name: "HURUM Small Molecular Fish Collagen Peptide", ko: "휴럼 저분자피쉬콜라겐펩타이드",
-    sticks: 60, stickG: 2, collagen: 1200, da: 300, daNote: "seller", vitc: 120, honesty: 4, price: 23000, kcal: null,
-    extras: "L-proline 6 mg, hyaluronic acid 0.4 mg, lemon flavour",
-    pros: ["Lowest cost per gram of collagen (₩319/g)", "120 mg vitamin C", "Clean, short formula with no micro-dose marketing actives"],
-    cons: ["1,200 mg per stick is under half the 2,500 mg clinical benchmark", "300 Da is not printed on the front pack; request the CoA", "Hyaluronic acid at 0.4 mg is far below studied doses"],
-    src: "Collagen 60% and vitamin C 6% of a 2 g stick printed on pack. Molecular weight from seller listing." },
-  { id: "ssf", name: "SSF Real Pomegranate Low Molecular Fish Collagen Jelly Stick", ko: "SSF 진짜석류 어린저분자 피쉬콜라겐 젤리스틱",
-    sticks: 100, stickG: 20, collagen: 1000, da: 300, daNote: "", vitc: 4, honesty: 4, price: 39370, kcal: 45,
-    extras: "Pomegranate concentrate 18,640 mg (93.2%), elastin 20 mg, glutathione yeast extract 2 mg, brewer's yeast 2 mg, biotin 20 µg",
-    pros: ["300 Da collagen", "Largest box: 100 g collagen across 100 sticks", "Jelly format suits consumers who dislike powders"],
-    cons: ["Front-pack '100,000 mg' is the box total; each stick has 1,000 mg", "Vitamin C only 4 mg per stick", "93% fruit concentrate base adds sugar and about 45 kcal per stick", "Glutathione and biotin are decorative doses"],
-    src: "All figures printed on pack." },
-  { id: "bb-goodnight", name: "Nutrione BB LAB Goodnight Low Molecular Collagen", ko: "뉴트리원 비비랩 굿나잇 저분자 콜라겐",
-    sticks: 50, stickG: 2, collagen: 1200, da: 1000, daNote: "", vitc: 30, honesty: 5, price: 22870, kcal: 380 / 50,
-    extras: "Glycine 80 mg (4%), L-proline 20 mg (1%)",
-    pros: ["Adds glycine and proline, the main collagen amino acids", "Strong retail brand recognition in Korea"],
-    cons: ["1,000 Da is larger than the 300 Da leaders", "Vitamin C 30 mg, 30% of the daily value", "Amino acid additions are small"],
-    src: "All figures printed on pack." },
-  { id: "bb-biotin", name: "Nutrione BB LAB Low Molecular Collagen Biotin Plus", ko: "뉴트리원 비비랩 저분자 콜라겐 비오틴 플러스",
-    sticks: 50, stickG: 2, collagen: 1200, da: 1000, daNote: "", vitc: 30, honesty: 2, price: 21900, kcal: 380 / 50,
+  { id: "yorosum", own: true, name: "YOROSUM Glow Peptide", sticks: 30, stickG: 3, collagen: 2000, da: 300, vitc: 100, honesty: 5, price: 19900,
+    extras: "Peach flavour powder 300 mg, bamboo sap extract 30 mg, elastin 3 mg",
+    pros: "Most collagen per stick (2,000 mg); 300 Da printed on pack; 100 mg vitamin C; second-cheapest per gram.",
+    cons: "About 0.57 g per stick not itemised on front pack; elastin is a trace amount; ₩663 per stick." },
+  { id: "hurum-sm", name: "HURUM Small Molecular Fish Collagen", sticks: 60, stickG: 2, collagen: 1200, da: 300, daSeller: true, vitc: 120, honesty: 4, price: 23000,
+    extras: "L-proline 6 mg, hyaluronic acid 0.4 mg",
+    pros: "Cheapest per gram (₩319/g); 120 mg vitamin C; short, clean formula.",
+    cons: "1,200 mg is under half the 2,500 mg benchmark; 300 Da not on front pack." },
+  { id: "ssf", name: "SSF Real Pomegranate Collagen Jelly", sticks: 100, stickG: 20, collagen: 1000, da: 300, vitc: 4, honesty: 4, price: 39370,
+    extras: "Pomegranate concentrate 18,640 mg, elastin 20 mg, glutathione yeast 2 mg, biotin 20 µg",
+    pros: "300 Da; 100 g collagen per box; jelly format.",
+    cons: "'100,000 mg' on front is the box total; only 4 mg vitamin C; mostly fruit concentrate (about 45 kcal per stick)." },
+  { id: "bb-goodnight", name: "BB LAB Goodnight Collagen", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 5, price: 22870,
+    extras: "Glycine 80 mg, L-proline 20 mg",
+    pros: "Adds glycine and proline, the main collagen amino acids; well-known brand.",
+    cons: "1,000 Da; vitamin C only 30 mg." },
+  { id: "bb-biotin", name: "BB LAB Collagen Biotin Plus", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 2, price: 21900,
     extras: "Biotin 30 µg",
-    pros: ["Low entry price for 1,000 Da collagen"],
-    cons: ["Vitamin C 30 mg", "Biotin is the headline addition but adds no skin or hair benefit in non-deficient people", "1,000 Da molecular weight"],
-    src: "All figures printed on pack." },
-  { id: "boto", name: "BOTO Glutathione White Low Molecular Collagen C Biotin", ko: "보토 글루타치온 화이트 저분자 콜라겐 C 비오틴",
-    sticks: 30, stickG: 4, collagen: 800, da: 2000, daNote: "", vitc: 220, honesty: 2, price: 8630, kcal: 448 / 30,
-    extras: "Dried yeast 1,000 mg (≈25 mg glutathione), biotin 36 µg",
-    pros: ["220 mg vitamin C", "Lowest box price; HACCP and Halal certified"],
-    cons: ["Collagen is only 20% of the stick (800 mg)", "2,000 Da is the largest molecular weight in the set", "25 mg glutathione is far below studied doses despite 'White' positioning"],
-    src: "All figures printed on pack." },
-  { id: "mippeum", name: "MIPPEUM Ddak Joa Collagen Jelly Stick Mix Package", ko: "미쁨생활건강 딱좋아 콜라겐 젤리 스틱 믹스 패키지",
-    sticks: 45, stickG: 20, collagen: 1600, da: 600, daNote: "seller", vitc: 0, honesty: 4, price: 42800, kcal: null,
-    extras: "Fruit concentrates (ABC juice, pomegranate, tart cherry), about 18,400 mg per stick",
-    pros: ["1,600 mg collagen per stick", "Under 600 Da", "Three flavours in one gift box"],
-    cons: ["Highest cost per gram of collagen (₩594/g)", "No vitamin C declared", "Fruit concentrate base is mostly sugar"],
-    src: "Collagen dose, molecular weight and stick count from seller listing; pack text not legible in the image supplied." },
-  { id: "hurum-biotin", name: "HURUM Biotin Collagen Peptide", ko: "휴럼 비오틴 콜라겐 펩타이드",
-    sticks: 90, stickG: 2, collagen: 500, da: null, daNote: "", vitc: 120, honesty: 2, price: 22000, kcal: 700 / 90,
+    pros: "Low price for 1,000 Da collagen.",
+    cons: "Vitamin C 30 mg; biotin is the headline but adds no proven skin benefit." },
+  { id: "boto", name: "BOTO Glutathione White Collagen", sticks: 30, stickG: 4, collagen: 800, da: 2000, vitc: 220, honesty: 2, price: 8630,
+    extras: "Dried yeast with ≈25 mg glutathione, biotin 36 µg",
+    pros: "220 mg vitamin C; lowest box price; HACCP and Halal.",
+    cons: "Collagen only 20% of stick (800 mg); 2,000 Da; glutathione far below useful dose." },
+  { id: "mippeum", name: "MIPPEUM Collagen Jelly Mix Package", sticks: 45, stickG: 20, collagen: 1600, da: 600, daSeller: true, doseSeller: true, vitc: 0, honesty: 4, price: 42800,
+    extras: "Fruit concentrates (ABC juice, pomegranate, tart cherry) ≈18,400 mg",
+    pros: "1,600 mg collagen; under 600 Da; three flavours.",
+    cons: "Most expensive per gram (₩594/g); no vitamin C declared; sugary fruit base." },
+  { id: "hurum-biotin", name: "HURUM Biotin Collagen Peptide", sticks: 90, stickG: 2, collagen: 500, da: null, vitc: 120, honesty: 2, price: 22000,
     extras: "Biotin 30 µg, hyaluronic acid 0.2 mg",
-    pros: ["120 mg vitamin C", "Lowest price per stick (₩244)"],
-    cons: ["Only 500 mg collagen per stick (25% of the stick)", "Molecular weight not disclosed", "Biotin and hyaluronic acid at decorative doses"],
-    src: "All figures printed on pack. Molecular weight described only as 'low molecular'." },
-  { id: "vitasub", name: "VITASUB Slim Collagen Plus White Glutathione", ko: "비타서브 슬림 콜라겐 플러스 화이트 글루타치온",
-    sticks: 30, stickG: 2, collagen: 196, da: null, daNote: "", vitc: 0.2, honesty: 1, price: null, kcal: 230 / 30,
-    extras: "L-glutathione 200 µg, hyaluronic acid 20 µg, biotin 20 µg",
-    pros: ["None at the declared doses"],
-    cons: ["Collagen is 10% of a 98.1% blend, about 196 mg per stick", "Vitamin C 0.2 mg (0.2% of the daily value)", "'Whitening improvement' icon on a general food may draw regulatory scrutiny", "No price listed"],
-    src: "Calculated from pack: 2,000 mg × 98.137% × 10% fish collagen." }
+    pros: "120 mg vitamin C; cheapest per stick (₩244).",
+    cons: "Only 500 mg collagen; Da not disclosed; tiny extras." },
+  { id: "vitasub", name: "VITASUB Slim Collagen Plus", sticks: 30, stickG: 2, collagen: 196, da: null, vitc: 0.2, honesty: 1, price: null,
+    extras: "Glutathione 0.2 mg, hyaluronic acid 0.02 mg, biotin 0.02 mg",
+    pros: "None at the declared doses.",
+    cons: "About 196 mg collagen; 0.2 mg vitamin C; 'whitening' icon on a general food; no price listed." }
 ];
 
 const daScore = d => d == null ? 3 : d <= 300 ? 10 : d <= 600 ? 8 : d <= 1000 ? 6 : 4;
-const r1 = x => Math.round(x * 10) / 10;
-const priced = P.filter(p => p.price);
-const best = Math.min(...priced.map(p => p.price / (p.collagen * p.sticks / 1000)));
+const r1 = x => (Math.round(x * 10) / 10).toFixed(1);
+const fmt = n => n.toLocaleString("en-US");
+const won = n => n == null ? "No price" : "₩" + fmt(Math.round(n));
+const mg = n => n >= 1 ? fmt(n) + " mg" : fmt(+(n * 1000).toFixed(0)) + " µg";
+const tone = s => s == null ? "var(--muted)" : s >= 7.5 ? "var(--good)" : s >= 5 ? "var(--ok)" : s >= 3 ? "var(--warn)" : "var(--bad)";
+const word = s => s >= 8 ? "Excellent" : s >= 7 ? "Very good" : s >= 6 ? "Good" : s >= 5 ? "Average" : s >= 3 ? "Weak" : "Avoid";
+const daText = p => p.da == null ? "Not on box" : (p.id === "mippeum" ? "Under 600 Da" : fmt(p.da) + " Da");
+
+const best = Math.min(...P.filter(p => p.price).map(p => p.price / (p.collagen * p.sticks / 1000)));
 P.forEach(p => {
+  p.img = `img/${p.id}.jpg`;
   p.total = p.collagen * p.sticks;
-  p.s = { dose: Math.min(10, p.collagen / 250), da: daScore(p.da), vitc: Math.min(10, p.vitc / 10), honesty: p.honesty,
-          box: Math.min(10, p.total / 10000) };
+  p.s = { dose: Math.min(10, p.collagen / 250), da: daScore(p.da), vitc: Math.min(10, p.vitc / 10), honesty: p.honesty, box: Math.min(10, p.total / 10000) };
   p.quality = (p.s.dose * 20 + p.s.da * 20 + p.s.vitc * 15 + p.s.honesty * 15) / 70;
   if (p.price) {
     p.perG = p.price / (p.total / 1000);
@@ -387,77 +592,99 @@ P.forEach(p => {
     p.s.price = 10 * best / p.perG;
     p.value = (p.s.price * 20 + p.s.box * 10) / 30;
     p.overall = p.quality * 0.7 + p.value * 0.3;
-  } else { p.value = null; p.overall = p.quality; }
+  } else { p.value = null; p.s.price = null; p.overall = p.quality; }
 });
 
-const fmt = n => n.toLocaleString("en-US");
-const won = n => n == null ? "Not listed" : "₩" + fmt(Math.round(n));
-const tone = s => s >= 7.5 ? "s-hi" : s >= 4.5 ? "s-mid" : "s-lo";
-const chip = s => s == null ? "" : `<span class="chip ${tone(s)}">${r1(s).toFixed(1)}</span>`;
-const barColor = s => s >= 7.5 ? "var(--good)" : s >= 4.5 ? "var(--warn)" : "var(--bad)";
-const bar = (s, cls) => `<div class="bar ${cls}"><b>${s == null ? "–" : r1(s).toFixed(1)}</b><i style="--w:${s == null ? 0 : s * 10}%;--c:${barColor(s ?? 0)}"></i></div>`;
-const daText = p => p.da == null ? "Not disclosed" : (p.id === "mippeum" ? "<600 Da" : fmt(p.da) + " Da") + (p.daNote ? ' <span class="flag">◆</span>' : "");
-const mg = n => n >= 1 ? fmt(n) + " mg" : (n * 1000) + " µg";
+const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${s != null && i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
+const meter = (label, s, val) => `<div class="meter"><span class="lab">${label}</span>${blocks(s)}<span class="val">${val}</span></div>`;
 
-function renderRank(key) {
+function renderRanking(key) {
   const rows = [...P].sort((a, b) => (b[key] ?? -1) - (a[key] ?? -1));
-  document.getElementById("rank").innerHTML =
-    `<div class="rrow head mode-${key}"><span>#</span><span>Product</span><span class="c-overall">Overall</span><span class="c-quality">Quality</span><span class="c-value">Value</span></div>` +
-    rows.map((p, i) => `<div class="rrow mode-${key} is-sorted-${key}"><span class="pos">${i + 1}</span>
-      <span class="pname">${p.name}<small>${p.collagen.toLocaleString()} mg · ${daText(p).replace(/<[^>]+>/g, "").trim()} · vit C ${mg(p.vitc)}</small></span>
-      ${bar(p.overall, "c-overall")}${bar(p.quality, "c-quality")}${bar(p.value, "c-value")}</div>`).join("");
+  const head = `<div class="rhead" aria-hidden="true"><span>Rank</span><span></span><span>Product</span><span style="text-align:center">Score</span>
+    <span class="ic"><svg><use href="#i-dose"/></svg>Collagen per stick</span>
+    <span class="ic"><svg><use href="#i-size"/></svg>Small pieces (Da)</span>
+    <span class="ic"><svg><use href="#i-vitc"/></svg>Vitamin C</span>
+    <span class="ic"><svg><use href="#i-clean"/></svg>Clean formula</span>
+    <span class="ic"><svg><use href="#i-price"/></svg>Price per gram</span></div>`;
+  document.getElementById("ranking").innerHTML = head + rows.map((p, i) => {
+    const sc = p[key];
+    return `<article class="ritem ${p.own ? "own" : ""}">
+      <span class="medal ${i < 3 ? "m" + (i + 1) : ""}">${i + 1}</span>
+      <span class="thumb"><img src="${p.img}" alt="${p.name} box"></span>
+      <span class="pname">${p.name}<small>${p.sticks} sticks × ${p.stickG} g · ${won(p.price)}</small></span>
+      <span class="badge" style="--tone:${tone(sc)}"><span class="big">${sc == null ? "–" : r1(sc)}<small>/10</small></span>${sc == null ? `<span class="word">No price</span>` : `<span class="word">${word(sc)}</span>`}</span>
+      <div class="meters">
+        ${meter("Collagen per stick", p.s.dose, mg(p.collagen) + (p.doseSeller ? " ◆" : ""))}
+        ${meter("Small pieces (Da)", p.s.da, daText(p) + (p.daSeller ? " ◆" : ""))}
+        ${meter("Vitamin C", p.s.vitc, mg(p.vitc))}
+        ${meter("Clean formula", p.s.honesty, p.s.honesty >= 5 ? "Good" : p.s.honesty >= 3 ? "Some filler" : "Tiny extras")}
+        ${meter("Price per gram", p.s.price, p.perG ? won(p.perG) + "/g" : "No price")}
+      </div></article>`;
+  }).join("");
   document.querySelectorAll(".seg").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.sort === key)));
 }
 
-function renderMatrix() {
-  const rows = [...P].sort((a, b) => b.overall - a.overall);
-  const head = ["Product", "Sticks × size", "Collagen / stick", "Molecular size", "Vitamin C / stick", "Other components", "Honesty", "Collagen / box", "Box price", "Price / stick", "Price / g collagen", "Quality", "Value", "Overall"];
-  document.getElementById("matrix").innerHTML =
-    `<thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>` +
-    rows.map(p => `<tr class="${p.own ? "own" : ""}">
-      <td>${p.name}</td>
-      <td class="num">${p.sticks} × ${p.stickG} g</td>
-      <td class="num">${fmt(p.collagen)} mg${chip(p.s.dose)}${p.id === "mippeum" ? ' <span class="flag">◆</span>' : ""}</td>
-      <td class="num">${daText(p)}${chip(p.s.da)}</td>
-      <td class="num">${mg(p.vitc)}${chip(p.s.vitc)}</td>
-      <td style="white-space:normal;min-width:240px">${p.extras}</td>
-      <td class="num">${chip(p.s.honesty)}</td>
-      <td class="num">${fmt(p.total / 1000)} g${chip(p.s.box)}</td>
-      <td class="num">${won(p.price)}</td>
-      <td class="num">${won(p.perStick)}</td>
-      <td class="num">${p.perG ? won(p.perG) + chip(p.s.price) : "–"}</td>
-      <td class="num"><b>${r1(p.quality).toFixed(1)}</b></td>
-      <td class="num"><b>${p.value == null ? "–" : r1(p.value).toFixed(1)}</b></td>
-      <td class="num"><b>${r1(p.overall).toFixed(1)}</b></td></tr>`).join("") + "</tbody>";
-}
-
-function renderCards() {
-  const rows = [...P].sort((a, b) => b.overall - a.overall);
-  document.getElementById("cards").innerHTML = rows.map((p, i) => `
-    <article class="card ${p.own ? "own" : ""}">
-      <div class="hd"><div><h3>${i + 1}. ${p.name}</h3><div class="ko">${p.ko}</div></div>
-        <div class="score">${r1(p.overall).toFixed(1)}<small>/10</small></div></div>
-      <dl class="kv">
-        <dt>Sticks per box</dt><dd>${p.sticks} × ${p.stickG} g</dd>
-        <dt>Collagen per stick</dt><dd>${fmt(p.collagen)} mg</dd>
-        <dt>Molecular size</dt><dd>${daText(p).replace(/<[^>]+>/g, "").trim()}</dd>
-        <dt>Vitamin C per stick</dt><dd>${mg(p.vitc)}</dd>
-        <dt>Collagen per box</dt><dd>${fmt(p.total / 1000)} g</dd>
-        <dt>Box price</dt><dd>${won(p.price)}</dd>
-        <dt>Price per g collagen</dt><dd>${p.perG ? won(p.perG) : "–"}</dd>
-        <dt>Quality / Value</dt><dd>${r1(p.quality).toFixed(1)} / ${p.value == null ? "–" : r1(p.value).toFixed(1)}</dd>
-      </dl>
-      <div class="pro"><h4>Strengths</h4><ul>${p.pros.map(x => `<li>${x}</li>`).join("")}</ul></div>
-      <div class="con"><h4>Weaknesses</h4><ul>${p.cons.map(x => `<li>${x}</li>`).join("")}</ul></div>
-      <div class="src">Other components: ${p.extras}. ${p.src}</div>
-    </article>`).join("");
+function barChart(el, rows, { max, target, value, label, toneFn, key }) {
+  document.getElementById(el).innerHTML = rows.map(p => {
+    const v = value(p), w = v == null ? 0 : Math.min(100, v / max * 100);
+    return `<div class="crow"><img src="${p.img}" alt="" loading="lazy"><span class="cn">${p.name}</span>
+      <div class="ctrack"><div class="cfill" style="width:${w}%;--tone:${toneFn(p)}"></div>
+      ${target ? `<div class="target" style="left:${target / max * 100}%"></div>` : ""}
+      <span class="cval" style="left:${Math.min(w, 72)}%">${label(p)}</span></div></div>`;
+  }).join("") + (key ? `<div class="chart-key">${key}</div>` : "");
 }
 
 let mode = "overall";
 try { mode = localStorage.getItem("collagen-sort") || "overall"; } catch (e) {}
-renderRank(mode); renderMatrix(); renderCards();
+renderRanking(mode);
 document.querySelectorAll(".seg").forEach(b => b.addEventListener("click", () => {
-  renderRank(b.dataset.sort);
+  renderRanking(b.dataset.sort);
   try { localStorage.setItem("collagen-sort", b.dataset.sort); } catch (e) {}
 }));
+
+barChart("chart-dose", [...P].sort((a, b) => b.collagen - a.collagen), {
+  max: 2600, target: 2500, value: p => p.collagen, label: p => mg(p.collagen), toneFn: p => tone(p.s.dose),
+  key: "Dashed line = 2,500 mg, the daily amount used in skin studies."
+});
+barChart("chart-vitc", [...P].sort((a, b) => b.vitc - a.vitc), {
+  max: 230, target: 100, value: p => p.vitc, label: p => mg(p.vitc), toneFn: p => tone(p.s.vitc),
+  key: "Dashed line = 100 mg, one full day of vitamin C in Korea."
+});
+barChart("chart-price", P.filter(p => p.price).sort((a, b) => a.perG - b.perG), {
+  max: 620, value: p => p.perG, label: p => won(p.perG) + " per gram", toneFn: p => tone(p.s.price),
+  key: "VITASUB is not shown because no price is listed."
+});
+
+const drops = [
+  { what: "Glutathione", who: "VITASUB", inStick: 0.2, need: 250 },
+  { what: "Glutathione", who: "BOTO", inStick: 25, need: 250 },
+  { what: "Hyaluronic acid", who: "HURUM Small Molecular", inStick: 0.4, need: 120 },
+  { what: "Biotin", who: "BB LAB and HURUM Biotin" }
+];
+document.getElementById("drops").innerHTML = drops.map(d => {
+  if (d.inStick == null) return `<div class="drop"><h3>Biotin in ${d.who}</h3>
+    <svg viewBox="0 0 240 120" aria-hidden="true"><circle cx="60" cy="58" r="44" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="60" y="54" text-anchor="middle" class="svg-text" style="font-size:13px;font-weight:600">Normal food</text><text x="60" y="72" text-anchor="middle" class="svg-text" style="font-size:13px">gives enough</text>
+    <text x="120" y="66" text-anchor="middle" class="svg-text" style="font-size:24px">+</text><circle cx="180" cy="58" r="44" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="180" y="54" text-anchor="middle" class="svg-text" style="font-size:13px;font-weight:600">1 stick</text><text x="180" y="72" text-anchor="middle" class="svg-text" style="font-size:13px">30 µg</text></svg>
+    <div class="big" style="color:var(--warn)">No extra effect</div><p>30 µg is one day's basic need, which normal food already gives. More biotin does not improve skin or hair unless you lack it.</p></div>`;
+  const ratio = Math.round(d.need / d.inStick);
+  const rBig = 46, rSmall = Math.max(1.5, rBig * Math.sqrt(d.inStick / d.need));
+  return `<div class="drop"><h3>${d.what} in ${d.who}</h3>
+    <svg viewBox="0 0 240 130" aria-hidden="true">
+      <circle cx="66" cy="56" r="${rBig}" style="fill:var(--good);fill-opacity:.22;stroke:var(--good);stroke-width:2"/>
+      <text x="66" y="52" text-anchor="middle" class="svg-text" style="font-size:13px;font-weight:600">Useful dose</text>
+      <text x="66" y="70" text-anchor="middle" class="svg-text" style="font-size:13px">${d.need} mg</text>
+      <circle cx="180" cy="56" r="${rSmall.toFixed(1)}" style="fill:var(--bad)"/>
+      <text x="180" y="122" text-anchor="middle" class="svg-text" style="font-size:13px">In 1 stick: ${d.inStick} mg</text>
+    </svg>
+    <div class="big">${fmt(ratio)} sticks</div><p>You would need to eat this many sticks to get one useful dose.</p></div>`;
+}).join("");
+
+const ranked = [...P].sort((a, b) => b.overall - a.overall);
+document.getElementById("matrix").innerHTML = `<thead><tr><th>Product</th><th>Sticks</th><th>Collagen/stick</th><th>Da</th><th>Vit C</th><th>Other components</th><th>Collagen/box</th><th>Box price</th><th>₩/stick</th><th>₩/g collagen</th><th>Quality</th><th>Value</th><th>Overall</th></tr></thead><tbody>` +
+  ranked.map(p => `<tr><td><b>${p.name}</b></td><td class="num">${p.sticks} × ${p.stickG} g</td><td class="num">${mg(p.collagen)}${p.doseSeller ? " ◆" : ""}</td>
+    <td class="num">${daText(p)}${p.daSeller ? " ◆" : ""}</td><td class="num">${mg(p.vitc)}</td><td class="wrap">${p.extras}</td><td class="num">${fmt(p.total / 1000)} g</td>
+    <td class="num">${won(p.price)}</td><td class="num">${p.perStick ? won(p.perStick) : "–"}</td><td class="num">${p.perG ? won(p.perG) : "–"}</td>
+    <td class="num">${r1(p.quality)}</td><td class="num">${p.value == null ? "–" : r1(p.value)}</td><td class="num"><b>${r1(p.overall)}</b></td></tr>`).join("") + "</tbody>";
+document.getElementById("notes").innerHTML = ranked.map((p, i) => `<p><b>${i + 1}. ${p.name} (${r1(p.overall)})</b><br>
+  <span style="color:var(--good)">Strengths:</span> ${p.pros}<br><span style="color:var(--bad)">Weaknesses:</span> ${p.cons}</p>`).join("");
 </script>

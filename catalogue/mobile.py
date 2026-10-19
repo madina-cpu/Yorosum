@@ -14,7 +14,7 @@ from build import BUILD, CHANNEL_URLS, CODE, CSS, FLAG, ICONS, LOGO, MARK, OUT, 
 
 FONTS = CSS.split("/* yorosum.com tokens */")[0]
 STORE = "https://yorosum.com/QR_landing_page_links/"
-SCREENS = 5
+SCREENS = 3
 
 M_CSS = r"""
 :root { --bone: #FBF8F3; --rose: #F0D5DD; --blush: #F6E6EA; --berry: #8E2149; --wine: #5E1530; --ink: #2B1A20; --mute: #7C6670;
@@ -150,7 +150,14 @@ a { color: inherit; text-decoration: none; }
 .scale em { position: absolute; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--berry); border: 3px solid var(--bone); box-shadow: 0 0 0 1px var(--berry); }
 .scale em span { position: absolute; bottom: 18px; left: 50%; transform: translateX(-20%); white-space: nowrap; font: 600 11px/1 var(--sans); color: var(--berry); }
 .scale-l { display: flex; justify-content: space-between; font: 500 11px/1 var(--sans); color: var(--mute); }
-.pt.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+.legend { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-top: 10px; font: 500 11.5px/1.3 var(--sans); color: var(--mute); }
+.h-body .legend li { display: flex; align-items: center; gap: 8px; font: 500 11.5px/1.3 var(--sans); }
+.h-body .legend li.ours { font-weight: 600; }
+.legend i { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.legend .ours { color: var(--berry); font-weight: 600; }
+.legend .ours i { background: var(--berry); }
+.legend .typ i { border-radius: 2px; background: repeating-linear-gradient(135deg, #CDBDBD 0 3px, #E6DCDA 3px 6px); }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
 .pt.two > div + div { border-left: 1px solid var(--line); padding-left: 16px; }
 .pt.two > div:first-child { padding-right: 14px; }
 .pt.two .pt-h b { font-size: 40px; }
@@ -176,6 +183,36 @@ a { color: inherit; text-decoration: none; }
 .flagrow img { width: 100%; aspect-ratio: 4 / 3; border-radius: 5px; object-fit: cover; box-shadow: 0 2px 8px rgba(43, 26, 32, .16); }
 .sign { align-items: center; }
 .sign .copy { font: 400 10.5px/1 var(--sans); color: var(--mute); letter-spacing: .04em; }
+
+
+/* ---- 3-screen edition ---- */
+.hero .c-photo { height: 268px; }
+.with-switch .hero .c-logo { top: 64px; }
+.h-body { position: absolute; left: var(--pad); right: var(--pad); top: 288px; bottom: 58px; display: flex; flex-direction: column; gap: 6px; }
+.h-body h1 { font: 500 30px/1.12 var(--sans); letter-spacing: -.03em; }
+.h-body h1 em { font: italic 400 1.14em/1 var(--serif); color: var(--berry); letter-spacing: 0; }
+.da { margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.da .pt-h b { font-size: 46px; }
+.da .pt-h span { font: 600 13.5px/1.3 var(--sans); color: var(--ink); margin-left: 10px; align-self: center; }
+.dscale { position: relative; height: 10px; margin: 16px 0 6px; border-radius: 10px; background: #ECE5E1; }
+.dscale .band { position: absolute; left: 40%; right: 0; top: 0; bottom: 0; border-radius: 0 10px 10px 0; background: repeating-linear-gradient(135deg, #D9CBCB 0 4px, #E6DCDA 4px 8px); }
+.dscale em { position: absolute; left: 6%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--berry); border: 3px solid var(--bone); box-shadow: 0 0 0 1px var(--berry); }
+.dscale span { position: absolute; bottom: 16px; font: 600 10.5px/1.2 var(--sans); white-space: nowrap; }
+.dscale .lab-ours { left: 0; color: var(--berry); }
+.dscale .lab-typ { right: 0; color: var(--mute); font-weight: 500; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.two > div + div { border-left: 1px solid var(--line); padding-left: 16px; }
+.two .pt-h b { font-size: 38px; }
+.two .pt-k { font-size: 13px; }
+.h-body .fish { margin-top: auto; padding: 12px 16px; }
+.hero .pn { bottom: 22px; }
+.alg-body { font-size: 11.5px; line-height: 1.55; }
+.end { margin-top: auto; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: center; padding: 12px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.qr-s img { width: 96px; height: 96px; display: block; }
+.end-r { display: flex; flex-direction: column; gap: 10px; }
+.end-r .pt-b { margin: 0; font-size: 12px; }
+.end .sns { margin: 0; padding: 0; justify-content: flex-start; gap: 10px; }
+.end .sns a svg { width: 40px; height: 40px; }
 
 /* language switcher (all-languages edition) */
 .switch { position: absolute; z-index: 5; top: 22px; left: var(--pad); display: flex; gap: 10px; }
@@ -205,10 +242,12 @@ def esc_nowrap(s):
 
 
 def screens(lang, t, switch=""):
-    """Five screens: cover · why premium · formula & how to take · wholesale · store."""
+    """Three screens: cover with the premium case · formula & how to take · wholesale, allergens, QR and SNS."""
     mark = f'<div class="bar">{MARK.format(cls="")}</div>'
     top = switch or mark
     L = t["html_lang"]
+    n2000 = "2 000" if lang in ("uz", "ru") else "2,000"
+    da = "Да" if lang == "ru" else "Da"
 
     def pn(i):
         return f'<div class="pn"><span>Yorosum · {t["lang_name"]}</span><i>{i:02d} / {SCREENS:02d}</i></div>'
@@ -218,28 +257,27 @@ def screens(lang, t, switch=""):
     rows = "".join(f'<div class="row"><b>{a}</b><span class="v{" t" if txt else ""}">{v}</span></div>' for a, v, txt in ing)
     moq = "".join(f'<div><b>{t[f"moq_v{i}"]}</b><span>{t[f"moq_k{i}"]}</span></div>' for i in range(1, 7))
     sns = "".join(f'<a href="{u}" aria-label="{k}">{ICONS[k]}</a>' for k, u in zip(["instagram", "telegram", "facebook", "kakao"], CHANNEL_URLS))
-    n2000 = "2\u00a0000" if lang in ("uz", "ru") else "2,000"
-    da_marker = "300 Да" if lang == "ru" else "300 Da"
     return "".join([
-        f'''<section class="scr cover" lang="{L}" id="lang-{lang}">{switch}
+        f'''<section class="scr hero" lang="{L}" id="lang-{lang}">{switch}
   <div class="c-photo"><img src="../assets/img/cover.jpg" alt=""></div>{LOGO.format(cls="c-logo")}
-  <div class="c-body"><p class="eb">{t["category"]}</p><h1>{t["name_line"]}</h1><p class="c-sub">{t["name_sub"]}</p><p class="c-tag">{t["tagline"]}</p></div>
-  <div class="hint"><span></span>01 / {SCREENS:02d}</div></section>''',
-
-        f'''<section class="scr" lang="{L}">{top}<div class="in prem">
-  <div class="stack"><p class="ch">{t["prem_label"]}</p><h2 class="h2 sm">{t["prem_title"]}</h2></div>
-  <div class="pt">
-    <p class="pt-h"><b>300</b>{t["u_da"]}</p><p class="pt-k">{t["da_head"]}</p>
-    <div class="scale" aria-hidden="true"><i></i><em style="left:8%"><span>{da_marker}</span></em></div>
-    <div class="scale-l"><span>{t["scale_lo"]}</span><span>{t["scale_hi"]}</span></div>
-    <p class="pt-b">{t["da_body"]}</p>
-  </div>
-  <div class="pt two">
-    <div><p class="pt-h"><b>{"2 000" if lang in ("uz", "ru") else "2,000"}</b>{t["u_mg"]}</p><p class="pt-k">{t["mg_head"]}</p><p class="pt-b">{t["mg_body"]}</p></div>
-    <div><p class="pt-h"><b>100</b>{t["u_mg"]}</p><p class="pt-k">{t["vc_head"]}</p><p class="pt-b">{t["vc_body"]}</p></div>
-  </div>
-  <div class="fish"><p class="pt-k">{t["fish_head"]}</p><p class="pt-b">{t["fish_body"]}</p></div>
-</div>{pn(2)}</section>''',
+  <div class="h-body">
+    <p class="eb">{t["category"]}</p>
+    <h1>{t["name_line"]}</h1>
+    <p class="c-sub">{t["name_sub"]}</p>
+    <div class="da">
+      <p class="pt-h"><b>300</b>{da}<span>{t["da_head"]}</span></p>
+      <div class="dscale" aria-hidden="true">
+        <i class="band"></i><em></em>
+      </div>
+      <div class="scale-l"><span>0</span><span>{t["axis_hi"]}</span></div>
+      <ul class="legend"><li class="ours"><i></i>{t["ours"]} · 300 {da}</li><li class="typ"><i></i>{t["typ_label"]} · {t["typ_range"]}</li></ul>
+    </div>
+    <div class="two">
+      <div><p class="pt-h"><b>{n2000}</b>{t["u_mg"]}</p><p class="pt-k">{t["mg_head"]}</p></div>
+      <div><p class="pt-h"><b>100</b>{t["u_mg"]}</p><p class="pt-k">{t["vc_head"]}</p></div>
+    </div>
+    <div class="fish"><p class="pt-k">{t["fish_head"]}</p><p class="pt-b">{t["fish_body"]}</p></div>
+  </div>{pn(1)}</section>''',
 
         f'''<section class="scr" lang="{L}">{top}<div class="in">
   <div class="f-top"><div class="photo"><img src="../assets/img/box.jpg" alt=""></div>
@@ -247,22 +285,17 @@ def screens(lang, t, switch=""):
   <p class="eb" style="margin-top:22px">{t["ing_head"]}</p><div class="rows">{rows}</div>
   <div class="how"><div class="photo"><img src="../assets/img/step2.jpg" alt=""></div>
     <div><p class="pt-k">{t["how_head"]}</p><p class="pt-b">{esc_nowrap(t["how_body"])}</p></div></div>
-</div>{pn(3)}</section>''',
+</div>{pn(2)}</section>''',
 
         f'''<section class="scr" lang="{L}">{top}<div class="in">
   <div class="stack"><p class="ch">{t["moq_label"]}</p><h2 class="h2 sm">{t["moq_title"]}</h2></div>
   <div class="moq">{moq}</div>
-  <p class="eb" style="margin-top:30px">{t["alg_head"]}</p><p class="alg-main">{t["alg_main"]}</p><p class="alg-body">{t["alg_body"]}</p>
-</div>{pn(4)}</section>''',
-
-        f'''<section class="scr store" lang="{L}">{switch}
-  <div class="s-photo"><img src="../assets/img/back.jpg" alt=""></div>
-  <div class="in">
-    <div class="stack"><p class="ch">{t["p4_label"]}</p><h2 class="h2 sm">{t["p4_title"]}</h2></div>
-    <a class="qr" href="{STORE}"><img src="../assets/img/qr.svg" alt="QR"><span>{t["qr_caption"]}</span></a>
-    <nav class="sns">{sns}</nav>
-    <div class="sign">{LOGO.format(cls="")}<p class="copy">© 2026 YOROSUM</p></div>
-  </div>{pn(5)}</section>''',
+  <p class="eb" style="margin-top:20px">{t["alg_head"]}</p><p class="alg-main">{t["alg_main"]}</p><p class="alg-body">{t["alg_body"]}</p>
+  <div class="end">
+    <a class="qr-s" href="{STORE}"><img src="../assets/img/qr.svg" alt="QR"></a>
+    <div class="end-r"><p class="pt-b">{t["qr_caption"]}</p><nav class="sns">{sns}</nav></div>
+  </div>
+</div>{pn(3)}</section>''',
     ])
 
 

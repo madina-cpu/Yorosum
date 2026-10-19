@@ -71,8 +71,6 @@ b { font-weight: 600; }
 .legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .toolbar > span { font-size: 14px; color: var(--muted); }
-.seg { font: 600 14px var(--f-body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
-.seg[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .ranking { display: grid; gap: 10px; }
@@ -103,6 +101,10 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); 
 .blocks i { height: 12px; border-radius: 2px; background: var(--track); }
 .blocks i.on { background: var(--tone); }
 .meter .val { font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.meter.price { border-left: 1px dashed var(--line); padding-left: 12px; }
+.meter.price .val { font-size: 16px; font-weight: 500; }
+.meter.price .sub { font-size: 12px; color: var(--muted); }
+@media (max-width: 900px) { .meter.price { border-left: 0; padding-left: 0; } }
 .ic svg { width: 22px; height: 22px; flex: none; }
 @media (max-width: 900px) {
   .rhead { display: none; }
@@ -205,19 +207,13 @@ footer p { max-width: 95ch; }
   <div class="page-head">
     <div class="page-no">Page 1 · The ranking</div>
     <h1 id="p1">Which collagen stick should you buy?</h1>
-    <p class="lead">We checked the labels of 9 Korean fish collagen sticks. Higher score = better product. More coloured blocks = better.</p>
+    <p class="lead">We checked the labels of 9 Korean fish collagen sticks. The score shows how good the inside of the stick is. Higher score = better product. More coloured blocks = better. Price is shown on the right, but it does not change the score.</p>
   </div>
   <div class="legend" aria-label="Colour key">
-    <span><i style="background:var(--good)"></i>Great (7.5 and up)</span>
-    <span><i style="background:var(--ok)"></i>Okay (5 to 7.4)</span>
+    <span><i style="background:var(--good)"></i>Great (7 and up)</span>
+    <span><i style="background:var(--ok)"></i>Okay (5 to 6.9)</span>
     <span><i style="background:var(--warn)"></i>Weak (3 to 4.9)</span>
     <span><i style="background:var(--bad)"></i>Poor (under 3)</span>
-  </div>
-  <div class="toolbar" role="group" aria-label="Sort ranking">
-    <span>Sort by</span>
-    <button class="seg" id="sort-overall" data-sort="overall" aria-pressed="true">Best overall</button>
-    <button class="seg" id="sort-quality" data-sort="quality" aria-pressed="false">Best quality</button>
-    <button class="seg" id="sort-value" data-sort="value" aria-pressed="false">Best price</button>
   </div>
   <div class="ranking" id="ranking"></div>
   <p class="foot-note">◆ = number from the seller's website, not printed on the box. Pages 2 to 8 explain each column in simple words. The exact formula is in "Details for specialists" at the end.</p>
@@ -502,14 +498,12 @@ footer p { max-width: 95ch; }
     <summary>How the scores are calculated</summary>
     <div>
       <div class="weights">
-        <div><span>Collagen per stick: mg ÷ 250, max 10</span><b>20%</b></div>
-        <div><span>Molecular size: ≤300 Da 10, ≤600 8, ≤1,000 6, ≤2,000 4, not disclosed 3</span><b>20%</b></div>
-        <div><span>Vitamin C: mg ÷ 10, max 10</span><b>15%</b></div>
-        <div><span>Clean formula: extras at useful doses, no filler (judged)</span><b>15%</b></div>
-        <div><span>Price per gram of collagen: cheapest ÷ this product × 10</span><b>20%</b></div>
-        <div><span>Collagen per box: grams ÷ 10, max 10</span><b>10%</b></div>
+        <div><span>Collagen per stick: mg ÷ 250, max 10</span><b>2 parts</b></div>
+        <div><span>Molecular size: ≤300 Da 10, ≤600 8, ≤1,000 6, ≤2,000 4, not disclosed 3</span><b>2 parts</b></div>
+        <div><span>Vitamin C: mg ÷ 10, max 10</span><b>1.5 parts</b></div>
+        <div><span>Clean formula: extras at useful doses, no filler (judged)</span><b>1.5 parts</b></div>
       </div>
-      <p class="muted" style="font-size:14px">Quality = first four rows. Value = last two. Overall = 70% quality + 30% value. Glutathione, biotin and hyaluronic acid earn no points below studied doses (glutathione 250–1,000 mg/day; hyaluronic acid 120–240 mg/day; biotin 30 µg only meets the daily adequate intake). VITASUB has no listed price, so its overall score is its quality score.</p>
+      <p class="muted" style="font-size:14px">Score = weighted average of the four rows (2 : 2 : 1.5 : 1.5, i.e. about 29%, 29%, 21%, 21%). Price is not part of the score because retail prices change often and wholesale prices differ; price per gram is shown separately. Glutathione, biotin and hyaluronic acid earn no points below studied doses (glutathione 250–1,000 mg/day; hyaluronic acid 120–240 mg/day; biotin 30 µg only meets the daily adequate intake).</p>
     </div>
   </details>
   <details>
@@ -568,8 +562,8 @@ const daScore = d => d == null ? 3 : d <= 300 ? 10 : d <= 600 ? 8 : d <= 1000 ? 
 const r1 = x => (Math.round(x * 10) / 10).toFixed(1);
 const fmt = n => n.toLocaleString("en-US");
 const won = n => n == null ? "No price" : "₩" + fmt(Math.round(n));
-const mg = n => n >= 1 ? fmt(n) + " mg" : fmt(+(n * 1000).toFixed(0)) + " µg";
-const tone = s => s == null ? "var(--muted)" : s >= 7.5 ? "var(--good)" : s >= 5 ? "var(--ok)" : s >= 3 ? "var(--warn)" : "var(--bad)";
+const mg = n => n === 0 ? "None listed" : n >= 1 ? fmt(n) + " mg" : fmt(+(n * 1000).toFixed(0)) + " µg";
+const tone = s => s == null ? "var(--muted)" : s >= 7 ? "var(--good)" : s >= 5 ? "var(--ok)" : s >= 3 ? "var(--warn)" : "var(--bad)";
 const word = s => s >= 8 ? "Excellent" : s >= 7 ? "Very good" : s >= 6 ? "Good" : s >= 5 ? "Average" : s >= 3 ? "Weak" : "Avoid";
 const daText = p => p.da == null ? "Not on box" : (p.id === "mippeum" ? "Under 600 Da" : fmt(p.da) + " Da");
 
@@ -583,9 +577,8 @@ P.forEach(p => {
     p.perG = p.price / (p.total / 1000);
     p.perStick = p.price / p.sticks;
     p.s.price = 10 * best / p.perG;
-    p.value = (p.s.price * 20 + p.s.box * 10) / 30;
-    p.overall = p.quality * 0.7 + p.value * 0.3;
-  } else { p.value = null; p.s.price = null; p.overall = p.quality; }
+  } else { p.s.price = null; }
+  p.overall = p.quality;
 });
 
 const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${s != null && i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
@@ -598,7 +591,7 @@ function renderRanking(key) {
     <span class="ic"><svg><use href="#i-size"/></svg>Small pieces (Da)</span>
     <span class="ic"><svg><use href="#i-vitc"/></svg>Vitamin C</span>
     <span class="ic"><svg><use href="#i-clean"/></svg>Clean formula</span>
-    <span class="ic"><svg><use href="#i-price"/></svg>Price per gram</span></div>`;
+    <span class="ic"><svg><use href="#i-price"/></svg>Price per gram · not in score</span></div>`;
   document.getElementById("ranking").innerHTML = head + rows.map((p, i) => {
     const sc = p[key];
     return `<article class="ritem ${p.own ? "own" : ""}">
@@ -611,10 +604,9 @@ function renderRanking(key) {
         ${meter("Small pieces (Da)", p.s.da, daText(p) + (p.daSeller ? " ◆" : ""))}
         ${meter("Vitamin C", p.s.vitc, mg(p.vitc))}
         ${meter("Clean formula", p.s.honesty, p.s.honesty >= 5 ? "Good" : p.s.honesty >= 3 ? "Some filler" : "Tiny extras")}
-        ${meter("Price per gram", p.s.price, p.perG ? won(p.perG) + "/g" : "No price")}
+        <div class="meter price"><span class="lab">Price per gram (not in score)</span><span class="val">${p.perG ? won(p.perG) + "/g" : "No price"}</span><span class="sub">${p.perStick ? won(p.perStick) + " per stick" : ""}</span></div>
       </div></article>`;
   }).join("");
-  document.querySelectorAll(".seg").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.sort === key)));
 }
 
 function barChart(el, rows, { max, target, value, label, toneFn, key }) {
@@ -627,13 +619,7 @@ function barChart(el, rows, { max, target, value, label, toneFn, key }) {
   }).join("") + (key ? `<div class="chart-key">${key}</div>` : "");
 }
 
-let mode = "overall";
-try { mode = localStorage.getItem("collagen-sort") || "overall"; } catch (e) {}
-renderRanking(mode);
-document.querySelectorAll(".seg").forEach(b => b.addEventListener("click", () => {
-  renderRanking(b.dataset.sort);
-  try { localStorage.setItem("collagen-sort", b.dataset.sort); } catch (e) {}
-}));
+renderRanking("overall");
 
 barChart("chart-dose", [...P].sort((a, b) => b.collagen - a.collagen), {
   max: 2600, target: 2500, value: p => p.collagen, label: p => mg(p.collagen), toneFn: p => tone(p.s.dose),
@@ -673,11 +659,11 @@ document.getElementById("drops").innerHTML = drops.map(d => {
 }).join("");
 
 const ranked = [...P].sort((a, b) => b.overall - a.overall);
-document.getElementById("matrix").innerHTML = `<thead><tr><th>Product</th><th>Sticks</th><th>Collagen/stick</th><th>Da</th><th>Vit C</th><th>Other components</th><th>Collagen/box</th><th>Box price</th><th>₩/stick</th><th>₩/g collagen</th><th>Quality</th><th>Value</th><th>Overall</th></tr></thead><tbody>` +
+document.getElementById("matrix").innerHTML = `<thead><tr><th>Product</th><th>Sticks</th><th>Collagen/stick</th><th>Da</th><th>Vit C</th><th>Other components</th><th>Collagen/box</th><th>Box price</th><th>₩/stick</th><th>₩/g collagen</th><th>Score</th></tr></thead><tbody>` +
   ranked.map(p => `<tr><td><b>${p.name}</b></td><td class="num">${p.sticks} × ${p.stickG} g</td><td class="num">${mg(p.collagen)}${p.doseSeller ? " ◆" : ""}</td>
     <td class="num">${daText(p)}${p.daSeller ? " ◆" : ""}</td><td class="num">${mg(p.vitc)}</td><td class="wrap">${p.extras}</td><td class="num">${fmt(p.total / 1000)} g</td>
     <td class="num">${won(p.price)}</td><td class="num">${p.perStick ? won(p.perStick) : "–"}</td><td class="num">${p.perG ? won(p.perG) : "–"}</td>
-    <td class="num">${r1(p.quality)}</td><td class="num">${p.value == null ? "–" : r1(p.value)}</td><td class="num"><b>${r1(p.overall)}</b></td></tr>`).join("") + "</tbody>";
+    <td class="num"><b>${r1(p.overall)}</b></td></tr>`).join("") + "</tbody>";
 document.getElementById("notes").innerHTML = ranked.map((p, i) => `<p><b>${i + 1}. ${p.name} (${r1(p.overall)})</b><br>
   <span style="color:var(--good)">Strengths:</span> ${p.pros}<br><span style="color:var(--bad)">Weaknesses:</span> ${p.cons}</p>`).join("");
 </script>

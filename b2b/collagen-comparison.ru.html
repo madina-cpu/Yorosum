@@ -1,0 +1,709 @@
+<title>Сравнение коллагеновых стиков</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Рейтинг девяти корейских стиков с рыбным коллагеном с фотографиями и простое руководство: коллаген, размер частиц, витамин C и как читать этикетку.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;600&display=swap">
+<style>
+/* Layout: page 1 is a picture ranking; pages 2-9 are one lesson each (picture + three short sentences); specialist details last.
+   Print: one section per A4 page, specialist table on a landscape page. */
+:root {
+  --bg: #f4f7f7;
+  --surface: #ffffff;
+  --fg: #13222b;
+  --muted: #56676f;
+  --line: #d5dfe1;
+  --accent: #0b6e73;
+  --accent-soft: #dcefee;
+  --good: #2b8a4f;
+  --ok: #c99a1c;
+  --warn: #dd7a26;
+  --bad: #c9442a;
+  --track: #e4ecee;
+  --skin: #f3d2c1;
+  --skin-deep: #e7b49f;
+  --vitc: #f29a1f;
+  --f-display: "Onest", "Noto Sans KR", system-ui, sans-serif;
+  --f-body: "Onest", "Noto Sans KR", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #97a8af; --line: #26373f;
+    --accent: #52c2c0; --accent-soft: #163a3d; --good: #5fcb8a; --ok: #e5c04e; --warn: #f0a05a; --bad: #f0806a; --track: #1e2e36;
+    --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #97a8af; --line: #26373f;
+  --accent: #52c2c0; --accent-soft: #163a3d; --good: #5fcb8a; --ok: #e5c04e; --warn: #f0a05a; --bad: #f0806a; --track: #1e2e36;
+  --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16.5px; line-height: 1.6; }
+.wrap {
+  max-width: 1160px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 36px 72px;
+  display: grid; gap: 80px;
+}
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 19px; font-weight: 700; }
+p { margin: 0; max-width: 62ch; }
+b { font-weight: 600; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+.page { display: grid; gap: 24px; min-width: 0; align-content: start; }
+.page + .page { border-top: 1px solid var(--line); padding-top: 48px; }
+.page-no { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.page-head { display: grid; gap: 10px; }
+.lead { font-size: 18.5px; }
+.svg-text { fill: var(--fg); font-family: var(--f-body); }
+.svg-muted { fill: var(--muted); font-family: var(--f-body); }
+
+/* ---------- Page 1: picture ranking ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.ranking { display: grid; gap: 10px; }
+.rhead, .ritem {
+  display: grid;
+  grid-template-columns: 44px 92px minmax(170px, 1.3fr) 104px repeat(5, minmax(0, 1fr));
+  gap: 14px; align-items: center;
+}
+.rhead { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); padding: 0 15px; }
+.rhead .ic { display: flex; align-items: center; gap: 6px; line-height: 1.25; }
+.ritem { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.ritem.own { border: 2px solid var(--accent); padding: 11px 13px; }
+.medal { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 700 18px var(--f-display); background: var(--track); color: var(--fg); }
+.medal.m1 { background: #e8c25a; color: #3a2b00; }
+.medal.m2 { background: #c9d3d8; color: #1f2b31; }
+.medal.m3 { background: #d79a68; color: #3a1d06; }
+.thumb { width: 92px; height: 92px; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; }
+.pname { font-weight: 600; line-height: 1.3; min-width: 0; }
+.pname small { display: block; color: var(--muted); font-weight: 400; font-size: 13.5px; margin-top: 3px; }
+.badge { display: grid; justify-items: center; gap: 4px; }
+.badge .big { font: 800 30px/1 var(--f-display); color: var(--tone); font-variant-numeric: tabular-nums; }
+.badge .big small { font-size: 14px; color: var(--muted); font-weight: 600; }
+.badge .word { font: 700 11px var(--f-body); text-transform: uppercase; letter-spacing: 0.03em; padding: 2px 8px; border-radius: 999px; background: var(--tone); color: var(--surface); white-space: nowrap; }
+.meter { display: grid; gap: 4px; min-width: 0; }
+.meter .lab { display: none; font-size: 12.5px; color: var(--muted); }
+.blocks { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; }
+.blocks i { height: 12px; border-radius: 2px; background: var(--track); }
+.blocks i.on { background: var(--tone); }
+.meter .val { font-size: 13.5px; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.meter.price { border-left: 1px dashed var(--line); padding-left: 12px; }
+.meter.price .val { font-size: 16px; font-weight: 600; }
+.meter.price .sub { font-size: 12px; color: var(--muted); }
+.ic svg { width: 22px; height: 22px; flex: none; }
+@media (max-width: 900px) {
+  .rhead { display: none; }
+  .ritem { grid-template-columns: 40px 76px minmax(0, 1fr) 96px; grid-template-areas: "m t n b" "s s s s"; }
+  .ritem .medal { grid-area: m; } .ritem .thumb { grid-area: t; width: 76px; height: 76px; }
+  .ritem .pname { grid-area: n; } .ritem .badge { grid-area: b; }
+  .ritem .meters { grid-area: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+  .meter .lab { display: block; }
+  .meter.price { border-left: 0; padding-left: 0; }
+}
+@media (min-width: 901px) { .ritem .meters { display: contents; } }
+.foot-note { font-size: 13.5px; color: var(--muted); }
+
+/* ---------- Lesson pages ---------- */
+.lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: center; }
+.lesson.flip > .art { order: 2; }
+@media (max-width: 820px) { .lesson { grid-template-columns: 1fr; } .lesson.flip > .art { order: 0; } }
+.art { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; min-width: 0; }
+.art svg { width: 100%; height: auto; display: block; }
+.points { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.points li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+.points .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font: 700 15px var(--f-display); }
+.rule { display: flex; gap: 14px; align-items: center; background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 17px; font-weight: 600; max-width: 70ch; }
+.rule svg { width: 30px; height: 30px; flex: none; }
+.typecards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.typecard { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 6px; align-content: start; }
+.typecard.hl { border: 2px solid var(--accent); padding: 13px; }
+.typecard .t { font: 800 24px var(--f-display); color: var(--accent); }
+.typecard svg { width: 44px; height: 44px; }
+.typecard p { font-size: 15px; }
+
+/* Bar charts */
+.chart { display: grid; gap: 8px; }
+.crow { display: grid; grid-template-columns: 40px minmax(110px, 210px) minmax(0, 1fr); gap: 10px; align-items: center; font-size: 14px; }
+.crow img { width: 40px; height: 40px; object-fit: contain; background: #fff; border-radius: 6px; }
+.crow .cn { line-height: 1.25; min-width: 0; }
+.ctrack { position: relative; height: 26px; background: var(--track); border-radius: 4px; }
+.cfill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--tone); }
+.cval { position: absolute; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--fg); white-space: nowrap; padding-left: 8px; }
+.target { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--fg); }
+.chart-key { font-size: 13.5px; color: var(--muted); padding-top: 6px; }
+@media (max-width: 640px) { .crow { grid-template-columns: 34px minmax(0, 1fr); } .crow .ctrack { grid-column: 1 / -1; } .crow img { width: 34px; height: 34px; } }
+
+/* Tiny-dose comparison */
+.drops { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.drop { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.drop svg { width: 100%; height: auto; }
+.drop .big { font: 800 28px var(--f-display); color: var(--bad); }
+
+/* Label reading */
+.label-demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 820px) { .label-demo { grid-template-columns: 1fr; } }
+.math { display: grid; gap: 10px; }
+.mstep { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.mstep .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--bg); font: 700 15px var(--f-display); }
+.mstep .eq { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.gloss { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--surface); }
+.gloss td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.gloss td:first-child { font-family: "Noto Sans KR", var(--f-body); font-weight: 600; white-space: nowrap; }
+.warnbox { border: 2px solid var(--warn); border-radius: 12px; padding: 16px; display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; background: var(--surface); }
+.warnbox img { width: 96px; height: 96px; object-fit: contain; background: #fff; border-radius: 8px; }
+@media (max-width: 520px) { .warnbox { grid-template-columns: 1fr; } }
+
+/* Checklist */
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.checks li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; font-size: 15.5px; }
+.checks svg { width: 28px; height: 28px; }
+
+/* Specialist details */
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+details > summary { cursor: pointer; padding: 14px 16px; font-weight: 600; }
+details > div { padding: 0 16px 16px; display: grid; gap: 14px; min-width: 0; }
+.scroll { overflow-x: auto; }
+table.matrix { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.matrix th, .matrix td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; font-variant-numeric: tabular-nums; }
+.matrix th { font-size: 11.5px; font-weight: 600; text-transform: uppercase; color: var(--muted); }
+.matrix td.wrap { white-space: normal; min-width: 230px; }
+.weights { display: grid; max-width: 760px; font-size: 14.5px; }
+.weights div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.weights b { white-space: nowrap; }
+footer { font-size: 13px; color: var(--muted); display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 20px; }
+footer p { max-width: 95ch; }
+@media (prefers-reduced-motion: no-preference) { .cfill { transition: width .5s ease; } }
+
+/* ---------- A4 print ---------- */
+@page { size: A4; margin: 12mm 12mm 14mm; }
+@page wide { size: A4 landscape; margin: 10mm 10mm 14mm; }
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 14px; line-height: 1.5; background: #fff; }
+  .wrap { max-width: none; padding: 0; gap: 0; display: block; }
+  .page { break-before: page; gap: 14px; }
+  .page:first-child { break-before: auto; }
+  .page + .page { border-top: 0; padding-top: 0; }
+  .page.wide { page: wide; }
+  h1 { font-size: 28px; } h2 { font-size: 26px; } h3 { font-size: 17px; }
+  p { max-width: none; }
+  .lead { font-size: 15.5px; }
+  .page-no { font-size: 10.5px; }
+  .art, .ritem, .typecard, .drop, .mstep, .checks li, .warnbox, .rule, details { break-inside: avoid; }
+  .art { padding: 12px; }
+  .rule { font-size: 14.5px; padding: 12px 14px; max-width: none; }
+  .rule svg { width: 22px; height: 22px; }
+  .points { gap: 10px; } .points li { grid-template-columns: 28px 1fr; gap: 10px; font-size: 14.5px; }
+  .points .dot { width: 26px; height: 26px; font-size: 12px; }
+  .lesson { grid-template-columns: 1fr; gap: 14px; }
+  .lesson.flip > .art { order: 0; }
+  .lesson .art svg { max-width: 540px; margin: 0 auto; }
+  .lesson.two { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; }
+  .legend { font-size: 11px; gap: 6px 16px; } .legend i { width: 11px; height: 11px; }
+
+  .ranking { gap: 5px; }
+  .rhead, .ritem { display: grid; grid-template-columns: 24px 50px minmax(0, 1.35fr) 72px repeat(4, minmax(0, 1fr)) 62px; grid-template-areas: none; gap: 8px; }
+  .rhead { font-size: 8px; padding: 0 9px; letter-spacing: 0.02em; }
+  .rhead .ic { gap: 4px; } .ic svg { width: 14px; height: 14px; }
+  .ritem { padding: 6px 8px; border-radius: 7px; }
+  .ritem.own { padding: 5px 7px; }
+  .ritem > *, .ritem .meters > * { grid-area: auto !important; }
+  .ritem .meters { display: contents; }
+  .ritem .thumb { width: 50px; height: 50px; }
+  .medal { width: 22px; height: 22px; font-size: 11px; }
+  .pname { font-size: 11px; } .pname small { font-size: 9px; }
+  .badge .big { font-size: 19px; } .badge .big small { font-size: 9px; }
+  .badge .word { font-size: 7.5px; padding: 1px 5px; }
+  .meter .lab { display: none; }
+  .blocks i { height: 7px; }
+  .meter .val { font-size: 9.5px; }
+  .meter.price { border-left: 1px dashed var(--line); padding-left: 6px; }
+  .meter.price .val { font-size: 11px; } .meter.price .sub { font-size: 8.5px; }
+  .foot-note { font-size: 10px; }
+
+  .typecards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .typecard p { font-size: 13px; } .typecard .t { font-size: 20px; } .typecard svg { width: 34px; height: 34px; }
+  .crow { grid-template-columns: 34px 200px minmax(0, 1fr); font-size: 13px; gap: 10px; }
+  .crow img { width: 34px; height: 34px; }
+  .ctrack { height: 22px; } .cval { font-size: 12px; }
+  .chart { gap: 6px; } .chart-key { font-size: 12px; }
+  .drops { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .drop { padding: 14px; } .drop svg { max-height: 150px; } .drop .big { font-size: 24px; } .drop p { font-size: 13px; }
+  .label-demo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+  .mstep { padding: 10px 12px; font-size: 14px; } .mstep .eq { font-size: 17px; }
+  .gloss { font-size: 13px; } .gloss td { padding: 6px 10px; }
+  .warnbox { grid-template-columns: 84px 1fr; padding: 12px; font-size: 14px; } .warnbox img { width: 84px; height: 84px; }
+  .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .checks li { font-size: 15px; padding: 14px; }
+
+  details > summary { list-style: none; font-size: 13px; padding: 10px 12px 6px; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > div { padding: 0 12px 12px; gap: 8px; }
+  table.matrix { font-size: 9px; } .matrix th { font-size: 7.5px; } .matrix th, .matrix td { padding: 4px 5px; }
+  .matrix td.wrap { min-width: 0; }
+  .weights { font-size: 11px; max-width: none; } .weights div { padding: 4px 0; }
+  details p { font-size: 11px; }
+  #notes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; }
+  footer { font-size: 9.5px; padding-top: 10px; margin-top: 12px; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-dose" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2" style="fill:none;stroke:var(--accent);stroke-width:2"/><rect x="9" y="9" width="6" height="11" rx="1" style="fill:var(--accent)"/></symbol>
+    <symbol id="i-size" viewBox="0 0 24 24"><circle cx="5" cy="12" r="3" style="fill:var(--accent)"/><circle cx="12" cy="12" r="3" style="fill:var(--accent)"/><circle cx="19" cy="12" r="3" style="fill:var(--accent)"/></symbol>
+    <symbol id="i-vitc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" style="fill:var(--vitc)"/><text x="12" y="16.5" text-anchor="middle" style="font:700 13px sans-serif;fill:#fff">C</text></symbol>
+    <symbol id="i-clean" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z" style="fill:none;stroke:var(--accent);stroke-width:2"/><path d="M8 12l3 3 5-6" style="fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"/></symbol>
+    <symbol id="i-price" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" style="fill:none;stroke:var(--accent);stroke-width:2"/><text x="12" y="16.5" text-anchor="middle" style="font:700 12px sans-serif;fill:var(--accent)">₩</text></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" style="fill:var(--good)"/><path d="M7 12.5l3.2 3.2L17 9" style="fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2z" style="fill:var(--ok)"/><rect x="9" y="19" width="6" height="3" rx="1" style="fill:var(--muted)"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page" aria-labelledby="p1">
+  <div class="page-head">
+    <div class="page-no">Страница 1 · Рейтинг</div>
+    <h1 id="p1">Какой коллаген в стиках выбрать?</h1>
+    <p class="lead">Мы изучили этикетки 9 корейских стиков с рыбным коллагеном. Оценка показывает, насколько хорош состав стика. Чем выше оценка, тем лучше продукт. Чем больше цветных делений, тем лучше. Цена указана справа, но на оценку не влияет.</p>
+  </div>
+  <div class="legend" aria-label="Цветовые обозначения">
+    <span><i style="background:var(--good)"></i>Отлично (7 и выше)</span>
+    <span><i style="background:var(--ok)"></i>Нормально (от 5 до 6,9)</span>
+    <span><i style="background:var(--warn)"></i>Слабо (от 3 до 4,9)</span>
+    <span><i style="background:var(--bad)"></i>Плохо (ниже 3)</span>
+  </div>
+  <div class="ranking" id="ranking"></div>
+  <p class="foot-note">◆ — данные с сайта продавца, на коробке не указаны. На страницах 2–9 каждая колонка объясняется простыми словами. Точная формула — на последней странице.</p>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page" aria-labelledby="p2">
+  <div class="page-head">
+    <div class="page-no">Страница 2 · Что такое коллаген?</div>
+    <h2 id="p2">Коллаген — это пружины внутри кожи</h2>
+  </div>
+  <div class="lesson">
+    <div class="art">
+      <svg viewBox="0 0 520 300" role="img" aria-label="Два участка кожи. В молодой коже много коллагеновых волокон, в зрелой — меньше.">
+        <text x="130" y="24" text-anchor="middle" class="svg-text" style="font-weight:600;font-size:16px">Молодая кожа</text>
+        <text x="390" y="24" text-anchor="middle" class="svg-text" style="font-weight:600;font-size:16px">Зрелая кожа</text>
+        <rect x="20" y="40" width="220" height="34" rx="6" style="fill:var(--skin-deep)"/>
+        <rect x="20" y="74" width="220" height="180" rx="6" style="fill:var(--skin)"/>
+        <g style="fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round">
+          <path d="M30 100 q25 -18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 130 q25 18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 160 q25 -18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 190 q25 18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M30 220 q25 -18 50 0 t50 0 t50 0 t50 0"/>
+          <path d="M60 90 v150 M120 90 v150 M180 90 v150"/>
+        </g>
+        <path d="M280 40 q30 8 55 0 t55 2 t55 -3 t55 4 v34 h-220z" style="fill:var(--skin-deep)"/>
+        <rect x="280" y="74" width="220" height="180" rx="6" style="fill:var(--skin)"/>
+        <g style="fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round;opacity:.75">
+          <path d="M290 120 q25 -10 50 0 t40 4"/>
+          <path d="M400 170 q25 12 45 0 t40 0"/>
+          <path d="M300 215 q30 -12 60 0"/>
+          <path d="M440 100 v40"/>
+        </g>
+        <text x="130" y="282" text-anchor="middle" class="svg-muted" style="font-size:14px">Много пружин = упругая</text>
+        <text x="390" y="282" text-anchor="middle" class="svg-muted" style="font-size:14px">Мало пружин = дряблая</text>
+      </svg>
+    </div>
+    <ul class="points">
+      <li><span class="dot">1</span><p>Коллаген — это <b>белок</b>. Он образует длинные прочные нити в коже, костях и суставах.</p></li>
+      <li><span class="dot">2</span><p>Представьте матрас. Нити коллагена — это <b>пружины</b>, которые держат кожу упругой.</p></li>
+      <li><span class="dot">3</span><p>С возрастом организм постепенно <b>вырабатывает меньше</b> коллагена. Поэтому люди и покупают коллагеновые напитки и стики.</p></li>
+    </ul>
+  </div>
+
+  <h3>Коллаген бывает разных типов. Для кожи нужен тип I.</h3>
+  <div class="typecards">
+    <div class="typecard hl">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="16" style="fill:var(--skin)"/><circle cx="16.5" cy="19" r="2" style="fill:var(--fg)"/><circle cx="27.5" cy="19" r="2" style="fill:var(--fg)"/><path d="M15.5 26 q6.5 5 13 0" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round"/></svg>
+      <div class="t">Тип I</div><p><b>Кожа, волосы, ногти, кости.</b> Около 90% всего коллагена в организме. Его получают из <b>рыбы</b> или из коров.</p>
+    </div>
+    <div class="typecard">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="18" y="2" width="8" height="16" rx="4" style="fill:var(--muted)"/><circle cx="22" cy="22" r="6" style="fill:var(--accent)"/><rect x="18" y="26" width="8" height="16" rx="4" style="fill:var(--muted)"/></svg>
+      <div class="t">Тип II</div><p><b>Суставы и колени.</b> Его получают из курицы. В продуктах для кожи не используется.</p>
+    </div>
+    <div class="typecard">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M6 22 q8 -14 16 0 t16 0" style="fill:none;stroke:var(--bad);stroke-width:5;stroke-linecap:round"/></svg>
+      <div class="t">Тип III</div><p><b>Кожа и сосуды.</b> Работает вместе с типом I. Его получают из коров или свиней.</p>
+    </div>
+  </div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Во всех 9 продуктах — рыбный коллаген. Рыбный коллаген относится к типу I, то есть подходит для кожи. Это хорошо.</div>
+</section>
+
+<!-- ================= PAGE 3 ================= -->
+<section class="page" aria-labelledby="p3">
+  <div class="page-head">
+    <div class="page-no">Страница 3 · Что такое «Да»?</div>
+    <h2 id="p3">Да показывает размер частиц коллагена. Чем меньше, тем лучше.</h2>
+  </div>
+  <div class="lesson flip">
+    <div class="art">
+      <svg viewBox="0 0 520 340" role="img" aria-label="Крупные частицы коллагена задерживаются стенкой кишечника. Мелкие проходят в кровь.">
+        <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">Внутри кишечника</text>
+        <g transform="translate(70 96)">
+          <circle r="40" style="fill:none;stroke:var(--bad);stroke-width:4"/>
+          <path d="M-36 -10 q36 -30 72 0 M-38 8 q38 30 76 0 M-20 -34 q20 34 0 68 M18 -34 q-20 34 0 68" style="fill:none;stroke:var(--bad);stroke-width:3"/>
+        </g>
+        <text x="70" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">300 000 Да</text>
+        <g style="fill:var(--warn)">
+          <circle cx="160" cy="70" r="7"/><circle cx="175" cy="78" r="7"/><circle cx="190" cy="70" r="7"/><circle cx="205" cy="78" r="7"/><circle cx="220" cy="70" r="7"/>
+          <circle cx="235" cy="78" r="7"/><circle cx="250" cy="70" r="7"/><circle cx="250" cy="96" r="7"/><circle cx="235" cy="96" r="7"/><circle cx="220" cy="104" r="7"/>
+          <circle cx="205" cy="96" r="7"/><circle cx="190" cy="104" r="7"/><circle cx="175" cy="96" r="7"/><circle cx="160" cy="104" r="7"/><circle cx="175" cy="122" r="7"/>
+          <circle cx="190" cy="130" r="7"/><circle cx="205" cy="122" r="7"/><circle cx="220" cy="130" r="7"/><circle cx="235" cy="122" r="7"/><circle cx="250" cy="130" r="7"/>
+        </g>
+        <text x="205" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">2000 Да</text>
+        <g style="fill:var(--ok)">
+          <circle cx="300" cy="96" r="7"/><circle cx="315" cy="88" r="7"/><circle cx="330" cy="96" r="7"/><circle cx="345" cy="88" r="7"/><circle cx="360" cy="96" r="7"/>
+          <circle cx="360" cy="118" r="7"/><circle cx="345" cy="110" r="7"/><circle cx="330" cy="118" r="7"/><circle cx="315" cy="110" r="7"/><circle cx="300" cy="118" r="7"/>
+        </g>
+        <text x="330" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">1000 Да</text>
+        <g style="fill:var(--good)">
+          <circle cx="420" cy="100" r="7"/><circle cx="435" cy="100" r="7"/><circle cx="450" cy="100" r="7"/>
+          <circle cx="496" cy="160" r="7"/><circle cx="496" cy="175" r="7"/><circle cx="496" cy="190" r="7"/>
+          <circle cx="470" cy="264" r="7"/><circle cx="485" cy="264" r="7"/><circle cx="500" cy="264" r="7"/>
+        </g>
+        <text x="435" y="130" text-anchor="middle" class="svg-muted" style="font-size:13px">300 Да</text>
+        <rect x="10" y="200" width="472" height="22" rx="4" style="fill:var(--skin-deep)"/>
+        <text x="20" y="242" class="svg-muted" style="font-size:13px">Стенка кишечника: проходят только очень мелкие частицы →</text>
+        <rect x="10" y="250" width="500" height="34" rx="6" style="fill:var(--bad);opacity:.16"/>
+        <text x="20" y="272" class="svg-text" style="font-size:14px;font-weight:600">Кровь → кожа</text>
+        <path d="M70 168 v24 M205 168 v24 M330 168 v24" style="stroke:var(--bad);stroke-width:3;stroke-linecap:round"/>
+        <path d="M62 184 h16 M197 184 h16 M322 184 h16" style="stroke:var(--bad);stroke-width:3;stroke-linecap:round"/>
+        <text x="20" y="318" class="svg-text" style="font-size:14px"><tspan style="fill:var(--bad);font-weight:700">✕</tspan> Крупные частицы застревают.  <tspan style="fill:var(--good);font-weight:700">✓</tspan> Мелкие проходят сразу.</text>
+      </svg>
+    </div>
+    <ul class="points">
+      <li><span class="dot">1</span><p><b>Да</b> (дальтон) — единица, в которой учёные измеряют вес очень маленьких частиц, например молекул. Большое число — крупная частица, маленькое — мелкая. На корейских коробках пишут «Da».</p></li>
+      <li><span class="dot">2</span><p>Коллаген — это длинная цепочка из крошечных бусинок. Производители разрезают её на короткие кусочки, чтобы организм мог их усвоить.</p></li>
+      <li><span class="dot">3</span><p>Кишечник легче всего пропускает кусочки из <b>2–3 бусинок</b>. Это примерно <b>300 Да</b>. Кусочки по 1000 или 2000 Да организм сначала должен расщепить на более мелкие.</p></li>
+    </ul>
+  </div>
+  <div class="art">
+    <svg viewBox="0 0 1000 124" role="img" aria-label="Шкала: 300 Да — лучше всего, 1000 Да — нормально, 2000 Да — слабо, если не указано — уточните у продавца.">
+      <defs><linearGradient id="g-da" x1="0" x2="1"><stop offset="0" style="stop-color:var(--good)"/><stop offset=".4" style="stop-color:var(--ok)"/><stop offset=".72" style="stop-color:var(--warn)"/><stop offset="1" style="stop-color:var(--bad)"/></linearGradient></defs>
+      <rect x="20" y="40" width="960" height="22" rx="11" style="fill:url(#g-da)"/>
+      <g class="svg-text" style="font-size:17px;font-weight:600" text-anchor="middle">
+        <text x="110" y="28">300 Да</text><text x="390" y="28">1000 Да</text><text x="660" y="28">2000 Да</text><text x="885" y="28">Не указано</text>
+      </g>
+      <g style="font-size:14px" text-anchor="middle">
+        <text x="110" y="88" class="svg-text" style="font-weight:600">Лучше всего</text><text x="390" y="88" class="svg-text" style="font-weight:600">Нормально</text><text x="660" y="88" class="svg-text" style="font-weight:600">Слабо</text><text x="885" y="88" class="svg-text" style="font-weight:600">Уточните у продавца</text>
+        <text x="110" y="112" class="svg-muted">Yorosum, HURUM, SSF</text><text x="390" y="112" class="svg-muted">BB LAB (оба)</text><text x="660" y="112" class="svg-muted">BOTO</text><text x="885" y="112" class="svg-muted">HURUM Biotin, VITASUB</text>
+      </g>
+    </svg>
+  </div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Ищите на коробке слово «평균분자량» (средняя молекулярная масса). Лучший вариант — 300 Да или меньше.</div>
+</section>
+
+<!-- ================= PAGE 4 ================= -->
+<section class="page" aria-labelledby="p4">
+  <div class="page-head">
+    <div class="page-no">Страница 4 · Сколько коллагена?</div>
+    <h2 id="p4">Мелкие частицы — это хорошо. Но их должно быть достаточно.</h2>
+    <p class="lead">В исследованиях кожи люди принимали <b>2500 мг коллагена в день или больше</b>. Пунктирная линия показывает это количество. Чем длиннее полоса, тем больше коллагена в одном стике.</p>
+  </div>
+  <div class="art"><div class="chart" id="chart-dose"></div></div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Больше всего коллагена в одном стике у Yorosum — 2000 мг. У VITASUB всего 196 мг, в 10 раз меньше.</div>
+</section>
+
+<!-- ================= PAGE 5 ================= -->
+<section class="page" aria-labelledby="p5">
+  <div class="page-head">
+    <div class="page-no">Страница 5 · Витамин C</div>
+    <h2 id="p5">Витамин C — строитель, который превращает частицы коллагена в кожу</h2>
+  </div>
+  <div class="lesson two">
+    <div class="art">
+      <svg viewBox="0 0 520 300" role="img" aria-label="Без витамина C кирпичи лежат кучей. С витамином C они становятся прочной стеной.">
+        <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">Без витамина C</text>
+        <g style="fill:var(--accent);opacity:.85">
+          <rect x="40" y="90" width="44" height="20" rx="3" transform="rotate(-12 62 100)"/>
+          <rect x="80" y="104" width="44" height="20" rx="3" transform="rotate(18 102 114)"/>
+          <rect x="60" y="126" width="44" height="20" rx="3" transform="rotate(4 82 136)"/>
+          <rect x="112" y="126" width="44" height="20" rx="3" transform="rotate(-25 134 136)"/>
+          <rect x="24" y="126" width="44" height="20" rx="3" transform="rotate(30 46 136)"/>
+        </g>
+        <text x="95" y="184" text-anchor="middle" class="svg-muted" style="font-size:13px">Частицы просто лежат</text>
+        <text x="300" y="26" class="svg-text" style="font-weight:600;font-size:15px">С витамином C</text>
+        <g style="fill:var(--accent)">
+          <rect x="300" y="140" width="44" height="20" rx="3"/><rect x="348" y="140" width="44" height="20" rx="3"/><rect x="396" y="140" width="44" height="20" rx="3"/>
+          <rect x="324" y="116" width="44" height="20" rx="3"/><rect x="372" y="116" width="44" height="20" rx="3"/><rect x="420" y="116" width="44" height="20" rx="3"/>
+          <rect x="300" y="92" width="44" height="20" rx="3"/><rect x="348" y="92" width="44" height="20" rx="3"/><rect x="396" y="92" width="44" height="20" rx="3"/>
+          <rect x="324" y="68" width="44" height="20" rx="3"/><rect x="372" y="68" width="44" height="20" rx="3"/>
+        </g>
+        <circle cx="470" cy="62" r="20" style="fill:var(--vitc)"/>
+        <text x="470" y="69" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">C</text>
+        <text x="380" y="184" text-anchor="middle" class="svg-muted" style="font-size:13px">Частицы становятся прочной стеной</text>
+        <path d="M195 120 h70" style="stroke:var(--muted);stroke-width:3;stroke-linecap:round"/>
+        <path d="M257 112 l10 8 l-10 8" style="fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+        <rect x="20" y="214" width="480" height="66" rx="10" style="fill:var(--accent-soft)"/>
+        <text x="260" y="242" text-anchor="middle" class="svg-text" style="font-size:15px;font-weight:600">100 мг витамина C = 100% суточной нормы (Корея)</text>
+        <text x="260" y="265" text-anchor="middle" class="svg-muted" style="font-size:13px">США: 90 мг · Европа: 80 мг</text>
+      </svg>
+    </div>
+    <ul class="points">
+      <li><span class="dot">1</span><p>Частицы коллагена — как <b>кирпичи</b>. Витамин C — <b>строитель</b>. Без него организм не может построить новый прочный коллаген.</p></li>
+      <li><span class="dot">2</span><p>Витамин C не помогает коллагену попасть в кровь. Его работа начинается потом: он помогает <b>строить</b> коллаген в коже.</p></li>
+      <li><span class="dot">3</span><p>В хорошем стике около <b>100 мг</b> витамина C — полная суточная норма. При 100 мг и больше мы ставим 10 из 10.</p></li>
+    </ul>
+  </div>
+  <div class="art"><div class="chart" id="chart-vitc"></div></div>
+</section>
+
+<!-- ================= PAGE 6 ================= -->
+<section class="page" aria-labelledby="p6">
+  <div class="page-head">
+    <div class="page-no">Страница 6 · Микродозы</div>
+    <h2 id="p6">Не верьте красивым словам на коробке</h2>
+    <p class="lead">На многих коробках крупно написано «глутатион», «биотин» или «гиалуроновая кислота». Но внутри часто лишь крошечная капля. Крошечная капля ничего не даёт.</p>
+  </div>
+  <div class="drops" id="drops"></div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Длинный список добавок — не признак качества. Смотрите количество в мг. Если оно крошечное, не обращайте на добавку внимания.</div>
+</section>
+
+<!-- ================= PAGE 7 ================= -->
+<section class="page" aria-labelledby="p7">
+  <div class="page-head">
+    <div class="page-no">Страница 7 · Как читать коробку</div>
+    <h2 id="p7">Как узнать настоящее количество коллагена за 3 шага</h2>
+    <p class="lead">На многих коробках указан <b>процент (%)</b>, а не миллиграммы. Вот как перевести его в мг. Пример: HURUM низкомолекулярный.</p>
+  </div>
+  <div class="label-demo">
+    <div class="art">
+      <svg viewBox="0 0 440 260" role="img" aria-label="Пример этикетки: рыбный коллаген 60 процентов, 2 грамма на 60 стиков.">
+        <rect x="10" y="10" width="420" height="240" rx="12" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+        <text x="30" y="48" class="svg-muted" style="font-weight:600;font-size:15px">Этикетка (пример)</text>
+        <rect x="26" y="66" width="388" height="44" rx="8" style="fill:none;stroke:var(--accent);stroke-width:3"/>
+        <text x="40" y="95" class="svg-text" style="font:600 18px 'Noto Sans KR',sans-serif">저분자피쉬콜라겐펩타이드 60 %</text>
+        <circle cx="414" cy="66" r="14" style="fill:var(--accent)"/><text x="414" y="71" text-anchor="middle" style="font:700 14px sans-serif;fill:var(--bg)">1</text>
+        <text x="40" y="146" class="svg-muted" style="font:15px 'Noto Sans KR',sans-serif">비타민C 6 %</text>
+        <rect x="26" y="176" width="260" height="44" rx="8" style="fill:none;stroke:var(--accent);stroke-width:3"/>
+        <text x="40" y="205" class="svg-text" style="font:600 18px 'Noto Sans KR',sans-serif">120 g (2 g × 60포)</text>
+        <circle cx="286" cy="176" r="14" style="fill:var(--accent)"/><text x="286" y="181" text-anchor="middle" style="font:700 14px sans-serif;fill:var(--bg)">2</text>
+      </svg>
+    </div>
+    <div class="math">
+      <div class="mstep"><span class="dot">1</span><div><p>Найдите <b>%</b> коллагена.</p><div class="eq">60%</div></div></div>
+      <div class="mstep"><span class="dot">2</span><div><p>Найдите вес <b>одного стика</b> (포 = стик). 1 г = 1000 мг.</p><div class="eq">2 г = 2000 мг</div></div></div>
+      <div class="mstep"><span class="dot">3</span><div><p>Умножьте. Это настоящее количество коллагена в одном стике.</p><div class="eq">2000 × 60% = 1200 мг</div></div></div>
+    </div>
+  </div>
+  <div class="warnbox">
+    <img src="img/ssf.jpg" alt="Коробка желе-стиков SSF с гранатом и коллагеном">
+    <div class="page-head" style="gap:6px">
+      <h3>Осторожно с большими цифрами на коробке</h3>
+      <p>На коробке SSF написано <b>«100 000 мг»</b> коллагена. Это на <b>всю коробку из 100 стиков</b>. В одном стике — 1000 мг. Всегда считайте на один стик.</p>
+    </div>
+  </div>
+  <h3>Корейские слова на коробке, которые стоит знать</h3>
+  <div class="scroll">
+    <table class="gloss">
+      <tr><td>저분자</td><td>Низкомолекулярный (мелкие частицы)</td></tr>
+      <tr><td>피쉬콜라겐 / 생선콜라겐</td><td>Рыбный коллаген</td></tr>
+      <tr><td>평균분자량</td><td>Средняя молекулярная масса (число в Да)</td></tr>
+      <tr><td>1포당</td><td>В одном стике</td></tr>
+      <tr><td>비타민C</td><td>Витамин C</td></tr>
+      <tr><td>기타가공품</td><td>Обычный пищевой продукт, а не продукт для здоровья с подтверждённым действием (건강기능식품). Поэтому на коробке нельзя обещать пользу для здоровья.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= PAGE 8 ================= -->
+<section class="page" aria-labelledby="p8">
+  <div class="page-head">
+    <div class="page-no">Страница 8 · Честная цена</div>
+    <h2 id="p8">Сравнивайте цену за грамм коллагена, а не цену коробки</h2>
+    <p class="lead">В коробках от 30 до 100 стиков, поэтому цена коробки может обмануть. Разделите цену на общее количество граммов коллагена в коробке. Чем короче полоса, тем дешевле коллаген.</p>
+  </div>
+  <div class="art"><div class="chart" id="chart-price"></div></div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>У BOTO самая дешёвая коробка (₩8630). Но грамм коллагена у него дороже, чем у HURUM или Yorosum, а частицы крупные (2000 Да).</div>
+</section>
+
+<!-- ================= PAGE 9 ================= -->
+<section class="page" aria-labelledby="p9">
+  <div class="page-head">
+    <div class="page-no">Страница 9 · Ваш чек-лист</div>
+    <h2 id="p9">6 вопросов перед покупкой</h2>
+  </div>
+  <ul class="checks">
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Это <b>рыбный коллаген</b> (тип I)?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Указано ли на коробке число Да? Оно <b>300 Да или меньше</b>?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>В одном стике есть хотя бы <b>1000 мг</b> коллагена? Лучше всего — 2000 мг и больше.</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>В одном стике около <b>100 мг витамина C</b>?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Добавок достаточно, чтобы был толк, или это <b>крошечные капли</b>?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Сколько стоит <b>грамм коллагена</b>?</span></li>
+  </ul>
+</section>
+
+<!-- ================= DETAILS ================= -->
+<section class="page wide" aria-labelledby="p10">
+  <div class="page-head">
+    <div class="page-no">Подробности для специалистов</div>
+    <h2 id="p10">Все цифры и формула оценки</h2>
+  </div>
+  <details>
+    <summary>Полная таблица сравнения</summary>
+    <div><div class="scroll"><table class="matrix" id="matrix"></table></div>
+    <p class="muted" style="font-size:13px">◆ Не указано на лицевой стороне упаковки (данные продавца). Уточните по сертификату анализа поставщика.</p></div>
+  </details>
+  <footer>
+    <p>Количество в одном стике рассчитано по процентам и весу стика, указанным на упаковке. Данные MIPPEUM и показатель 300 Да для HURUM низкомолекулярного взяты с сайтов продавцов. Цены — последние проверенные розничные; запросите актуальные оптовые цены.</p>
+    <p>Это руководство сравнивает этикетки продуктов, чтобы помочь с решением о закупке. Оно не является медицинской рекомендацией и не содержит заявлений о пользе продуктов для здоровья. YOROSUM — собственный бренд автора документа; формула оценки приведена полностью, чтобы её мог проверить любой.</p>
+  </footer>
+</section>
+
+<section class="page" aria-label="Все цифры и формула оценки">
+  <div class="page-no">Подробности для специалистов</div>
+  <details>
+    <summary>Как считается оценка</summary>
+    <div>
+      <div class="weights">
+        <div><span>Коллаген в стике: мг ÷ 250, максимум 10</span><b>2 части</b></div>
+        <div><span>Размер частиц: ≤300 Да — 10, ≤600 — 8, ≤1000 — 6, ≤2000 — 4, не указано — 3</span><b>2 части</b></div>
+        <div><span>Витамин C: мг ÷ 10, максимум 10</span><b>1,5 части</b></div>
+        <div><span>Чистый состав: добавки в полезных дозах, без наполнителей (экспертная оценка)</span><b>1,5 части</b></div>
+      </div>
+      <p class="muted" style="font-size:14px">Оценка — средневзвешенное значение четырёх строк (2 : 2 : 1,5 : 1,5, примерно 29%, 29%, 21%, 21%). Цена не входит в оценку: розничные цены часто меняются, а оптовые отличаются. Цена за грамм показана отдельно. Глутатион, биотин и гиалуроновая кислота не получают баллов, если их меньше, чем в исследованиях (глутатион — 250–1000 мг в день; гиалуроновая кислота — 120–240 мг в день; 30 мкг биотина лишь покрывают суточную потребность).</p>
+    </div>
+  </details>
+  <details>
+    <summary>Сильные и слабые стороны каждого продукта</summary>
+    <div id="notes"></div>
+  </details>
+</section>
+</div>
+
+<script>
+const T = {"units": {"mg": "мг", "mcg": "мкг", "g": "г", "da": "Да", "thou": " ", "dec": ",", "groupMin": 5}, "js": {"hRank": "Место", "hProduct": "Продукт", "hScore": "Оценка", "hDose": "Коллаген в стике", "hDa": "Размер частиц (Да)", "hVitc": "Витамин C", "hClean": "Чистый состав", "hPrice": "Цена за грамм · не входит в оценку", "w8": "Отлично", "w7": "Очень хорошо", "w6": "Хорошо", "w5": "Средне", "w3": "Слабо", "w0": "Не брать", "cGood": "Хорошо", "cFiller": "Есть наполнители", "cTiny": "Микродозы", "notOnBox": "Не указано", "under": "Менее {n} Да", "noneListed": "Не указан", "noPrice": "Нет цены", "sticks": "{n} стиков × {g} г", "perStick": "за стик", "perGram": "за грамм", "keyDose": "Пунктир = 2500 мг — суточное количество из исследований кожи.", "keyVitc": "Пунктир = 100 мг — полная суточная норма витамина C в Корее.", "keyPrice": "VITASUB не показан, потому что цена не указана.", "glut": "Глутатион", "ha": "Гиалуроновая кислота", "dropTitle": "{what}: {who}", "useful": "Полезная доза", "inStick": "В 1 стике:", "nSticks": "{n} стиков", "dropText": "Столько стиков нужно съесть, чтобы получить одну полезную дозу.", "biotinTitle": "Биотин: BB LAB и HURUM Biotin", "food1": "Обычная еда", "food2": "даёт достаточно", "oneStick": "1 стик", "noExtra": "Пользы не добавит", "biotinText": "30 мкг — это суточная потребность, которую уже покрывает обычная еда. Дополнительный биотин не улучшает кожу и волосы, если в организме нет его недостатка.", "cols": ["Продукт", "Стики", "Коллаген/стик", "Да", "Вит. C", "Другие компоненты", "Коллаген/коробка", "Цена коробки", "₩/стик", "₩/г коллагена", "Оценка"], "strengths": "Плюсы:", "weaknesses": "Минусы:"}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide", "short": "Yorosum", "extras": "Порошок со вкусом персика 300 мг, экстракт бамбукового сока 30 мг, эластин 3 мг", "pros": "Больше всего коллагена в стике (2000 мг); 300 Да указано на упаковке; 100 мг витамина C; вторая самая низкая цена за грамм.", "cons": "Около 0,57 г в стике не расписано на лицевой стороне упаковки; эластина — следовое количество; ₩663 за стик."}, "hurum-sm": {"name": "HURUM низкомолекулярный рыбный коллаген", "short": "HURUM (низкомолекулярный)", "extras": "L-пролин 6 мг, гиалуроновая кислота 0,4 мг", "pros": "Самая низкая цена за грамм (₩319/г); 120 мг витамина C; короткий чистый состав.", "cons": "1200 мг — меньше половины ориентира в 2500 мг; 300 Да не указано на лицевой стороне упаковки."}, "ssf": {"name": "SSF желе-стик с гранатом и коллагеном", "short": "SSF", "extras": "Концентрат граната 18 640 мг, эластин 20 мг, дрожжи с глутатионом 2 мг, биотин 20 мкг", "pros": "300 Да; 100 г коллагена в коробке; формат желе.", "cons": "«100 000 мг» на коробке — это на всю коробку; всего 4 мг витамина C; в основном фруктовый концентрат (около 45 ккал в стике)."}, "bb-goodnight": {"name": "BB LAB Goodnight коллаген", "short": "BB LAB Goodnight", "extras": "Глицин 80 мг, L-пролин 20 мг", "pros": "Добавлены глицин и пролин — основные аминокислоты коллагена; известный бренд.", "cons": "1000 Да; витамина C всего 30 мг."}, "bb-biotin": {"name": "BB LAB коллаген с биотином", "short": "BB LAB Biotin", "extras": "Биотин 30 мкг", "pros": "Невысокая цена за коллаген 1000 Да.", "cons": "Витамин C 30 мг; биотин вынесен в название, но доказанной пользы для кожи не даёт."}, "boto": {"name": "BOTO коллаген с глутатионом White", "short": "BOTO", "extras": "Сухие дрожжи (≈25 мг глутатиона), биотин 36 мкг", "pros": "220 мг витамина C; самая дешёвая коробка; сертификаты HACCP и халяль.", "cons": "Коллаген — всего 20% стика (800 мг); 2000 Да; глутатиона намного меньше полезной дозы."}, "mippeum": {"name": "MIPPEUM набор коллагеновых желе", "short": "MIPPEUM", "extras": "Фруктовые концентраты (сок ABC, гранат, вишня Монморанси) ≈18 400 мг", "pros": "1600 мг коллагена; менее 600 Да; три вкуса.", "cons": "Самая высокая цена за грамм (₩594/г); витамин C не указан; сладкая фруктовая основа."}, "hurum-biotin": {"name": "HURUM коллаген-пептид с биотином", "short": "HURUM Biotin", "extras": "Биотин 30 мкг, гиалуроновая кислота 0,2 мг", "pros": "120 мг витамина C; самая низкая цена за стик (₩244).", "cons": "Всего 500 мг коллагена; Да не указан; добавки в микродозах."}, "vitasub": {"name": "VITASUB Slim Collagen Plus", "short": "VITASUB", "extras": "Глутатион 0,2 мг, гиалуроновая кислота 0,02 мг, биотин 0,02 мг", "pros": "Нет — при заявленных дозах.", "cons": "Около 196 мг коллагена; 0,2 мг витамина C; значок «осветление» на обычном пищевом продукте; цена не указана."}}};
+const P = [
+  { id: "yorosum", own: true, sticks: 30, stickG: 3, collagen: 2000, da: 300, vitc: 100, honesty: 5, price: 19900 },
+  { id: "hurum-sm", sticks: 60, stickG: 2, collagen: 1200, da: 300, daSeller: true, vitc: 120, honesty: 4, price: 23000 },
+  { id: "ssf", sticks: 100, stickG: 20, collagen: 1000, da: 300, vitc: 4, honesty: 4, price: 39370 },
+  { id: "bb-goodnight", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 5, price: 22870 },
+  { id: "bb-biotin", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 2, price: 21900 },
+  { id: "boto", sticks: 30, stickG: 4, collagen: 800, da: 2000, vitc: 220, honesty: 2, price: 8630 },
+  { id: "mippeum", sticks: 45, stickG: 20, collagen: 1600, da: 600, daBelow: true, daSeller: true, doseSeller: true, vitc: 0, honesty: 4, price: 42800 },
+  { id: "hurum-biotin", sticks: 90, stickG: 2, collagen: 500, da: null, vitc: 120, honesty: 2, price: 22000 },
+  { id: "vitasub", sticks: 30, stickG: 2, collagen: 196, da: null, vitc: 0.2, honesty: 1, price: null }
+].map(p => Object.assign(p, T.products[p.id]));
+
+const u = T.units;
+const daScore = d => d == null ? 3 : d <= 300 ? 10 : d <= 600 ? 8 : d <= 1000 ? 6 : 4;
+function fmt(n, dec = 0) {
+  const [i, f] = Math.abs(n).toFixed(dec).split(".");
+  const int = i.length < (u.groupMin || 4) ? i : i.replace(/\B(?=(\d{3})+(?!\d))/g, u.thou);
+  return (n < 0 ? "-" : "") + int + (f ? u.dec + f : "");
+}
+const r1 = x => fmt(Math.round(x * 10) / 10, 1);
+const won = n => n == null ? T.js.noPrice : "₩" + fmt(Math.round(n));
+const mg = n => n === 0 ? T.js.noneListed : n >= 1 ? fmt(n) + " " + u.mg : fmt(Math.round(n * 1000)) + " " + u.mcg;
+const tone = s => s == null ? "var(--muted)" : s >= 7 ? "var(--good)" : s >= 5 ? "var(--ok)" : s >= 3 ? "var(--warn)" : "var(--bad)";
+const word = s => s >= 8 ? T.js.w8 : s >= 7 ? T.js.w7 : s >= 6 ? T.js.w6 : s >= 5 ? T.js.w5 : s >= 3 ? T.js.w3 : T.js.w0;
+const daText = p => p.da == null ? T.js.notOnBox : p.daBelow ? T.js.under.replace("{n}", fmt(p.da)) : fmt(p.da) + " " + u.da;
+const sticksText = p => T.js.sticks.replace("{n}", p.sticks).replace("{g}", p.stickG);
+
+const best = Math.min(...P.filter(p => p.price).map(p => p.price / (p.collagen * p.sticks / 1000)));
+P.forEach(p => {
+  p.img = `img/${p.id}.jpg`;
+  p.total = p.collagen * p.sticks;
+  p.s = { dose: Math.min(10, p.collagen / 250), da: daScore(p.da), vitc: Math.min(10, p.vitc / 10), honesty: p.honesty };
+  p.score = (p.s.dose * 20 + p.s.da * 20 + p.s.vitc * 15 + p.s.honesty * 15) / 70;
+  if (p.price) {
+    p.perG = p.price / (p.total / 1000);
+    p.perStick = p.price / p.sticks;
+    p.s.price = 10 * best / p.perG;
+  }
+});
+const ranked = [...P].sort((a, b) => b.score - a.score);
+
+const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${s != null && i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
+const meter = (label, s, val) => `<div class="meter"><span class="lab">${label}</span>${blocks(s)}<span class="val">${val}</span></div>`;
+const seller = " ◆";
+
+document.getElementById("ranking").innerHTML =
+  `<div class="rhead" aria-hidden="true"><span>${T.js.hRank}</span><span></span><span>${T.js.hProduct}</span><span style="text-align:center">${T.js.hScore}</span>
+    <span class="ic"><svg><use href="#i-dose"/></svg>${T.js.hDose}</span>
+    <span class="ic"><svg><use href="#i-size"/></svg>${T.js.hDa}</span>
+    <span class="ic"><svg><use href="#i-vitc"/></svg>${T.js.hVitc}</span>
+    <span class="ic"><svg><use href="#i-clean"/></svg>${T.js.hClean}</span>
+    <span class="ic"><svg><use href="#i-price"/></svg>${T.js.hPrice}</span></div>` +
+  ranked.map((p, i) => `<article class="ritem ${p.own ? "own" : ""}">
+      <span class="medal ${i < 3 ? "m" + (i + 1) : ""}">${i + 1}</span>
+      <span class="thumb"><img src="${p.img}" alt="${p.name}"></span>
+      <span class="pname">${p.name}<small>${sticksText(p)} · ${won(p.price)}</small></span>
+      <span class="badge" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span><span class="word">${word(p.score)}</span></span>
+      <div class="meters">
+        ${meter(T.js.hDose, p.s.dose, mg(p.collagen) + (p.doseSeller ? seller : ""))}
+        ${meter(T.js.hDa, p.s.da, daText(p) + (p.daSeller ? seller : ""))}
+        ${meter(T.js.hVitc, p.s.vitc, mg(p.vitc))}
+        ${meter(T.js.hClean, p.s.honesty, p.s.honesty >= 5 ? T.js.cGood : p.s.honesty >= 3 ? T.js.cFiller : T.js.cTiny)}
+        <div class="meter price"><span class="lab">${T.js.hPrice}</span><span class="val">${p.perG ? won(p.perG) + "/" + u.g : T.js.noPrice}</span><span class="sub">${p.perStick ? won(p.perStick) + " " + T.js.perStick : ""}</span></div>
+      </div></article>`).join("");
+
+function barChart(el, rows, { max, target, value, label, toneFn, key }) {
+  document.getElementById(el).innerHTML = rows.map(p => {
+    const v = value(p), w = v == null ? 0 : Math.min(100, v / max * 100);
+    return `<div class="crow"><img src="${p.img}" alt=""><span class="cn">${p.name}</span>
+      <div class="ctrack"><div class="cfill" style="width:${w}%;--tone:${toneFn(p)}"></div>
+      ${target ? `<div class="target" style="left:${target / max * 100}%"></div>` : ""}
+      <span class="cval" style="left:${Math.min(w, 72)}%">${label(p)}</span></div></div>`;
+  }).join("") + (key ? `<div class="chart-key">${key}</div>` : "");
+}
+barChart("chart-dose", [...P].sort((a, b) => b.collagen - a.collagen), {
+  max: 2600, target: 2500, value: p => p.collagen, label: p => mg(p.collagen), toneFn: p => tone(p.s.dose), key: T.js.keyDose
+});
+barChart("chart-vitc", [...P].sort((a, b) => b.vitc - a.vitc), {
+  max: 230, target: 100, value: p => p.vitc, label: p => mg(p.vitc), toneFn: p => tone(p.s.vitc), key: T.js.keyVitc
+});
+barChart("chart-price", P.filter(p => p.price).sort((a, b) => a.perG - b.perG), {
+  max: 620, value: p => p.perG, label: p => won(p.perG) + " " + T.js.perGram, toneFn: p => tone(p.s.price), key: T.js.keyPrice
+});
+
+const drops = [
+  { what: T.js.glut, who: "VITASUB", inStick: 0.2, need: 250 },
+  { what: T.js.glut, who: "BOTO", inStick: 25, need: 250 },
+  { what: T.js.ha, who: T.products["hurum-sm"].short, inStick: 0.4, need: 120 }
+];
+document.getElementById("drops").innerHTML = drops.map(d => {
+  const ratio = Math.round(d.need / d.inStick);
+  const rBig = 52, rSmall = Math.max(1.5, rBig * Math.sqrt(d.inStick / d.need));
+  return `<div class="drop"><h3>${T.js.dropTitle.replace("{what}", d.what).replace("{who}", d.who)}</h3>
+    <svg viewBox="0 0 240 130" aria-hidden="true">
+      <circle cx="62" cy="58" r="${rBig}" style="fill:var(--good);fill-opacity:.22;stroke:var(--good);stroke-width:2"/>
+      <text x="62" y="54" text-anchor="middle" class="svg-text" style="font-size:11.5px;font-weight:600">${T.js.useful}</text>
+      <text x="62" y="72" text-anchor="middle" class="svg-text" style="font-size:11.5px">${fmt(d.need)} ${u.mg}</text>
+      <circle cx="180" cy="56" r="${rSmall.toFixed(1)}" style="fill:var(--bad)"/>
+      <text x="180" y="122" text-anchor="middle" class="svg-text" style="font-size:13px">${T.js.inStick} ${fmt(d.inStick, d.inStick < 1 ? 1 : 0)} ${u.mg}</text>
+    </svg>
+    <div class="big">${T.js.nSticks.replace("{n}", fmt(ratio))}</div><p>${T.js.dropText}</p></div>`;
+}).join("") + `<div class="drop"><h3>${T.js.biotinTitle}</h3>
+    <svg viewBox="0 0 240 130" aria-hidden="true"><circle cx="62" cy="58" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="62" y="54" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.food1}</text><text x="62" y="70" text-anchor="middle" class="svg-text" style="font-size:11px">${T.js.food2}</text>
+    <text x="122" y="66" text-anchor="middle" class="svg-text" style="font-size:22px">+</text><circle cx="182" cy="58" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="182" y="54" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.oneStick}</text><text x="182" y="70" text-anchor="middle" class="svg-text" style="font-size:11px">30 ${u.mcg}</text></svg>
+    <div class="big" style="color:var(--warn)">${T.js.noExtra}</div><p>${T.js.biotinText}</p></div>`;
+
+document.getElementById("matrix").innerHTML = `<thead><tr>${T.js.cols.map(c => `<th>${c}</th>`).join("")}</tr></thead><tbody>` +
+  ranked.map(p => `<tr><td><b>${p.name}</b></td><td>${sticksText(p)}</td><td>${mg(p.collagen)}${p.doseSeller ? seller : ""}</td>
+    <td>${daText(p)}${p.daSeller ? seller : ""}</td><td>${mg(p.vitc)}</td><td class="wrap">${p.extras}</td><td>${fmt(p.total / 1000)} ${u.g}</td>
+    <td>${won(p.price)}</td><td>${p.perStick ? won(p.perStick) : "–"}</td><td>${p.perG ? won(p.perG) : "–"}</td>
+    <td><b>${r1(p.score)}</b></td></tr>`).join("") + "</tbody>";
+document.getElementById("notes").innerHTML = ranked.map((p, i) => `<p><b>${i + 1}. ${p.name} (${r1(p.score)})</b><br>
+  <span style="color:var(--good)">${T.js.strengths}</span> ${p.pros}<br><span style="color:var(--bad)">${T.js.weaknesses}</span> ${p.cons}</p>`).join("");
+</script>

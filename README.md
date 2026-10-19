@@ -8,7 +8,7 @@ Customizations for the Yorosum Cafe24 store (yorosum.com).
 
 1. Cafe24 admin → 쇼핑몰 설정 → 다국어 쇼핑몰: add an English shop. For Uzbek,
    add another shop (based on English) and translate its texts into Uzbek.
-2. Connect a domain to each shop (e.g. `en.yorosum.com`, `uz.yorosum.com`) and
-   put those addresses in the three `href`s in the file.
+2. Set the shops' addresses to `yorosum.com/en` (English) and `yorosum.com/uz`
+   (Uzbek). If they end up different, change `data-prefix` / `href` in the file.
 3. Paste the file's contents into the header of every shop's skin
    (디자인 → 디자인 편집 → `layout/basic/layout.html` or the header include).

@@ -5,13 +5,14 @@
   language shop's skin (usually layout/basic/layout.html or header.html),
   wherever you want the buttons to appear (e.g. next to login / cart links).
 
-  Before using: replace the three href values below with the real addresses
-  of your shops (see 쇼핑몰 설정 → 다국어 쇼핑몰 for each shop's domain).
+  Shop addresses: Korean = yorosum.com, English = yorosum.com/en,
+  Uzbek = yorosum.com/uz. The /en and /uz path prefixes are set in
+  data-prefix below; change them there if your shop addresses differ.
 -->
 <div class="yr-lang" role="navigation" aria-label="Language">
-  <a class="yr-lang__btn" href="https://yorosum.com/" data-lang="ko" hreflang="ko" lang="ko">한국어</a>
-  <a class="yr-lang__btn" href="https://en.yorosum.com/" data-lang="en" hreflang="en" lang="en">English</a>
-  <a class="yr-lang__btn" href="https://uz.yorosum.com/" data-lang="uz" hreflang="uz" lang="uz">O‘zbekcha</a>
+  <a class="yr-lang__btn" href="https://yorosum.com/" data-prefix="" data-lang="ko" hreflang="ko" lang="ko">한국어</a>
+  <a class="yr-lang__btn" href="https://yorosum.com/en/" data-prefix="/en" data-lang="en" hreflang="en" lang="en">English</a>
+  <a class="yr-lang__btn" href="https://yorosum.com/uz/" data-prefix="/uz" data-lang="uz" hreflang="uz" lang="uz">O‘zbekcha</a>
 </div>
 
 <style>
@@ -32,17 +33,27 @@
   // them on the same page path when they switch (e.g. a product page).
   (function () {
     var links = document.querySelectorAll('.yr-lang__btn');
+    var path = location.pathname;
+    var current = null;
+    // Find which shop we're on: the longest prefix that matches the path.
     for (var i = 0; i < links.length; i++) {
-      var target = new URL(links[i].href);
-      if (target.host === location.host) {
-        links[i].classList.add('is-active');
-        links[i].setAttribute('aria-current', 'true');
+      var prefix = links[i].getAttribute('data-prefix');
+      if ((prefix === '' || path === prefix || path.indexOf(prefix + '/') === 0) &&
+          (current === null || prefix.length > current.getAttribute('data-prefix').length)) {
+        current = links[i];
+      }
+    }
+    if (!current) return;
+    // The page path without the language prefix, e.g. /product/detail.html
+    var rest = path.slice(current.getAttribute('data-prefix').length) || '/';
+    for (var j = 0; j < links.length; j++) {
+      if (links[j] === current) {
+        links[j].classList.add('is-active');
+        links[j].setAttribute('aria-current', 'true');
       } else {
-        // Same path + query on the other shop. Products share IDs across
+        // Same page + query on the other shop. Products share IDs across
         // Cafe24 multi-shops, so /product/detail.html?product_no=12 still works.
-        target.pathname = location.pathname;
-        target.search = location.search;
-        links[i].href = target.toString();
+        links[j].href = location.origin + links[j].getAttribute('data-prefix') + rest + location.search;
       }
     }
   })();

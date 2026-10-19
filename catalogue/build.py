@@ -299,20 +299,120 @@ PAGES = """
 """
 
 
-def render(lang, t, bleed):
+def body_for(lang, t):
     t = dict(t)
-    t["n2000"] = "2 000" if lang in ("uz", "ru") else "2,000"  # local thousands style, kept on one line
+    t["n2000"] = "2\u00a0000" if lang in ("uz", "ru") else "2,000"  # local thousands style, kept on one line
     t["c_body"] = t["c_body"].replace("10–12", '<span style="white-space:nowrap">10–12</span>').replace("10~12주", '<span style="white-space:nowrap">10~12주</span>')
     t["phone"] = "070-8080-5163" if lang == "ko" else "+82 70-8080-5163"
     body = PAGES.format(**t)
     body = body.replace("__LOGO_L__", LOGO.format(cls="logo-l")).replace("__LOGO_S__", LOGO.format(cls="logo-s"))
     for k, v in ICONS.items():
         body = body.replace(f"__IC_{k}__", v)
-    css = (CSS.replace("__BLEED__", str(bleed))
-              .replace("__PAGE_W__", str(210 + 2 * bleed))
-              .replace("__PAGE_H__", str(297 + 2 * bleed)))
-    return (f'<!doctype html>\n<html lang="{t["html_lang"]}">\n<head>\n<meta charset="utf-8">\n'
-            f'<title>Yorosum Glow Peptide — {t["lang_name"]}</title>\n<style>{css}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n')
+    return body
+
+
+def page_css(bleed):
+    return (CSS.replace("__BLEED__", str(bleed))
+               .replace("__PAGE_W__", str(210 + 2 * bleed))
+               .replace("__PAGE_H__", str(297 + 2 * bleed)))
+
+
+def wrap(html_lang, title, css, body):
+    return (f'<!doctype html>\n<html lang="{html_lang}">\n<head>\n<meta charset="utf-8">\n'
+            f'<title>{title}</title>\n<style>{css}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n')
+
+
+def render(lang, t, bleed):
+    return wrap(t["html_lang"], f"Yorosum Glow Peptide — {t['lang_name']}", page_css(bleed), body_for(lang, t))
+
+
+# ---------- Digital edition: all languages in one PDF, with language buttons ----------
+FLAG = {"en": "us", "uz": "uz", "ru": "ru", "ko": "kr"}
+CODE = {"en": "EN", "uz": "UZ", "ru": "RU", "ko": "KO"}
+PICK = {"en": "Catalogue", "uz": "Katalog", "ru": "Каталог", "ko": "카탈로그"}
+
+DIGITAL_CSS = r"""
+/* language switcher, top-right of every page */
+.switch { position: absolute; z-index: 5; top: calc(var(--b) + 9mm); right: calc(var(--b) + 9mm); display: flex; gap: 1.5mm; }
+.switch a { display: flex; align-items: center; gap: 1.4mm; padding: 1.3mm 2.4mm 1.3mm 1.5mm; border-radius: 99mm; text-decoration: none;
+  background: rgba(251, 248, 243, .94); color: var(--ink); font: 600 6.5pt/1 var(--sans); letter-spacing: .08em; box-shadow: 0 .4mm 1.6mm rgba(43, 26, 32, .14); }
+.switch a.on { background: var(--berry); color: var(--white); }
+.switch img { width: 4.4mm; height: 3.3mm; border-radius: .6mm; object-fit: cover; }
+.switch .home { padding: 1.3mm 2mm; }
+.switch .home svg { width: 4.6mm; height: 4.4mm; display: block; }
+.digital .cover-top .eb { display: none; }
+.digital a.chan, .digital a.url { color: inherit; text-decoration: none; }
+.digital a.url { color: var(--berry); }
+
+/* opening page: choose a language */
+.home-photo { position: absolute; left: 0; right: 0; top: 0; height: 148mm; }
+.home-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 86% 52%; }
+.home-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(251, 248, 243, .55) 0%, rgba(251, 248, 243, 0) 28%); }
+.home-top { position: absolute; z-index: 2; top: 13mm; left: 15mm; }
+.home-body { position: absolute; top: 160mm; left: 15mm; right: 15mm; display: flex; flex-direction: column; gap: 3mm; }
+.home-body h1 { font: 500 34pt/1.12 var(--sans); letter-spacing: -.03em; }
+.home-body h1 em { font: italic 400 1.14em/1 var(--serif); color: var(--berry); }
+.home-body .tagline { margin-bottom: 7mm; }
+.langs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5mm; }
+.lang { display: flex; align-items: center; gap: 5mm; padding: 5mm 6mm; border-radius: 2mm; text-decoration: none; color: var(--ink);
+  background: var(--white); border: .3mm solid var(--line); }
+.lang img { width: 16mm; height: 12mm; border-radius: 1mm; object-fit: cover; box-shadow: 0 .8mm 2.4mm rgba(43, 26, 32, .16); flex: none; }
+.lang b { display: block; font: 600 14pt/1.2 var(--sans); }
+.lang small { display: block; font: italic 400 11pt/1.2 var(--serif); color: var(--berry); margin-top: 1mm; }
+.lang .go { margin-left: auto; font: 400 16pt/1 var(--serif); color: var(--berry); }
+.home-note { position: absolute; left: 15mm; right: 15mm; bottom: 11mm; display: flex; justify-content: space-between; font: 500 7pt/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+"""
+
+
+def switch_for(active, copy):
+    home = f'<a class="home" href="#home" aria-label="Languages">{MARK.format(cls="")}</a>'
+    pills = "".join(
+        f'<a href="#lang-{l}" class="{"on" if l == active else ""}" hreflang="{l}" aria-label="{copy[l]["lang_name"]}">'
+        f'<img src="../assets/flags/{FLAG[l]}.svg" alt="">{CODE[l]}</a>' for l in copy)
+    return f'<nav class="switch">{home}{pills}</nav>'
+
+
+CHANNEL_URLS = ["https://www.instagram.com/yorosum_official/", "https://t.me/yorosum",
+                "https://www.facebook.com/share/1Fq5h3oM6H/", "https://pf.kakao.com/_HwPFX"]
+
+
+def link_channels(body):
+    """Digital edition only: channel rows and the store address become tappable links."""
+    for url in CHANNEL_URLS:
+        body = body.replace('<div class="chan">', f'<a class="chan" href="{url}">', 1)
+        body = body.replace("</small></div></div>", "</small></div></a>", 1)
+    return body.replace('<span class="url">yorosum.com</span></div>', '<a class="url" href="https://yorosum.com/QR_landing_page_links/">yorosum.com</a></div>')
+
+
+def render_digital(copy):
+    buttons = "".join(
+        f'<a class="lang" href="#lang-{l}" hreflang="{l}"><img src="../assets/flags/{FLAG[l]}.svg" alt="">'
+        f'<span><b lang="{l}">{copy[l]["lang_name"]}</b><small lang="{l}">{PICK[l]}</small></span><span class="go">→</span></a>' for l in copy)
+    home = f"""
+<section class="page home" id="home">
+  <div class="home-photo"><img src="../assets/img/cover.jpg" alt=""></div>
+  <div class="home-top">{LOGO.format(cls="logo-l")}</div>
+  <div class="home-body">
+    <p class="eb">Product Catalogue 2026</p>
+    <h1>Yorosum Glow <em>Peptide</em></h1>
+    <p class="tagline">여러숨 글로우 펩타이드</p>
+    <nav class="langs" aria-label="Language">{buttons}</nav>
+  </div>
+  <div class="home-note"><span>Choose your language · Tilni tanlang · Выберите язык · 언어 선택</span><span>yorosum.com</span></div>
+</section>"""
+    parts = [home]
+    for l in copy:
+        body = body_for(l, copy[l])
+        sw = switch_for(l, copy)
+        first = True
+        out = []
+        for chunk in body.split('<section class="page ')[1:]:
+            cls, rest = chunk.split('">', 1)
+            ident = f' id="lang-{l}"' if first else ""
+            out.append(f'<section class="page {cls}" lang="{copy[l]["html_lang"]}"{ident}>{sw}{rest}')
+            first = False
+        parts.append(link_channels("".join(out)))
+    return wrap("en", "Yorosum Glow Peptide — Catalogue 2026", page_css(0) + DIGITAL_CSS, '<div class="digital">' + "".join(parts) + "</div>")
 
 
 PDF_JS = r"""
@@ -352,10 +452,28 @@ def main(langs):
             pdf = OUT / f"yorosum-catalogue-{name}.pdf"
             jobs.append({"html": str(html), "pdf": str(pdf),
                          "png": str(BUILD / f"{lang}-p%d.png") if not bleed else None})
+    if not langs:
+        html = BUILD / "all.html"
+        html.write_text(render_digital(copy), encoding="utf-8")
+        jobs.append({"html": str(html), "pdf": str(OUT / "yorosum-catalogue-all-languages.pdf"), "png": None})
     js = BUILD / "pdf.js"
     js.write_text(PDF_JS)
     npm_root = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()
     subprocess.run(["node", str(js), json.dumps(jobs)], check=True, env={**os.environ, "NODE_PATH": npm_root})
+    if not langs:
+        add_bookmarks(OUT / "yorosum-catalogue-all-languages.pdf", copy)
+
+
+def add_bookmarks(pdf, copy):
+    """Bookmarks: the language page, then each language's four pages."""
+    from pypdf import PdfReader, PdfWriter
+    w = PdfWriter(clone_from=PdfReader(str(pdf)))
+    w.add_outline_item("Choose language", 0)
+    for i, l in enumerate(copy):
+        w.add_outline_item(copy[l]["lang_name"], 1 + i * 4)
+    w.page_mode = "/UseOutlines"
+    with open(pdf, "wb") as f:
+        w.write(f)
 
 
 if __name__ == "__main__":

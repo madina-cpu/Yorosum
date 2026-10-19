@@ -178,11 +178,10 @@ a { color: inherit; text-decoration: none; }
 .sign .copy { font: 400 10.5px/1 var(--sans); color: var(--mute); letter-spacing: .04em; }
 
 /* language switcher (all-languages edition) */
-.switch { position: absolute; z-index: 5; top: 22px; right: 16px; display: flex; gap: 5px; }
-.switch a { display: flex; align-items: center; gap: 5px; height: 32px; padding: 0 10px 0 7px; border-radius: 99px; background: rgba(251, 248, 243, .94);
-  font: 700 10.5px/1 var(--sans); letter-spacing: .06em; color: var(--ink); box-shadow: 0 1px 6px rgba(43, 26, 32, .16); }
-.switch a.on { background: var(--berry); color: var(--white); }
-.switch img { width: 17px; height: 13px; border-radius: 2px; object-fit: cover; }
+.switch { position: absolute; z-index: 5; top: 22px; left: var(--pad); display: flex; gap: 10px; }
+.switch a { display: block; width: 30px; height: 22.5px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 5px rgba(43, 26, 32, .22); }
+.switch a.on { box-shadow: 0 0 0 2px var(--bone), 0 0 0 3.5px var(--berry); }
+.switch img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .with-switch .c-logo { top: 72px; }
 .with-switch .c-body { top: 510px; }
 
@@ -205,7 +204,7 @@ def esc_nowrap(s):
              .replace("10~12주", '<span style="white-space:nowrap">10~12주</span>'))
 
 
-def screens(lang, t, switch="", flags=""):
+def screens(lang, t, switch=""):
     """Five screens: cover · why premium · formula & how to take · wholesale · store."""
     mark = f'<div class="bar">{MARK.format(cls="")}</div>'
     top = switch or mark
@@ -259,25 +258,19 @@ def screens(lang, t, switch="", flags=""):
         f'''<section class="scr store" lang="{L}">{switch}
   <div class="s-photo"><img src="../assets/img/back.jpg" alt=""></div>
   <div class="in">
-    <div class="stack"><p class="ch">{t["p4_label"]}</p><h2 class="h2 sm">{t["p5_title"]}</h2></div>
+    <div class="stack"><p class="ch">{t["p4_label"]}</p><h2 class="h2 sm">{t["p4_title"]}</h2></div>
     <a class="qr" href="{STORE}"><img src="../assets/img/qr.svg" alt="QR"><span>{t["qr_caption"]}</span></a>
     <nav class="sns">{sns}</nav>
-    {flags}
     <div class="sign">{LOGO.format(cls="")}<p class="copy">© 2026 YOROSUM</p></div>
   </div>{pn(5)}</section>''',
     ])
 
 
-def flag_buttons(copy):
-    return '<nav class="flagrow">' + "".join(
-        f'<a href="#lang-{l}" aria-label="{copy[l]["lang_name"]}"><img src="../assets/flags/{FLAG[l]}.svg" alt=""></a>' for l in copy) + "</nav>"
-
-
 def switch_for(active, copy):
-    pills = "".join(f'<a href="#lang-{l}" class="{"on" if l == active else ""}" aria-label="{copy[l]["lang_name"]}">'
-                    f'<img src="../assets/flags/{FLAG[l]}.svg" alt="">{CODE[l]}</a>' for l in copy)
-    mark = MARK.format(cls="").replace("<svg ", '<svg style="width:18px;height:17px" ', 1)
-    return f'<nav class="switch"><a href="#home" aria-label="Languages">{mark}</a>{pills}</nav>'
+    """Top-left language switcher: clickable flags only; the current language has a berry ring."""
+    flags = "".join(f'<a href="#lang-{l}" class="{"on" if l == active else ""}" aria-label="{copy[l]["lang_name"]}">'
+                    f'<img src="../assets/flags/{FLAG[l]}.svg" alt=""></a>' for l in copy)
+    return f'<nav class="switch">{flags}</nav>'
 
 
 def chooser(copy):
@@ -326,7 +319,7 @@ def main():
         html = BUILD / f"m-{l}.html"
         html.write_text(doc(t["html_lang"], f"Yorosum Glow Peptide — {t['lang_name']}", screens(l, t)), encoding="utf-8")
         jobs.append({"html": str(html), "pdf": str(OUT / f"yorosum-mobile-{l}.pdf"), "png": str(BUILD / f"m-{l}-%d.png")})
-    allb = chooser(copy) + "".join(f'<div class="with-switch">{screens(l, t, switch_for(l, copy), flag_buttons(copy))}</div>' for l, t in copy.items())
+    allb = chooser(copy) + "".join(f'<div class="with-switch">{screens(l, t, switch_for(l, copy))}</div>' for l, t in copy.items())
     html = BUILD / "m-all.html"
     html.write_text(doc("en", "Yorosum Glow Peptide — Mobile catalogue", allb), encoding="utf-8")
     jobs.append({"html": str(html), "pdf": str(OUT / "yorosum-mobile-all-languages.pdf"), "png": str(BUILD / "m-all-%d.png")})

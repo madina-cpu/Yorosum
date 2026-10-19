@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Yorosum catalogue story</title>
+<style>
+@font-face { font-family: "Pretendard Variable"; src: url(../assets/fonts/Pretendard-Regular.woff2) format("woff2"); font-weight: 400; }
+@font-face { font-family: "Pretendard Variable"; src: url(../assets/fonts/Pretendard-Medium.woff2) format("woff2"); font-weight: 500; }
+@font-face { font-family: "Pretendard Variable"; src: url(../assets/fonts/Pretendard-SemiBold.woff2) format("woff2"); font-weight: 600; }
+@font-face { font-family: "Pretendard Variable"; src: url(../assets/fonts/Pretendard-Bold.woff2) format("woff2"); font-weight: 700; }
+@font-face { font-family: YSerif; font-style: italic; src: url(../assets/fonts/instrument-serif-latin-400-italic.woff2) format("woff2"); }
+@font-face { font-family: YSerif; font-style: normal; src: url(../assets/fonts/instrument-serif-latin-400-normal.woff2) format("woff2"); }
+
+/* Story: 1080 × 1920. Instagram covers roughly the top 220 px (profile bar) and bottom 250 px (reply bar);
+   the link sticker goes in the empty band at y ≈ 1690–1770, under the arrow. */
+:root { --bone: #FBF8F3; --rose: #F0D5DD; --blush: #F6E6EA; --berry: #8E2149; --wine: #5E1530; --ink: #2B1A20; --mute: #7C6670; --gold: #B08A62;
+  --sans: "Pretendard Variable", sans-serif; --serif: YSerif, serif; --ease: cubic-bezier(.2, .7, .2, 1); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bone); }
+body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; }
+em { font-style: normal; }
+
+.photo { position: absolute; left: 0; right: 0; top: 0; height: 900px; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 50%; animation: settle 3s var(--ease) both; }
+.photo::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(251, 248, 243, .62) 0%, rgba(251, 248, 243, 0) 26%, rgba(251, 248, 243, 0) 70%, var(--bone) 100%); }
+.glow { position: absolute; left: 50%; top: 520px; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(251, 248, 243, .55), rgba(251, 248, 243, .2) 45%, rgba(251, 248, 243, 0) 70%); animation: breath 8s ease-in-out infinite; }
+
+.logo { position: absolute; left: 80px; top: 250px; width: 380px; animation: rise 1s var(--ease) .15s both; }
+
+.body { position: absolute; left: 80px; right: 80px; top: 900px; display: flex; flex-direction: column; }
+.eb { font: 600 28px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); animation: rise .9s var(--ease) .45s both; }
+h1 { margin-top: 26px; font: 500 86px/1.05 var(--sans); letter-spacing: -.035em; color: var(--ink); animation: rise .9s var(--ease) .6s both; }
+h1 em { font: italic 400 1.14em/1 var(--serif); color: var(--berry); letter-spacing: 0; }
+.sub { margin-top: 18px; font: 600 34px/1.2 var(--sans); letter-spacing: .06em; color: var(--berry); animation: rise .9s var(--ease) .75s both; }
+
+.chips { margin-top: 44px; display: flex; gap: 16px; }
+.chip { display: flex; align-items: baseline; gap: 10px; padding: 20px 28px; border-radius: 999px; background: var(--blush); color: var(--wine); font: 500 28px/1 var(--sans); }
+.chip b { font: 400 46px/.8 var(--serif); color: var(--berry); font-weight: 400; }
+.chip:nth-child(1) { animation: rise .8s var(--ease) 1.05s both; }
+.chip:nth-child(2) { animation: rise .8s var(--ease) 1.2s both; }
+.chip:nth-child(3) { animation: rise .8s var(--ease) 1.35s both; }
+
+.flags { margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.flag { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.flag img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 26px -10px rgba(94, 21, 48, .45); }
+.flag span { font: 600 28px/1 var(--sans); color: var(--ink); }
+.flag:nth-child(1) { animation: pop .7s var(--ease) 1.7s both; }
+.flag:nth-child(2) { animation: pop .7s var(--ease) 1.85s both; }
+.flag:nth-child(3) { animation: pop .7s var(--ease) 2s both; }
+.flag:nth-child(4) { animation: pop .7s var(--ease) 2.15s both; }
+
+.cta { position: absolute; left: 0; right: 0; top: 1572px; display: flex; flex-direction: column; align-items: center; gap: 14px; animation: rise .9s var(--ease) 2.6s both; }
+.cta p { font: italic 400 50px/1 var(--serif); color: var(--berry); }
+.cta svg { width: 44px; height: 44px; animation: bob 1.3s ease-in-out 3s infinite; }
+
+@keyframes settle { from { transform: scale(1.08); } to { transform: none; } }
+@keyframes breath { 0%, 100% { transform: scale(.86); opacity: .7; } 50% { transform: scale(1.04); opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: translateY(24px) scale(.86); } to { opacity: 1; transform: none; } }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
+</style>
+</head>
+<body>
+<div class="photo"><img src="../assets/img/cover.jpg" alt=""></div>
+<div class="glow"></div>
+<svg class="logo" viewBox="96 120 1690 310" role="img" aria-label="YOROSUM 여러숨">
+  <circle cx="137" cy="250" r="36" fill="#8E2149"/>
+  <path d="M222 170A89 89 0 0 1 222 330" fill="none" stroke="#8E2149" stroke-width="26" stroke-linecap="round"/>
+  <path d="M295 138A131 131 0 0 1 295 362" fill="none" stroke="#B08A62" stroke-width="26" stroke-linecap="round"/>
+  <text x="485" y="290" textLength="1292" lengthAdjust="spacing" fill="#8E2149" font-family="Pretendard Variable" font-size="198" font-weight="700">YOROSUM</text>
+  <text x="490" y="422" textLength="310" lengthAdjust="spacing" fill="#A3587A" font-family="Pretendard Variable" font-size="74" font-weight="500">여러숨</text>
+</svg>
+
+<div class="body">
+  <p class="eb">Product catalogue 2026</p>
+  <h1>Yorosum Glow <em>Peptide</em></h1>
+  <p class="sub">여러숨 글로우 펩타이드</p>
+  <div class="chips">
+    <span class="chip"><b>300</b>Da</span>
+    <span class="chip"><b>2,000</b>mg</span>
+    <span class="chip">Vit C <b>100</b>mg</span>
+  </div>
+  <div class="flags">
+    <div class="flag"><img src="../assets/flags/us.svg" alt=""><span>English</span></div>
+    <div class="flag"><img src="../assets/flags/uz.svg" alt=""><span>O‘zbekcha</span></div>
+    <div class="flag"><img src="../assets/flags/ru.svg" alt=""><span>Русский</span></div>
+    <div class="flag"><img src="../assets/flags/kr.svg" alt=""><span>한국어</span></div>
+  </div>
+</div>
+
+<div class="cta">
+  <p>Tap the link for your catalogue</p>
+  <svg viewBox="0 0 24 24" fill="none" stroke="#8E2149" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+</div>
+</body>
+</html>

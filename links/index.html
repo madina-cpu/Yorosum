@@ -63,11 +63,9 @@ body { margin: 0; }
   animation: yvBreath 8s ease-in-out infinite;
 }
 .hero__in { display: flex; flex-direction: column; gap: 12px; }
-/* Logo lockup — as the brand mark: berry dot + inner arc, gold outer arc; YOROSUM with 여 러 숨 beneath */
-.mark { display: grid; grid-template-columns: auto auto; column-gap: 11px; row-gap: 6px; align-items: center; justify-content: start; margin-bottom: 20px; color: var(--berry); }
-.mark svg { grid-row: 1; width: 22px; height: 21px; display: block; }
-.mark b { grid-row: 1; font: 700 12px/1 var(--sans); letter-spacing: .32em; margin-right: -.32em; color: var(--berry); }
-.mark span { grid-row: 2; grid-column: 2; font: 500 10px/1 var(--sans); letter-spacing: 1em; color: #A3587A; }
+/* Logo lockup — one drawing laid out on the brand logo's own geometry, so icon, YOROSUM and 여 러 숨 stay aligned */
+.mark { display: block; align-self: flex-start; margin-bottom: 20px; line-height: 0; }
+.mark svg { display: block; width: 196px; height: 36px; overflow: visible; }
 .hero h1 { font: 500 clamp(28px, 8vw, 40px)/1.25 var(--sans); letter-spacing: -.03em; color: var(--ink); text-wrap: balance; }
 .hero h1 em { font: italic 400 1.12em/1 var(--serif); color: var(--berry); letter-spacing: 0; }
 .hero__en { font: italic 400 20px/1.3 var(--serif); color: var(--berry); }
@@ -147,8 +145,13 @@ a.tile:focus-visible { outline: 2px solid var(--berry); outline-offset: 3px; }
   <div class="hero__glow" id="glow" aria-hidden="true"></div>
   <div class="wrap hero__in">
     <a class="mark" href="https://yorosum.com" data-r="1" aria-label="여러숨 YOROSUM 공식몰">
-      <svg viewBox="96 120 276 260" aria-hidden="true"><circle cx="137" cy="250" r="36" fill="#8E2149"></circle><path d="M222 170A89 89 0 0 1 222 330" fill="none" stroke="#8E2149" stroke-width="26" stroke-linecap="round"></path><path d="M295 138A131 131 0 0 1 295 362" fill="none" stroke="#B08A62" stroke-width="26" stroke-linecap="round"></path></svg>
-      <b>YOROSUM</b><span>여러숨</span>
+      <svg viewBox="96 120 1690 310" aria-hidden="true">
+        <circle cx="137" cy="250" r="36" fill="#8E2149"></circle>
+        <path d="M222 170A89 89 0 0 1 222 330" fill="none" stroke="#8E2149" stroke-width="26" stroke-linecap="round"></path>
+        <path d="M295 138A131 131 0 0 1 295 362" fill="none" stroke="#B08A62" stroke-width="26" stroke-linecap="round"></path>
+        <text x="485" y="290" textLength="1292" lengthAdjust="spacing" fill="#8E2149" font-family="Pretendard Variable, Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="198" font-weight="700">YOROSUM</text>
+        <text x="490" y="422" textLength="310" lengthAdjust="spacing" fill="#A3587A" font-family="Pretendard Variable, Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="74" font-weight="500">여러숨</text>
+      </svg>
     </a>
     <h1 data-r="2">하루 한 포로 채우는<br>이너뷰티 <em>ritual</em></h1>
     <p class="hero__en" data-r="3">Yorosum Glow Peptide</p>

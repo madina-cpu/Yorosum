@@ -14,7 +14,7 @@ from build import BUILD, CHANNEL_URLS, CODE, CSS, FLAG, ICONS, LOGO, MARK, OUT, 
 
 FONTS = CSS.split("/* yorosum.com tokens */")[0]
 STORE = "https://yorosum.com/QR_landing_page_links/"
-SCREENS = 8
+SCREENS = 9
 
 M_CSS = r"""
 :root { --bone: #FBF8F3; --rose: #F0D5DD; --blush: #F6E6EA; --berry: #8E2149; --wine: #5E1530; --ink: #2B1A20; --mute: #7C6670;
@@ -130,6 +130,13 @@ a { color: inherit; text-decoration: none; }
 .sign .cs b { color: var(--ink); font-weight: 600; }
 .store .pn { display: none; }
 
+/* 8 wholesale */
+.moq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 26px; border-top: 1px solid var(--line); }
+.moq div { padding: 18px 12px 18px 16px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.moq div:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--line); }
+.moq b { font: 400 30px/1 var(--serif); color: var(--berry); white-space: nowrap; font-weight: 400; }
+.moq span { font: 400 13px/1.4 var(--sans); color: var(--mute); }
+
 /* language switcher (all-languages edition) */
 .switch { position: absolute; z-index: 5; top: 22px; right: 16px; display: flex; gap: 5px; }
 .switch a { display: flex; align-items: center; gap: 5px; height: 32px; padding: 0 10px 0 7px; border-radius: 99px; background: rgba(251, 248, 243, .94);
@@ -214,13 +221,16 @@ def screens(lang, t, switch=""):
   <p class="eb">{t["spec_head"]}</p><div class="specs">{specs}</div>
   <p class="eb">{t["alg_head"]}</p><p class="alg-main">{t["alg_main"]}</p><p class="alg-body">{t["alg_body"]}</p>
 </div>{pn(7)}</section>''',
+        f'''<section class="scr" lang="{L}">{top}<div class="in"><div class="stack"><p class="ch">{t["moq_label"]}</p><h2 class="h2">{t["moq_title"]}</h2></div>
+  <div class="moq">{"".join(f'<div><b>{t[f"moq_v{i}"]}</b><span>{t[f"moq_k{i}"]}</span></div>' for i in range(1, 7))}</div>
+</div>{pn(8)}</section>''',
         f'''<section class="scr store" lang="{L}">{switch}
   <div class="s-photo"><img src="../assets/img/back.jpg" alt=""></div>
   <div class="in"><div class="stack"><p class="ch">{t["p4_label"]}</p><h2 class="h2">{t["p4_title"]}</h2></div>
     <a class="btn" href="{STORE}">yorosum.com <i>↗</i></a>
     <div>{chan_html}</div>
     <div class="sign">{LOGO.format(cls="")}<div><p class="line">{t["signoff"]}</p><p class="cs">{t["cs_label"]} <b>{phone}</b></p></div></div>
-  </div>{pn(8)}</section>''',
+  </div>{pn(9)}</section>''',
     ]
     return "".join(out)
 

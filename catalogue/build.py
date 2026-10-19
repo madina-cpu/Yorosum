@@ -159,17 +159,26 @@ body { font-synthesis: none; }
 .page.p3 .foot { z-index: 2; }
 
 /* ---------- 4 · Back ---------- */
-.back-photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 120mm); }
+.back-photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 78mm); }
 .back-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
-.back-body { position: absolute; top: calc(var(--b) + 120mm + 13mm); left: calc(var(--b) + var(--m)); right: calc(var(--b) + var(--m)); }
-.back-head { display: flex; flex-direction: column; gap: 3.5mm; margin-bottom: 9mm; }
-.back-grid { display: grid; grid-template-columns: 62mm minmax(0, 1fr); gap: 10mm; align-items: start; }
-.qr { background: var(--white); border: .3mm solid var(--line); border-radius: 1.5mm; padding: 6mm; display: flex; flex-direction: column; gap: 4mm; }
+.back-body { position: absolute; top: calc(var(--b) + 78mm + 11mm); left: calc(var(--b) + var(--m)); right: calc(var(--b) + var(--m)); }
+.back-head { display: flex; flex-direction: column; gap: 3mm; margin-bottom: 6mm; }
+.back-head .h2 { font-size: 20pt; }
+/* wholesale / MOQ */
+.moq { margin-bottom: 11mm; }
+.moq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: .3mm solid var(--line); }
+.moq-cell { padding: 3.6mm 4mm 3.6mm 5mm; border-bottom: .3mm solid var(--line); display: flex; flex-direction: column; gap: 1.6mm; }
+.moq-cell:nth-child(3n+1) { padding-left: 0; }
+.moq-cell:not(:nth-child(3n+1)) { border-left: .3mm solid var(--line); }
+.moq-cell b { font: 400 17pt/1 var(--serif); color: var(--berry); white-space: nowrap; font-weight: 400; }
+.moq-cell span { font: 400 7.5pt/1.4 var(--sans); color: var(--mute); }
+.back-grid { display: grid; grid-template-columns: 46mm minmax(0, 1fr); gap: 10mm; align-items: start; }
+.qr { background: var(--white); border: .3mm solid var(--line); border-radius: 1.5mm; padding: 5mm; display: flex; flex-direction: column; gap: 3mm; }
 .qr img { width: 100%; height: auto; }
 .qr p { font: 400 8pt/1.5 var(--sans); color: var(--mute); }
 .qr .url { font: italic 400 12pt/1 var(--serif); color: var(--berry); }
 .chans .eb { margin-bottom: 2.5mm; }
-.chan { display: flex; align-items: center; gap: 4mm; padding: 3.6mm 0; border-top: .3mm solid var(--line); }
+.chan { display: flex; align-items: center; gap: 4mm; padding: 2.9mm 0; border-top: .3mm solid var(--line); }
 .chan:last-child { border-bottom: .3mm solid var(--line); }
 .chan svg { width: 8mm; height: 8mm; flex: none; }
 .chan b { display: block; font: 600 10pt/1.3 var(--sans); }
@@ -272,6 +281,17 @@ PAGES = """
 <section class="page p4">
   <div class="back-photo"><img src="../assets/img/back.jpg" alt=""></div>
   <div class="back-body">
+    <div class="moq">
+      <div class="back-head"><p class="ch">{moq_label}</p><h2 class="h2">{moq_title}</h2></div>
+      <div class="moq-grid">
+        <div class="moq-cell"><b>{moq_v1}</b><span>{moq_k1}</span></div>
+        <div class="moq-cell"><b>{moq_v2}</b><span>{moq_k2}</span></div>
+        <div class="moq-cell"><b>{moq_v3}</b><span>{moq_k3}</span></div>
+        <div class="moq-cell"><b>{moq_v4}</b><span>{moq_k4}</span></div>
+        <div class="moq-cell"><b>{moq_v5}</b><span>{moq_k5}</span></div>
+        <div class="moq-cell"><b>{moq_v6}</b><span>{moq_k6}</span></div>
+      </div>
+    </div>
     <div class="back-head">
       <p class="ch">{p4_label}</p>
       <h2 class="h2">{p4_title}</h2>

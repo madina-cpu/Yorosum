@@ -63,10 +63,11 @@ body { margin: 0; }
   animation: yvBreath 8s ease-in-out infinite;
 }
 .hero__in { display: flex; flex-direction: column; gap: 12px; }
-.mark { display: inline-flex; align-items: center; gap: 8px; color: var(--berry); margin-bottom: 20px; align-self: flex-start; }
-.mark svg { width: 27px; height: 18px; overflow: visible; }
-.mark b { font: 600 12px/1 var(--sans); letter-spacing: .28em; }
-.mark span { font: 500 12px/1 var(--sans); }
+/* Logo lockup — as the brand mark: berry dot + inner arc, gold outer arc; YOROSUM with 여 러 숨 beneath */
+.mark { display: grid; grid-template-columns: auto auto; column-gap: 11px; row-gap: 6px; align-items: center; justify-content: start; margin-bottom: 20px; color: var(--berry); }
+.mark svg { grid-row: 1; width: 22px; height: 21px; display: block; }
+.mark b { grid-row: 1; font: 700 12px/1 var(--sans); letter-spacing: .32em; margin-right: -.32em; color: var(--berry); }
+.mark span { grid-row: 2; grid-column: 2; font: 500 10px/1 var(--sans); letter-spacing: 1em; color: #A3587A; }
 .hero h1 { font: 500 clamp(28px, 8vw, 40px)/1.25 var(--sans); letter-spacing: -.03em; color: var(--ink); text-wrap: balance; }
 .hero h1 em { font: italic 400 1.12em/1 var(--serif); color: var(--berry); letter-spacing: 0; }
 .hero__en { font: italic 400 20px/1.3 var(--serif); color: var(--berry); }
@@ -79,10 +80,10 @@ body { margin: 0; }
 .ch::after { content: ""; height: 1px; width: 40px; background: var(--berry); opacity: .35; }
 
 /* Product */
-.prod { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; align-items: center; }
+.prod { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; }
 .prod__img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: var(--rose); max-width: 100%; }
 .prod__img img { width: 100%; height: 100%; object-fit: cover; animation: yvSettle 2.6s var(--ease) both; }
-.prod__txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.prod__txt { grid-column: 2 / 4; padding-left: 13px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .prod__name { font: 600 18px/1.35 var(--sans); letter-spacing: -.02em; color: var(--ink); text-wrap: balance; }
 .prod__sub { font: 400 13px/1.6 var(--sans); color: var(--mute); }
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); margin-top: 24px; }
@@ -114,8 +115,8 @@ a.tile:hover .tile__go svg { transform: translate(3px, -3px); }
 a.tile:focus-visible { outline: 2px solid var(--berry); outline-offset: 3px; }
 
 /* Store languages — flags only; the live store is full colour, the rest wait dimmed */
-.flags { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
-.flag { display: block; width: 56px; aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px -6px rgba(94, 21, 48, .35); transition: transform .35s var(--ease), box-shadow .35s var(--ease), opacity .25s; }
+.flags { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 32px; }
+.flag { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px -6px rgba(94, 21, 48, .35); transition: transform .35s var(--ease), box-shadow .35s var(--ease), opacity .25s; }
 .flag img { width: 100%; height: 100%; object-fit: cover; }
 .flag.is-live { box-shadow: 0 6px 16px -8px rgba(94, 21, 48, .45); }
 .flag.is-live:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -8px rgba(94, 21, 48, .5); }
@@ -143,9 +144,6 @@ a.tile:focus-visible { outline: 2px solid var(--berry); outline-offset: 3px; }
 [data-r="2"] { animation-delay: .12s; } [data-r="3"] { animation-delay: .24s; } [data-r="4"] { animation-delay: .36s; }
 [data-r="5"] { animation-delay: .48s; } [data-r="6"] { animation-delay: .6s; } [data-r="7"] { animation-delay: .72s; }
 
-@media (max-width: 359px) {
-  .prod { grid-template-columns: 96px minmax(0, 1fr); }
-}
 @media (prefers-reduced-motion: reduce) {
   [data-r], .hero__glow, .prod__img img { animation: none; }
   .lit::after { display: none; } .lit img { transform: none !important; }
@@ -160,7 +158,7 @@ a.tile:focus-visible { outline: 2px solid var(--berry); outline-offset: 3px; }
   <div class="hero__glow" id="glow" aria-hidden="true"></div>
   <div class="wrap hero__in">
     <a class="mark" href="https://yorosum.com" data-r="1" aria-label="여러숨 YOROSUM 공식몰">
-      <svg viewBox="0 0 30 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="10" r="2.6" fill="currentColor" stroke="none"></circle><path d="M12 4.5a8 8 0 0 1 0 11"></path><path d="M18 1.5a12 12 0 0 1 0 17"></path></svg>
+      <svg viewBox="96 120 276 260" aria-hidden="true"><circle cx="137" cy="250" r="36" fill="#8E2149"></circle><path d="M222 170A89 89 0 0 1 222 330" fill="none" stroke="#8E2149" stroke-width="26" stroke-linecap="round"></path><path d="M295 138A131 131 0 0 1 295 362" fill="none" stroke="#B08A62" stroke-width="26" stroke-linecap="round"></path></svg>
       <b>YOROSUM</b><span>여러숨</span>
     </a>
     <h1 data-r="2">하루 한 포로 채우는<br>이너뷰티 <em>ritual</em></h1>

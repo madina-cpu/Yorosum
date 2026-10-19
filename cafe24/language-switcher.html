@@ -1,0 +1,49 @@
+<!--
+  Yorosum language switcher (Korean / English / Uzbek) for Cafe24.
+
+  Where to paste: Cafe24 admin → 디자인 → 디자인 편집 → the header file of EACH
+  language shop's skin (usually layout/basic/layout.html or header.html),
+  wherever you want the buttons to appear (e.g. next to login / cart links).
+
+  Before using: replace the three href values below with the real addresses
+  of your shops (see 쇼핑몰 설정 → 다국어 쇼핑몰 for each shop's domain).
+-->
+<div class="yr-lang" role="navigation" aria-label="Language">
+  <a class="yr-lang__btn" href="https://yorosum.com/" data-lang="ko" hreflang="ko" lang="ko">한국어</a>
+  <a class="yr-lang__btn" href="https://en.yorosum.com/" data-lang="en" hreflang="en" lang="en">English</a>
+  <a class="yr-lang__btn" href="https://uz.yorosum.com/" data-lang="uz" hreflang="uz" lang="uz">O‘zbekcha</a>
+</div>
+
+<style>
+  .yr-lang { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; line-height: 1; }
+  .yr-lang__btn {
+    display: inline-block; padding: 6px 10px; border: 1px solid #ddd; border-radius: 14px;
+    color: #555; text-decoration: none; background: #fff; white-space: nowrap;
+  }
+  .yr-lang__btn:hover { border-color: #333; color: #111; }
+  .yr-lang__btn.is-active { background: #111; border-color: #111; color: #fff; pointer-events: none; }
+  @media (max-width: 640px) {
+    .yr-lang__btn { padding: 5px 8px; font-size: 11px; }
+  }
+</style>
+
+<script>
+  // Highlight the button for the shop the visitor is currently on, and keep
+  // them on the same page path when they switch (e.g. a product page).
+  (function () {
+    var links = document.querySelectorAll('.yr-lang__btn');
+    for (var i = 0; i < links.length; i++) {
+      var target = new URL(links[i].href);
+      if (target.host === location.host) {
+        links[i].classList.add('is-active');
+        links[i].setAttribute('aria-current', 'true');
+      } else {
+        // Same path + query on the other shop. Products share IDs across
+        // Cafe24 multi-shops, so /product/detail.html?product_no=12 still works.
+        target.pathname = location.pathname;
+        target.search = location.search;
+        links[i].href = target.toString();
+      }
+    }
+  })();
+</script>

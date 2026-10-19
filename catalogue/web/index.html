@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-/* Catalogue picker — same system as /QR_landing_page_links/ (yorosum.com .yv tokens) */
+/* Catalogue page — same system as /QR_landing_page_links/ (yorosum.com .yv tokens).
+   Picker first; choosing a language shows that catalogue as images (Cafe24 Design FTP does not accept PDF). */
 :root { --bone: #FBF8F3; --rose: #F0D5DD; --blush: #F6E6EA; --berry: #8E2149; --wine: #5E1530; --ink: #2B1A20; --mute: #7C6670; --gold: #B08A62;
   --line: rgba(142, 33, 73, .14); --white: #FFFFFF; --serif: "Instrument Serif", "Times New Roman", serif;
   --sans: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; --ease: cubic-bezier(.2, .7, .2, 1); color-scheme: light; }
@@ -20,7 +21,9 @@ body { margin: 0; }
 .yc { font-family: var(--sans); font-size: 15px; line-height: 1.6; word-break: keep-all; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 .yc p, .yc h1 { margin: 0; }
 .yc a { color: inherit; text-decoration: none; }
+.yc [hidden] { display: none !important; }
 .wrap { width: 100%; max-width: 520px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
 .hero { position: relative; overflow: hidden; isolation: isolate; background: var(--blush); padding-block: 40px 48px; }
 .glow { position: absolute; left: 50%; top: 40%; width: 760px; height: 760px; margin: -380px 0 0 -380px; border-radius: 50%; z-index: -1;
   background: radial-gradient(closest-side, rgba(251, 248, 243, .7), rgba(251, 248, 243, .28) 45%, rgba(251, 248, 243, 0) 70%); animation: yvBreath 8s ease-in-out infinite; }
@@ -34,16 +37,30 @@ body { margin: 0; }
 .sec { padding-block: 40px 48px; }
 .yc .ch { font: italic 400 16px/1 var(--serif); color: var(--berry); margin-bottom: 20px; }
 .tiles { display: grid; gap: 10px; }
-.tile { display: flex; align-items: center; gap: 16px; min-height: 76px; padding: 14px 18px 14px 14px; border-radius: 10px; background: var(--white); border: 1px solid var(--line);
-  transition: border-color .2s, box-shadow .2s; }
+.tile { display: flex; align-items: center; gap: 16px; min-height: 76px; padding: 14px 18px 14px 14px; border-radius: 10px; background: var(--white); border: 1px solid var(--line); transition: border-color .2s, box-shadow .2s; }
 .tile:hover { border-color: var(--berry); box-shadow: 0 0 0 1px var(--berry); }
-.tile:focus-visible { outline: 2px solid var(--berry); outline-offset: 3px; }
+.tile:focus-visible, .bar a:focus-visible { outline: 2px solid var(--berry); outline-offset: 3px; }
 .tile img { width: 56px; height: 42px; border-radius: 6px; object-fit: cover; flex: none; box-shadow: 0 2px 8px rgba(43, 26, 32, .18); }
 .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .t b { font: 600 17px/1.25 var(--sans); }
 .t small { font: 400 13px/1.3 var(--sans); color: var(--mute); }
-.go { color: var(--berry); flex: none; }
-.yc .note { margin-top: 18px; font: 400 12.5px/1.6 var(--sans); color: var(--mute); }
+.go { font: 400 22px/1 var(--serif); color: var(--berry); }
+
+/* catalogue viewer */
+.bar { position: sticky; top: 0; z-index: 5; background: rgba(251, 248, 243, .94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+.back { display: flex; align-items: center; gap: 8px; font: italic 400 17px/1 var(--serif); color: var(--berry); min-height: 44px; }
+.flags { display: flex; gap: 10px; }
+.flags a { display: block; width: 32px; height: 24px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 5px rgba(43, 26, 32, .22); }
+.flags a.on { box-shadow: 0 0 0 2px var(--bone), 0 0 0 3.5px var(--berry); }
+.flags img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.view { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+.view img { width: 100%; height: auto; display: block; }
+.after { padding-block: 28px 40px; display: flex; flex-direction: column; gap: 18px; align-items: center; text-align: center; }
+.sns { display: flex; gap: 18px; }
+.sns svg { width: 48px; height: 48px; display: block; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 999px; background: var(--berry); color: #fff !important; font: 600 15px/1 var(--sans); }
+
 .foot { border-top: 1px solid var(--line); padding-block: 24px 40px; font: 400 12px/1.6 var(--sans); color: var(--mute); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .foot a { color: var(--berry); border-bottom: 1px solid currentColor; }
 @keyframes yvBreath { 0%, 100% { transform: scale(.86); opacity: .7; } 50% { transform: scale(1.04); opacity: 1; } }
@@ -54,57 +71,82 @@ body { margin: 0; }
 </head>
 <body>
 <div class="yc">
-  <header class="hero"><div class="glow" aria-hidden="true"></div>
-    <div class="wrap">
-      <a href="https://yorosum.com" aria-label="여러숨 YOROSUM" data-r="1"><svg class="logo" viewBox="96 120 1690 310" role="img" aria-label="YOROSUM 여러숨"><circle cx="137" cy="250" r="36" fill="#8E2149"></circle><path d="M222 170A89 89 0 0 1 222 330" fill="none" stroke="#8E2149" stroke-width="26" stroke-linecap="round"></path><path d="M295 138A131 131 0 0 1 295 362" fill="none" stroke="#B08A62" stroke-width="26" stroke-linecap="round"></path><text x="485" y="290" textLength="1292" lengthAdjust="spacing" fill="#8E2149" font-family="Pretendard Variable, Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="198" font-weight="700">YOROSUM</text><text x="490" y="422" textLength="310" lengthAdjust="spacing" fill="#A3587A" font-family="Pretendard Variable, Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="74" font-weight="500">여러숨</text></svg></a>
-      <p class="eb" data-r="2">Product catalogue 2026</p>
-      <h1 data-r="2">Yorosum Glow <em>Peptide</em></h1>
-      <p class="sub" data-r="3">여러숨 글로우 펩타이드</p>
-      <p class="lead" data-r="3">Choose your language · Tilni tanlang · Выберите язык · 언어 선택</p>
+  <div id="picker">
+    <header class="hero"><div class="glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <a href="https://yorosum.com" aria-label="여러숨 YOROSUM" data-r="1"><svg class="logo" viewBox="96 120 1690 310" role="img" aria-label="YOROSUM 여러숨"><circle cx="137" cy="250" r="36" fill="#8E2149"></circle><path d="M222 170A89 89 0 0 1 222 330" fill="none" stroke="#8E2149" stroke-width="26" stroke-linecap="round"></path><path d="M295 138A131 131 0 0 1 295 362" fill="none" stroke="#B08A62" stroke-width="26" stroke-linecap="round"></path><text x="485" y="290" textLength="1292" lengthAdjust="spacing" fill="#8E2149" font-family="Pretendard Variable, Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="198" font-weight="700">YOROSUM</text><text x="490" y="422" textLength="310" lengthAdjust="spacing" fill="#A3587A" font-family="Pretendard Variable, Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="74" font-weight="500">여러숨</text></svg></a>
+        <p class="eb" data-r="2">Product catalogue 2026</p>
+        <h1 data-r="2">Yorosum Glow <em>Peptide</em></h1>
+        <p class="sub" data-r="3">여러숨 글로우 펩타이드</p>
+        <p class="lead" data-r="3">Choose your language · Tilni tanlang · Выберите язык · 언어 선택</p>
+      </div>
+    </header>
+    <main class="sec wrap">
+      <p class="ch" data-r="4">Catalogue</p>
+      <nav class="tiles" data-r="4" aria-label="Catalogue language">
+      <a class="tile" href="#en" data-lang="en" lang="en"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLXVzIiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iI2JkM2Q0NCIgZD0iTTAgMGg2NDB2NDgwSDAiLz4KICA8cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMzciIGQ9Ik0wIDU1LjNoNjQwTTAgMTI5aDY0ME0wIDIwM2g2NDBNMCAyNzdoNjQwTTAgMzUxaDY0ME0wIDQyNWg2NDAiLz4KICA8cGF0aCBmaWxsPSIjMTkyZjVkIiBkPSJNMCAwaDM2NC44djI1OC41SDAiLz4KICA8bWFya2VyIGlkPSJ1cy1hIiBtYXJrZXJIZWlnaHQ9IjMwIiBtYXJrZXJXaWR0aD0iMzAiPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0ibTE0IDAgOSAyN0wwIDEwaDI4TDUgMjd6Ii8+CiAgPC9tYXJrZXI+CiAgPHBhdGggZmlsbD0ibm9uZSIgbWFya2VyLW1pZD0idXJsKCN1cy1hKSIgZD0ibTAgMCAxNiAxMWg2MSA2MSA2MSA2MSA2MEw0NyAzN2g2MSA2MSA2MCA2MUwxNiA2M2g2MSA2MSA2MSA2MSA2MEw0NyA4OWg2MSA2MSA2MCA2MUwxNiAxMTVoNjEgNjEgNjEgNjEgNjBMNDcgMTQxaDYxIDYxIDYwIDYxTDE2IDE2Nmg2MSA2MSA2MSA2MSA2MEw0NyAxOTJoNjEgNjEgNjAgNjFMMTYgMjE4aDYxIDYxIDYxIDYxIDYweiIvPgo8L3N2Zz4K" alt="" width="56" height="42"><span class="t"><b>English</b><small>View catalogue</small></span><span class="go">→</span></a>
+      <a class="tile" href="#uz" data-lang="uz" lang="uz"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iZmxhZy1pY29ucy11eiIgdmlld0JveD0iMCAwIDY0MCA0ODAiPgogIDxwYXRoIGZpbGw9IiMxZWI1M2EiIGQ9Ik0wIDMyMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwOTliNSIgZD0iTTAgMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iI2NlMTEyNiIgZD0iTTAgMTUzLjZoNjQwdjE3Mi44SDB6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMTYzLjJoNjQwdjE1My42SDB6Ii8+CiAgPGNpcmNsZSBjeD0iMTM0LjQiIGN5PSI3Ni44IiByPSI1Ny42IiBmaWxsPSIjZmZmIi8+CiAgPGNpcmNsZSBjeD0iMTUzLjYiIGN5PSI3Ni44IiByPSI1Ny42IiBmaWxsPSIjMDA5OWI1Ii8+CiAgPGcgZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjYxLjEgMTIyLjkpc2NhbGUoMS45MikiPgogICAgPGcgaWQ9InV6LWUiPgogICAgICA8ZyBpZD0idXotZCI+CiAgICAgICAgPGcgaWQ9InV6LWMiPgogICAgICAgICAgPGcgaWQ9InV6LWIiPgogICAgICAgICAgICA8cGF0aCBpZD0idXotYSIgZD0iTTAtNi0xLjktLjMgMSAuNyIvPgogICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1hIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB0cmFuc2Zvcm09InNjYWxlKC0xIDEpIi8+CiAgICAgICAgICA8L2c+CiAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1iIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB0cmFuc2Zvcm09InJvdGF0ZSg3MikiLz4KICAgICAgICA8L2c+CiAgICAgICAgPHVzZSB4bGluazpocmVmPSIjdXotYiIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdHJhbnNmb3JtPSJyb3RhdGUoLTcyKSIvPgogICAgICAgIDx1c2UgeGxpbms6aHJlZj0iI3V6LWMiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHRyYW5zZm9ybT0icm90YXRlKDE0NCkiLz4KICAgICAgPC9nPgogICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1kIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB5PSItMjQiLz4KICAgICAgPHVzZSB4bGluazpocmVmPSIjdXotZCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeT0iLTQ4Ii8+CiAgICA8L2c+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIyNCIvPgogICAgPHVzZSB4bGluazpocmVmPSIjdXotZSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeD0iNDgiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI3V6LWQiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHg9Ii00OCIvPgogICAgPHVzZSB4bGluazpocmVmPSIjdXotZCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeD0iLTI0Ii8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1kIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSItMjQiIHk9Ii0yNCIvPgogIDwvZz4KPC9zdmc+Cg==" alt="" width="56" height="42"><span class="t"><b>O‘zbekcha</b><small>Katalogni ko‘rish</small></span><span class="go">→</span></a>
+      <a class="tile" href="#ru" data-lang="ru" lang="ru"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLXJ1IiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwMzlhNiIgZD0iTTAgMTYwaDY0MHYxNjBIMHoiLz4KICA8cGF0aCBmaWxsPSIjZDUyYjFlIiBkPSJNMCAzMjBoNjQwdjE2MEgweiIvPgo8L3N2Zz4K" alt="" width="56" height="42"><span class="t"><b>Русский</b><small>Смотреть каталог</small></span><span class="go">→</span></a>
+      <a class="tile" href="#ko" data-lang="ko" lang="ko"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iZmxhZy1pY29ucy1rciIgdmlld0JveD0iMCAwIDY0MCA0ODAiPgogIDxkZWZzPgogICAgPGNsaXBQYXRoIGlkPSJrci1hIj4KICAgICAgPHBhdGggZmlsbC1vcGFjaXR5PSIuNyIgZD0iTS05NS44LS40aDY4Mi43djUxMkgtOTUuOHoiLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgogIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1wYXRoPSJ1cmwoI2tyLWEpIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4OS44IC40KXNjYWxlKC45Mzc1KSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNLTk1LjgtLjRINTg3djUxMkgtOTUuOFoiLz4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC01Ni4zIDM2MS42IC0xMDEuMylzY2FsZSgxMC42NjY2NykiPgogICAgICA8ZyBpZD0ia3ItYyI+CiAgICAgICAgPHBhdGggaWQ9ImtyLWIiIGZpbGw9IiMwMDAwMDEiIGQ9Ik0tNi0yNkg2djJILTZabTAgM0g2djJILTZabTAgM0g2djJILTZaIi8+CiAgICAgICAgPHVzZSB4bGluazpocmVmPSIja3ItYiIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeT0iNDQiLz4KICAgICAgPC9nPgogICAgICA8cGF0aCBzdHJva2U9IiNmZmYiIGQ9Ik0wIDE3djEwIi8+CiAgICAgIDxwYXRoIGZpbGw9IiNjZDJlM2EiIGQ9Ik0wLTEyYTEyIDEyIDAgMCAxIDAgMjRaIi8+CiAgICAgIDxwYXRoIGZpbGw9IiMwMDQ3YTAiIGQ9Ik0wLTEyYTEyIDEyIDAgMCAwIDAgMjRBNiA2IDAgMCAwIDAgMFoiLz4KICAgICAgPGNpcmNsZSBjeT0iLTYiIHI9IjYiIGZpbGw9IiNjZDJlM2EiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC0xMjMuNyAxOTEuMiA2Mi4yKXNjYWxlKDEwLjY2NjY3KSI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2tyLWMiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz4KICAgICAgPHBhdGggc3Ryb2tlPSIjZmZmIiBkPSJNMC0yMy41djNNMCAxN3YzLjVtMCAzdjMiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="" width="56" height="42"><span class="t"><b>한국어</b><small>카탈로그 보기</small></span><span class="go">→</span></a>
+      </nav>
+    </main>
+  </div>
+
+  <div id="viewer" hidden>
+    <div class="bar"><div class="wrap">
+      <a class="back" href="#">← <span>Yorosum</span></a>
+      <nav class="flags" aria-label="Language"><a href="#en" data-lang="en" aria-label="English"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLXVzIiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iI2JkM2Q0NCIgZD0iTTAgMGg2NDB2NDgwSDAiLz4KICA8cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMzciIGQ9Ik0wIDU1LjNoNjQwTTAgMTI5aDY0ME0wIDIwM2g2NDBNMCAyNzdoNjQwTTAgMzUxaDY0ME0wIDQyNWg2NDAiLz4KICA8cGF0aCBmaWxsPSIjMTkyZjVkIiBkPSJNMCAwaDM2NC44djI1OC41SDAiLz4KICA8bWFya2VyIGlkPSJ1cy1hIiBtYXJrZXJIZWlnaHQ9IjMwIiBtYXJrZXJXaWR0aD0iMzAiPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0ibTE0IDAgOSAyN0wwIDEwaDI4TDUgMjd6Ii8+CiAgPC9tYXJrZXI+CiAgPHBhdGggZmlsbD0ibm9uZSIgbWFya2VyLW1pZD0idXJsKCN1cy1hKSIgZD0ibTAgMCAxNiAxMWg2MSA2MSA2MSA2MSA2MEw0NyAzN2g2MSA2MSA2MCA2MUwxNiA2M2g2MSA2MSA2MSA2MSA2MEw0NyA4OWg2MSA2MSA2MCA2MUwxNiAxMTVoNjEgNjEgNjEgNjEgNjBMNDcgMTQxaDYxIDYxIDYwIDYxTDE2IDE2Nmg2MSA2MSA2MSA2MSA2MEw0NyAxOTJoNjEgNjEgNjAgNjFMMTYgMjE4aDYxIDYxIDYxIDYxIDYweiIvPgo8L3N2Zz4K" alt=""></a><a href="#uz" data-lang="uz" aria-label="O‘zbekcha"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iZmxhZy1pY29ucy11eiIgdmlld0JveD0iMCAwIDY0MCA0ODAiPgogIDxwYXRoIGZpbGw9IiMxZWI1M2EiIGQ9Ik0wIDMyMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwOTliNSIgZD0iTTAgMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iI2NlMTEyNiIgZD0iTTAgMTUzLjZoNjQwdjE3Mi44SDB6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMTYzLjJoNjQwdjE1My42SDB6Ii8+CiAgPGNpcmNsZSBjeD0iMTM0LjQiIGN5PSI3Ni44IiByPSI1Ny42IiBmaWxsPSIjZmZmIi8+CiAgPGNpcmNsZSBjeD0iMTUzLjYiIGN5PSI3Ni44IiByPSI1Ny42IiBmaWxsPSIjMDA5OWI1Ii8+CiAgPGcgZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjYxLjEgMTIyLjkpc2NhbGUoMS45MikiPgogICAgPGcgaWQ9InV6LWUiPgogICAgICA8ZyBpZD0idXotZCI+CiAgICAgICAgPGcgaWQ9InV6LWMiPgogICAgICAgICAgPGcgaWQ9InV6LWIiPgogICAgICAgICAgICA8cGF0aCBpZD0idXotYSIgZD0iTTAtNi0xLjktLjMgMSAuNyIvPgogICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1hIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB0cmFuc2Zvcm09InNjYWxlKC0xIDEpIi8+CiAgICAgICAgICA8L2c+CiAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1iIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB0cmFuc2Zvcm09InJvdGF0ZSg3MikiLz4KICAgICAgICA8L2c+CiAgICAgICAgPHVzZSB4bGluazpocmVmPSIjdXotYiIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdHJhbnNmb3JtPSJyb3RhdGUoLTcyKSIvPgogICAgICAgIDx1c2UgeGxpbms6aHJlZj0iI3V6LWMiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHRyYW5zZm9ybT0icm90YXRlKDE0NCkiLz4KICAgICAgPC9nPgogICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1kIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB5PSItMjQiLz4KICAgICAgPHVzZSB4bGluazpocmVmPSIjdXotZCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeT0iLTQ4Ii8+CiAgICA8L2c+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIyNCIvPgogICAgPHVzZSB4bGluazpocmVmPSIjdXotZSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeD0iNDgiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI3V6LWQiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHg9Ii00OCIvPgogICAgPHVzZSB4bGluazpocmVmPSIjdXotZCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeD0iLTI0Ii8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1kIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSItMjQiIHk9Ii0yNCIvPgogIDwvZz4KPC9zdmc+Cg==" alt=""></a><a href="#ru" data-lang="ru" aria-label="Русский"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLXJ1IiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwMzlhNiIgZD0iTTAgMTYwaDY0MHYxNjBIMHoiLz4KICA8cGF0aCBmaWxsPSIjZDUyYjFlIiBkPSJNMCAzMjBoNjQwdjE2MEgweiIvPgo8L3N2Zz4K" alt=""></a><a href="#ko" data-lang="ko" aria-label="한국어"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iZmxhZy1pY29ucy1rciIgdmlld0JveD0iMCAwIDY0MCA0ODAiPgogIDxkZWZzPgogICAgPGNsaXBQYXRoIGlkPSJrci1hIj4KICAgICAgPHBhdGggZmlsbC1vcGFjaXR5PSIuNyIgZD0iTS05NS44LS40aDY4Mi43djUxMkgtOTUuOHoiLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgogIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1wYXRoPSJ1cmwoI2tyLWEpIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4OS44IC40KXNjYWxlKC45Mzc1KSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNLTk1LjgtLjRINTg3djUxMkgtOTUuOFoiLz4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC01Ni4zIDM2MS42IC0xMDEuMylzY2FsZSgxMC42NjY2NykiPgogICAgICA8ZyBpZD0ia3ItYyI+CiAgICAgICAgPHBhdGggaWQ9ImtyLWIiIGZpbGw9IiMwMDAwMDEiIGQ9Ik0tNi0yNkg2djJILTZabTAgM0g2djJILTZabTAgM0g2djJILTZaIi8+CiAgICAgICAgPHVzZSB4bGluazpocmVmPSIja3ItYiIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeT0iNDQiLz4KICAgICAgPC9nPgogICAgICA8cGF0aCBzdHJva2U9IiNmZmYiIGQ9Ik0wIDE3djEwIi8+CiAgICAgIDxwYXRoIGZpbGw9IiNjZDJlM2EiIGQ9Ik0wLTEyYTEyIDEyIDAgMCAxIDAgMjRaIi8+CiAgICAgIDxwYXRoIGZpbGw9IiMwMDQ3YTAiIGQ9Ik0wLTEyYTEyIDEyIDAgMCAwIDAgMjRBNiA2IDAgMCAwIDAgMFoiLz4KICAgICAgPGNpcmNsZSBjeT0iLTYiIHI9IjYiIGZpbGw9IiNjZDJlM2EiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC0xMjMuNyAxOTEuMiA2Mi4yKXNjYWxlKDEwLjY2NjY3KSI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2tyLWMiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz4KICAgICAgPHBhdGggc3Ryb2tlPSIjZmZmIiBkPSJNMC0yMy41djNNMCAxN3YzLjVtMCAzdjMiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt=""></a></nav>
+    </div></div>
+    <section class="view" id="view-en" lang="en" hidden>
+      <img src="img/en-1.jpg" alt="Yorosum Glow Peptide catalogue 1/3" width="1080" height="2337">
+      <img src="img/en-2.jpg" alt="Yorosum Glow Peptide catalogue 2/3" width="1080" height="2337" loading="lazy">
+      <img src="img/en-3.jpg" alt="Yorosum Glow Peptide catalogue 3/3" width="1080" height="2337" loading="lazy">
+    </section>
+    <section class="view" id="view-uz" lang="uz" hidden>
+      <img src="img/uz-1.jpg" alt="Yorosum Glow Peptide katalogi 1/3" width="1080" height="2337">
+      <img src="img/uz-2.jpg" alt="Yorosum Glow Peptide katalogi 2/3" width="1080" height="2337" loading="lazy">
+      <img src="img/uz-3.jpg" alt="Yorosum Glow Peptide katalogi 3/3" width="1080" height="2337" loading="lazy">
+    </section>
+    <section class="view" id="view-ru" lang="ru" hidden>
+      <img src="img/ru-1.jpg" alt="Каталог Yorosum Glow Peptide 1/3" width="1080" height="2337">
+      <img src="img/ru-2.jpg" alt="Каталог Yorosum Glow Peptide 2/3" width="1080" height="2337" loading="lazy">
+      <img src="img/ru-3.jpg" alt="Каталог Yorosum Glow Peptide 3/3" width="1080" height="2337" loading="lazy">
+    </section>
+    <section class="view" id="view-ko" lang="ko" hidden>
+      <img src="img/ko-1.jpg" alt="여러숨 글로우 펩타이드 카탈로그 1/3" width="1080" height="2337">
+      <img src="img/ko-2.jpg" alt="여러숨 글로우 펩타이드 카탈로그 2/3" width="1080" height="2337" loading="lazy">
+      <img src="img/ko-3.jpg" alt="여러숨 글로우 펩타이드 카탈로그 3/3" width="1080" height="2337" loading="lazy">
+    </section>
+    <div class="after wrap">
+      <nav class="sns" aria-label="Yorosum channels"><a href="https://www.instagram.com/yorosum_official/" target="_blank" rel="noopener" aria-label="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".3" stop-color="#FA7E1E"/><stop offset=".55" stop-color="#D62976"/><stop offset=".8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="5.5" fill="url(#ig-g)"/><g fill="none" stroke="#fff" stroke-width="1.7"><rect x="5.8" y="5.8" width="12.4" height="12.4" rx="3.6"/><circle cx="12" cy="12" r="3"/></g><circle cx="15.6" cy="8.4" r=".9" fill="#fff"/></svg></a><a href="https://t.me/yorosum" target="_blank" rel="noopener" aria-label="telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#2AABEE"/><path d="M5.6 11.7l11.3-4.4c.5-.2 1 .1.8.9l-1.9 9c-.1.6-.5.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3.1 5.6-5.1c.2-.2 0-.3-.4-.1l-6.9 4.4-3-.9c-.6-.2-.7-.6.2-.9z" fill="#fff"/></svg></a><a href="https://www.facebook.com/share/1Fq5h3oM6H/" target="_blank" rel="noopener" aria-label="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="fb-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18ACFE"/><stop offset="1" stop-color="#0163E0"/></linearGradient></defs><rect width="24" height="24" rx="5.5" fill="url(#fb-g)"/><path d="M13.4 19v-5.8h2l.3-2.4h-2.3V9.3c0-.7.2-1.2 1.2-1.2h1.2V6c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2V19z" fill="#fff"/></svg></a><a href="https://pf.kakao.com/_HwPFX" target="_blank" rel="noopener" aria-label="kakao"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#FEE500"/><path d="M12 5.8c-4 0-7.2 2.5-7.2 5.6 0 2 1.3 3.7 3.3 4.7l-.8 2.9c-.1.3.2.5.4.3l3.4-2.3c.3 0 .6.1.9.1 4 0 7.2-2.5 7.2-5.6S16 5.8 12 5.8z" fill="#3A1D1D"/><text x="12" y="12.9" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="3.6" fill="#FEE500">TALK</text></svg></a></nav>
+      <a class="btn" id="pdf" href="#" hidden>PDF ↓</a>
+      <a class="btn" href="https://yorosum.com">yorosum.com →</a>
     </div>
-  </header>
-  <main class="sec wrap">
-    <p class="ch" data-r="4">Catalogue</p>
-    <nav class="tiles" data-r="4" aria-label="Catalogue language">
-      <a class="tile" data-lang="en" lang="en" href="#" download>
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLXVzIiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iI2JkM2Q0NCIgZD0iTTAgMGg2NDB2NDgwSDAiLz4KICA8cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMzciIGQ9Ik0wIDU1LjNoNjQwTTAgMTI5aDY0ME0wIDIwM2g2NDBNMCAyNzdoNjQwTTAgMzUxaDY0ME0wIDQyNWg2NDAiLz4KICA8cGF0aCBmaWxsPSIjMTkyZjVkIiBkPSJNMCAwaDM2NC44djI1OC41SDAiLz4KICA8bWFya2VyIGlkPSJ1cy1hIiBtYXJrZXJIZWlnaHQ9IjMwIiBtYXJrZXJXaWR0aD0iMzAiPgogICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0ibTE0IDAgOSAyN0wwIDEwaDI4TDUgMjd6Ii8+CiAgPC9tYXJrZXI+CiAgPHBhdGggZmlsbD0ibm9uZSIgbWFya2VyLW1pZD0idXJsKCN1cy1hKSIgZD0ibTAgMCAxNiAxMWg2MSA2MSA2MSA2MSA2MEw0NyAzN2g2MSA2MSA2MCA2MUwxNiA2M2g2MSA2MSA2MSA2MSA2MEw0NyA4OWg2MSA2MSA2MCA2MUwxNiAxMTVoNjEgNjEgNjEgNjEgNjBMNDcgMTQxaDYxIDYxIDYwIDYxTDE2IDE2Nmg2MSA2MSA2MSA2MSA2MEw0NyAxOTJoNjEgNjEgNjAgNjFMMTYgMjE4aDYxIDYxIDYxIDYxIDYweiIvPgo8L3N2Zz4K" alt="" width="64" height="48">
-        <span class="t"><b>English</b><small>Open catalogue · PDF</small></span>
-        <svg class="go" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13M6 12l6 6 6-6M5 20h14"></path></svg>
-      </a>
-      <a class="tile" data-lang="uz" lang="uz" href="#" download>
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iZmxhZy1pY29ucy11eiIgdmlld0JveD0iMCAwIDY0MCA0ODAiPgogIDxwYXRoIGZpbGw9IiMxZWI1M2EiIGQ9Ik0wIDMyMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwOTliNSIgZD0iTTAgMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iI2NlMTEyNiIgZD0iTTAgMTUzLjZoNjQwdjE3Mi44SDB6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMTYzLjJoNjQwdjE1My42SDB6Ii8+CiAgPGNpcmNsZSBjeD0iMTM0LjQiIGN5PSI3Ni44IiByPSI1Ny42IiBmaWxsPSIjZmZmIi8+CiAgPGNpcmNsZSBjeD0iMTUzLjYiIGN5PSI3Ni44IiByPSI1Ny42IiBmaWxsPSIjMDA5OWI1Ii8+CiAgPGcgZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjYxLjEgMTIyLjkpc2NhbGUoMS45MikiPgogICAgPGcgaWQ9InV6LWUiPgogICAgICA8ZyBpZD0idXotZCI+CiAgICAgICAgPGcgaWQ9InV6LWMiPgogICAgICAgICAgPGcgaWQ9InV6LWIiPgogICAgICAgICAgICA8cGF0aCBpZD0idXotYSIgZD0iTTAtNi0xLjktLjMgMSAuNyIvPgogICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1hIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB0cmFuc2Zvcm09InNjYWxlKC0xIDEpIi8+CiAgICAgICAgICA8L2c+CiAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1iIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB0cmFuc2Zvcm09InJvdGF0ZSg3MikiLz4KICAgICAgICA8L2c+CiAgICAgICAgPHVzZSB4bGluazpocmVmPSIjdXotYiIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdHJhbnNmb3JtPSJyb3RhdGUoLTcyKSIvPgogICAgICAgIDx1c2UgeGxpbms6aHJlZj0iI3V6LWMiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHRyYW5zZm9ybT0icm90YXRlKDE0NCkiLz4KICAgICAgPC9nPgogICAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1kIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB5PSItMjQiLz4KICAgICAgPHVzZSB4bGluazpocmVmPSIjdXotZCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeT0iLTQ4Ii8+CiAgICA8L2c+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIyNCIvPgogICAgPHVzZSB4bGluazpocmVmPSIjdXotZSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeD0iNDgiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI3V6LWQiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHg9Ii00OCIvPgogICAgPHVzZSB4bGluazpocmVmPSIjdXotZCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeD0iLTI0Ii8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiN1ei1kIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSItMjQiIHk9Ii0yNCIvPgogIDwvZz4KPC9zdmc+Cg==" alt="" width="64" height="48">
-        <span class="t"><b>O‘zbekcha</b><small>Katalogni ochish · PDF</small></span>
-        <svg class="go" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13M6 12l6 6 6-6M5 20h14"></path></svg>
-      </a>
-      <a class="tile" data-lang="ru" lang="ru" href="#" download>
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLXJ1IiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGg2NDB2MTYwSDB6Ii8+CiAgPHBhdGggZmlsbD0iIzAwMzlhNiIgZD0iTTAgMTYwaDY0MHYxNjBIMHoiLz4KICA8cGF0aCBmaWxsPSIjZDUyYjFlIiBkPSJNMCAzMjBoNjQwdjE2MEgweiIvPgo8L3N2Zz4K" alt="" width="64" height="48">
-        <span class="t"><b>Русский</b><small>Открыть каталог · PDF</small></span>
-        <svg class="go" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13M6 12l6 6 6-6M5 20h14"></path></svg>
-      </a>
-      <a class="tile" data-lang="ko" lang="ko" href="#" download>
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iZmxhZy1pY29ucy1rciIgdmlld0JveD0iMCAwIDY0MCA0ODAiPgogIDxkZWZzPgogICAgPGNsaXBQYXRoIGlkPSJrci1hIj4KICAgICAgPHBhdGggZmlsbC1vcGFjaXR5PSIuNyIgZD0iTS05NS44LS40aDY4Mi43djUxMkgtOTUuOHoiLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgogIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1wYXRoPSJ1cmwoI2tyLWEpIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4OS44IC40KXNjYWxlKC45Mzc1KSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNLTk1LjgtLjRINTg3djUxMkgtOTUuOFoiLz4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC01Ni4zIDM2MS42IC0xMDEuMylzY2FsZSgxMC42NjY2NykiPgogICAgICA8ZyBpZD0ia3ItYyI+CiAgICAgICAgPHBhdGggaWQ9ImtyLWIiIGZpbGw9IiMwMDAwMDEiIGQ9Ik0tNi0yNkg2djJILTZabTAgM0g2djJILTZabTAgM0g2djJILTZaIi8+CiAgICAgICAgPHVzZSB4bGluazpocmVmPSIja3ItYiIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeT0iNDQiLz4KICAgICAgPC9nPgogICAgICA8cGF0aCBzdHJva2U9IiNmZmYiIGQ9Ik0wIDE3djEwIi8+CiAgICAgIDxwYXRoIGZpbGw9IiNjZDJlM2EiIGQ9Ik0wLTEyYTEyIDEyIDAgMCAxIDAgMjRaIi8+CiAgICAgIDxwYXRoIGZpbGw9IiMwMDQ3YTAiIGQ9Ik0wLTEyYTEyIDEyIDAgMCAwIDAgMjRBNiA2IDAgMCAwIDAgMFoiLz4KICAgICAgPGNpcmNsZSBjeT0iLTYiIHI9IjYiIGZpbGw9IiNjZDJlM2EiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC0xMjMuNyAxOTEuMiA2Mi4yKXNjYWxlKDEwLjY2NjY3KSI+CiAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2tyLWMiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz4KICAgICAgPHBhdGggc3Ryb2tlPSIjZmZmIiBkPSJNMC0yMy41djNNMCAxN3YzLjVtMCAzdjMiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="" width="64" height="48">
-        <span class="t"><b>한국어</b><small>카탈로그 열기 · PDF</small></span>
-        <svg class="go" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13M6 12l6 6 6-6M5 20h14"></path></svg>
-      </a>
-    </nav>
-    <p class="note" data-r="4">PDF · 3 pages · ~1 MB</p>
-  </main>
+  </div>
+
   <footer class="wrap"><div class="foot"><span>© 2026 YOROSUM 여러숨</span><a href="https://yorosum.com">yorosum.com</a></div></footer>
 </div>
 <script>
 (function () {
-  // Where the PDFs live on yorosum.com — change only this line if you upload them somewhere else.
-  var PDF_BASE = "/web/upload/catalogue/";
-  var FILE = { en: "yorosum-glow-peptide-en.pdf", uz: "yorosum-glow-peptide-uz.pdf", ru: "yorosum-glow-peptide-ru.pdf", ko: "yorosum-glow-peptide-ko.pdf" };
-  var tiles = document.querySelectorAll(".tile");
-  for (var i = 0; i < tiles.length; i++) {
-    var l = tiles[i].getAttribute("data-lang");
-    tiles[i].setAttribute("href", PDF_BASE + FILE[l]);
-    tiles[i].setAttribute("download", FILE[l]);
+  // Optional: links to the PDF files once they are hosted somewhere that accepts PDF (e.g. Google Drive).
+  // Leave a value empty ("") and the PDF button stays hidden for that language.
+  var PDF = { en: "", uz: "", ru: "", ko: "" };
+
+  var picker = document.getElementById("picker"), viewer = document.getElementById("viewer"), pdf = document.getElementById("pdf");
+  function show() {
+    var l = (location.hash || "").slice(1);
+    if (!/^(en|uz|ru|ko)$/.test(l)) { var m = /[?&]lang=(en|uz|ru|ko)\b/.exec(location.search); l = m ? m[1] : ""; }
+    picker.hidden = !!l; viewer.hidden = !l;
+    var views = document.querySelectorAll(".view");
+    for (var i = 0; i < views.length; i++) views[i].hidden = views[i].id !== "view-" + l;
+    var f = document.querySelectorAll(".flags a");
+    for (var j = 0; j < f.length; j++) f[j].className = f[j].getAttribute("data-lang") === l ? "on" : "";
+    if (l && PDF[l]) { pdf.href = PDF[l]; pdf.hidden = false; } else { pdf.hidden = true; }
+    window.scrollTo(0, 0);
   }
-  // yorosum.com/catalogue/?lang=ru opens the Russian PDF straight away
-  var m = /[?&]lang=(en|uz|ru|ko)\b/.exec(location.search);
-  if (m) setTimeout(function () { location.href = PDF_BASE + FILE[m[1]]; }, 400);
+  window.addEventListener("hashchange", show);
+  document.querySelector(".back").addEventListener("click", function (e) { e.preventDefault(); history.pushState("", document.title, location.pathname); show(); });
+  show();
 })();
 </script>
 </body>

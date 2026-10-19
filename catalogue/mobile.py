@@ -14,7 +14,7 @@ from build import BUILD, CHANNEL_URLS, CODE, CSS, FLAG, ICONS, LOGO, MARK, OUT, 
 
 FONTS = CSS.split("/* yorosum.com tokens */")[0]
 STORE = "https://yorosum.com/QR_landing_page_links/"
-SCREENS = 9
+SCREENS = 5
 
 M_CSS = r"""
 :root { --bone: #FBF8F3; --rose: #F0D5DD; --blush: #F6E6EA; --berry: #8E2149; --wine: #5E1530; --ink: #2B1A20; --mute: #7C6670;
@@ -137,6 +137,46 @@ a { color: inherit; text-decoration: none; }
 .moq b { font: 400 30px/1 var(--serif); color: var(--berry); white-space: nowrap; font-weight: 400; }
 .moq span { font: 400 13px/1.4 var(--sans); color: var(--mute); }
 
+
+/* ---- 5-screen edition ---- */
+.h2.sm { font-size: 25px; }
+.prem { gap: 0; }
+.pt { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.pt-h { font: 500 15px/1 var(--sans); color: var(--ink); display: flex; align-items: baseline; gap: 5px; }
+.pt-h b { font: 400 50px/.9 var(--serif); color: var(--berry); font-weight: 400; }
+.pt-k { font: 600 14.5px/1.35 var(--sans); color: var(--ink); margin-top: 8px; }
+.pt-b { font: 400 13px/1.6 var(--sans); color: var(--mute); margin-top: 5px; }
+.scale { position: relative; height: 8px; margin: 30px 0 6px; border-radius: 8px; background: linear-gradient(90deg, var(--berry), var(--rose) 45%, #E9E3DE); }
+.scale em { position: absolute; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--berry); border: 3px solid var(--bone); box-shadow: 0 0 0 1px var(--berry); }
+.scale em span { position: absolute; bottom: 18px; left: 50%; transform: translateX(-20%); white-space: nowrap; font: 600 11px/1 var(--sans); color: var(--berry); }
+.scale-l { display: flex; justify-content: space-between; font: 500 11px/1 var(--sans); color: var(--mute); }
+.pt.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+.pt.two > div + div { border-left: 1px solid var(--line); padding-left: 16px; }
+.pt.two > div:first-child { padding-right: 14px; }
+.pt.two .pt-h b { font-size: 40px; }
+.fish { margin-top: auto; background: var(--blush); border-radius: 6px; padding: 16px 18px; }
+.fish .pt-k { margin-top: 0; color: var(--wine); }
+.f-top { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 18px; align-items: center; }
+.f-top .photo { height: 120px; }
+.rows .row { padding: 11px 0; align-items: center; }
+.rows .row b { font-size: 14.5px; }
+.rows .row .v { font-size: 19px; }
+.rows .row .v.t { font-size: 13px; }
+.how { margin-top: auto; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; align-items: center; background: var(--blush); border-radius: 6px; padding: 12px; }
+.how .photo { height: 96px; }
+.how .pt-k { margin-top: 0; color: var(--wine); }
+.store .in { top: 250px; gap: 0; }
+.s-photo { height: 226px; }
+.qr { display: flex; align-items: center; gap: 16px; margin-top: 18px; padding: 14px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.qr img { width: 112px; height: 112px; flex: none; }
+.qr span { font: 400 13px/1.55 var(--sans); color: var(--mute); }
+.sns { display: flex; justify-content: space-between; margin-top: 18px; padding: 0 6px; }
+.sns a svg { width: 52px; height: 52px; display: block; }
+.flagrow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+.flagrow img { width: 100%; aspect-ratio: 4 / 3; border-radius: 5px; object-fit: cover; box-shadow: 0 2px 8px rgba(43, 26, 32, .16); }
+.sign { align-items: center; }
+.sign .copy { font: 400 10.5px/1 var(--sans); color: var(--mute); letter-spacing: .04em; }
+
 /* language switcher (all-languages edition) */
 .switch { position: absolute; z-index: 5; top: 22px; right: 16px; display: flex; gap: 5px; }
 .switch a { display: flex; align-items: center; gap: 5px; height: 32px; padding: 0 10px 0 7px; border-radius: 99px; background: rgba(251, 248, 243, .94);
@@ -165,74 +205,72 @@ def esc_nowrap(s):
              .replace("10~12주", '<span style="white-space:nowrap">10~12주</span>'))
 
 
-def screens(lang, t, switch=""):
-    n2000 = "2 000" if lang in ("uz", "ru") else "2,000"
-    phone = "070-8080-5163" if lang == "ko" else "+82 70-8080-5163"
+def screens(lang, t, switch="", flags=""):
+    """Five screens: cover · why premium · formula & how to take · wholesale · store."""
     mark = f'<div class="bar">{MARK.format(cls="")}</div>'
     top = switch or mark
+    L = t["html_lang"]
 
     def pn(i):
         return f'<div class="pn"><span>Yorosum · {t["lang_name"]}</span><i>{i:02d} / {SCREENS:02d}</i></div>'
 
-    ing = [(t["ing1"], t["ing1_d"], t["ing1_v"], False), (t["ing2"], t["ing2_d"], t["ing2_v"], False),
-           (t["ing3"], "", t["ing3_v"], True), (t["ing5"], "", t["ing5_v"], True),
-           (t["ing4"], "", t["ing4_v"], True), (t["ing6"], "", t["ing6_v"], False)]
-    rows = "".join(f'<div class="row"><div><b>{a}</b>{f"<small>{d}</small>" if d else ""}</div><span class="v{" t" if txt else ""}">{v}</span></div>'
-                   for a, d, v, txt in ing)
-    specs = "".join(f'<div class="spec"><span>{t[f"spec{i}_k"]}</span><span>{t[f"spec{i}_v"]}</span></div>' for i in range(1, 7))
-    chans = [("instagram", "Instagram", "@yorosum_official"), ("telegram", "Telegram", "t.me/yorosum"),
-             ("facebook", "Facebook", "Yorosum"), ("kakao", t["ch_kakao"], "pf.kakao.com/_HwPFX")]
-    chan_html = "".join(f'<a class="chan" href="{u}">{ICONS[k]}<div><b>{name}</b><small>{h}</small></div><span class="go">↗</span></a>'
-                        for (k, name, h), u in zip(chans, CHANNEL_URLS))
-    L = t["html_lang"]
-    out = [
+    ing = [(t["ing1"], t["ing1_v"], False), (t["ing2"], t["ing2_v"], False), (t["ing3"], t["ing3_v"], True),
+           (t["ing5"], t["ing5_v"], True), (t["ing4"], t["ing4_v"], True), (t["ing6"], t["ing6_v"], False)]
+    rows = "".join(f'<div class="row"><b>{a}</b><span class="v{" t" if txt else ""}">{v}</span></div>' for a, v, txt in ing)
+    moq = "".join(f'<div><b>{t[f"moq_v{i}"]}</b><span>{t[f"moq_k{i}"]}</span></div>' for i in range(1, 7))
+    sns = "".join(f'<a href="{u}" aria-label="{k}">{ICONS[k]}</a>' for k, u in zip(["instagram", "telegram", "facebook", "kakao"], CHANNEL_URLS))
+    n2000 = "2\u00a0000" if lang in ("uz", "ru") else "2,000"
+    da_marker = "300 Да" if lang == "ru" else "300 Da"
+    return "".join([
         f'''<section class="scr cover" lang="{L}" id="lang-{lang}">{switch}
   <div class="c-photo"><img src="../assets/img/cover.jpg" alt=""></div>{LOGO.format(cls="c-logo")}
   <div class="c-body"><p class="eb">{t["category"]}</p><h1>{t["name_line"]}</h1><p class="c-sub">{t["name_sub"]}</p><p class="c-tag">{t["tagline"]}</p></div>
   <div class="hint"><span></span>01 / {SCREENS:02d}</div></section>''',
-        f'''<section class="scr" lang="{L}">{top}<div class="in">
-  <p class="eb">{t["per_stick"]}</p>
-  <div class="figs">
-    <div class="fig"><b>{n2000}<small>{t["u_mg"]}</small></b><span>{t["fig1_label"]}</span></div>
-    <div class="fig"><b>300<small>{t["u_da"]}</small></b><span>{t["fig2_label"]}</span></div>
-    <div class="fig"><b>100<small>{t["u_mg"]}</small></b><span>{t["fig3_label"]}</span></div>
+
+        f'''<section class="scr" lang="{L}">{top}<div class="in prem">
+  <div class="stack"><p class="ch">{t["prem_label"]}</p><h2 class="h2 sm">{t["prem_title"]}</h2></div>
+  <div class="pt">
+    <p class="pt-h"><b>300</b>{t["u_da"]}</p><p class="pt-k">{t["da_head"]}</p>
+    <div class="scale" aria-hidden="true"><i></i><em style="left:8%"><span>{da_marker}</span></em></div>
+    <div class="scale-l"><span>{t["scale_lo"]}</span><span>{t["scale_hi"]}</span></div>
+    <p class="pt-b">{t["da_body"]}</p>
   </div>
-  <div class="chips"><span class="chip">{t["strip1"]}</span><span class="chip">{t["strip2"]}</span><span class="chip">{t["strip3"]}</span></div>
+  <div class="pt two">
+    <div><p class="pt-h"><b>{"2 000" if lang in ("uz", "ru") else "2,000"}</b>{t["u_mg"]}</p><p class="pt-k">{t["mg_head"]}</p><p class="pt-b">{t["mg_body"]}</p></div>
+    <div><p class="pt-h"><b>100</b>{t["u_mg"]}</p><p class="pt-k">{t["vc_head"]}</p><p class="pt-b">{t["vc_body"]}</p></div>
+  </div>
+  <div class="fish"><p class="pt-k">{t["fish_head"]}</p><p class="pt-b">{t["fish_body"]}</p></div>
 </div>{pn(2)}</section>''',
-        f'''<section class="scr" lang="{L}">{top}<div class="in"><div class="stack">
-  <p class="ch">{t["p2_label"]}</p><h2 class="h2">{t["p2_title"]}</h2><p class="lead">{t["p2_intro"]}</p></div>
-  <div class="photo f-photo"><img src="../assets/img/box.jpg" alt=""></div>
+
+        f'''<section class="scr" lang="{L}">{top}<div class="in">
+  <div class="f-top"><div class="photo"><img src="../assets/img/box.jpg" alt=""></div>
+    <div class="stack"><p class="ch">{t["p2_label"]}</p><h2 class="h2 sm">{t["p2_title"]}</h2></div></div>
+  <p class="eb" style="margin-top:22px">{t["ing_head"]}</p><div class="rows">{rows}</div>
+  <div class="how"><div class="photo"><img src="../assets/img/step2.jpg" alt=""></div>
+    <div><p class="pt-k">{t["how_head"]}</p><p class="pt-b">{esc_nowrap(t["how_body"])}</p></div></div>
 </div>{pn(3)}</section>''',
+
         f'''<section class="scr" lang="{L}">{top}<div class="in">
-  <p class="eb">{t["ing_head"]}</p><div class="rows">{rows}</div>
-  <div class="card"><p class="eb">{t["src_head"]}</p><p>{t["src_body"]}</p></div>
+  <div class="stack"><p class="ch">{t["moq_label"]}</p><h2 class="h2 sm">{t["moq_title"]}</h2></div>
+  <div class="moq">{moq}</div>
+  <p class="eb" style="margin-top:30px">{t["alg_head"]}</p><p class="alg-main">{t["alg_main"]}</p><p class="alg-body">{t["alg_body"]}</p>
 </div>{pn(4)}</section>''',
-        f'''<section class="scr" lang="{L}">{top}<div class="in"><div class="stack"><p class="ch">{t["p3_label"]}</p><h2 class="h2">{t["p3_title"]}</h2></div>
-  <div class="steps">
-    <div class="step"><div class="photo"><img src="../assets/img/step1.jpg" alt=""></div><div><span class="n">01</span><b>{t["s1_t"]}</b><p>{t["s1_d"]}</p></div></div>
-    <div class="step"><div class="photo"><img src="../assets/img/step2.jpg" alt=""></div><div><span class="n">02</span><b>{t["s2_t"]}</b><p>{t["s2_d"]}</p></div></div>
-    <div class="step"><div class="photo"><img src="../assets/img/step3.jpg" alt=""></div><div><span class="n">03</span><b>{t["s3_t"]}</b><p>{t["s3_d"]}</p></div></div>
-  </div>
-</div>{pn(5)}</section>''',
-        f'''<section class="scr habit" lang="{L}">{top}<div class="in">
-  <p class="big">10–12<small>{t["c_unit"]}</small></p><h3>{t["c_title"]}</h3><p>{esc_nowrap(t["c_body"])}</p>
-</div>{pn(6)}</section>''',
-        f'''<section class="scr" lang="{L}">{top}<div class="in">
-  <p class="eb">{t["spec_head"]}</p><div class="specs">{specs}</div>
-  <p class="eb">{t["alg_head"]}</p><p class="alg-main">{t["alg_main"]}</p><p class="alg-body">{t["alg_body"]}</p>
-</div>{pn(7)}</section>''',
-        f'''<section class="scr" lang="{L}">{top}<div class="in"><div class="stack"><p class="ch">{t["moq_label"]}</p><h2 class="h2">{t["moq_title"]}</h2></div>
-  <div class="moq">{"".join(f'<div><b>{t[f"moq_v{i}"]}</b><span>{t[f"moq_k{i}"]}</span></div>' for i in range(1, 7))}</div>
-</div>{pn(8)}</section>''',
+
         f'''<section class="scr store" lang="{L}">{switch}
   <div class="s-photo"><img src="../assets/img/back.jpg" alt=""></div>
-  <div class="in"><div class="stack"><p class="ch">{t["p4_label"]}</p><h2 class="h2">{t["p4_title"]}</h2></div>
-    <a class="btn" href="{STORE}">yorosum.com <i>↗</i></a>
-    <div>{chan_html}</div>
-    <div class="sign">{LOGO.format(cls="")}<div><p class="line">{t["signoff"]}</p><p class="cs">{t["cs_label"]} <b>{phone}</b></p></div></div>
-  </div>{pn(9)}</section>''',
-    ]
-    return "".join(out)
+  <div class="in">
+    <div class="stack"><p class="ch">{t["p4_label"]}</p><h2 class="h2 sm">{t["p5_title"]}</h2></div>
+    <a class="qr" href="{STORE}"><img src="../assets/img/qr.svg" alt="QR"><span>{t["qr_caption"]}</span></a>
+    <nav class="sns">{sns}</nav>
+    {flags}
+    <div class="sign">{LOGO.format(cls="")}<p class="copy">© 2026 YOROSUM</p></div>
+  </div>{pn(5)}</section>''',
+    ])
+
+
+def flag_buttons(copy):
+    return '<nav class="flagrow">' + "".join(
+        f'<a href="#lang-{l}" aria-label="{copy[l]["lang_name"]}"><img src="../assets/flags/{FLAG[l]}.svg" alt=""></a>' for l in copy) + "</nav>"
 
 
 def switch_for(active, copy):
@@ -288,7 +326,7 @@ def main():
         html = BUILD / f"m-{l}.html"
         html.write_text(doc(t["html_lang"], f"Yorosum Glow Peptide — {t['lang_name']}", screens(l, t)), encoding="utf-8")
         jobs.append({"html": str(html), "pdf": str(OUT / f"yorosum-mobile-{l}.pdf"), "png": str(BUILD / f"m-{l}-%d.png")})
-    allb = chooser(copy) + "".join(f'<div class="with-switch">{screens(l, t, switch_for(l, copy))}</div>' for l, t in copy.items())
+    allb = chooser(copy) + "".join(f'<div class="with-switch">{screens(l, t, switch_for(l, copy), flag_buttons(copy))}</div>' for l, t in copy.items())
     html = BUILD / "m-all.html"
     html.write_text(doc("en", "Yorosum Glow Peptide — Mobile catalogue", allb), encoding="utf-8")
     jobs.append({"html": str(html), "pdf": str(OUT / "yorosum-mobile-all-languages.pdf"), "png": str(BUILD / "m-all-%d.png")})

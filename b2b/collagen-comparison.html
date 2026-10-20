@@ -77,7 +77,7 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 .compare tr:last-child > * { border-bottom: 0; }
 .compare th[scope="row"] { text-align: left; padding-left: 14px; position: sticky; left: 0; background: var(--surface); z-index: 1; }
 .compare .rl { display: grid; grid-template-columns: 22px 1fr; gap: 2px 8px; align-items: center; }
-.compare .rl svg { width: 22px; height: 22px; grid-row: span 2; }
+.compare .rl svg { width: 22px; height: 22px; }
 .compare .rl b { font-size: 14px; line-height: 1.25; }
 .compare .rl small { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.2; }
 .compare td.own { background: var(--accent-soft); }
@@ -193,18 +193,18 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
 
   .compare-wrap { overflow: visible; border-radius: 8px; }
   table.compare { min-width: 0; }
-  .compare col.label { width: 136px; }
-  .compare th, .compare td { padding: 4px 5px; }
-  .compare thead td { padding-top: 6px; }
+  .compare col.label { width: 140px; }
+  .compare th, .compare td { padding: 7px 6px; }
+  .compare thead td { padding-top: 8px; }
   .compare th[scope="row"] { padding-left: 10px; position: static; }
-  .compare .rl b { font-size: 12px; } .compare .rl small { font-size: 9.5px; }
+  .compare .rl b { font-size: 14px; } .compare .rl small { font-size: 9.5px; }
   .compare .rl svg { width: 18px; height: 18px; } .compare .rl { grid-template-columns: 18px 1fr; }
-  .thumb { width: 62px; height: 62px; }
-  .prod .pname { font-size: 10.5px; } .prod { gap: 3px; }
-  .medal { width: 24px; height: 24px; font-size: 12px; }
-  .sticks { font-size: 10px; }
-  .score .big { font-size: 22px; } .score .word { font-size: 8.5px; }
-  .cell .val { font-size: 11.5px; } .cell { gap: 3px; }
+  .thumb { width: 82px; height: 82px; }
+  .prod .pname { font-size: 12px; } .prod { gap: 4px; }
+  .medal { width: 28px; height: 28px; font-size: 14px; }
+  .sticks { font-size: 11px; }
+  .score .big { font-size: 30px; } .score .word { font-size: 8.5px; }
+  .cell .val { font-size: 14px; } .cell { gap: 5px; }
 
   .lesson { grid-template-columns: 1fr; gap: 14px; }
   .lesson.flip > .art { order: 0; }
@@ -228,10 +228,10 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
   html.only-guide .page.wide + .page { break-before: auto; }
   .howto { padding: 6px 12px; gap: 6px 16px; } .howto p { font-size: 10px; line-height: 1.38; }
   .page.wide h1 { font-size: 22px; } .page.wide { gap: 8px; } .howto .demo span { font-size: 10px; }
-  .sheet-foot { font-size: 9.5px; }
-  .cell .pts { font-size: 9.5px; }
-  .pill { font-size: 10.5px; padding: 2px 7px; } .nodata { font-size: 10.5px; } .sbar { height: 5px; }
-  .compare tr.tiers td { font-size: 9px; padding: 4px 5px 0; }
+  .sheet-foot { font-size: 10.5px; }
+  .cell .pts { font-size: 11px; }
+  .pill { font-size: 12.5px; padding: 3px 10px; } .nodata { font-size: 12.5px; } .sbar { height: 7px; }
+  .compare tr.tiers td { font-size: 11px; padding: 8px 6px 0; }
   .method { padding: 10px 12px; gap: 6px; } .method p, .weights { font-size: 11.5px; } .weights div { padding: 3px 0; }
   .method h3, .refs h3 { font-size: 14px; }
   .refs ol { font-size: 9.5px; gap: 1px; }
@@ -258,12 +258,6 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
   <div class="page-head">
     <div class="page-no">Comparison sheet</div>
     <h1 id="p1">Which collagen stick is best?</h1>
-  </div>
-  <div class="howto">
-    <div class="demo"><div class="sbar" style="--w:80%;--tone:var(--good)"><i></i></div><span>Full bar = 10 points; this one is 8</span>
-      <div><span class="pill good">300 Da</span> <span class="pill warn">2000 Da</span></div></div>
-    <p><b>How to read the table.</b> Bars show points out of 10: a full bar is 10 points. Coloured pills show categories: green is strong, yellow is average, orange and red are weak. Grey text means the box does not say. The small number under each value is that row's points.</p>
-    <p><b>How the overall score is made.</b> It is the weighted average of the four scored rows: collagen per stick (2 parts), piece size (2 parts), vitamin C (1.5 parts) and clean formula (1.5 parts). "In one box" (under each name) is information only and is not scored.</p>
   </div>
   <div class="compare-wrap"><table class="compare" id="compare"></table></div>
   <p class="sheet-foot">Data: amounts per stick calculated from each product's label (box photos, October 2026). MIPPEUM's figures and HURUM Small Molecular's 300 Da come from seller listings because they are not printed on the front of the box. Full method and sources are in the companion guide.</p>
@@ -602,7 +596,7 @@ const bar = (s, val) => `<div class="cell"><span class="val">${val}</span><div c
 const pill = (s, cls, val) => `<div class="cell">${cls ? `<span class="pill ${cls}">${val}</span>` : `<span class="nodata">${val}</span>`}${pts(s)}</div>`;
 const daCls = p => p.da == null ? "" : p.da <= 300 ? "good" : p.da <= 600 ? "ok" : "warn";
 const cleanCls = h => h >= 5 ? "good" : h >= 3 ? "ok" : "bad";
-const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><svg aria-hidden="true"><use href="#${icon}"/></svg><b>${label}</b><small>${hint}</small></div></th>`;
+const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><svg aria-hidden="true"><use href="#${icon}"/></svg><b>${label}</b></div></th>`;
 const colCls = i => i === 0 ? "own" : i === 1 ? "top2" : i === 2 ? "rest split" : "rest";
 const row = (head, fn) => `<tr>${head}${ranked.map((p, i) => `<td class="${colCls(i)}">${fn(p)}</td>`).join("")}</tr>`;
 const clean = h => h >= 5 ? T.js.cGood : h >= 3 ? T.js.cFiller : T.js.cTiny;
@@ -615,7 +609,7 @@ document.getElementById("compare").innerHTML =
       <span class="thumb"><img src="${p.img}" alt="${p.name}"></span>
       <span class="pname">${p.name}</span>
       <span class="sticks" title="${T.js.hBox}">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span></div></td>`).join("")}</tr></thead><tbody>` +
-  row(rowLabel("i-star", T.js.hScore, T.js.hScoreHint), p => `<div class="score" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span><span class="word">${word(p.score)}</span></div>`) +
+  row(rowLabel("i-star", T.js.hScore, T.js.hScoreHint), p => `<div class="score" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span></div>`) +
   row(rowLabel("i-dose", T.js.hDose, T.js.hDoseHint), p => bar(p.s.dose, mg(p.collagen))) +
   row(rowLabel("i-size", T.js.hDa, T.js.hDaHint), p => pill(p.s.da, daCls(p), daText(p))) +
   row(rowLabel("i-vitc", T.js.hVitc, T.js.hVitcHint), p => bar(p.s.vitc, mg(p.vitc))) +

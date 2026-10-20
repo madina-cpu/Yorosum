@@ -1,12 +1,12 @@
 <title>Kollagen stiklarini taqqoslash</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Koreyaning toʻqqizta baliq kollageni stiki rasmli reytingi va oddiy tilda qoʻllanma: kollagen, boʻlakcha oʻlchami, C vitamini va yorliqni oʻqish.">
+<meta name="description" content="Koreyaning toʻqqizta baliq kollageni stikini taqqoslash va oddiy tilda qoʻllanma: kollagen, boʻlakcha oʻlchami, miqdor, C vitamini va qoʻshimcha tarkibiy qismlar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;600&display=swap">
 <style>
-/* Layout: page 1 is a picture ranking; pages 2-9 are one lesson each (picture + three short sentences); specialist details last.
-   Print: one section per A4 page, specialist table on a landscape page. */
+/* Layout: page 1 is a side-by-side table, one column per product; pages 2-7 are lessons
+   (picture, numbered explanations, one "remember" box). Print: A4, page 1 landscape, the rest portrait. */
 :root {
   --bg: #f4f7f7;
   --surface: #ffffff;
@@ -49,224 +49,153 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
   padding-block: 36px 72px;
   display: grid; gap: 80px;
 }
-h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15; }
-h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; letter-spacing: -0.01em; }
+h1, h2, h3, h4 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 800; letter-spacing: -0.01em; }
 h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -0.01em; }
 h3 { font-size: 19px; font-weight: 700; }
-p { margin: 0; max-width: 62ch; }
+h4 { font-size: 17px; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
 b { font-weight: 600; }
-.muted { color: var(--muted); }
-.num { font-variant-numeric: tabular-nums; }
 .page { display: grid; gap: 24px; min-width: 0; align-content: start; }
 .page + .page { border-top: 1px solid var(--line); padding-top: 48px; }
 .page-no { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
 .page-head { display: grid; gap: 10px; }
-.lead { font-size: 18.5px; }
+.lead { font-size: 18px; }
 .svg-text { fill: var(--fg); font-family: var(--f-body); }
 .svg-muted { fill: var(--muted); font-family: var(--f-body); }
 
-/* ---------- Page 1: picture ranking ---------- */
-.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: 7px; }
-.legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.ranking { display: grid; gap: 10px; }
-.rhead, .ritem {
-  display: grid;
-  grid-template-columns: 44px 92px minmax(170px, 1.3fr) 104px repeat(5, minmax(0, 1fr));
-  gap: 14px; align-items: center;
-}
-.rhead { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); padding: 0 15px; }
-.rhead .ic { display: flex; align-items: center; gap: 6px; line-height: 1.25; }
-.ritem { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-.ritem.own { border: 2px solid var(--accent); padding: 11px 13px; }
-.medal { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 700 18px var(--f-display); background: var(--track); color: var(--fg); }
+/* ---------- Page 1: side-by-side comparison ---------- */
+.compare-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1040px; table-layout: fixed; }
+.compare col.label { width: 150px; }
+.compare th, .compare td { padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; text-align: center; }
+.compare tr:last-child > * { border-bottom: 0; }
+.compare th[scope="row"] { text-align: left; padding-left: 14px; position: sticky; left: 0; background: var(--surface); z-index: 1; }
+.compare .rl { display: grid; grid-template-columns: 22px 1fr; gap: 2px 8px; align-items: center; }
+.compare .rl svg { width: 22px; height: 22px; grid-row: span 2; }
+.compare .rl b { font-size: 14px; line-height: 1.25; }
+.compare .rl small { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.2; }
+.compare td.own { background: var(--accent-soft); }
+.compare thead td { vertical-align: top; padding-top: 14px; }
+.prod { display: grid; justify-items: center; gap: 6px; }
+.medal { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--f-display); background: var(--track); color: var(--fg); }
 .medal.m1 { background: #e8c25a; color: #3a2b00; }
 .medal.m2 { background: #c9d3d8; color: #1f2b31; }
 .medal.m3 { background: #d79a68; color: #3a1d06; }
-.thumb { width: 92px; height: 92px; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.thumb { width: 84px; height: 84px; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); }
 .thumb img { width: 100%; height: 100%; object-fit: contain; }
-.pname { font-weight: 600; line-height: 1.3; min-width: 0; }
-.pname small { display: block; color: var(--muted); font-weight: 400; font-size: 13.5px; margin-top: 3px; }
-.badge { display: grid; justify-items: center; gap: 4px; }
-.badge .big { font: 800 30px/1 var(--f-display); color: var(--tone); font-variant-numeric: tabular-nums; }
-.badge .big small { font-size: 14px; color: var(--muted); font-weight: 600; }
-.badge .word { font: 700 11px var(--f-body); text-transform: uppercase; letter-spacing: 0.03em; padding: 2px 8px; border-radius: 999px; background: var(--tone); color: var(--surface); white-space: nowrap; }
-.meter { display: grid; gap: 4px; min-width: 0; }
-.meter .lab { display: none; font-size: 12.5px; color: var(--muted); }
-.blocks { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; }
-.blocks i { height: 12px; border-radius: 2px; background: var(--track); }
+.prod .pname { font-size: 13px; font-weight: 600; line-height: 1.25; hyphens: auto; overflow-wrap: anywhere; }
+.sticks { font-size: 14px; font-variant-numeric: tabular-nums; }
+.score { display: grid; justify-items: center; gap: 4px; }
+.score .big { font: 800 28px/1 var(--f-display); color: var(--tone); font-variant-numeric: tabular-nums; }
+.score .big small { font-size: 13px; color: var(--muted); font-weight: 600; }
+.score .word { font: 700 10.5px var(--f-body); text-transform: uppercase; letter-spacing: 0.03em; padding: 2px 7px; border-radius: 999px; background: var(--tone); color: var(--surface); white-space: nowrap; }
+.cell { display: grid; gap: 5px; justify-items: center; }
+.blocks { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: 100%; max-width: 92px; }
+.blocks i { height: 9px; border-radius: 2px; background: var(--track); }
 .blocks i.on { background: var(--tone); }
-.meter .val { font-size: 13.5px; font-variant-numeric: tabular-nums; line-height: 1.3; }
-.meter.price { border-left: 1px dashed var(--line); padding-left: 12px; }
-.meter.price .val { font-size: 16px; font-weight: 600; }
-.meter.price .sub { font-size: 12px; color: var(--muted); }
-.ic svg { width: 22px; height: 22px; flex: none; }
-@media (max-width: 900px) {
-  .rhead { display: none; }
-  .ritem { grid-template-columns: 40px 76px minmax(0, 1fr) 96px; grid-template-areas: "m t n b" "s s s s"; }
-  .ritem .medal { grid-area: m; } .ritem .thumb { grid-area: t; width: 76px; height: 76px; }
-  .ritem .pname { grid-area: n; } .ritem .badge { grid-area: b; }
-  .ritem .meters { grid-area: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px 16px; border-top: 1px solid var(--line); padding-top: 12px; }
-  .meter .lab { display: block; }
-  .meter.price { border-left: 0; padding-left: 0; }
-}
-@media (min-width: 901px) { .ritem .meters { display: contents; } }
-.foot-note { font-size: 13.5px; color: var(--muted); }
+.cell .val { font-size: 13.5px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.25; }
 
-/* ---------- Lesson pages ---------- */
-.lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: center; }
+/* ---------- Lessons ---------- */
+.lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 36px; align-items: start; }
 .lesson.flip > .art { order: 2; }
-@media (max-width: 820px) { .lesson { grid-template-columns: 1fr; } .lesson.flip > .art { order: 0; } }
+@media (max-width: 860px) { .lesson { grid-template-columns: 1fr; } .lesson.flip > .art { order: 0; } }
 .art { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; min-width: 0; }
 .art svg { width: 100%; height: auto; display: block; }
-.points { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.points { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
 .points li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+.points li > div { display: grid; gap: 3px; }
 .points .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font: 700 15px var(--f-display); }
-.rule { display: flex; gap: 14px; align-items: center; background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 17px; font-weight: 600; max-width: 70ch; }
+.rule { display: flex; gap: 14px; align-items: center; background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 17px; font-weight: 600; }
 .rule svg { width: 30px; height: 30px; flex: none; }
-.typecards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.rule span small { display: block; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+.typecards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
 .typecard { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 6px; align-content: start; }
 .typecard.hl { border: 2px solid var(--accent); padding: 13px; }
-.typecard .t { font: 800 24px var(--f-display); color: var(--accent); }
-.typecard svg { width: 44px; height: 44px; }
+.typecard .t { font: 800 22px var(--f-display); color: var(--accent); }
+.typecard svg { width: 40px; height: 40px; }
 .typecard p { font-size: 15px; }
 
-/* Bar charts */
-.chart { display: grid; gap: 8px; }
-.crow { display: grid; grid-template-columns: 40px minmax(110px, 210px) minmax(0, 1fr); gap: 10px; align-items: center; font-size: 14px; }
-.crow img { width: 40px; height: 40px; object-fit: contain; background: #fff; border-radius: 6px; }
-.crow .cn { line-height: 1.25; min-width: 0; }
-.ctrack { position: relative; height: 26px; background: var(--track); border-radius: 4px; }
-.cfill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--tone); }
-.cval { position: absolute; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--fg); white-space: nowrap; padding-left: 8px; }
-.target { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--fg); }
-.chart-key { font-size: 13.5px; color: var(--muted); padding-top: 6px; }
-@media (max-width: 640px) { .crow { grid-template-columns: 34px minmax(0, 1fr); } .crow .ctrack { grid-column: 1 / -1; } .crow img { width: 34px; height: 34px; } }
-
-/* Tiny-dose comparison */
-.drops { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.drop { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; align-content: start; }
-.drop svg { width: 100%; height: auto; }
-.drop .big { font: 800 28px var(--f-display); color: var(--bad); }
-
-/* Label reading */
-.label-demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
-@media (max-width: 820px) { .label-demo { grid-template-columns: 1fr; } }
-.math { display: grid; gap: 10px; }
-.mstep { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-.mstep .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--bg); font: 700 15px var(--f-display); }
-.mstep .eq { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 2px; }
-.gloss { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--surface); }
-.gloss td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.gloss td:first-child { font-family: "Noto Sans KR", var(--f-body); font-weight: 600; white-space: nowrap; }
-.warnbox { border: 2px solid var(--warn); border-radius: 12px; padding: 16px; display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; background: var(--surface); }
-.warnbox img { width: 96px; height: 96px; object-fit: contain; background: #fff; border-radius: 8px; }
-@media (max-width: 520px) { .warnbox { grid-template-columns: 1fr; } }
+/* Extras */
+.drops { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.drop { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; }
+.drop .hd { display: flex; gap: 12px; align-items: center; }
+.drop .imgs { display: flex; gap: 6px; flex: none; }
+.drop .imgs img { width: 60px; height: 60px; object-fit: contain; background: #fff; border-radius: 8px; border: 1px solid var(--line); }
+.drop .desc { font-size: 14.5px; color: var(--muted); }
+.drop svg { width: 100%; height: auto; max-height: 150px; }
+.drop .big { font: 800 26px var(--f-display); color: var(--bad); line-height: 1.1; }
+.drop p { font-size: 15px; }
 
 /* Checklist */
-.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
-.checks li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; font-size: 15.5px; }
-.checks svg { width: 28px; height: 28px; }
-
-/* Specialist details */
-details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
-details > summary { cursor: pointer; padding: 14px 16px; font-weight: 600; }
-details > div { padding: 0 16px 16px; display: grid; gap: 14px; min-width: 0; }
-.scroll { overflow-x: auto; }
-table.matrix { border-collapse: collapse; width: 100%; font-size: 13.5px; }
-.matrix th, .matrix td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; font-variant-numeric: tabular-nums; }
-.matrix th { font-size: 11.5px; font-weight: 600; text-transform: uppercase; color: var(--muted); }
-.matrix td.wrap { white-space: normal; min-width: 230px; }
-.weights { display: grid; max-width: 760px; font-size: 14.5px; }
-.weights div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); }
-.weights b { white-space: nowrap; }
-footer { font-size: 13px; color: var(--muted); display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 20px; }
-footer p { max-width: 95ch; }
-@media (prefers-reduced-motion: no-preference) { .cfill { transition: width .5s ease; } }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.checks li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+.checks li > div { display: grid; gap: 4px; }
+.checks svg { width: 30px; height: 30px; }
+.checks b { font-size: 16.5px; line-height: 1.3; }
+.checks p { font-size: 15px; color: var(--muted); }
+.disclaimer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
 
 /* ---------- A4 print ---------- */
-@page { size: A4; margin: 12mm 12mm 14mm; }
-@page wide { size: A4 landscape; margin: 10mm 10mm 14mm; }
+@page { size: A4; margin: 13mm 13mm 15mm; }
+@page wide { size: A4 landscape; margin: 10mm 10mm 13mm; }
 @media print {
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { font-size: 14px; line-height: 1.5; background: #fff; }
+  body { font-size: 13.5px; line-height: 1.5; background: #fff; }
   .wrap { max-width: none; padding: 0; gap: 0; display: block; }
-  .page { break-before: page; gap: 14px; }
+  .page { break-before: page; gap: 12px; }
   .page:first-child { break-before: auto; }
   .page + .page { border-top: 0; padding-top: 0; }
   .page.wide { page: wide; }
-  h1 { font-size: 28px; } h2 { font-size: 26px; } h3 { font-size: 17px; }
+  h1 { font-size: 26px; } h2 { font-size: 25px; } h3 { font-size: 16px; } h4 { font-size: 14.5px; }
   p { max-width: none; }
-  .lead { font-size: 15.5px; }
+  .lead { font-size: 14.5px; }
   .page-no { font-size: 10.5px; }
-  .art, .ritem, .typecard, .drop, .mstep, .checks li, .warnbox, .rule, details { break-inside: avoid; }
-  .art { padding: 12px; }
-  .rule { font-size: 14.5px; padding: 12px 14px; max-width: none; }
-  .rule svg { width: 22px; height: 22px; }
-  .points { gap: 10px; } .points li { grid-template-columns: 28px 1fr; gap: 10px; font-size: 14.5px; }
-  .points .dot { width: 26px; height: 26px; font-size: 12px; }
+  .art, .typecard, .drop, .checks li, .rule, .points li { break-inside: avoid; }
+
+  .compare-wrap { overflow: visible; border-radius: 8px; }
+  table.compare { min-width: 0; }
+  .compare col.label { width: 136px; }
+  .compare th, .compare td { padding: 6px 5px; }
+  .compare th[scope="row"] { padding-left: 10px; position: static; }
+  .compare .rl b { font-size: 13px; } .compare .rl small { font-size: 10.5px; }
+  .compare .rl svg { width: 18px; height: 18px; } .compare .rl { grid-template-columns: 18px 1fr; }
+  .thumb { width: 84px; height: 84px; }
+  .prod .pname { font-size: 11.5px; }
+  .medal { width: 26px; height: 26px; font-size: 13px; }
+  .sticks { font-size: 12.5px; }
+  .score .big { font-size: 27px; } .score .word { font-size: 9px; }
+  .blocks i { height: 9px; } .cell .val { font-size: 12.5px; }
+
   .lesson { grid-template-columns: 1fr; gap: 14px; }
   .lesson.flip > .art { order: 0; }
-  .lesson .art svg { max-width: 540px; margin: 0 auto; }
-  .lesson.two { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; }
-  .legend { font-size: 11px; gap: 6px 16px; } .legend i { width: 11px; height: 11px; }
-
-  .ranking { gap: 5px; }
-  .rhead, .ritem { display: grid; grid-template-columns: 24px 50px minmax(0, 1.35fr) 72px repeat(4, minmax(0, 1fr)) 62px; grid-template-areas: none; gap: 8px; }
-  .rhead { font-size: 8px; padding: 0 9px; letter-spacing: 0.02em; }
-  .rhead .ic { gap: 4px; } .ic svg { width: 14px; height: 14px; }
-  .ritem { padding: 6px 8px; border-radius: 7px; }
-  .ritem.own { padding: 5px 7px; }
-  .ritem > *, .ritem .meters > * { grid-area: auto !important; }
-  .ritem .meters { display: contents; }
-  .ritem .thumb { width: 50px; height: 50px; }
-  .medal { width: 22px; height: 22px; font-size: 11px; }
-  .pname { font-size: 11px; } .pname small { font-size: 9px; }
-  .badge .big { font-size: 19px; } .badge .big small { font-size: 9px; }
-  .badge .word { font-size: 7.5px; padding: 1px 5px; }
-  .meter .lab { display: none; }
-  .blocks i { height: 7px; }
-  .meter .val { font-size: 9.5px; }
-  .meter.price { border-left: 1px dashed var(--line); padding-left: 6px; }
-  .meter.price .val { font-size: 11px; } .meter.price .sub { font-size: 8.5px; }
-  .foot-note { font-size: 10px; }
-
-  .typecards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .typecard p { font-size: 13px; } .typecard .t { font-size: 20px; } .typecard svg { width: 34px; height: 34px; }
-  .crow { grid-template-columns: 34px 200px minmax(0, 1fr); font-size: 13px; gap: 10px; }
-  .crow img { width: 34px; height: 34px; }
-  .ctrack { height: 22px; } .cval { font-size: 12px; }
-  .chart { gap: 6px; } .chart-key { font-size: 12px; }
+  .lesson.two { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+  .lesson.flip.two > .art { order: 2; }
+  .art { padding: 12px; }
+  .lesson .art svg { max-width: 520px; margin: 0 auto; }
+  .points { gap: 9px; } .points li { grid-template-columns: 26px 1fr; gap: 10px; }
+  .points .dot { width: 26px; height: 26px; font-size: 12px; }
+  .points p { font-size: 12.5px; line-height: 1.45; }
+  .rule { font-size: 14px; padding: 10px 14px; } .rule svg { width: 22px; height: 22px; }
+  .typecards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .typecard p { font-size: 12.5px; } .typecard .t { font-size: 18px; } .typecard svg { width: 30px; height: 30px; }
   .drops { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .drop { padding: 14px; } .drop svg { max-height: 150px; } .drop .big { font-size: 24px; } .drop p { font-size: 13px; }
-  .label-demo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
-  .mstep { padding: 10px 12px; font-size: 14px; } .mstep .eq { font-size: 17px; }
-  .gloss { font-size: 13px; } .gloss td { padding: 6px 10px; }
-  .warnbox { grid-template-columns: 84px 1fr; padding: 12px; font-size: 14px; } .warnbox img { width: 84px; height: 84px; }
-  .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .checks li { font-size: 15px; padding: 14px; }
-
-  details > summary { list-style: none; font-size: 13px; padding: 10px 12px 6px; }
-  details > summary::-webkit-details-marker { display: none; }
-  details > div { padding: 0 12px 12px; gap: 8px; }
-  table.matrix { font-size: 9px; } .matrix th { font-size: 7.5px; } .matrix th, .matrix td { padding: 4px 5px; }
-  .matrix td.wrap { min-width: 0; }
-  .weights { font-size: 11px; max-width: none; } .weights div { padding: 4px 0; }
-  details p { font-size: 11px; }
-  #notes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; }
-  footer { font-size: 9.5px; padding-top: 10px; margin-top: 12px; }
+  .drop { padding: 11px; gap: 6px; } .drop .imgs img { width: 48px; height: 48px; }
+  .drop .desc, .drop p { font-size: 12.5px; } .drop .big { font-size: 20px; } .drop svg { max-height: 100px; }
+  .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .checks li { padding: 14px; } .checks b { font-size: 14.5px; } .checks p { font-size: 13px; }
+  .disclaimer { font-size: 10.5px; }
 }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2" style="fill:none;stroke:var(--accent);stroke-width:2"/><path d="M3 11h18M9 7V3h6v4" style="fill:none;stroke:var(--accent);stroke-width:2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" style="fill:var(--ok)"/></symbol>
     <symbol id="i-dose" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2" style="fill:none;stroke:var(--accent);stroke-width:2"/><rect x="9" y="9" width="6" height="11" rx="1" style="fill:var(--accent)"/></symbol>
     <symbol id="i-size" viewBox="0 0 24 24"><circle cx="5" cy="12" r="3" style="fill:var(--accent)"/><circle cx="12" cy="12" r="3" style="fill:var(--accent)"/><circle cx="19" cy="12" r="3" style="fill:var(--accent)"/></symbol>
     <symbol id="i-vitc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" style="fill:var(--vitc)"/><text x="12" y="16.5" text-anchor="middle" style="font:700 13px sans-serif;fill:#fff">C</text></symbol>
     <symbol id="i-clean" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z" style="fill:none;stroke:var(--accent);stroke-width:2"/><path d="M8 12l3 3 5-6" style="fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"/></symbol>
-    <symbol id="i-price" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" style="fill:none;stroke:var(--accent);stroke-width:2"/><text x="12" y="16.5" text-anchor="middle" style="font:700 12px sans-serif;fill:var(--accent)">₩</text></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" style="fill:var(--good)"/><path d="M7 12.5l3.2 3.2L17 9" style="fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"/></symbol>
     <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2z" style="fill:var(--ok)"/><rect x="9" y="19" width="6" height="3" rx="1" style="fill:var(--muted)"/></symbol>
   </defs>
@@ -274,30 +203,23 @@ footer p { max-width: 95ch; }
 
 <div class="wrap">
 
-<!-- ================= PAGE 1 ================= -->
-<section class="page" aria-labelledby="p1">
+<!-- ================= PAGE 1: SIDE-BY-SIDE ================= -->
+<section class="page wide" aria-labelledby="p1">
   <div class="page-head">
-    <div class="page-no">1-sahifa · Reyting</div>
-    <h1 id="p1">Qaysi kollagen stikini tanlash kerak?</h1>
-    <p class="lead">Biz Koreyada ishlab chiqarilgan 9 ta baliq kollageni stikining yorliqlarini tekshirdik. Ball stik tarkibi qanchalik yaxshi ekanini koʻrsatadi. Ball qancha yuqori boʻlsa, mahsulot shuncha yaxshi. Rangli boʻlaklar qancha koʻp boʻlsa, shuncha yaxshi. Narx oʻng tomonda koʻrsatilgan, lekin ballga taʼsir qilmaydi.</p>
+    <div class="page-no">1-sahifa · Mahsulotlarni taqqoslash</div>
+    <h1 id="p1">Qaysi kollagen stiki eng yaxshi?</h1>
   </div>
-  <div class="legend" aria-label="Ranglar maʼnosi">
-    <span><i style="background:var(--good)"></i>Aʼlo (7 va undan yuqori)</span>
-    <span><i style="background:var(--ok)"></i>Qoniqarli (5 dan 6,9 gacha)</span>
-    <span><i style="background:var(--warn)"></i>Zaif (3 dan 4,9 gacha)</span>
-    <span><i style="background:var(--bad)"></i>Yomon (3 dan past)</span>
-  </div>
-  <div class="ranking" id="ranking"></div>
-  <p class="foot-note">◆ — sotuvchi saytidagi maʼlumot, qutida yozilmagan. 2–9-sahifalarda har bir ustun oddiy soʻzlar bilan tushuntirilgan. Aniq formula oxirgi sahifada.</p>
+  <div class="compare-wrap"><table class="compare" id="compare"></table></div>
 </section>
 
-<!-- ================= PAGE 2 ================= -->
+<!-- ================= PAGE 2: COLLAGEN ================= -->
 <section class="page" aria-labelledby="p2">
   <div class="page-head">
-    <div class="page-no">2-sahifa · Kollagen nima?</div>
-    <h2 id="p2">Kollagen — teringiz ichidagi prujina</h2>
+    <div class="page-no">2-sahifa · Kollagen nima</div>
+    <h2 id="p2">Kollagen nima va uni nima uchun ichishadi</h2>
+    <p class="lead">Mahsulotlarni solishtirishdan oldin kollagen nima ekanini, u organizmda qanday ishlashini va kollagen stiki nima ekanini bilib olish foydali.</p>
   </div>
-  <div class="lesson">
+  <div class="lesson two">
     <div class="art">
       <svg viewBox="0 0 520 300" role="img" aria-label="Ikki boʻlak teri. Yosh terida kollagen tolalari koʻp, yoshi oʻtgan terida kam.">
         <text x="130" y="24" text-anchor="middle" class="svg-text" style="font-weight:600;font-size:16px">Yosh teri</text>
@@ -324,38 +246,39 @@ footer p { max-width: 95ch; }
         <text x="390" y="282" text-anchor="middle" class="svg-muted" style="font-size:14px">Prujina kam = boʻshashgan</text>
       </svg>
     </div>
-    <ul class="points">
-      <li><span class="dot">1</span><p>Kollagen — bu <b>oqsil</b>. U teri, suyak va boʻgʻimlar ichida uzun, mustahkam iplar hosil qiladi.</p></li>
-      <li><span class="dot">2</span><p>Matrasni tasavvur qiling. Kollagen iplari terini tarang va elastik tutib turadigan <b>prujinalardir</b>.</p></li>
-      <li><span class="dot">3</span><p>Yosh oʻtgan sari organizm kollagenni asta-sekin <b>kamroq ishlab chiqaradi</b>. Shuning uchun odamlar kollagen ichimliklari va stiklarini sotib olishadi.</p></li>
-    </ul>
+    <ol class="points">
+      <li><span class="dot">1</span><div><h4>Bu oqsil</h4><p>Kollagen — inson organizmida eng koʻp uchraydigan oqsil. U teri, suyak, boʻgʻim, soch va tirnoqlarni birlashtirib turadigan uzun, mustahkam iplar hosil qiladi.</p></div></li>
+      <li><span class="dot">2</span><div><h4>U terini tarang tutadi</h4><p>Terida kollagen iplari matrasdagi prujinalar kabi ishlaydi. Ular terini tarang, silliq va elastik qiladi.</p></div></li>
+      <li><span class="dot">3</span><div><h4>Yosh oʻtgan sari u kamayadi</h4><p>Taxminan 25 yoshdan boshlab organizm har yili biroz kamroq kollagen ishlab chiqaradi. Quyosh, chekish, stress va yomon uyqu bu jarayonni tezlashtiradi. Teri yupqalashadi, quriydi va ajinlar paydo boʻladi.</p></div></li>
+      <li><span class="dot">4</span><div><h4>Kollagen stiki nima</h4><p>Stik — bir kunlik porsiya solingan kichik paketcha. Kukun suvga aralashtiriladi, jele esa toʻgʻridan-toʻgʻri paketchadan yeyiladi. Ichida mayda boʻlaklarga boʻlingan kollagen bor. Bu boʻlaklar kollagen peptidlari deb ataladi.</p></div></li>
+      <li><span class="dot">5</span><div><h4>U qanday ishlaydi</h4><p>Organizm mayda boʻlakchalarni qonga soʻradi. Tadqiqotlarga koʻra, ularning bir qismi teri hujayralariga oʻz kollagenini koʻproq ishlab chiqarish uchun signal boʻlib xizmat qiladi. Tadqiqotlarda odamlar natija oʻlchanishidan oldin 8–12 hafta davomida har kuni kollagen ichishgan.</p></div></li>
+    </ol>
   </div>
-
-  <h3>Kollagenning turlari bor. Teri uchun I tur kerak.</h3>
+  <h3>Kollagenning turlari bor. Teri uchun eng muhimi — I tur.</h3>
   <div class="typecards">
     <div class="typecard hl">
       <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="16" style="fill:var(--skin)"/><circle cx="16.5" cy="19" r="2" style="fill:var(--fg)"/><circle cx="27.5" cy="19" r="2" style="fill:var(--fg)"/><path d="M15.5 26 q6.5 5 13 0" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round"/></svg>
-      <div class="t">I tur</div><p><b>Teri, soch, tirnoq, suyak.</b> Organizmdagi kollagenning taxminan 90 foizi. <b>Baliq</b> yoki sigirdan olinadi.</p>
+      <div class="t">I tur</div><p><b>Teri, soch, tirnoq va suyaklar.</b> Organizmdagi barcha kollagenning taxminan 90 foizi. <b>Baliq</b> yoki sigirdan olinadi. Baliq kollageni asosan I turga kiradi, tarkibida choʻchqa va mol goʻshti yoʻq.</p>
     </div>
     <div class="typecard">
       <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="18" y="2" width="8" height="16" rx="4" style="fill:var(--muted)"/><circle cx="22" cy="22" r="6" style="fill:var(--accent)"/><rect x="18" y="26" width="8" height="16" rx="4" style="fill:var(--muted)"/></svg>
-      <div class="t">II tur</div><p><b>Boʻgʻimlar va tizzalar.</b> Tovuqdan olinadi. Teri mahsulotlarida ishlatilmaydi.</p>
+      <div class="t">II tur</div><p><b>Boʻgʻimlar va togʻaylar.</b> Odatda tovuqdan olinadi. Teri uchun emas, boʻgʻim mahsulotlarida ishlatiladi.</p>
     </div>
     <div class="typecard">
       <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M6 22 q8 -14 16 0 t16 0" style="fill:none;stroke:var(--bad);stroke-width:5;stroke-linecap:round"/></svg>
-      <div class="t">III tur</div><p><b>Teri va qon tomirlari.</b> I tur bilan birga ishlaydi. Sigir yoki choʻchqadan olinadi.</p>
+      <div class="t">III tur</div><p><b>Teri va qon tomirlari.</b> I tur bilan birga ishlaydi. Odatda sigir yoki choʻchqadan olinadi.</p>
     </div>
   </div>
-  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Bu yerdagi 9 ta mahsulotning hammasida baliq kollageni bor. Baliq kollageni I turga kiradi, yaʼni teri uchun mos. Bu yaxshi.</div>
 </section>
 
-<!-- ================= PAGE 3 ================= -->
+<!-- ================= PAGE 3: DA ================= -->
 <section class="page" aria-labelledby="p3">
   <div class="page-head">
-    <div class="page-no">3-sahifa · «Da» nima?</div>
-    <h2 id="p3">Da kollagen boʻlakchalari qanchalik katta ekanini koʻrsatadi. Qancha kichik boʻlsa, shuncha yaxshi.</h2>
+    <div class="page-no">3-sahifa · «Da» nima</div>
+    <h2 id="p3">«Da» nimani bildiradi va nega kichigi yaxshiroq</h2>
+    <p class="lead">Tabiiy kollagen — juda katta molekula. Organizm uni butunligicha oʻzlashtira olmaydi, shuning uchun ishlab chiqaruvchilar uni mayda boʻlaklarga boʻlishadi. Qutidagi Da soni bu boʻlakchalar qanchalik mayda ekanini koʻrsatadi.</p>
   </div>
-  <div class="lesson flip">
+  <div class="lesson flip two">
     <div class="art">
       <svg viewBox="0 0 520 340" role="img" aria-label="Katta kollagen boʻlakchalari ichak devorida toʻxtaydi. Mayda boʻlakchalar qonga oʻtadi.">
         <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">Ichakning ichida</text>
@@ -391,48 +314,78 @@ footer p { max-width: 95ch; }
         <text x="20" y="318" class="svg-text" style="font-size:14px"><tspan style="fill:var(--bad);font-weight:700">✕</tspan> Katta boʻlakchalar tiqilib qoladi.  <tspan style="fill:var(--good);font-weight:700">✓</tspan> Maydalari darhol oʻtadi.</text>
       </svg>
     </div>
-    <ul class="points">
-      <li><span class="dot">1</span><p><b>Da</b> (dalton) — olimlar molekula kabi juda kichik narsalarning ogʻirligini oʻlchaydigan birlik. Katta son — katta boʻlakcha, kichik son — mayda boʻlakcha.</p></li>
-      <li><span class="dot">2</span><p>Kollagen — mitti munchoqlardan iborat uzun zanjir. Ishlab chiqaruvchilar organizm oʻzlashtira olishi uchun bu zanjirni qisqa boʻlaklarga boʻlishadi.</p></li>
-      <li><span class="dot">3</span><p>Ichak <b>2–3 ta munchoqli</b> boʻlakchalarni eng oson oʻtkazadi. Bu taxminan <b>300 Da</b>. 1000 yoki 2000 Da boʻlgan boʻlakchalarni organizm avval kichikroq boʻlaklarga ajratishi kerak.</p></li>
-    </ul>
+    <ol class="points">
+      <li><span class="dot">1</span><div><h4>Da — molekulalar ogʻirligi birligi</h4><p>Da — «dalton» soʻzining qisqartmasi. Olimlar bu birlik bilan koʻzga koʻrinmaydigan darajada kichik molekulalarni tortishadi. Bir dalton taxminan bitta vodorod atomining — eng yengil atomning ogʻirligiga teng. Da soni qancha katta boʻlsa, boʻlakcha shuncha katta.</p></div></li>
+      <li><span class="dot">2</span><div><h4>Kollagen — munchoqlar zanjiri</h4><p>Kollagen aminokislotalar deb ataladigan kichik qurilish bloklaridan tashkil topgan. Juda uzun marjonni tasavvur qiling: har bir munchoq — bitta aminokislota, ogʻirligi taxminan 100 Da. Tabiiy kollagenda 3000 ga yaqin munchoq bor, shuning uchun u taxminan 300 000 Da keladi. Ishlab chiqaruvchilar fermentlar yordamida bu marjonni qisqa boʻlaklarga boʻlishadi.</p></div></li>
+      <li><span class="dot">3</span><div><h4>Ichakdan faqat mayda boʻlakchalar oʻtadi</h4><p>Ichak devori mayda elak kabi ishlaydi. 2–3 ta munchoqli boʻlakchalar (taxminan 200–400 Da) maxsus tashuvchilar yordamida undan oson oʻtadi. Uzunroq boʻlakchalar esa organizm ulardan foydalana olishi uchun avval hazm qilish jarayonida yana parchalanishi kerak.</p></div></li>
+      <li><span class="dot">4</span><div><h4>Qutidagi son — oʻrtacha qiymat</h4><p>Qutida 300 Da deb yozilgan boʻlsa, boʻlakchalar oʻrtacha 300 Da keladi: koʻpchiligi juda mayda, ozgina qismi kattaroq. Oʻrtacha son qancha past boʻlsa, kollagenning shuncha katta qismi oʻzlashtirish uchun yetarlicha mayda boʻladi.</p></div></li>
+    </ol>
   </div>
   <div class="art">
-    <svg viewBox="0 0 1000 124" role="img" aria-label="Shkala: 300 Da — eng yaxshi, 1000 Da — qoniqarli, 2000 Da — zaif, yozilmagan boʻlsa — sotuvchidan soʻrang.">
+    <svg viewBox="0 0 1000 124" role="img" aria-label="Shkala: 300 Da — eng yaxshi, 1000 Da — yaxshi, 2000 Da — zaif, yozilmagan — nomaʼlum.">
       <defs><linearGradient id="g-da" x1="0" x2="1"><stop offset="0" style="stop-color:var(--good)"/><stop offset=".4" style="stop-color:var(--ok)"/><stop offset=".72" style="stop-color:var(--warn)"/><stop offset="1" style="stop-color:var(--bad)"/></linearGradient></defs>
       <rect x="20" y="40" width="960" height="22" rx="11" style="fill:url(#g-da)"/>
       <g class="svg-text" style="font-size:17px;font-weight:600" text-anchor="middle">
         <text x="110" y="28">300 Da</text><text x="390" y="28">1000 Da</text><text x="660" y="28">2000 Da</text><text x="885" y="28">Yozilmagan</text>
       </g>
       <g style="font-size:14px" text-anchor="middle">
-        <text x="110" y="88" class="svg-text" style="font-weight:600">Eng yaxshi</text><text x="390" y="88" class="svg-text" style="font-weight:600">Qoniqarli</text><text x="660" y="88" class="svg-text" style="font-weight:600">Zaif</text><text x="885" y="88" class="svg-text" style="font-weight:600">Sotuvchidan soʻrang</text>
-        <text x="110" y="112" class="svg-muted">Yorosum, HURUM, SSF</text><text x="390" y="112" class="svg-muted">BB LAB (ikkalasi)</text><text x="660" y="112" class="svg-muted">BOTO</text><text x="885" y="112" class="svg-muted">HURUM Biotin, VITASUB</text>
+        <text x="110" y="88" class="svg-text" style="font-weight:600">Eng yaxshi</text><text x="390" y="88" class="svg-text" style="font-weight:600">Yaxshi</text><text x="660" y="88" class="svg-text" style="font-weight:600">Zaif</text><text x="885" y="88" class="svg-text" style="font-weight:600">Nomaʼlum</text>
+        <text x="110" y="110" class="svg-muted">taxminan 3 ta munchoq</text><text x="390" y="110" class="svg-muted">taxminan 10 ta munchoq</text><text x="660" y="110" class="svg-muted">taxminan 20 ta munchoq</text><text x="885" y="110" class="svg-muted">sotuvchidan soʻrang</text>
       </g>
     </svg>
   </div>
-  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Qutidan «평균분자량» (oʻrtacha molekulyar massa) soʻzini qidiring. 300 Da yoki undan kam — eng yaxshi tanlov.</div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Esda tuting</small>Qutidan 평균분자량 (oʻrtacha molekulyar massa) yozuvini qidiring. 300 Da yoki undan kam — eng yaxshi tanlov.</span></div>
 </section>
 
-<!-- ================= PAGE 4 ================= -->
+<!-- ================= PAGE 4: DOSE ================= -->
 <section class="page" aria-labelledby="p4">
   <div class="page-head">
-    <div class="page-no">4-sahifa · Qancha kollagen kerak?</div>
-    <h2 id="p4">Mayda boʻlakchalar yaxshi. Lekin ular yetarli miqdorda ham boʻlishi kerak.</h2>
-    <p class="lead">Teri boʻyicha tadqiqotlarda odamlar kuniga <b>2500 mg yoki undan koʻp</b> kollagen qabul qilgan. Uzuq chiziq shu miqdorni koʻrsatadi. Rangli chiziq qancha uzun boʻlsa, bitta stikda shuncha koʻp kollagen bor.</p>
+    <div class="page-no">4-sahifa · Qancha kollagen</div>
+    <h2 id="p4">Bitta stikda qancha kollagen bor</h2>
+    <p class="lead">Mayda boʻlakchalar kollagenning oʻzlashtirilishiga yordam beradi. Lekin miqdor ham shunchalik muhim: boʻlakchalar mayda boʻlsa-yu, stikda kollagen juda kam boʻlsa, foydasi ham kam boʻladi.</p>
   </div>
-  <div class="art"><div class="chart" id="chart-dose"></div></div>
-  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Bitta stikda eng koʻp kollagen Yorosumda — 2000 mg. VITASUBda esa atigi 196 mg, yaʼni 10 baravar kam.</div>
+  <div class="art">
+    <svg viewBox="0 0 1000 300" role="img" aria-label="2 g li bitta stik jami 2000 mg keladi, misolda uning 1200 mg i kollagen. Shkala 0 dan 3000 mg gacha: 1000 dan kam — kam, 1000 dan 2000 gacha — oʻrtacha, 2000 dan koʻp — yaxshi. Teri tadqiqotlarida kuniga 2500 mg va undan koʻp ishlatilgan.">
+      <text x="40" y="28" class="svg-text" style="font-size:18px;font-weight:700">Misol: 2 g li bitta stik = jami 2000 mg</text>
+      <rect x="40" y="44" width="552" height="46" rx="8" style="fill:var(--accent)"/>
+      <rect x="592" y="44" width="368" height="46" rx="8" style="fill:var(--track)"/>
+      <rect x="586" y="44" width="12" height="46" style="fill:var(--accent)"/>
+      <text x="56" y="73" style="font:700 16px var(--f-body);fill:#fff">Kollagen 1200 mg (60%)</text>
+      <text x="608" y="73" class="svg-text" style="font-size:15px;font-weight:600">Taʼm, C vitamini va b.: 800 mg</text>
+      <text x="40" y="150" class="svg-text" style="font-size:18px;font-weight:700">Bitta stikdagi kollagen</text>
+      <rect x="40" y="166" width="307" height="30" style="fill:var(--bad);opacity:.85"/>
+      <rect x="347" y="166" width="306" height="30" style="fill:var(--ok)"/>
+      <rect x="653" y="166" width="307" height="30" style="fill:var(--good)"/>
+      <g style="font-size:15px;font-weight:700;fill:#fff" text-anchor="middle">
+        <text x="193" y="187">Kam</text><text x="500" y="187">Oʻrtacha</text><text x="806" y="187">Yaxshi</text>
+      </g>
+      <g class="svg-text" style="font-size:14px" text-anchor="middle">
+        <text x="40" y="220" text-anchor="start">0</text><text x="347" y="220">1000 mg</text><text x="653" y="220">2000 mg</text><text x="960" y="220" text-anchor="end">3000 mg</text>
+      </g>
+      <line x1="807" y1="156" x2="807" y2="236" style="stroke:var(--fg);stroke-width:2.5;stroke-dasharray:6 4"/>
+      <text x="807" y="258" text-anchor="middle" class="svg-text" style="font-size:15px;font-weight:700">Teri tadqiqotlari: 2500 mg va koʻproq</text>
+      <text x="807" y="280" text-anchor="middle" class="svg-muted" style="font-size:13.5px">har kuni, 8–12 hafta</text>
+    </svg>
+  </div>
+  <ol class="points">
+    <li><span class="dot">1</span><div><h4>Milligramm va gramm</h4><p>mg — milligramm. 1000 mg = 1 g. Stik ogʻirligi odatda grammda, tarkibiy qismlar esa milligrammda koʻrsatiladi.</p></div></li>
+    <li><span class="dot">2</span><div><h4>Stikning hammasi ham kollagen emas</h4><p>2 g li stik 2000 mg keladi, lekin uning bir qismi taʼm beruvchi moddalar, C vitamini va boshqa tarkibiy qismlardir. Faqat kollagen qismi hisobga olinadi. Shuning uchun bir xil ogʻirlikdagi ikki stikda kollagen miqdori butunlay boshqacha boʻlishi mumkin.</p></div></li>
+    <li><span class="dot">3</span><div><h4>Miqdorni qutidan qanday topish mumkin</h4><p>Bitta stikdagi kollagen miqdorini (1포당) qidiring. Agar qutida faqat foiz koʻrsatilgan boʻlsa, koʻpaytiring: stik ogʻirligi (mg) × kollagen foizi = kollagen (mg). Misol: 2000 mg × 60% = 1200 mg. Baʼzi qutilarda butun quti uchun jami miqdor yoziladi, shuning uchun son bitta stik uchun ekanini tekshiring.</p></div></li>
+    <li><span class="dot">4</span><div><h4>Qancha yetarli</h4><p>Teri tadqiqotlarida odamlar kuniga 2500 mg dan 10 000 mg gacha kollagen qabul qilishgan. Stikda 1000 mg dan kam boʻlsa — kam. 1000–2000 mg — oʻrtacha. 2000 mg va undan koʻp — yaxshi.</p></div></li>
+  </ol>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Esda tuting</small>Bitta stikda kamida 1000 mg kollagen boʻlgan mahsulotni tanlang. 2000 mg va undan koʻpi yaxshiroq.</span></div>
 </section>
 
-<!-- ================= PAGE 5 ================= -->
+<!-- ================= PAGE 5: VITAMIN C ================= -->
 <section class="page" aria-labelledby="p5">
   <div class="page-head">
     <div class="page-no">5-sahifa · C vitamini</div>
-    <h2 id="p5">C vitamini — kollagen boʻlakchalaridan teri quradigan quruvchi</h2>
+    <h2 id="p5">Kollagen uchun C vitamini nega muhim</h2>
+    <p class="lead">C vitaminining oʻzi kollagenga aylanmaydi. Lekin usiz organizm kollagen qura olmaydi. Shuning uchun yaxshi kollagen stiklarida C vitamini boʻladi.</p>
   </div>
   <div class="lesson two">
     <div class="art">
-      <svg viewBox="0 0 520 300" role="img" aria-label="C vitaminisiz gʻishtlar uyum boʻlib yotadi. C vitamini bilan ular mustahkam devorga aylanadi.">
+      <svg viewBox="0 0 520 210" role="img" aria-label="C vitaminisiz kollagen boʻlakchalari uyum boʻlib yotadi. C vitamini bilan ular mustahkam devorga birlashadi.">
         <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">C vitaminisiz</text>
         <g style="fill:var(--accent);opacity:.85">
           <rect x="40" y="90" width="44" height="20" rx="3" transform="rotate(-12 62 100)"/>
@@ -441,7 +394,7 @@ footer p { max-width: 95ch; }
           <rect x="112" y="126" width="44" height="20" rx="3" transform="rotate(-25 134 136)"/>
           <rect x="24" y="126" width="44" height="20" rx="3" transform="rotate(30 46 136)"/>
         </g>
-        <text x="95" y="184" text-anchor="middle" class="svg-muted" style="font-size:13px">Boʻlakchalar shunchaki yotadi</text>
+        <text x="95" y="190" text-anchor="middle" class="svg-muted" style="font-size:13px">Boʻlakchalar birlasha olmaydi</text>
         <text x="300" y="26" class="svg-text" style="font-weight:600;font-size:15px">C vitamini bilan</text>
         <g style="fill:var(--accent)">
           <rect x="300" y="140" width="44" height="20" rx="3"/><rect x="348" y="140" width="44" height="20" rx="3"/><rect x="396" y="140" width="44" height="20" rx="3"/>
@@ -451,159 +404,79 @@ footer p { max-width: 95ch; }
         </g>
         <circle cx="470" cy="62" r="20" style="fill:var(--vitc)"/>
         <text x="470" y="69" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">C</text>
-        <text x="380" y="184" text-anchor="middle" class="svg-muted" style="font-size:13px">Boʻlakchalar mustahkam devorga aylanadi</text>
+        <text x="380" y="190" text-anchor="middle" class="svg-muted" style="font-size:13px">Boʻlakchalar mustahkam tolaga birlashadi</text>
         <path d="M195 120 h70" style="stroke:var(--muted);stroke-width:3;stroke-linecap:round"/>
         <path d="M257 112 l10 8 l-10 8" style="fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
-        <rect x="20" y="214" width="480" height="66" rx="10" style="fill:var(--accent-soft)"/>
-        <text x="260" y="242" text-anchor="middle" class="svg-text" style="font-size:15px;font-weight:600">100 mg C vitamini = kunlik meʼyorning 100% (Koreya)</text>
-        <text x="260" y="265" text-anchor="middle" class="svg-muted" style="font-size:13px">AQSH: 90 mg · Yevropa: 80 mg</text>
       </svg>
     </div>
-    <ul class="points">
-      <li><span class="dot">1</span><p>Kollagen boʻlakchalari <b>gʻishtlarga</b> oʻxshaydi. C vitamini esa <b>quruvchi</b>. Usiz organizm yangi mustahkam kollagen qura olmaydi.</p></li>
-      <li><span class="dot">2</span><p>C vitamini kollagenni qonga oʻtkazmaydi. Uning ishi undan keyin boshlanadi: u teridagi kollagenni <b>qurishga</b> yordam beradi.</p></li>
-      <li><span class="dot">3</span><p>Yaxshi stikda taxminan <b>100 mg</b> C vitamini boʻladi — bu toʻliq kunlik meʼyor. 100 mg va undan koʻp boʻlsa, 10 dan 10 ball beramiz.</p></li>
-    </ul>
+    <ol class="points">
+      <li><span class="dot">1</span><div><h4>Teri hujayralari kollagen quradi</h4><p>Terining maxsus hujayralari yangi kollagen tolalarini yaratadi. Ular ovqatdan va kollagen qoʻshimchalaridan olingan aminokislotalarni gʻisht kabi ishlatadi.</p></div></li>
+      <li><span class="dot">2</span><div><h4>C vitamini — quruvchining asbobi</h4><p>Zanjirlarni mustahkam tolaga birlashtirish uchun hujayralarga ikkita ferment kerak, ikkalasi ham faqat C vitamini bilan ishlaydi. Usiz yangi kollagen boʻsh boʻladi va parchalanib ketadi. Shuning uchun C vitamini qattiq yetishmaganda (singa kasalligida) milklar qonaydi va yaralar yomon bitadi.</p></div></li>
+      <li><span class="dot">3</span><div><h4>Organizm uni zaxira qilmaydi</h4><p>Inson organizmi C vitaminini ishlab chiqara olmaydi va deyarli saqlamaydi. Uni har kuni ovqat yoki qoʻshimchalar orqali olishimiz kerak.</p></div></li>
+    </ol>
   </div>
-  <div class="art"><div class="chart" id="chart-vitc"></div></div>
+  <div class="art">
+    <svg viewBox="0 0 1000 190" role="img" aria-label="30 mg C vitamini kunlik ehtiyojning 30 foizini, 100 mg esa 100 foizini qoplaydi.">
+      <text x="40" y="28" class="svg-text" style="font-size:18px;font-weight:700">Stik kunlik C vitamini ehtiyojining qancha qismini qoplaydi?</text>
+      <rect x="40" y="50" width="920" height="34" rx="17" style="fill:var(--track)"/>
+      <rect x="40" y="50" width="276" height="34" rx="17" style="fill:var(--warn)"/>
+      <rect x="40" y="96" width="920" height="34" rx="17" style="fill:var(--vitc)"/>
+      <text x="56" y="73" style="font:700 15px var(--f-body);fill:#fff">30 mg</text>
+      <text x="332" y="73" class="svg-text" style="font-size:15px">kunlik ehtiyojning 30 foizi</text>
+      <text x="56" y="119" style="font:700 15px var(--f-body);fill:#fff">100 mg — kunlik ehtiyojning 100 foizi</text>
+      <text x="40" y="166" class="svg-muted" style="font-size:14px">Kunlik ehtiyoj: Koreya — 100 mg, AQSH — 90 mg, Yevropa — 80 mg.</text>
+    </svg>
+  </div>
+  <ol class="points" start="4">
+    <li><span class="dot">4</span><div><h4>Qancha kerak</h4><p>Koreyada C vitaminining kunlik meʼyori — 100 mg. 100 mg li stik uni toʻliq qoplaydi. 30 mg li stik esa uchdan bir qismidan ham kamini qoplaydi. Agar qutida C vitamini yozilmagan boʻlsa, u yoʻq deb hisoblang.</p></div></li>
+    <li><span class="dot">5</span><div><h4>C vitamini nima qilmaydi</h4><p>C vitamini kollagenning qonga oʻtishiga yordam bermaydi. Uning ishi keyinroq — terida boshlanadi, u yerda yangi kollagen qurishga yordam beradi. 100 mg dan koʻp boʻlishi mumkin, lekin bizning reytingimizda ball bundan oshmaydi.</p></div></li>
+  </ol>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Esda tuting</small>Bitta stikda taxminan 100 mg C vitamini boʻlishiga eʼtibor bering.</span></div>
 </section>
 
-<!-- ================= PAGE 6 ================= -->
+<!-- ================= PAGE 6: EXTRAS ================= -->
 <section class="page" aria-labelledby="p6">
   <div class="page-head">
-    <div class="page-no">6-sahifa · Mikrodozalar</div>
-    <h2 id="p6">Qutidagi chiroyli soʻzlarga aldanmang</h2>
-    <p class="lead">Koʻp qutilarda «Glutation», «Biotin» yoki «Gialuron kislotasi» deb katta harflar bilan yozilgan. Lekin ichida koʻpincha bir tomchigina boʻladi. Bir tomchi hech qanday foyda bermaydi.</p>
+    <div class="page-no">6-sahifa · Qoʻshimcha tarkibiy qismlar</div>
+    <h2 id="p6">Qoʻshimcha tarkibiy qismlar: foyda berishga yetarlimi?</h2>
+    <p class="lead">Koʻp qutilarda glutation, biotin yoki gialuron kislotasi kabi qoʻshimchalar katta harflar bilan reklama qilinadi. Lekin tarkibiy qism faqat yetarli miqdorda boʻlsagina foyda beradi. Quyida yashil doira tadqiqotlarda ishlatilgan miqdorni, qizil nuqta esa bitta stikdagi miqdorni koʻrsatadi.</p>
   </div>
   <div class="drops" id="drops"></div>
-  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Qoʻshimchalar roʻyxatining uzunligi sifat belgisi emas. Miqdorini mg da tekshiring. Agar u juda kam boʻlsa, eʼtibor bermang.</div>
+  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Esda tuting</small>Mashhur tarkibiy qism nomi sifat belgisi emas. Miqdorini mg da tekshiring va tadqiqotlarda ishlatilgan miqdor bilan solishtiring.</span></div>
 </section>
 
-<!-- ================= PAGE 7 ================= -->
+<!-- ================= PAGE 7: CHECKLIST ================= -->
 <section class="page" aria-labelledby="p7">
   <div class="page-head">
-    <div class="page-no">7-sahifa · Qutini qanday oʻqish kerak</div>
-    <h2 id="p7">Haqiqiy kollagen miqdorini 3 qadamda toping</h2>
-    <p class="lead">Koʻp qutilarda milligramm emas, <b>foiz (%)</b> koʻrsatilgan. Uni mg ga qanday aylantirishni koʻrsatamiz. Misol: HURUM past molekulyar kollagen.</p>
-  </div>
-  <div class="label-demo">
-    <div class="art">
-      <svg viewBox="0 0 440 260" role="img" aria-label="Yorliq namunasi: baliq kollageni 60 foiz, 2 gramm × 60 stik.">
-        <rect x="10" y="10" width="420" height="240" rx="12" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
-        <text x="30" y="48" class="svg-muted" style="font-weight:600;font-size:15px">Quti yorligʻi (namuna)</text>
-        <rect x="26" y="66" width="388" height="44" rx="8" style="fill:none;stroke:var(--accent);stroke-width:3"/>
-        <text x="40" y="95" class="svg-text" style="font:600 18px 'Noto Sans KR',sans-serif">저분자피쉬콜라겐펩타이드 60 %</text>
-        <circle cx="414" cy="66" r="14" style="fill:var(--accent)"/><text x="414" y="71" text-anchor="middle" style="font:700 14px sans-serif;fill:var(--bg)">1</text>
-        <text x="40" y="146" class="svg-muted" style="font:15px 'Noto Sans KR',sans-serif">비타민C 6 %</text>
-        <rect x="26" y="176" width="260" height="44" rx="8" style="fill:none;stroke:var(--accent);stroke-width:3"/>
-        <text x="40" y="205" class="svg-text" style="font:600 18px 'Noto Sans KR',sans-serif">120 g (2 g × 60포)</text>
-        <circle cx="286" cy="176" r="14" style="fill:var(--accent)"/><text x="286" y="181" text-anchor="middle" style="font:700 14px sans-serif;fill:var(--bg)">2</text>
-      </svg>
-    </div>
-    <div class="math">
-      <div class="mstep"><span class="dot">1</span><div><p>Kollagen <b>foizini</b> toping.</p><div class="eq">60%</div></div></div>
-      <div class="mstep"><span class="dot">2</span><div><p><b>Bitta stik</b> ogʻirligini toping (포 = stik). 1 g = 1000 mg.</p><div class="eq">2 g = 2000 mg</div></div></div>
-      <div class="mstep"><span class="dot">3</span><div><p>Koʻpaytiring. Bu bitta stikdagi haqiqiy kollagen miqdori.</p><div class="eq">2000 × 60% = 1200 mg</div></div></div>
-    </div>
-  </div>
-  <div class="warnbox">
-    <img src="img/ssf.jpg" alt="SSF anorli kollagen jele-stik qutisi">
-    <div class="page-head" style="gap:6px">
-      <h3>Qutidagi katta raqamlardan ehtiyot boʻling</h3>
-      <p>SSF qutisida <b>«100 000 mg»</b> kollagen deb yozilgan. Bu <b>100 ta stikli butun quti</b> uchun. Bitta stikda 1000 mg bor. Doim bitta stik boʻyicha hisoblang.</p>
-    </div>
-  </div>
-  <h3>Qutida uchraydigan koreyscha soʻzlar</h3>
-  <div class="scroll">
-    <table class="gloss">
-      <tr><td>저분자</td><td>Past molekulyar (mayda boʻlakchalar)</td></tr>
-      <tr><td>피쉬콜라겐 / 생선콜라겐</td><td>Baliq kollageni</td></tr>
-      <tr><td>평균분자량</td><td>Oʻrtacha molekulyar massa (Da soni)</td></tr>
-      <tr><td>1포당</td><td>Bitta stikda</td></tr>
-      <tr><td>비타민C</td><td>C vitamini</td></tr>
-      <tr><td>기타가공품</td><td>Oddiy oziq-ovqat mahsuloti. Sogʻliq uchun funksional mahsulot (건강기능식품) emas, shuning uchun qutida sogʻliqqa foyda vaʼda qilish mumkin emas.</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- ================= PAGE 8 ================= -->
-<section class="page" aria-labelledby="p8">
-  <div class="page-head">
-    <div class="page-no">8-sahifa · Adolatli narx</div>
-    <h2 id="p8">Quti narxini emas, bir gramm kollagen narxini solishtiring</h2>
-    <p class="lead">Qutilarda 30 tadan 100 tagacha stik bor, shuning uchun quti narxi chalgʻitishi mumkin. Narxni qutidagi kollagenning umumiy grammiga boʻling. Chiziq qancha qisqa boʻlsa, kollagen shuncha arzon.</p>
-  </div>
-  <div class="art"><div class="chart" id="chart-price"></div></div>
-  <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg>Eng arzon quti BOTOda (₩8630). Lekin uning bir gramm kollageni HURUM yoki Yorosumnikidan qimmatroq, boʻlakchalari esa katta (2000 Da).</div>
-</section>
-
-<!-- ================= PAGE 9 ================= -->
-<section class="page" aria-labelledby="p9">
-  <div class="page-head">
-    <div class="page-no">9-sahifa · Tekshiruv roʻyxati</div>
-    <h2 id="p9">Sotib olishdan oldin 6 ta savol</h2>
+    <div class="page-no">7-sahifa · Tekshiruv roʻyxati</div>
+    <h2 id="p7">Sotib olishdan oldin 6 ta savol</h2>
+    <p class="lead">Bu savollar istalgan kollagen mahsuloti uchun, jumladan ushbu qoʻllanmada boʻlmagan mahsulotlar uchun ham mos keladi.</p>
   </div>
   <ul class="checks">
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Bu <b>baliq kollagenimi</b> (I tur)?</span></li>
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Qutida Da yozilganmi va u <b>300 Da yoki undan kammi</b>?</span></li>
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Bitta stikda kamida <b>1000 mg</b> kollagen bormi? 2000 mg va undan koʻpi eng yaxshisi.</span></li>
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Bitta stikda taxminan <b>100 mg C vitamini</b> bormi?</span></li>
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Qoʻshimchalar foyda berishga yetarlimi yoki shunchaki <b>bir tomchimi</b>?</span></li>
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Bir gramm kollagen</b> qancha turadi?</span></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Bu baliq kollagenimi?</b><p>Baliq kollageni asosan I turga — terida uchraydigan turga kiradi. Tarkibida choʻchqa va mol goʻshti yoʻq.</p></div></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Qutida Da yozilganmi va u 300 Da yoki undan kammi?</b><p>Mayda boʻlakchalar osonroq oʻzlashtiriladi. Agar qutida Da yozilmagan boʻlsa, sotuvchidan soʻrang.</p></div></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Bitta stikda kamida 1000 mg kollagen bormi?</b><p>2000 mg va undan koʻpi yaxshiroq. Teri tadqiqotlarida kuniga 2500 mg va undan koʻp ishlatilgan.</p></div></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Bitta stikda taxminan 100 mg C vitamini bormi?</b><p>Organizmga kollagen qurish uchun C vitamini kerak. 100 mg bir kunlik ehtiyojni toʻliq qoplaydi.</p></div></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Qoʻshimchalar foydali miqdordami?</b><p>Miqdorini mg da tekshiring. Juda oz miqdordagi mashhur nom hech qanday foyda bermaydi.</p></div></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Miqdorlar bitta stik uchun koʻrsatilganmi?</b><p>Baʼzi qutilarda butun quti uchun jami miqdor yoziladi. Doim bitta stikni bitta stik bilan solishtiring.</p></div></li>
   </ul>
-</section>
-
-<!-- ================= DETAILS ================= -->
-<section class="page wide" aria-labelledby="p10">
-  <div class="page-head">
-    <div class="page-no">Mutaxassislar uchun tafsilotlar</div>
-    <h2 id="p10">Barcha raqamlar va baholash formulasi</h2>
-  </div>
-  <details>
-    <summary>Toʻliq taqqoslash jadvali</summary>
-    <div><div class="scroll"><table class="matrix" id="matrix"></table></div>
-    <p class="muted" style="font-size:13px">◆ Qadoqning old tomonida yozilmagan (sotuvchi maʼlumoti). Yetkazib beruvchining tahlil sertifikati orqali tekshiring.</p></div>
-  </details>
-  <footer>
-    <p>Bitta stikdagi miqdorlar qadoqda yozilgan foizlar va stik ogʻirligi asosida hisoblangan. MIPPEUM maʼlumotlari va HURUM past molekulyar kollagenining 300 Da koʻrsatkichi sotuvchi saytlaridan olingan. Narxlar — oxirgi tekshirilgan chakana narxlar; joriy ulgurji narxlarni soʻrang.</p>
-    <p>Ushbu qoʻllanma xarid boʻyicha qaror qabul qilishga yordam berish uchun mahsulot yorliqlarini solishtiradi. U tibbiy maslahat emas va hech bir mahsulotning sogʻliqqa foydasi haqida daʼvo qilmaydi. YOROSUM — ushbu hujjat muallifining oʻz brendi; har kim tekshira olishi uchun baholash formulasi toʻliq keltirilgan.</p>
-  </footer>
-</section>
-
-<section class="page" aria-label="Barcha raqamlar va baholash formulasi">
-  <div class="page-no">Mutaxassislar uchun tafsilotlar</div>
-  <details>
-    <summary>Ball qanday hisoblanadi</summary>
-    <div>
-      <div class="weights">
-        <div><span>Stikdagi kollagen: mg ÷ 250, eng koʻpi 10</span><b>2 ulush</b></div>
-        <div><span>Boʻlakcha oʻlchami: ≤300 Da — 10, ≤600 — 8, ≤1000 — 6, ≤2000 — 4, yozilmagan — 3</span><b>2 ulush</b></div>
-        <div><span>C vitamini: mg ÷ 10, eng koʻpi 10</span><b>1,5 ulush</b></div>
-        <div><span>Toza tarkib: qoʻshimchalar foydali dozada, toʻldiruvchisiz (ekspert bahosi)</span><b>1,5 ulush</b></div>
-      </div>
-      <p class="muted" style="font-size:14px">Ball — toʻrt qatorning vaznli oʻrtachasi (2 : 2 : 1,5 : 1,5, taxminan 29%, 29%, 21%, 21%). Narx ballga kirmaydi: chakana narxlar tez-tez oʻzgaradi, ulgurji narxlar esa boshqacha. Bir gramm narxi alohida koʻrsatilgan. Glutation, biotin va gialuron kislotasi tadqiqotlardagi dozadan kam boʻlsa, ball olmaydi (glutation — kuniga 250–1000 mg; gialuron kislotasi — kuniga 120–240 mg; 30 mkg biotin faqat kunlik ehtiyojni qoplaydi).</p>
-    </div>
-  </details>
-  <details>
-    <summary>Har bir mahsulotning kuchli va zaif tomonlari</summary>
-    <div id="notes"></div>
-  </details>
+  <p class="disclaimer">Ballar har bir mahsulot yorligʻida yoki sotuvchi saytida koʻrsatilgan miqdorlarga asoslangan. Ushbu qoʻllanma xarid boʻyicha qaror qabul qilishga yordam berish uchun mahsulot yorliqlarini solishtiradi. U tibbiy maslahat emas.</p>
 </section>
 </div>
 
 <script>
-const T = {"units": {"mg": "mg", "mcg": "mkg", "g": "g", "da": "Da", "thou": " ", "dec": ",", "groupMin": 5}, "js": {"hRank": "Oʻrin", "hProduct": "Mahsulot", "hScore": "Ball", "hDose": "Stikdagi kollagen", "hDa": "Boʻlakcha oʻlchami (Da)", "hVitc": "C vitamini", "hClean": "Toza tarkib", "hPrice": "Bir gramm narxi · ballga kirmaydi", "w8": "Aʼlo", "w7": "Juda yaxshi", "w6": "Yaxshi", "w5": "Oʻrtacha", "w3": "Zaif", "w0": "Olmang", "cGood": "Yaxshi", "cFiller": "Toʻldiruvchi bor", "cTiny": "Mikrodozalar", "notOnBox": "Yozilmagan", "under": "{n} Da dan kam", "noneListed": "Yozilmagan", "noPrice": "Narx yoʻq", "sticks": "{n} ta stik × {g} g", "perStick": "/ stik", "perGram": "/ gramm", "keyDose": "Uzuq chiziq = 2500 mg, teri tadqiqotlarida ishlatilgan kunlik miqdor.", "keyVitc": "Uzuq chiziq = 100 mg, Koreyada C vitaminining toʻliq kunlik meʼyori.", "keyPrice": "VITASUB koʻrsatilmagan, chunki uning narxi yozilmagan.", "glut": "Glutation", "ha": "Gialuron kislotasi", "dropTitle": "{what}: {who}", "useful": "Foydali doza", "inStick": "1 stikda:", "nSticks": "{n} ta stik", "dropText": "Bitta foydali dozani olish uchun shuncha stik yeyish kerak boʻladi.", "biotinTitle": "Biotin: BB LAB va HURUM Biotin", "food1": "Oddiy ovqat", "food2": "yetarli beradi", "oneStick": "1 stik", "noExtra": "Qoʻshimcha foyda yoʻq", "biotinText": "30 mkg — oddiy ovqat allaqachon beradigan kunlik ehtiyoj. Agar organizmda biotin yetishmovchiligi boʻlmasa, qoʻshimcha biotin teri va sochni yaxshilamaydi.", "cols": ["Mahsulot", "Stiklar", "Kollagen/stik", "Da", "C vit.", "Boshqa tarkibiy qismlar", "Kollagen/quti", "Quti narxi", "₩/stik", "₩/g kollagen", "Ball"], "strengths": "Kuchli tomonlari:", "weaknesses": "Zaif tomonlari:"}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide", "short": "Yorosum", "extras": "Shaftoli taʼmli kukun 300 mg, bambuk sharbati ekstrakti 30 mg, elastin 3 mg", "pros": "Stikda eng koʻp kollagen (2000 mg); qadoqda 300 Da yozilgan; 100 mg C vitamini; bir gramm narxi boʻyicha ikkinchi eng arzon.", "cons": "Stikdagi taxminan 0,57 g qadoqning old tomonida koʻrsatilmagan; elastin juda oz miqdorda; bitta stik ₩663."}, "hurum-sm": {"name": "HURUM past molekulyar baliq kollageni", "short": "HURUM (past molekulyar)", "extras": "L-prolin 6 mg, gialuron kislotasi 0,4 mg", "pros": "Bir gramm narxi eng arzon (₩319/g); 120 mg C vitamini; qisqa va toza tarkib.", "cons": "1200 mg — 2500 mg meʼyorining yarmidan kam; 300 Da qadoqning old tomonida yozilmagan."}, "ssf": {"name": "SSF anorli kollagen jele-stik", "short": "SSF", "extras": "Anor konsentrati 18 640 mg, elastin 20 mg, glutationli xamirturush 2 mg, biotin 20 mkg", "pros": "300 Da; qutida 100 g kollagen; jele shakli.", "cons": "Qutidagi «100 000 mg» butun quti uchun; atigi 4 mg C vitamini; asosan meva konsentrati (stikda taxminan 45 kkal)."}, "bb-goodnight": {"name": "BB LAB Goodnight kollagen", "short": "BB LAB Goodnight", "extras": "Glitsin 80 mg, L-prolin 20 mg", "pros": "Kollagenning asosiy aminokislotalari — glitsin va prolin qoʻshilgan; mashhur brend.", "cons": "1000 Da; C vitamini atigi 30 mg."}, "bb-biotin": {"name": "BB LAB biotinli kollagen", "short": "BB LAB Biotin", "extras": "Biotin 30 mkg", "pros": "1000 Da kollagen uchun past narx.", "cons": "C vitamini 30 mg; biotin nomga chiqarilgan, lekin teri uchun isbotlangan foyda bermaydi."}, "boto": {"name": "BOTO glutationli kollagen White", "short": "BOTO", "extras": "Quruq xamirturush (≈25 mg glutation), biotin 36 mkg", "pros": "220 mg C vitamini; eng arzon quti; HACCP va Halol sertifikatlari.", "cons": "Kollagen stikning atigi 20 foizi (800 mg); 2000 Da; glutation foydali dozadan ancha kam."}, "mippeum": {"name": "MIPPEUM kollagen jele toʻplami", "short": "MIPPEUM", "extras": "Meva konsentratlari (ABC sharbati, anor, Monmoransi olchasi) ≈18 400 mg", "pros": "1600 mg kollagen; 600 Da dan kam; uch xil taʼm.", "cons": "Bir gramm narxi eng qimmat (₩594/g); C vitamini yozilmagan; shirin meva asosi."}, "hurum-biotin": {"name": "HURUM biotinli kollagen peptid", "short": "HURUM Biotin", "extras": "Biotin 30 mkg, gialuron kislotasi 0,2 mg", "pros": "120 mg C vitamini; bitta stik narxi eng arzon (₩244).", "cons": "Atigi 500 mg kollagen; Da yozilmagan; qoʻshimchalar mikrodozada."}, "vitasub": {"name": "VITASUB Slim Collagen Plus", "short": "VITASUB", "extras": "Glutation 0,2 mg, gialuron kislotasi 0,02 mg, biotin 0,02 mg", "pros": "Eʼlon qilingan dozalarda yoʻq.", "cons": "Taxminan 196 mg kollagen; 0,2 mg C vitamini; oddiy oziq-ovqatda «oqartirish» belgisi; narxi yozilmagan."}}};
+const T = {"units": {"mg": "mg", "mcg": "mkg", "g": "g", "da": "Da", "thou": " ", "dec": ",", "groupMin": 5}, "js": {"hScore": "Ball", "hScoreHint": "10 dan, qancha yuqori boʻlsa, shuncha yaxshi", "hDose": "Stikdagi kollagen", "hDoseHint": "qancha koʻp boʻlsa, shuncha yaxshi", "hDa": "Boʻlakcha oʻlchami (Da)", "hDaHint": "qancha kichik boʻlsa, shuncha yaxshi", "hVitc": "Stikdagi C vitamini", "hVitcHint": "eng yaxshisi — 100 mg", "hClean": "Toza tarkib", "hCleanHint": "foydasiz qoʻshimchalarsiz", "hBox": "Bitta qutida", "hBoxHint": "stiklar × ogʻirlik", "w8": "Aʼlo", "w7": "Juda yaxshi", "w6": "Yaxshi", "w5": "Oʻrtacha", "w3": "Zaif", "w0": "Olmang", "cGood": "Yaxshi", "cFiller": "Toʻldiruvchi bor", "cTiny": "Mikrodozalar", "notOnBox": "Yozilmagan", "under": "{n} Da dan kam", "noneListed": "Yozilmagan", "sticks": "{n} ta stik × {g} g", "glut": "Glutation", "glutDesc": "Qutilarda koʻpincha terini «oqartirish» bilan bogʻlanadigan antioksidant. Tadqiqotlarda uni ichish orqali kuniga 250–1000 mg qabul qilishgan.", "ha": "Gialuron kislotasi", "haDesc": "Terida suvni ushlab turadigan modda. Tadqiqotlarda uni ichish orqali kuniga taxminan 120–240 mg qabul qilishgan.", "biotin": "Biotin", "biotinDesc": "B guruhi vitamini (B7 vitamini). Katta yoshli odamga kuniga taxminan 30 mkg kerak. mkg — mikrogramm: 1 mg = 1000 mkg.", "useful": "Foydali doza", "inStick": "1 stikda:", "nSticks": "{n} ta stik", "dropText": "Tadqiqotlardagi miqdorga yetish uchun kuniga shuncha stik ichish kerak boʻlardi.", "food1": "Oddiy ovqat", "food2": "yetarli beradi", "oneStick": "1 stik", "noExtra": "Qoʻshimcha foyda yoʻq", "biotinText": "Bitta stik kunlik biotin ehtiyojini qoplaydi, lekin oddiy ovqat ham yetarlicha beradi. Agar organizmda biotin yetishmovchiligi boʻlmasa, qoʻshimcha biotin teri va sochni yaxshilamaydi."}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide"}, "hurum-sm": {"name": "HURUM past molekulyar baliq kollageni"}, "ssf": {"name": "SSF anorli kollagen jele-stik"}, "bb-goodnight": {"name": "BB LAB Goodnight kollagen"}, "bb-biotin": {"name": "BB LAB biotinli kollagen"}, "boto": {"name": "BOTO glutationli kollagen White"}, "mippeum": {"name": "MIPPEUM kollagen jele toʻplami"}, "hurum-biotin": {"name": "HURUM biotinli kollagen peptid"}, "vitasub": {"name": "VITASUB Slim Collagen Plus"}}};
 const P = [
-  { id: "yorosum", own: true, sticks: 30, stickG: 3, collagen: 2000, da: 300, vitc: 100, honesty: 5, price: 19900 },
-  { id: "hurum-sm", sticks: 60, stickG: 2, collagen: 1200, da: 300, daSeller: true, vitc: 120, honesty: 4, price: 23000 },
-  { id: "ssf", sticks: 100, stickG: 20, collagen: 1000, da: 300, vitc: 4, honesty: 4, price: 39370 },
-  { id: "bb-goodnight", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 5, price: 22870 },
-  { id: "bb-biotin", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 2, price: 21900 },
-  { id: "boto", sticks: 30, stickG: 4, collagen: 800, da: 2000, vitc: 220, honesty: 2, price: 8630 },
-  { id: "mippeum", sticks: 45, stickG: 20, collagen: 1600, da: 600, daBelow: true, daSeller: true, doseSeller: true, vitc: 0, honesty: 4, price: 42800 },
-  { id: "hurum-biotin", sticks: 90, stickG: 2, collagen: 500, da: null, vitc: 120, honesty: 2, price: 22000 },
-  { id: "vitasub", sticks: 30, stickG: 2, collagen: 196, da: null, vitc: 0.2, honesty: 1, price: null }
-].map(p => Object.assign(p, T.products[p.id]));
+  { id: "yorosum", own: true, sticks: 30, stickG: 3, collagen: 2000, da: 300, vitc: 100, honesty: 5 },
+  { id: "hurum-sm", sticks: 60, stickG: 2, collagen: 1200, da: 300, vitc: 120, honesty: 4 },
+  { id: "ssf", sticks: 100, stickG: 20, collagen: 1000, da: 300, vitc: 4, honesty: 4 },
+  { id: "bb-goodnight", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 5 },
+  { id: "bb-biotin", sticks: 50, stickG: 2, collagen: 1200, da: 1000, vitc: 30, honesty: 2 },
+  { id: "boto", sticks: 30, stickG: 4, collagen: 800, da: 2000, vitc: 220, honesty: 2 },
+  { id: "mippeum", sticks: 45, stickG: 20, collagen: 1600, da: 600, daBelow: true, vitc: 0, honesty: 4 },
+  { id: "hurum-biotin", sticks: 90, stickG: 2, collagen: 500, da: null, vitc: 120, honesty: 2 },
+  { id: "vitasub", sticks: 30, stickG: 2, collagen: 196, da: null, vitc: 0.2, honesty: 1 }
+].map(p => Object.assign(p, T.products[p.id], { img: `img/${p.id}.jpg` }));
 
 const u = T.units;
 const daScore = d => d == null ? 3 : d <= 300 ? 10 : d <= 600 ? 8 : d <= 1000 ? 6 : 4;
@@ -613,97 +486,59 @@ function fmt(n, dec = 0) {
   return (n < 0 ? "-" : "") + int + (f ? u.dec + f : "");
 }
 const r1 = x => fmt(Math.round(x * 10) / 10, 1);
-const won = n => n == null ? T.js.noPrice : "₩" + fmt(Math.round(n));
 const mg = n => n === 0 ? T.js.noneListed : n >= 1 ? fmt(n) + " " + u.mg : fmt(Math.round(n * 1000)) + " " + u.mcg;
-const tone = s => s == null ? "var(--muted)" : s >= 7 ? "var(--good)" : s >= 5 ? "var(--ok)" : s >= 3 ? "var(--warn)" : "var(--bad)";
+const tone = s => s >= 7 ? "var(--good)" : s >= 5 ? "var(--ok)" : s >= 3 ? "var(--warn)" : "var(--bad)";
 const word = s => s >= 8 ? T.js.w8 : s >= 7 ? T.js.w7 : s >= 6 ? T.js.w6 : s >= 5 ? T.js.w5 : s >= 3 ? T.js.w3 : T.js.w0;
 const daText = p => p.da == null ? T.js.notOnBox : p.daBelow ? T.js.under.replace("{n}", fmt(p.da)) : fmt(p.da) + " " + u.da;
-const sticksText = p => T.js.sticks.replace("{n}", p.sticks).replace("{g}", p.stickG);
 
-const best = Math.min(...P.filter(p => p.price).map(p => p.price / (p.collagen * p.sticks / 1000)));
 P.forEach(p => {
-  p.img = `img/${p.id}.jpg`;
-  p.total = p.collagen * p.sticks;
   p.s = { dose: Math.min(10, p.collagen / 250), da: daScore(p.da), vitc: Math.min(10, p.vitc / 10), honesty: p.honesty };
   p.score = (p.s.dose * 20 + p.s.da * 20 + p.s.vitc * 15 + p.s.honesty * 15) / 70;
-  if (p.price) {
-    p.perG = p.price / (p.total / 1000);
-    p.perStick = p.price / p.sticks;
-    p.s.price = 10 * best / p.perG;
-  }
 });
 const ranked = [...P].sort((a, b) => b.score - a.score);
 
-const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${s != null && i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
-const meter = (label, s, val) => `<div class="meter"><span class="lab">${label}</span>${blocks(s)}<span class="val">${val}</span></div>`;
-const seller = " ◆";
+const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
+const cell = (s, val) => `<div class="cell">${blocks(s)}<span class="val">${val}</span></div>`;
+const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><svg aria-hidden="true"><use href="#${icon}"/></svg><b>${label}</b><small>${hint}</small></div></th>`;
+const row = (head, fn) => `<tr>${head}${ranked.map(p => `<td class="${p.own ? "own" : ""}">${fn(p)}</td>`).join("")}</tr>`;
+const clean = h => h >= 5 ? T.js.cGood : h >= 3 ? T.js.cFiller : T.js.cTiny;
 
-document.getElementById("ranking").innerHTML =
-  `<div class="rhead" aria-hidden="true"><span>${T.js.hRank}</span><span></span><span>${T.js.hProduct}</span><span style="text-align:center">${T.js.hScore}</span>
-    <span class="ic"><svg><use href="#i-dose"/></svg>${T.js.hDose}</span>
-    <span class="ic"><svg><use href="#i-size"/></svg>${T.js.hDa}</span>
-    <span class="ic"><svg><use href="#i-vitc"/></svg>${T.js.hVitc}</span>
-    <span class="ic"><svg><use href="#i-clean"/></svg>${T.js.hClean}</span>
-    <span class="ic"><svg><use href="#i-price"/></svg>${T.js.hPrice}</span></div>` +
-  ranked.map((p, i) => `<article class="ritem ${p.own ? "own" : ""}">
+document.getElementById("compare").innerHTML =
+  `<colgroup><col class="label">${ranked.map(() => "<col>").join("")}</colgroup>` +
+  `<thead><tr><td></td>${ranked.map((p, i) => `<td class="${p.own ? "own" : ""}"><div class="prod">
       <span class="medal ${i < 3 ? "m" + (i + 1) : ""}">${i + 1}</span>
       <span class="thumb"><img src="${p.img}" alt="${p.name}"></span>
-      <span class="pname">${p.name}<small>${sticksText(p)} · ${won(p.price)}</small></span>
-      <span class="badge" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span><span class="word">${word(p.score)}</span></span>
-      <div class="meters">
-        ${meter(T.js.hDose, p.s.dose, mg(p.collagen) + (p.doseSeller ? seller : ""))}
-        ${meter(T.js.hDa, p.s.da, daText(p) + (p.daSeller ? seller : ""))}
-        ${meter(T.js.hVitc, p.s.vitc, mg(p.vitc))}
-        ${meter(T.js.hClean, p.s.honesty, p.s.honesty >= 5 ? T.js.cGood : p.s.honesty >= 3 ? T.js.cFiller : T.js.cTiny)}
-        <div class="meter price"><span class="lab">${T.js.hPrice}</span><span class="val">${p.perG ? won(p.perG) + "/" + u.g : T.js.noPrice}</span><span class="sub">${p.perStick ? won(p.perStick) + " " + T.js.perStick : ""}</span></div>
-      </div></article>`).join("");
+      <span class="pname">${p.name}</span></div></td>`).join("")}</tr></thead><tbody>` +
+  row(rowLabel("i-star", T.js.hScore, T.js.hScoreHint), p => `<div class="score" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span><span class="word">${word(p.score)}</span></div>`) +
+  row(rowLabel("i-dose", T.js.hDose, T.js.hDoseHint), p => cell(p.s.dose, mg(p.collagen))) +
+  row(rowLabel("i-size", T.js.hDa, T.js.hDaHint), p => cell(p.s.da, daText(p))) +
+  row(rowLabel("i-vitc", T.js.hVitc, T.js.hVitcHint), p => cell(p.s.vitc, mg(p.vitc))) +
+  row(rowLabel("i-clean", T.js.hClean, T.js.hCleanHint), p => cell(p.s.honesty, clean(p.honesty))) +
+  row(rowLabel("i-box", T.js.hBox, T.js.hBoxHint), p => `<span class="sticks">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span>`) +
+  "</tbody>";
 
-function barChart(el, rows, { max, target, value, label, toneFn, key }) {
-  document.getElementById(el).innerHTML = rows.map(p => {
-    const v = value(p), w = v == null ? 0 : Math.min(100, v / max * 100);
-    return `<div class="crow"><img src="${p.img}" alt=""><span class="cn">${p.name}</span>
-      <div class="ctrack"><div class="cfill" style="width:${w}%;--tone:${toneFn(p)}"></div>
-      ${target ? `<div class="target" style="left:${target / max * 100}%"></div>` : ""}
-      <span class="cval" style="left:${Math.min(w, 72)}%">${label(p)}</span></div></div>`;
-  }).join("") + (key ? `<div class="chart-key">${key}</div>` : "");
-}
-barChart("chart-dose", [...P].sort((a, b) => b.collagen - a.collagen), {
-  max: 2600, target: 2500, value: p => p.collagen, label: p => mg(p.collagen), toneFn: p => tone(p.s.dose), key: T.js.keyDose
-});
-barChart("chart-vitc", [...P].sort((a, b) => b.vitc - a.vitc), {
-  max: 230, target: 100, value: p => p.vitc, label: p => mg(p.vitc), toneFn: p => tone(p.s.vitc), key: T.js.keyVitc
-});
-barChart("chart-price", P.filter(p => p.price).sort((a, b) => a.perG - b.perG), {
-  max: 620, value: p => p.perG, label: p => won(p.perG) + " " + T.js.perGram, toneFn: p => tone(p.s.price), key: T.js.keyPrice
-});
-
+const byId = id => P.find(p => p.id === id);
 const drops = [
-  { what: T.js.glut, who: "VITASUB", inStick: 0.2, need: 250 },
-  { what: T.js.glut, who: "BOTO", inStick: 25, need: 250 },
-  { what: T.js.ha, who: T.products["hurum-sm"].short, inStick: 0.4, need: 120 }
+  { what: T.js.glut, desc: T.js.glutDesc, items: ["vitasub"], inStick: 0.2, need: 250 },
+  { what: T.js.glut, desc: T.js.glutDesc, items: ["boto"], inStick: 25, need: 250 },
+  { what: T.js.ha, desc: T.js.haDesc, items: ["hurum-sm"], inStick: 0.4, need: 120 }
 ];
+const head = d => `<div class="hd"><div class="imgs">${d.items.map(id => `<img src="${byId(id).img}" alt="${byId(id).name}">`).join("")}</div>
+  <div><h3>${d.what}</h3><div class="desc" style="font-size:13px">${d.items.map(id => byId(id).name).join(", ")}</div></div></div>`;
 document.getElementById("drops").innerHTML = drops.map(d => {
   const ratio = Math.round(d.need / d.inStick);
   const rBig = 52, rSmall = Math.max(1.5, rBig * Math.sqrt(d.inStick / d.need));
-  return `<div class="drop"><h3>${T.js.dropTitle.replace("{what}", d.what).replace("{who}", d.who)}</h3>
+  return `<div class="drop">${head(d)}<p class="desc">${d.desc}</p>
     <svg viewBox="0 0 240 130" aria-hidden="true">
       <circle cx="62" cy="58" r="${rBig}" style="fill:var(--good);fill-opacity:.22;stroke:var(--good);stroke-width:2"/>
       <text x="62" y="54" text-anchor="middle" class="svg-text" style="font-size:11.5px;font-weight:600">${T.js.useful}</text>
       <text x="62" y="72" text-anchor="middle" class="svg-text" style="font-size:11.5px">${fmt(d.need)} ${u.mg}</text>
-      <circle cx="180" cy="56" r="${rSmall.toFixed(1)}" style="fill:var(--bad)"/>
-      <text x="180" y="122" text-anchor="middle" class="svg-text" style="font-size:13px">${T.js.inStick} ${fmt(d.inStick, d.inStick < 1 ? 1 : 0)} ${u.mg}</text>
+      <circle cx="180" cy="58" r="${rSmall.toFixed(1)}" style="fill:var(--bad)"/>
+      <text x="180" y="124" text-anchor="middle" class="svg-text" style="font-size:12.5px">${T.js.inStick} ${fmt(d.inStick, d.inStick < 1 ? 1 : 0)} ${u.mg}</text>
     </svg>
     <div class="big">${T.js.nSticks.replace("{n}", fmt(ratio))}</div><p>${T.js.dropText}</p></div>`;
-}).join("") + `<div class="drop"><h3>${T.js.biotinTitle}</h3>
-    <svg viewBox="0 0 240 130" aria-hidden="true"><circle cx="62" cy="58" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="62" y="54" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.food1}</text><text x="62" y="70" text-anchor="middle" class="svg-text" style="font-size:11px">${T.js.food2}</text>
-    <text x="122" y="66" text-anchor="middle" class="svg-text" style="font-size:22px">+</text><circle cx="182" cy="58" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="182" y="54" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.oneStick}</text><text x="182" y="70" text-anchor="middle" class="svg-text" style="font-size:11px">30 ${u.mcg}</text></svg>
+}).join("") + `<div class="drop">${head({ what: T.js.biotin, items: ["bb-biotin", "hurum-biotin"] })}<p class="desc">${T.js.biotinDesc}</p>
+    <svg viewBox="0 0 240 130" aria-hidden="true"><circle cx="62" cy="62" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="62" y="58" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.food1}</text><text x="62" y="74" text-anchor="middle" class="svg-text" style="font-size:11px">${T.js.food2}</text>
+    <text x="122" y="70" text-anchor="middle" class="svg-text" style="font-size:22px">+</text><circle cx="182" cy="62" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="182" y="58" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.oneStick}</text><text x="182" y="74" text-anchor="middle" class="svg-text" style="font-size:11px">30 ${u.mcg}</text></svg>
     <div class="big" style="color:var(--warn)">${T.js.noExtra}</div><p>${T.js.biotinText}</p></div>`;
-
-document.getElementById("matrix").innerHTML = `<thead><tr>${T.js.cols.map(c => `<th>${c}</th>`).join("")}</tr></thead><tbody>` +
-  ranked.map(p => `<tr><td><b>${p.name}</b></td><td>${sticksText(p)}</td><td>${mg(p.collagen)}${p.doseSeller ? seller : ""}</td>
-    <td>${daText(p)}${p.daSeller ? seller : ""}</td><td>${mg(p.vitc)}</td><td class="wrap">${p.extras}</td><td>${fmt(p.total / 1000)} ${u.g}</td>
-    <td>${won(p.price)}</td><td>${p.perStick ? won(p.perStick) : "–"}</td><td>${p.perG ? won(p.perG) : "–"}</td>
-    <td><b>${r1(p.score)}</b></td></tr>`).join("") + "</tbody>";
-document.getElementById("notes").innerHTML = ranked.map((p, i) => `<p><b>${i + 1}. ${p.name} (${r1(p.score)})</b><br>
-  <span style="color:var(--good)">${T.js.strengths}</span> ${p.pros}<br><span style="color:var(--bad)">${T.js.weaknesses}</span> ${p.cons}</p>`).join("");
 </script>

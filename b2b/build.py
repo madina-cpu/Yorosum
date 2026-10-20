@@ -28,7 +28,7 @@ def build(lang):
     data = json.loads((ROOT / "src" / "i18n" / f"{lang}.json").read_text(encoding="utf-8"))
     if data["units"]["thou"] == " ":
         data["units"]["thou"] = " "  # keep digit groups on one line
-    strings = flatten({k: v for k, v in data.items() if k not in ("units", "js", "products")})
+    strings = flatten({k: v for k, v in data.items() if k not in ("js", "products")})
     runtime = {"units": data["units"], "js": data["js"], "products": data["products"]}
     strings["__T"] = json.dumps(runtime, ensure_ascii=False).replace("</", "<\\/")
 

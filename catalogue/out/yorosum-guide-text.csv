@@ -64,10 +64,10 @@ p5_qr,5,Scan to visit our store and channels,"Отсканируйте, чтоб
 p5_note,5,"This product is a food, not a medicine.",Не является лекарственным средством.,Dori vositasi emas.
 pick,0,Choose your language,Выберите язык,Tilni tanlang
 m1_k,5,Minimum order,Минимальный заказ,Minimal buyurtma
-m1,5,1 carton,1 короб,1 karton
-m2_k,5,One carton,В одном коробе,Bitta kartonda
+m1,5,1 carton · 6.5 kg,"1 коробка · 6,5 кг","1 karton · 6,5 kg"
+m2_k,5,One carton,В одной коробке,Bitta kartonda
 m2,5,"42 boxes · 1,260 sticks",42 упаковки · 1 260 стиков,42 quti · 1 260 stik
-m3_k,5,Carton,Короб,Karton
-m3,5,48 × 33 × 31 cm · 6.5 kg,"48 × 33 × 31 см · 6,5 кг","48 × 33 × 31 sm · 6,5 kg"
+m3_k,5,Carton size,Размер коробки,Karton o‘lchami
+m3,5,48 × 33 × 31 cm,48 × 33 × 31 см,48 × 33 × 31 sm
 p4_bar,4,Vitamin C in one stick,Витамин C в одном стике,Bitta stikdagi C vitamini
 p4_bar_v,4,of daily value,суточной нормы,kunlik me’yordan

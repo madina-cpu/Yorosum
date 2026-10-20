@@ -76,21 +76,21 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 .compare th, .compare td { padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; text-align: center; }
 .compare tr:last-child > * { border-bottom: 0; }
 .compare th[scope="row"] { text-align: left; padding-left: 14px; position: sticky; left: 0; background: var(--surface); z-index: 1; }
-.compare .rl { display: grid; grid-template-columns: 22px 1fr; gap: 2px 8px; align-items: center; }
-.compare .rl svg { width: 22px; height: 22px; }
+.compare .rl { display: block; }
 .compare .rl b { font-size: 14px; line-height: 1.25; }
 .compare .rl small { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.2; }
 .compare td.own { background: var(--accent-soft); }
-.compare thead td { vertical-align: top; padding-top: 14px; }
-.prod { display: grid; justify-items: center; gap: 6px; }
-.medal { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--f-display); background: var(--track); color: var(--fg); }
-.medal.m1 { background: #e8c25a; color: #3a2b00; }
-.medal.m2 { background: #c9d3d8; color: #1f2b31; }
-.medal.m3 { background: #d79a68; color: #3a1d06; }
-.thumb { width: 84px; height: 84px; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); }
+.compare thead tr:not(:last-child) td { border-bottom: 0; }
+.compare tr.imgs td { vertical-align: bottom; padding-top: 12px; padding-bottom: 6px; }
+.compare tr.names td { vertical-align: top; padding-top: 2px; padding-bottom: 2px; }
+.compare tr.boxes td { vertical-align: top; padding-top: 2px; }
+.compare tbody td { vertical-align: top; }
+.compare tbody tr:first-child td { vertical-align: middle; }
+.pillbox { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.thumb { width: 100%; max-width: 104px; aspect-ratio: 1; margin: 0 auto; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); }
 .thumb img { width: 100%; height: 100%; object-fit: contain; }
-.prod .pname { font-size: 13px; font-weight: 600; line-height: 1.25; hyphens: auto; overflow-wrap: anywhere; }
-.sticks { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.compare .pname { display: block; font-size: 13px; font-weight: 600; line-height: 1.25; hyphens: auto; overflow-wrap: anywhere; }
+.sticks { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1.2; white-space: nowrap; }
 .score { display: grid; justify-items: center; gap: 4px; }
 .score .big { font: 800 28px/1 var(--f-display); color: var(--tone); font-variant-numeric: tabular-nums; }
 .score .big small { font-size: 13px; color: var(--muted); font-weight: 600; }
@@ -107,11 +107,9 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 .pill.bad { --pbg: var(--bad-soft); --pink: var(--bad-ink); }
 .nodata { font-size: 12.5px; color: var(--muted); font-style: italic; }
 .compare td.top2 { background: var(--mint); }
-.compare thead td.top2 { box-shadow: inset 0 3px 0 var(--accent); }
-.compare thead td.own { box-shadow: inset 0 3px 0 var(--accent); }
+.compare tr.imgs td.top2, .compare tr.imgs td.own { box-shadow: inset 0 3px 0 var(--accent); }
 .compare td.split { border-left: 2px dashed var(--line); }
-.compare td.rest .cell .val, .compare td.rest .prod .pname { font-weight: 500; color: var(--muted); }
-.compare td.rest .thumb img { filter: saturate(0.55); opacity: 0.85; }
+.compare td.rest .cell .val, .compare td.rest .pname { font-weight: 500; color: var(--muted); }
 .compare tr.tiers td { padding: 8px 6px 0; border-bottom: 0; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
 .compare tr.tiers td.tier-top { color: var(--accent); }
 .compare tr.tiers td.tier-rest { color: var(--muted); }
@@ -198,11 +196,10 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
   .compare thead td { padding-top: 8px; }
   .compare th[scope="row"] { padding-left: 10px; position: static; }
   .compare .rl b { font-size: 14px; } .compare .rl small { font-size: 9.5px; }
-  .compare .rl svg { width: 18px; height: 18px; } .compare .rl { grid-template-columns: 18px 1fr; }
-  .thumb { width: 82px; height: 82px; }
-  .prod .pname { font-size: 12px; } .prod { gap: 4px; }
-  .medal { width: 28px; height: 28px; font-size: 14px; }
-  .sticks { font-size: 11px; }
+  .thumb { max-width: 96px; width: 100%; height: auto; }
+  .pillbox { min-height: 40px; }
+  .compare .pname { font-size: 12px; }
+  .sticks { font-size: 10.5px; letter-spacing: -0.01em; }
   .score .big { font-size: 30px; } .score .word { font-size: 8.5px; }
   .cell .val { font-size: 14px; } .cell { gap: 5px; }
 
@@ -593,10 +590,10 @@ const ranked = [...P].sort((a, b) => b.score - a.score);
 
 const pts = s => `<span class="pts">${T.js.pts.replace("{n}", r1(s))}</span>`;
 const bar = (s, val) => `<div class="cell"><span class="val">${val}</span><div class="sbar" style="--w:${s * 10}%;--tone:${tone(s)}"><i></i></div>${pts(s)}</div>`;
-const pill = (s, cls, val) => `<div class="cell">${cls ? `<span class="pill ${cls}">${val}</span>` : `<span class="nodata">${val}</span>`}${pts(s)}</div>`;
+const pill = (s, cls, val) => `<div class="cell"><div class="pillbox">${cls ? `<span class="pill ${cls}">${val}</span>` : `<span class="nodata">${val}</span>`}</div>${pts(s)}</div>`;
 const daCls = p => p.da == null ? "" : p.da <= 300 ? "good" : p.da <= 600 ? "ok" : "warn";
 const cleanCls = h => h >= 5 ? "good" : h >= 3 ? "ok" : "bad";
-const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><svg aria-hidden="true"><use href="#${icon}"/></svg><b>${label}</b></div></th>`;
+const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><b>${label}</b></div></th>`;
 const colCls = i => i === 0 ? "own" : i === 1 ? "top2" : i === 2 ? "rest split" : "rest";
 const row = (head, fn) => `<tr>${head}${ranked.map((p, i) => `<td class="${colCls(i)}">${fn(p)}</td>`).join("")}</tr>`;
 const clean = h => h >= 5 ? T.js.cGood : h >= 3 ? T.js.cFiller : T.js.cTiny;
@@ -604,11 +601,9 @@ const clean = h => h >= 5 ? T.js.cGood : h >= 3 ? T.js.cFiller : T.js.cTiny;
 document.getElementById("compare").innerHTML =
   `<colgroup><col class="label">${ranked.map(() => "<col>").join("")}</colgroup>` +
   `<thead><tr class="tiers"><td></td><td colspan="2" class="tier-top">${T.js.tierTop}</td><td colspan="${ranked.length - 2}" class="tier-rest split">${T.js.tierRest}</td></tr>` +
-  `<tr><td></td>${ranked.map((p, i) => `<td class="${colCls(i)}"><div class="prod">
-      <span class="medal ${i < 3 ? "m" + (i + 1) : ""}">${i + 1}</span>
-      <span class="thumb"><img src="${p.img}" alt="${p.name}"></span>
-      <span class="pname">${p.name}</span>
-      <span class="sticks" title="${T.js.hBox}">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span></div></td>`).join("")}</tr></thead><tbody>` +
+  `<tr class="imgs"><td></td>${ranked.map((p, i) => `<td class="${colCls(i)}"><span class="thumb"><img src="${p.img}" alt="${p.name}"></span></td>`).join("")}</tr>` +
+  `<tr class="names"><td></td>${ranked.map((p, i) => `<td class="${colCls(i)}"><span class="pname">${p.name}</span></td>`).join("")}</tr>` +
+  `<tr class="boxes"><td></td>${ranked.map((p, i) => `<td class="${colCls(i)}"><span class="sticks" title="${T.js.hBox}">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span></td>`).join("")}</tr></thead><tbody>` +
   row(rowLabel("i-star", T.js.hScore, T.js.hScoreHint), p => `<div class="score" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span></div>`) +
   row(rowLabel("i-dose", T.js.hDose, T.js.hDoseHint), p => bar(p.s.dose, mg(p.collagen))) +
   row(rowLabel("i-size", T.js.hDa, T.js.hDaHint), p => pill(p.s.da, daCls(p), daText(p))) +

@@ -11,8 +11,8 @@
   "p1": {
     "no": "Comparison sheet",
     "title": "Which collagen stick is best?",
-    "demo": "8 of 10 blocks = 8 points",
-    "how1": "<b>How to read the blocks.</b> Each row scores one thing out of 10. Filled blocks = points: 8 filled blocks means 8 out of 10. Green is strong, yellow is average, orange and red are weak. The small number under each value is that row's points.",
+    "demo": "Full bar = 10 points; this one is 8",
+    "how1": "<b>How to read the table.</b> Bars show points out of 10: a full bar is 10 points. Coloured pills show categories: green is strong, yellow is average, orange and red are weak. Grey text means the box does not say. The small number under each value is that row's points.",
     "how2": "<b>How the overall score is made.</b> It is the weighted average of the four scored rows: collagen per stick (2 parts), piece size (2 parts), vitamin C (1.5 parts) and clean formula (1.5 parts). \"In one box\" (under each name) is information only and is not scored.",
     "foot": "Data: amounts per stick calculated from each product's label (box photos, October 2026). MIPPEUM's figures and HURUM Small Molecular's 300 Da come from seller listings because they are not printed on the front of the box. Full method and sources are in the companion guide."
   },
@@ -214,7 +214,9 @@
     "noExtra": "No extra effect",
     "biotinText": "One stick gives a full day of biotin, but normal food already gives enough. There is no good evidence that extra biotin improves skin or hair in people who are not lacking it.<sup>15</sup>",
     "pts": "{n} / 10",
-    "cmpLabel": "Math comparison"
+    "cmpLabel": "Math comparison",
+    "tierTop": "Recommended",
+    "tierRest": "For comparison"
   },
   "products": {
     "yorosum": {

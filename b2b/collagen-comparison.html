@@ -23,6 +23,11 @@
   --skin: #f3d2c1;
   --skin-deep: #e7b49f;
   --vitc: #f29a1f;
+  --mint: #eef8f7;
+  --good-soft: #dcf1e3; --good-ink: #1f6b3d;
+  --ok-soft: #f7ecc8; --ok-ink: #745705;
+  --warn-soft: #fbe2cc; --warn-ink: #8f4510;
+  --bad-soft: #f8d9d2; --bad-ink: #8e2c18;
   --f-display: "Onest", "Noto Sans KR", system-ui, sans-serif;
   --f-body: "Onest", "Noto Sans KR", system-ui, sans-serif;
 }
@@ -30,14 +35,14 @@
   :root:not([data-theme="light"]) {
     --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #97a8af; --line: #26373f;
     --accent: #52c2c0; --accent-soft: #163a3d; --good: #5fcb8a; --ok: #e5c04e; --warn: #f0a05a; --bad: #f0806a; --track: #1e2e36;
-    --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48;
+    --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48; --mint: #13272a; --good-soft: #173a26; --good-ink: #8fe0ae; --ok-soft: #3a3214; --ok-ink: #ecd27a; --warn-soft: #3d2614; --warn-ink: #f5bb86; --bad-soft: #3f1f19; --bad-ink: #f4a593;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0c151a; --surface: #121f27; --fg: #e2ebed; --muted: #97a8af; --line: #26373f;
   --accent: #52c2c0; --accent-soft: #163a3d; --good: #5fcb8a; --ok: #e5c04e; --warn: #f0a05a; --bad: #f0806a; --track: #1e2e36;
-  --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48;
+  --skin: #7a5446; --skin-deep: #94685a; --vitc: #f5ad48; --mint: #13272a; --good-soft: #173a26; --good-ink: #8fe0ae; --ok-soft: #3a3214; --ok-ink: #ecd27a; --warn-soft: #3d2614; --warn-ink: #f5bb86; --bad-soft: #3f1f19; --bad-ink: #f4a593;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -91,14 +96,28 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 .score .big small { font-size: 13px; color: var(--muted); font-weight: 600; }
 .score .word { font: 700 10.5px var(--f-body); text-transform: uppercase; letter-spacing: 0.03em; padding: 2px 7px; border-radius: 999px; background: var(--tone); color: var(--surface); white-space: nowrap; }
 .cell { display: grid; gap: 5px; justify-items: center; }
-.blocks { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: 100%; max-width: 92px; }
-.blocks i { height: 9px; border-radius: 2px; background: var(--track); }
-.blocks i.on { background: var(--tone); }
 .cell .val { font-size: 13.5px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.25; }
 .cell .pts { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sbar { width: 100%; max-width: 92px; height: 6px; border-radius: 3px; background: var(--track); overflow: hidden; }
+.sbar i { display: block; height: 100%; width: var(--w); background: var(--tone); border-radius: 3px; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 600; line-height: 1.25; background: var(--pbg); color: var(--pink); }
+.pill.good { --pbg: var(--good-soft); --pink: var(--good-ink); }
+.pill.ok { --pbg: var(--ok-soft); --pink: var(--ok-ink); }
+.pill.warn { --pbg: var(--warn-soft); --pink: var(--warn-ink); }
+.pill.bad { --pbg: var(--bad-soft); --pink: var(--bad-ink); }
+.nodata { font-size: 12.5px; color: var(--muted); font-style: italic; }
+.compare td.top2 { background: var(--mint); }
+.compare thead td.top2 { box-shadow: inset 0 3px 0 var(--accent); }
+.compare thead td.own { box-shadow: inset 0 3px 0 var(--accent); }
+.compare td.split { border-left: 2px dashed var(--line); }
+.compare td.rest .cell .val, .compare td.rest .prod .pname { font-weight: 500; color: var(--muted); }
+.compare td.rest .thumb img { filter: saturate(0.55); opacity: 0.85; }
+.compare tr.tiers td { padding: 8px 6px 0; border-bottom: 0; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.compare tr.tiers td.tier-top { color: var(--accent); }
+.compare tr.tiers td.tier-rest { color: var(--muted); }
 .howto { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: 14px 22px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
-.howto .demo { display: grid; gap: 4px; justify-items: center; min-width: 110px; }
-.howto .demo .blocks { max-width: 110px; }
+.howto .demo { display: grid; gap: 6px; justify-items: center; min-width: 140px; }
+.howto .demo .sbar { max-width: 120px; }
 .howto .demo span { font-size: 12.5px; color: var(--muted); }
 .howto p { font-size: 14px; max-width: none; }
 @media (max-width: 760px) { .howto { grid-template-columns: 1fr; } }
@@ -185,7 +204,7 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
   .medal { width: 24px; height: 24px; font-size: 12px; }
   .sticks { font-size: 10px; }
   .score .big { font-size: 22px; } .score .word { font-size: 8.5px; }
-  .blocks i { height: 8px; } .cell .val { font-size: 11.5px; } .cell { gap: 3px; }
+  .cell .val { font-size: 11.5px; } .cell { gap: 3px; }
 
   .lesson { grid-template-columns: 1fr; gap: 14px; }
   .lesson.flip > .art { order: 0; }
@@ -211,6 +230,8 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
   .page.wide h1 { font-size: 22px; } .page.wide { gap: 8px; } .howto .demo span { font-size: 10px; }
   .sheet-foot { font-size: 9.5px; }
   .cell .pts { font-size: 9.5px; }
+  .pill { font-size: 10.5px; padding: 2px 7px; } .nodata { font-size: 10.5px; } .sbar { height: 5px; }
+  .compare tr.tiers td { font-size: 9px; padding: 4px 5px 0; }
   .method { padding: 10px 12px; gap: 6px; } .method p, .weights { font-size: 11.5px; } .weights div { padding: 3px 0; }
   .method h3, .refs h3 { font-size: 14px; }
   .refs ol { font-size: 9.5px; gap: 1px; }
@@ -239,8 +260,9 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
     <h1 id="p1">Which collagen stick is best?</h1>
   </div>
   <div class="howto">
-    <div class="demo"><div class="blocks" style="--tone:var(--good)"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span>8 of 10 blocks = 8 points</span></div>
-    <p><b>How to read the blocks.</b> Each row scores one thing out of 10. Filled blocks = points: 8 filled blocks means 8 out of 10. Green is strong, yellow is average, orange and red are weak. The small number under each value is that row's points.</p>
+    <div class="demo"><div class="sbar" style="--w:80%;--tone:var(--good)"><i></i></div><span>Full bar = 10 points; this one is 8</span>
+      <div><span class="pill good">300 Da</span> <span class="pill warn">2000 Da</span></div></div>
+    <p><b>How to read the table.</b> Bars show points out of 10: a full bar is 10 points. Coloured pills show categories: green is strong, yellow is average, orange and red are weak. Grey text means the box does not say. The small number under each value is that row's points.</p>
     <p><b>How the overall score is made.</b> It is the weighted average of the four scored rows: collagen per stick (2 parts), piece size (2 parts), vitamin C (1.5 parts) and clean formula (1.5 parts). "In one box" (under each name) is information only and is not scored.</p>
   </div>
   <div class="compare-wrap"><table class="compare" id="compare"></table></div>
@@ -543,7 +565,7 @@ html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
 </div>
 
 <script>
-const T = {"units": {"mg": "mg", "mcg": "µg", "g": "g", "da": "Da", "thou": ",", "dec": ".", "groupMin": 4}, "js": {"hScore": "Score", "hScoreHint": "weighted average of the 4 scored rows", "hDose": "Collagen per stick", "hDoseHint": "more is better · 2 parts", "hDa": "Piece size (Da)", "hDaHint": "smaller is better · 2 parts", "hVitc": "Vitamin C per stick", "hVitcHint": "100 mg is ideal · 1.5 parts", "hClean": "Clean formula", "hCleanHint": "no useless extras · 1.5 parts", "hBox": "In one box", "hBoxHint": "for information, not scored", "w8": "Excellent", "w7": "Very good", "w6": "Good", "w5": "Average", "w3": "Weak", "w0": "Avoid", "cGood": "Good", "cFiller": "Some filler", "cTiny": "Tiny extras", "notOnBox": "Not on box", "under": "Under {n} Da", "noneListed": "None listed", "sticks": "{n} sticks × {g} g", "glut": "Glutathione", "glutDesc": "An antioxidant that boxes often link to \"whitening\". In the best-known trial, adults took 250 or 1,000 mg a day for 6 months to raise glutathione levels in the body.<sup>12<\/sup>", "ha": "Hyaluronic acid", "haDesc": "A substance that holds water in the skin. In the study on dry skin, people took 120 mg a day.<sup>13<\/sup>", "biotin": "Biotin", "biotinDesc": "A B vitamin (vitamin B7). An adult needs about 30 µg a day.<sup>14<\/sup> µg means microgram: 1 mg = 1,000 µg.", "useful": "Useful dose", "inStick": "In 1 stick:", "nSticks": "{n} sticks", "dropText": "The amount used in the study is {n} times what one stick contains. This compares amounts only; it is not a suggestion to take more sticks.", "food1": "Normal food", "food2": "gives enough", "oneStick": "1 stick", "noExtra": "No extra effect", "biotinText": "One stick gives a full day of biotin, but normal food already gives enough. There is no good evidence that extra biotin improves skin or hair in people who are not lacking it.<sup>15<\/sup>", "pts": "{n} / 10", "cmpLabel": "Math comparison"}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide"}, "hurum-sm": {"name": "HURUM Small Molecular Fish Collagen", "short": "HURUM Small Molecular"}, "ssf": {"name": "SSF Real Pomegranate Collagen Jelly"}, "bb-goodnight": {"name": "BB LAB Goodnight Collagen"}, "bb-biotin": {"name": "BB LAB Collagen Biotin Plus", "short": "BB LAB Biotin"}, "boto": {"name": "BOTO Glutathione White Collagen", "short": "BOTO"}, "mippeum": {"name": "MIPPEUM Collagen Jelly Mix Package"}, "hurum-biotin": {"name": "HURUM Biotin Collagen Peptide", "short": "HURUM Biotin"}, "vitasub": {"name": "VITASUB Slim Collagen Plus", "short": "VITASUB"}}};
+const T = {"units": {"mg": "mg", "mcg": "µg", "g": "g", "da": "Da", "thou": ",", "dec": ".", "groupMin": 4}, "js": {"hScore": "Score", "hScoreHint": "weighted average of the 4 scored rows", "hDose": "Collagen per stick", "hDoseHint": "more is better · 2 parts", "hDa": "Piece size (Da)", "hDaHint": "smaller is better · 2 parts", "hVitc": "Vitamin C per stick", "hVitcHint": "100 mg is ideal · 1.5 parts", "hClean": "Clean formula", "hCleanHint": "no useless extras · 1.5 parts", "hBox": "In one box", "hBoxHint": "for information, not scored", "w8": "Excellent", "w7": "Very good", "w6": "Good", "w5": "Average", "w3": "Weak", "w0": "Avoid", "cGood": "Good", "cFiller": "Some filler", "cTiny": "Tiny extras", "notOnBox": "Not on box", "under": "Under {n} Da", "noneListed": "None listed", "sticks": "{n} sticks × {g} g", "glut": "Glutathione", "glutDesc": "An antioxidant that boxes often link to \"whitening\". In the best-known trial, adults took 250 or 1,000 mg a day for 6 months to raise glutathione levels in the body.<sup>12<\/sup>", "ha": "Hyaluronic acid", "haDesc": "A substance that holds water in the skin. In the study on dry skin, people took 120 mg a day.<sup>13<\/sup>", "biotin": "Biotin", "biotinDesc": "A B vitamin (vitamin B7). An adult needs about 30 µg a day.<sup>14<\/sup> µg means microgram: 1 mg = 1,000 µg.", "useful": "Useful dose", "inStick": "In 1 stick:", "nSticks": "{n} sticks", "dropText": "The amount used in the study is {n} times what one stick contains. This compares amounts only; it is not a suggestion to take more sticks.", "food1": "Normal food", "food2": "gives enough", "oneStick": "1 stick", "noExtra": "No extra effect", "biotinText": "One stick gives a full day of biotin, but normal food already gives enough. There is no good evidence that extra biotin improves skin or hair in people who are not lacking it.<sup>15<\/sup>", "pts": "{n} / 10", "cmpLabel": "Math comparison", "tierTop": "Recommended", "tierRest": "For comparison"}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide"}, "hurum-sm": {"name": "HURUM Small Molecular Fish Collagen", "short": "HURUM Small Molecular"}, "ssf": {"name": "SSF Real Pomegranate Collagen Jelly"}, "bb-goodnight": {"name": "BB LAB Goodnight Collagen"}, "bb-biotin": {"name": "BB LAB Collagen Biotin Plus", "short": "BB LAB Biotin"}, "boto": {"name": "BOTO Glutathione White Collagen", "short": "BOTO"}, "mippeum": {"name": "MIPPEUM Collagen Jelly Mix Package"}, "hurum-biotin": {"name": "HURUM Biotin Collagen Peptide", "short": "HURUM Biotin"}, "vitasub": {"name": "VITASUB Slim Collagen Plus", "short": "VITASUB"}}};
 const P = [
   { id: "yorosum", own: true, sticks: 30, stickG: 3, collagen: 2000, da: 300, vitc: 100, honesty: 5 },
   { id: "hurum-sm", sticks: 60, stickG: 2, collagen: 1200, da: 300, vitc: 120, honesty: 4 },
@@ -575,24 +597,29 @@ P.forEach(p => {
 });
 const ranked = [...P].sort((a, b) => b.score - a.score);
 
-const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
-const cell = (s, val) => `<div class="cell">${blocks(s)}<span class="val">${val}</span><span class="pts">${T.js.pts.replace("{n}", r1(s))}</span></div>`;
+const pts = s => `<span class="pts">${T.js.pts.replace("{n}", r1(s))}</span>`;
+const bar = (s, val) => `<div class="cell"><span class="val">${val}</span><div class="sbar" style="--w:${s * 10}%;--tone:${tone(s)}"><i></i></div>${pts(s)}</div>`;
+const pill = (s, cls, val) => `<div class="cell">${cls ? `<span class="pill ${cls}">${val}</span>` : `<span class="nodata">${val}</span>`}${pts(s)}</div>`;
+const daCls = p => p.da == null ? "" : p.da <= 300 ? "good" : p.da <= 600 ? "ok" : "warn";
+const cleanCls = h => h >= 5 ? "good" : h >= 3 ? "ok" : "bad";
 const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><svg aria-hidden="true"><use href="#${icon}"/></svg><b>${label}</b><small>${hint}</small></div></th>`;
-const row = (head, fn) => `<tr>${head}${ranked.map(p => `<td class="${p.own ? "own" : ""}">${fn(p)}</td>`).join("")}</tr>`;
+const colCls = i => i === 0 ? "own" : i === 1 ? "top2" : i === 2 ? "rest split" : "rest";
+const row = (head, fn) => `<tr>${head}${ranked.map((p, i) => `<td class="${colCls(i)}">${fn(p)}</td>`).join("")}</tr>`;
 const clean = h => h >= 5 ? T.js.cGood : h >= 3 ? T.js.cFiller : T.js.cTiny;
 
 document.getElementById("compare").innerHTML =
   `<colgroup><col class="label">${ranked.map(() => "<col>").join("")}</colgroup>` +
-  `<thead><tr><td></td>${ranked.map((p, i) => `<td class="${p.own ? "own" : ""}"><div class="prod">
+  `<thead><tr class="tiers"><td></td><td colspan="2" class="tier-top">${T.js.tierTop}</td><td colspan="${ranked.length - 2}" class="tier-rest split">${T.js.tierRest}</td></tr>` +
+  `<tr><td></td>${ranked.map((p, i) => `<td class="${colCls(i)}"><div class="prod">
       <span class="medal ${i < 3 ? "m" + (i + 1) : ""}">${i + 1}</span>
       <span class="thumb"><img src="${p.img}" alt="${p.name}"></span>
       <span class="pname">${p.name}</span>
       <span class="sticks" title="${T.js.hBox}">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span></div></td>`).join("")}</tr></thead><tbody>` +
   row(rowLabel("i-star", T.js.hScore, T.js.hScoreHint), p => `<div class="score" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span><span class="word">${word(p.score)}</span></div>`) +
-  row(rowLabel("i-dose", T.js.hDose, T.js.hDoseHint), p => cell(p.s.dose, mg(p.collagen))) +
-  row(rowLabel("i-size", T.js.hDa, T.js.hDaHint), p => cell(p.s.da, daText(p))) +
-  row(rowLabel("i-vitc", T.js.hVitc, T.js.hVitcHint), p => cell(p.s.vitc, mg(p.vitc))) +
-  row(rowLabel("i-clean", T.js.hClean, T.js.hCleanHint), p => cell(p.s.honesty, clean(p.honesty))) +
+  row(rowLabel("i-dose", T.js.hDose, T.js.hDoseHint), p => bar(p.s.dose, mg(p.collagen))) +
+  row(rowLabel("i-size", T.js.hDa, T.js.hDaHint), p => pill(p.s.da, daCls(p), daText(p))) +
+  row(rowLabel("i-vitc", T.js.hVitc, T.js.hVitcHint), p => bar(p.s.vitc, mg(p.vitc))) +
+  row(rowLabel("i-clean", T.js.hClean, T.js.hCleanHint), p => pill(p.s.honesty, cleanCls(p.honesty), clean(p.honesty))) +
   "</tbody>";
 
 const byId = id => P.find(p => p.id === id);

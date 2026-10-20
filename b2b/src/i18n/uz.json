@@ -11,8 +11,8 @@
   "p1": {
     "no": "Taqqoslash jadvali",
     "title": "Qaysi kollagen stiki eng yaxshi?",
-    "demo": "10 tadan 8 ta boʻlak = 8 ball",
-    "how1": "<b>Boʻlaklarni qanday oʻqish kerak.</b> Har bir qator bitta koʻrsatkichni 10 ballik shkalada baholaydi. Boʻyalgan boʻlaklar — bu ballar: 8 ta boʻyalgan boʻlak 10 dan 8 degani. Yashil — kuchli, sariq — oʻrtacha, toʻq sariq va qizil — zaif. Qiymat ostidagi kichik son — shu qatorning bali.",
+    "demo": "Toʻliq chiziq = 10 ball; bu yerda 8",
+    "how1": "<b>Jadvalni qanday oʻqish kerak.</b> Chiziqlar 10 ballik shkaladagi ballarni koʻrsatadi: toʻliq chiziq — 10 ball. Rangli belgilar toifani koʻrsatadi: yashil — kuchli, sariq — oʻrtacha, toʻq sariq va qizil — zaif. Kulrang matn qutida bu yozilmaganini bildiradi. Qiymat ostidagi kichik son — shu qatorning bali.",
     "how2": "<b>Umumiy ball qanday hisoblanadi.</b> Bu baholanadigan toʻrt qatorning vaznli oʻrtachasi: stikdagi kollagen (2 ulush), boʻlakcha oʻlchami (2 ulush), C vitamini (1,5 ulush) va toza tarkib (1,5 ulush). Qutidagi stiklar soni (nom ostida) faqat maʼlumot uchun, u baholanmaydi.",
     "foot": "Maʼlumotlar: bitta stikdagi miqdor har bir mahsulot yorligʻi asosida hisoblangan (quti fotosuratlari, 2026-yil oktabr). MIPPEUM maʼlumotlari va HURUM past molekulyar kollagenining 300 Da koʻrsatkichi sotuvchi saytlaridan olingan, chunki ular qutining old tomonida yozilmagan. Toʻliq uslub va manbalar ilova qilingan qoʻllanmada."
   },
@@ -214,7 +214,9 @@
     "noExtra": "Qoʻshimcha foyda yoʻq",
     "biotinText": "Bitta stik kunlik biotin ehtiyojini qoplaydi, lekin oddiy ovqat ham yetarlicha beradi. Organizmda biotin yetishmovchiligi boʻlmasa, qoʻshimcha biotin teri yoki sochni yaxshilashi haqida ishonchli dalil yoʻq.<sup>15</sup>",
     "pts": "{n} / 10",
-    "cmpLabel": "Matematik taqqoslash"
+    "cmpLabel": "Matematik taqqoslash",
+    "tierTop": "Tavsiya etamiz",
+    "tierRest": "Taqqoslash uchun"
   },
   "products": {
     "yorosum": {

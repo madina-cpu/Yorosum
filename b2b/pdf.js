@@ -25,19 +25,18 @@ fs.mkdirSync(path.join(root, "pdf"), { recursive: true });
     await page.goto("file://" + tmp, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
     await page.evaluate(() => document.querySelectorAll("details").forEach(d => (d.open = true)));
-    const out = path.join(root, "pdf", `collagen-benchmark-${lang}.pdf`);
-    await page.pdf({
-      path: out,
-      preferCSSPageSize: true,
-      printBackground: true,
-      displayHeaderFooter: true,
-      headerTemplate: "<span></span>",
-      footerTemplate: `<div style="width:100%;font:8px sans-serif;color:#56676f;padding:0 12mm;display:flex;justify-content:space-between">
-        <span>${strings.meta.footer}</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`
-    });
+    const footer = `<div style="width:100%;font:8px sans-serif;color:#56676f;padding:0 12mm;display:flex;justify-content:space-between">
+        <span>${strings.meta.footer}</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`;
+    // Two documents per language: a one-page landscape comparison sheet and an all-portrait guide.
+    for (const [mode, name] of [["only-sheet", "collagen-comparison-sheet"], ["only-guide", "collagen-guide"]]) {
+      await page.evaluate(m => { document.documentElement.className = m; }, mode);
+      const out = path.join(root, "pdf", `${name}-${lang}.pdf`);
+      await page.pdf({ path: out, preferCSSPageSize: true, printBackground: true, displayHeaderFooter: true,
+        headerTemplate: "<span></span>", footerTemplate: footer });
+      console.log(lang, mode, errors.length ? errors : "ok", out);
+    }
     await page.close();
     fs.unlinkSync(tmp);
-    console.log(lang, errors.length ? errors : "ok", out);
   }
   await browser.close();
 })();

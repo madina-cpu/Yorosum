@@ -85,7 +85,7 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 .thumb { width: 84px; height: 84px; border-radius: 8px; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); }
 .thumb img { width: 100%; height: 100%; object-fit: contain; }
 .prod .pname { font-size: 13px; font-weight: 600; line-height: 1.25; hyphens: auto; overflow-wrap: anywhere; }
-.sticks { font-size: 14px; font-variant-numeric: tabular-nums; }
+.sticks { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1.2; }
 .score { display: grid; justify-items: center; gap: 4px; }
 .score .big { font: 800 28px/1 var(--f-display); color: var(--tone); font-variant-numeric: tabular-nums; }
 .score .big small { font-size: 13px; color: var(--muted); font-weight: 600; }
@@ -95,6 +95,24 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 .blocks i { height: 9px; border-radius: 2px; background: var(--track); }
 .blocks i.on { background: var(--tone); }
 .cell .val { font-size: 13.5px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.25; }
+.cell .pts { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.howto { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: 14px 22px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+.howto .demo { display: grid; gap: 4px; justify-items: center; min-width: 110px; }
+.howto .demo .blocks { max-width: 110px; }
+.howto .demo span { font-size: 12.5px; color: var(--muted); }
+.howto p { font-size: 14px; max-width: none; }
+@media (max-width: 760px) { .howto { grid-template-columns: 1fr; } }
+.sheet-foot { font-size: 12.5px; color: var(--muted); max-width: none; }
+sup { font-size: 0.68em; line-height: 0; color: var(--accent); font-weight: 600; }
+.method { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; gap: 10px; }
+.method p { font-size: 14.5px; max-width: none; }
+.weights { display: grid; font-size: 14.5px; }
+.weights div { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.weights b { white-space: nowrap; }
+.refs { display: grid; gap: 8px; }
+.refs ol { margin: 0; padding-left: 22px; display: grid; gap: 3px; font-size: 12.5px; color: var(--muted); }
+.drop .cmp { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+html.only-sheet .page:not(.wide), html.only-guide .page.wide { display: none; }
 
 /* ---------- Lessons ---------- */
 .lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 36px; align-items: start; }
@@ -119,7 +137,8 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 /* Extras */
 .drops { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
 .drop { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; }
-.drop .hd { display: flex; gap: 12px; align-items: center; }
+.drop .hd { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.drop .hd > div:last-child { min-width: 0; overflow-wrap: anywhere; }
 .drop .imgs { display: flex; gap: 6px; flex: none; }
 .drop .imgs img { width: 60px; height: 60px; object-fit: contain; background: #fff; border-radius: 8px; border: 1px solid var(--line); }
 .drop .desc { font-size: 14.5px; color: var(--muted); }
@@ -156,16 +175,17 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
   .compare-wrap { overflow: visible; border-radius: 8px; }
   table.compare { min-width: 0; }
   .compare col.label { width: 136px; }
-  .compare th, .compare td { padding: 6px 5px; }
+  .compare th, .compare td { padding: 4px 5px; }
+  .compare thead td { padding-top: 6px; }
   .compare th[scope="row"] { padding-left: 10px; position: static; }
-  .compare .rl b { font-size: 13px; } .compare .rl small { font-size: 10.5px; }
+  .compare .rl b { font-size: 12px; } .compare .rl small { font-size: 9.5px; }
   .compare .rl svg { width: 18px; height: 18px; } .compare .rl { grid-template-columns: 18px 1fr; }
-  .thumb { width: 84px; height: 84px; }
-  .prod .pname { font-size: 11.5px; }
-  .medal { width: 26px; height: 26px; font-size: 13px; }
-  .sticks { font-size: 12.5px; }
-  .score .big { font-size: 27px; } .score .word { font-size: 9px; }
-  .blocks i { height: 9px; } .cell .val { font-size: 12.5px; }
+  .thumb { width: 62px; height: 62px; }
+  .prod .pname { font-size: 10.5px; } .prod { gap: 3px; }
+  .medal { width: 24px; height: 24px; font-size: 12px; }
+  .sticks { font-size: 10px; }
+  .score .big { font-size: 22px; } .score .word { font-size: 8.5px; }
+  .blocks i { height: 8px; } .cell .val { font-size: 11.5px; } .cell { gap: 3px; }
 
   .lesson { grid-template-columns: 1fr; gap: 14px; }
   .lesson.flip > .art { order: 0; }
@@ -175,16 +195,25 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
   .lesson .art svg { max-width: 520px; margin: 0 auto; }
   .points { gap: 9px; } .points li { grid-template-columns: 26px 1fr; gap: 10px; }
   .points .dot { width: 26px; height: 26px; font-size: 12px; }
-  .points p { font-size: 12.5px; line-height: 1.45; }
+  .points p { font-size: 12px; line-height: 1.42; } .points h4 { font-size: 13.5px; }
+  .points.cols { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
   .rule { font-size: 14px; padding: 10px 14px; } .rule svg { width: 22px; height: 22px; }
   .typecards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .typecard p { font-size: 12.5px; } .typecard .t { font-size: 18px; } .typecard svg { width: 30px; height: 30px; }
   .drops { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .drop { padding: 11px; gap: 6px; } .drop .imgs img { width: 48px; height: 48px; }
-  .drop .desc, .drop p { font-size: 12.5px; } .drop .big { font-size: 20px; } .drop svg { max-height: 100px; }
+  .drop .desc, .drop p { font-size: 11.5px; line-height: 1.4; } .drop .big { font-size: 19px; } .drop svg { max-height: 82px; }
   .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .checks li { padding: 14px; } .checks b { font-size: 14.5px; } .checks p { font-size: 13px; }
   .disclaimer { font-size: 10.5px; }
+  html.only-guide .page.wide + .page { break-before: auto; }
+  .howto { padding: 6px 12px; gap: 6px 16px; } .howto p { font-size: 10px; line-height: 1.38; }
+  .page.wide h1 { font-size: 22px; } .page.wide { gap: 8px; } .howto .demo span { font-size: 10px; }
+  .sheet-foot { font-size: 9.5px; }
+  .cell .pts { font-size: 9.5px; }
+  .method { padding: 10px 12px; gap: 6px; } .method p, .weights { font-size: 11.5px; } .weights div { padding: 3px 0; }
+  .method h3, .refs h3 { font-size: 14px; }
+  .refs ol { font-size: 9.5px; gap: 1px; }
 }
 </style>
 
@@ -206,16 +235,22 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 <!-- ================= PAGE 1: SIDE-BY-SIDE ================= -->
 <section class="page wide" aria-labelledby="p1">
   <div class="page-head">
-    <div class="page-no">Страница 1 · Сравнение продуктов</div>
+    <div class="page-no">Сравнительная таблица</div>
     <h1 id="p1">Какой коллаген в стиках лучше?</h1>
   </div>
+  <div class="howto">
+    <div class="demo"><div class="blocks" style="--tone:var(--good)"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span>8 из 10 делений = 8 баллов</span></div>
+    <p><b>Как читать деления.</b> Каждая строка оценивает один показатель по шкале до 10. Закрашенные деления — это баллы: 8 закрашенных делений означают 8 из 10. Зелёный — сильный результат, жёлтый — средний, оранжевый и красный — слабый. Маленькое число под значением — баллы этой строки.</p>
+    <p><b>Как получается общая оценка.</b> Это средневзвешенное четырёх оцениваемых строк: коллаген в стике (2 части), размер частиц (2 части), витамин C (1,5 части) и чистый состав (1,5 части). Количество стиков в коробке (под названием) — только для информации, оно не оценивается.</p>
+  </div>
   <div class="compare-wrap"><table class="compare" id="compare"></table></div>
+  <p class="sheet-foot">Данные: количество в одном стике рассчитано по этикетке каждого продукта (фото коробок, октябрь 2026). Данные MIPPEUM и показатель 300 Да для HURUM низкомолекулярного взяты с сайтов продавцов, так как на лицевой стороне коробки их нет. Полная методика и источники — в сопроводительном руководстве.</p>
 </section>
 
 <!-- ================= PAGE 2: COLLAGEN ================= -->
 <section class="page" aria-labelledby="p2">
   <div class="page-head">
-    <div class="page-no">Страница 2 · Что такое коллаген</div>
+    <div class="page-no">Что такое коллаген</div>
     <h2 id="p2">Что такое коллаген и зачем его принимают</h2>
     <p class="lead">Прежде чем сравнивать продукты, полезно понять, что такое коллаген, как он работает в организме и что такое коллагеновый стик.</p>
   </div>
@@ -247,11 +282,11 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
       </svg>
     </div>
     <ol class="points">
-      <li><span class="dot">1</span><div><h4>Это белок</h4><p>Коллаген — самый распространённый белок в организме человека. Он образует длинные прочные нити, которые скрепляют кожу, кости, суставы, волосы и ногти.</p></div></li>
+      <li><span class="dot">1</span><div><h4>Это белок</h4><p>Коллаген — самый распространённый белок в организме человека.<sup>1</sup> Он образует длинные прочные нити, которые скрепляют кожу, кости, суставы, волосы и ногти.</p></div></li>
       <li><span class="dot">2</span><div><h4>Он держит кожу упругой</h4><p>В коже нити коллагена работают как пружины в матрасе. Они делают кожу упругой и гладкой и помогают ей возвращать форму.</p></div></li>
-      <li><span class="dot">3</span><div><h4>С возрастом его становится меньше</h4><p>Примерно с 25 лет организм с каждым годом вырабатывает немного меньше коллагена. Солнце, курение, стресс и плохой сон ускоряют этот процесс. Кожа становится тоньше и суше, появляются морщины.</p></div></li>
+      <li><span class="dot">3</span><div><h4>С возрастом его становится меньше</h4><p>С возрастом клетки кожи вырабатывают меньше коллагена, чем в молодости.<sup>2</sup> Солнце, курение, стресс и плохой сон усиливают этот процесс. Кожа становится тоньше и суше, появляются морщины.</p></div></li>
       <li><span class="dot">4</span><div><h4>Что такое коллагеновый стик</h4><p>Стик — это небольшой пакетик с одной дневной порцией. Порошок размешивают в воде, а желе едят прямо из пакетика. Внутри — коллаген, разрезанный на мелкие кусочки. Их называют коллагеновыми пептидами.</p></div></li>
-      <li><span class="dot">5</span><div><h4>Как это работает</h4><p>Организм всасывает мелкие кусочки в кровь. Исследования показывают, что часть из них служит сигналом для клеток кожи вырабатывать больше собственного коллагена. В исследованиях люди принимали коллаген каждый день от 8 до 12 недель, прежде чем измеряли результат.</p></div></li>
+      <li><span class="dot">5</span><div><h4>Как это работает</h4><p>Организм всасывает часть мелких кусочков в кровь.<sup>3</sup> Лабораторные исследования показывают, что некоторые из них могут служить сигналом для клеток кожи вырабатывать больше собственного коллагена.<sup>4</sup> В исследованиях на людях коллаген принимали каждый день, чаще всего от 8 до 12 недель, прежде чем измеряли результат.<sup>6</sup><sup>7</sup></p></div></li>
     </ol>
   </div>
   <h3>Коллаген бывает разных типов. Для кожи важнее всего тип I.</h3>
@@ -274,50 +309,61 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 <!-- ================= PAGE 3: DA ================= -->
 <section class="page" aria-labelledby="p3">
   <div class="page-head">
-    <div class="page-no">Страница 3 · Что такое «Да»</div>
+    <div class="page-no">Что такое «Да»</div>
     <h2 id="p3">Что означает «Да» и почему чем меньше, тем лучше</h2>
     <p class="lead">Природный коллаген — огромная молекула. Организм не может усвоить её целиком, поэтому производители разрезают её на мелкие кусочки. Число Да на коробке показывает, насколько эти кусочки мелкие.</p>
   </div>
   <div class="lesson flip two">
     <div class="art">
-      <svg viewBox="0 0 520 340" role="img" aria-label="Крупные частицы коллагена задерживаются стенкой кишечника. Мелкие проходят в кровь.">
-        <text x="20" y="26" class="svg-text" style="font-weight:600;font-size:15px">Внутри кишечника</text>
-        <g transform="translate(70 96)">
-          <circle r="40" style="fill:none;stroke:var(--bad);stroke-width:4"/>
-          <path d="M-36 -10 q36 -30 72 0 M-38 8 q38 30 76 0 M-20 -34 q20 34 0 68 M18 -34 q-20 34 0 68" style="fill:none;stroke:var(--bad);stroke-width:3"/>
-        </g>
-        <text x="70" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">300 000 Да</text>
-        <g style="fill:var(--warn)">
-          <circle cx="160" cy="70" r="7"/><circle cx="175" cy="78" r="7"/><circle cx="190" cy="70" r="7"/><circle cx="205" cy="78" r="7"/><circle cx="220" cy="70" r="7"/>
-          <circle cx="235" cy="78" r="7"/><circle cx="250" cy="70" r="7"/><circle cx="250" cy="96" r="7"/><circle cx="235" cy="96" r="7"/><circle cx="220" cy="104" r="7"/>
-          <circle cx="205" cy="96" r="7"/><circle cx="190" cy="104" r="7"/><circle cx="175" cy="96" r="7"/><circle cx="160" cy="104" r="7"/><circle cx="175" cy="122" r="7"/>
-          <circle cx="190" cy="130" r="7"/><circle cx="205" cy="122" r="7"/><circle cx="220" cy="130" r="7"/><circle cx="235" cy="122" r="7"/><circle cx="250" cy="130" r="7"/>
-        </g>
-        <text x="205" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">2000 Да</text>
-        <g style="fill:var(--ok)">
-          <circle cx="300" cy="96" r="7"/><circle cx="315" cy="88" r="7"/><circle cx="330" cy="96" r="7"/><circle cx="345" cy="88" r="7"/><circle cx="360" cy="96" r="7"/>
-          <circle cx="360" cy="118" r="7"/><circle cx="345" cy="110" r="7"/><circle cx="330" cy="118" r="7"/><circle cx="315" cy="110" r="7"/><circle cx="300" cy="118" r="7"/>
-        </g>
-        <text x="330" y="158" text-anchor="middle" class="svg-muted" style="font-size:13px">1000 Да</text>
+      <svg viewBox="0 0 520 340" role="img" aria-label="Мелкие кусочки коллагена сразу проходят через стенку кишечника. Более крупные сначала расщепляются при пищеварении, а затем тоже всасываются.">
+        <text x="20" y="24" class="svg-text" style="font-weight:600;font-size:15px">Внутри кишечника</text>
+        <text x="100" y="52" text-anchor="middle" class="svg-text" style="font-weight:700;font-size:13.5px">Мелкие кусочки</text>
+        <text x="100" y="68" text-anchor="middle" class="svg-muted" style="font-size:12px">около 300 Да</text>
+        <text x="370" y="52" text-anchor="middle" class="svg-text" style="font-weight:700;font-size:13.5px">Более крупные</text>
+        <text x="370" y="68" text-anchor="middle" class="svg-muted" style="font-size:12px">1000–2000 Да</text>
         <g style="fill:var(--good)">
-          <circle cx="420" cy="100" r="7"/><circle cx="435" cy="100" r="7"/><circle cx="450" cy="100" r="7"/>
-          <circle cx="496" cy="160" r="7"/><circle cx="496" cy="175" r="7"/><circle cx="496" cy="190" r="7"/>
-          <circle cx="470" cy="264" r="7"/><circle cx="485" cy="264" r="7"/><circle cx="500" cy="264" r="7"/>
+          <circle cx="80" cy="96" r="7"/><circle cx="95" cy="96" r="7"/><circle cx="110" cy="96" r="7"/>
+          <circle cx="90" cy="124" r="7"/><circle cx="105" cy="124" r="7"/><circle cx="120" cy="124" r="7"/>
         </g>
-        <text x="435" y="130" text-anchor="middle" class="svg-muted" style="font-size:13px">300 Да</text>
-        <rect x="10" y="200" width="472" height="22" rx="4" style="fill:var(--skin-deep)"/>
-        <text x="20" y="242" class="svg-muted" style="font-size:13px">Стенка кишечника: проходят только очень мелкие частицы →</text>
-        <rect x="10" y="250" width="500" height="34" rx="6" style="fill:var(--bad);opacity:.16"/>
-        <text x="20" y="272" class="svg-text" style="font-size:14px;font-weight:600">Кровь → кожа</text>
-        <path d="M70 168 v24 M205 168 v24 M330 168 v24" style="stroke:var(--bad);stroke-width:3;stroke-linecap:round"/>
-        <path d="M62 184 h16 M197 184 h16 M322 184 h16" style="stroke:var(--bad);stroke-width:3;stroke-linecap:round"/>
-        <text x="20" y="318" class="svg-text" style="font-size:14px"><tspan style="fill:var(--bad);font-weight:700">✕</tspan> Крупные частицы застревают.  <tspan style="fill:var(--good);font-weight:700">✓</tspan> Мелкие проходят сразу.</text>
+        <path d="M100 142 v46" style="stroke:var(--good);stroke-width:3;stroke-linecap:round"/>
+        <path d="M93 181 l7 9 l7 -9" style="fill:none;stroke:var(--good);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+        <g style="fill:var(--warn)">
+          <circle cx="240" cy="92" r="6"/><circle cx="253" cy="92" r="6"/><circle cx="266" cy="92" r="6"/><circle cx="279" cy="92" r="6"/><circle cx="292" cy="92" r="6"/><circle cx="305" cy="92" r="6"/><circle cx="318" cy="92" r="6"/>
+          <circle cx="318" cy="106" r="6"/><circle cx="305" cy="106" r="6"/><circle cx="292" cy="106" r="6"/><circle cx="279" cy="106" r="6"/><circle cx="266" cy="106" r="6"/><circle cx="253" cy="106" r="6"/><circle cx="240" cy="106" r="6"/>
+          <circle cx="240" cy="120" r="6"/><circle cx="253" cy="120" r="6"/><circle cx="266" cy="120" r="6"/><circle cx="279" cy="120" r="6"/><circle cx="292" cy="120" r="6"/><circle cx="305" cy="120" r="6"/>
+        </g>
+        <path d="M330 106 h22" style="stroke:var(--muted);stroke-width:2.5;stroke-linecap:round"/>
+        <path d="M346 100 l7 6 l-7 6" style="fill:none;stroke:var(--muted);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/>
+        <g style="fill:none;stroke:var(--fg);stroke-width:2.2;stroke-linecap:round">
+          <circle cx="369" cy="118" r="5"/><circle cx="385" cy="118" r="5"/>
+          <path d="M372 114 L388 92 M382 114 L366 92"/>
+        </g>
+        <text x="377" y="140" text-anchor="middle" class="svg-muted" style="font-size:11.5px">пищеварение</text>
+        <path d="M398 106 h22" style="stroke:var(--muted);stroke-width:2.5;stroke-linecap:round"/>
+        <path d="M414 100 l7 6 l-7 6" style="fill:none;stroke:var(--muted);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/>
+        <g style="fill:var(--good)">
+          <circle cx="436" cy="92" r="6"/><circle cx="449" cy="92" r="6"/><circle cx="462" cy="92" r="6"/>
+          <circle cx="442" cy="118" r="6"/><circle cx="455" cy="118" r="6"/>
+        </g>
+        <g style="fill:var(--ok)"><circle cx="486" cy="92" r="6"/><circle cx="480" cy="118" r="6"/><circle cx="500" cy="106" r="6"/></g>
+        <path d="M462 142 v46" style="stroke:var(--warn);stroke-width:3;stroke-linecap:round;stroke-dasharray:6 5"/>
+        <path d="M455 181 l7 9 l7 -9" style="fill:none;stroke:var(--warn);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+        <g style="fill:var(--skin-deep)">
+          <rect x="10" y="200" width="78" height="22" rx="4"/><rect x="112" y="200" width="338" height="22" rx="4"/><rect x="474" y="200" width="36" height="22" rx="4"/>
+        </g>
+        <rect x="10" y="236" width="500" height="40" rx="6" style="fill:var(--bad);opacity:.14"/>
+        <text x="260" y="261" text-anchor="middle" class="svg-text" style="font-size:14px;font-weight:600">Кровь → кожа</text>
+        <g style="fill:var(--good)"><circle cx="70" cy="256" r="6"/><circle cx="83" cy="256" r="6"/><circle cx="96" cy="256" r="6"/><circle cx="430" cy="256" r="6"/><circle cx="443" cy="256" r="6"/></g>
+        <g style="fill:var(--ok)"><circle cx="470" cy="256" r="6"/><circle cx="490" cy="256" r="6"/></g>
+        <text x="100" y="302" text-anchor="middle" class="svg-text" style="font-size:13px;font-weight:600"><tspan style="fill:var(--good)">✓</tspan> Всасываются сразу</text>
+        <text x="370" y="302" text-anchor="middle" class="svg-text" style="font-size:13px;font-weight:600">Сначала расщепляются, затем всасываются</text>
+        <text x="370" y="320" text-anchor="middle" class="svg-muted" style="font-size:11px">медленнее, часть — до отдельных аминокислот</text>
       </svg>
     </div>
     <ol class="points">
       <li><span class="dot">1</span><div><h4>Да — единица веса молекул</h4><p>Да — сокращение от «дальтон». Этой единицей учёные измеряют вес молекул — частиц, которые невозможно увидеть глазом. Один дальтон — это примерно вес одного атома водорода, самого лёгкого атома. Чем больше число Да, тем крупнее кусочек. На корейских коробках пишут «Da».</p></div></li>
-      <li><span class="dot">2</span><div><h4>Коллаген — это цепочка из бусинок</h4><p>Коллаген состоит из маленьких строительных блоков — аминокислот. Представьте очень длинное ожерелье: каждая бусинка — одна аминокислота весом около 100 Да. В природном коллагене около 3000 бусинок, поэтому он весит около 300 000 Да. Производители с помощью ферментов разрезают это ожерелье на короткие кусочки.</p></div></li>
-      <li><span class="dot">3</span><div><h4>Через кишечник проходят только мелкие кусочки</h4><p>Стенка кишечника работает как мелкое сито. Кусочки из 2–3 бусинок (около 200–400 Да) легко проходят через неё с помощью особых переносчиков. Более длинные кусочки сначала должны расщепиться дальше при пищеварении, и только потом организм может их использовать.</p></div></li>
+      <li><span class="dot">2</span><div><h4>Коллаген — это цепочка из бусинок</h4><p>Коллаген состоит из маленьких строительных блоков — аминокислот. Представьте очень длинное ожерелье: каждая бусинка — одна аминокислота весом около 100 Да. В природном коллагене около 3000 бусинок, поэтому он весит около 300 000 Да.<sup>1</sup> Производители с помощью ферментов разрезают это ожерелье на короткие кусочки.</p></div></li>
+      <li><span class="dot">3</span><div><h4>Крупные кусочки сначала перевариваются, потом всасываются</h4><p>Стенка кишечника пропускает кусочки из 2–3 бусинок (около 200–400 Да) с помощью особых переносчиков.<sup>5</sup> Крупные кусочки не пропадают зря: пищеварение сначала разрезает их, и затем они тоже всасываются. Но это занимает больше времени, и большая часть коллагена превращается в отдельные аминокислоты, а не в те мелкие коллагеновые кусочки, которые находили в крови в исследованиях.<sup>3</sup></p></div></li>
       <li><span class="dot">4</span><div><h4>Число на коробке — среднее</h4><p>Если на коробке написано 300 Да, значит, кусочки весят в среднем 300 Да: большинство очень мелкие, немногие — крупнее. Чем ниже среднее число, тем большая часть коллагена уже достаточно мелкая для усвоения.</p></div></li>
     </ol>
   </div>
@@ -340,7 +386,7 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 <!-- ================= PAGE 4: DOSE ================= -->
 <section class="page" aria-labelledby="p4">
   <div class="page-head">
-    <div class="page-no">Страница 4 · Сколько коллагена</div>
+    <div class="page-no">Сколько коллагена</div>
     <h2 id="p4">Сколько коллагена в одном стике</h2>
     <p class="lead">Мелкие кусочки помогают организму усвоить коллаген. Но количество важно не меньше: если кусочки мелкие, а коллагена в стике очень мало, пользы будет немного.</p>
   </div>
@@ -363,23 +409,35 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
         <text x="40" y="220" text-anchor="start">0</text><text x="347" y="220">1000 мг</text><text x="653" y="220">2000 мг</text><text x="960" y="220" text-anchor="end">3000 мг</text>
       </g>
       <line x1="807" y1="156" x2="807" y2="236" style="stroke:var(--fg);stroke-width:2.5;stroke-dasharray:6 4"/>
-      <text x="807" y="258" text-anchor="middle" class="svg-text" style="font-size:15px;font-weight:700">Исследования кожи: от 2500 мг</text>
-      <text x="807" y="280" text-anchor="middle" class="svg-muted" style="font-size:13.5px">каждый день, 8–12 недель</text>
+      <text x="807" y="258" text-anchor="middle" class="svg-text" style="font-size:15px;font-weight:700">Исследования кожи: часто от 2500 мг</text>
+      <text x="807" y="280" text-anchor="middle" class="svg-muted" style="font-size:13.5px">в день, чаще всего 8–12 недель</text>
     </svg>
   </div>
-  <ol class="points">
+  <ol class="points cols">
     <li><span class="dot">1</span><div><h4>Миллиграммы и граммы</h4><p>мг — это миллиграмм. 1000 мг = 1 г. Вес стика обычно указывают в граммах, а количество ингредиентов — в миллиграммах.</p></div></li>
     <li><span class="dot">2</span><div><h4>Не весь стик — коллаген</h4><p>Стик весом 2 г — это 2000 мг, но часть из них приходится на вкусовые добавки, витамин C и другие ингредиенты. Считается только коллаген. Поэтому в двух стиках одного веса может быть совсем разное количество коллагена.</p></div></li>
     <li><span class="dot">3</span><div><h4>Как найти количество на коробке</h4><p>Ищите количество коллагена в одном стике (1포당). Если на коробке указан только процент, умножьте: вес стика в мг × процент коллагена = коллаген в мг. Пример: 2000 мг × 60% = 1200 мг. На некоторых коробках указано количество на всю коробку, поэтому проверяйте, что число относится к одному стику.</p></div></li>
-    <li><span class="dot">4</span><div><h4>Сколько достаточно</h4><p>В исследованиях кожи люди принимали от 2500 до 10 000 мг коллагена в день. Меньше 1000 мг в стике — мало. От 1000 до 2000 мг — средне. 2000 мг и больше — хорошо.</p></div></li>
+    <li><span class="dot">4</span><div><h4>Сколько достаточно</h4><p>В исследованиях кожи люди часто принимали 2500 мг коллагена в день или больше.<sup>6</sup><sup>7</sup> По нашей шкале меньше 1000 мг в стике — мало, от 1000 до 2000 мг — средне, 2000 мг и больше — хорошо.</p></div></li>
   </ol>
   <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Запомните</small>Выбирайте не меньше 1000 мг коллагена в одном стике. Лучше — 2000 мг и больше.</span></div>
+  <div class="method">
+    <h3>Как в сравнительной таблице оцениваются продукты</h3>
+    <p>Каждый продукт получает четыре оценки по шкале до 10, рассчитанные по количеству в одном стике. Общая оценка — их средневзвешенное значение.</p>
+    <div class="weights">
+      <div><span>Коллаген в стике: мг ÷ 250 (2500 мг и больше = 10)</span><b>2 части (29%)</b></div>
+      <div><span>Размер частиц: до 300 Да = 10, до 600 = 8, до 1000 = 6, до 2000 = 4, не указано = 3</span><b>2 части (29%)</b></div>
+      <div><span>Витамин C: мг ÷ 10 (100 мг и больше = 10)</span><b>1,5 части (21%)</b></div>
+      <div><span>Чистый состав: наша оценка того, есть ли добавки в полезных количествах и не состоит ли стик в основном из наполнителей</span><b>1,5 части (21%)</b></div>
+    </div>
+    <p>Данные взяты с этикеток продуктов. Если на этикетке указан только процент, мы умножали его на вес стика. Данные MIPPEUM и показатель 300 Да для HURUM низкомолекулярного взяты с сайтов продавцов.</p>
+    <p>Ограничения: мы не проводили лабораторных анализов продуктов. Пороговые значения выбраны нами с опорой на исследования, указанные в этом руководстве. Более высокая оценка означает более сильный состав по этикетке, а не доказанное действие на кожу.</p>
+  </div>
 </section>
 
 <!-- ================= PAGE 5: VITAMIN C ================= -->
 <section class="page" aria-labelledby="p5">
   <div class="page-head">
-    <div class="page-no">Страница 5 · Витамин C</div>
+    <div class="page-no">Витамин C</div>
     <h2 id="p5">Почему для коллагена важен витамин C</h2>
     <p class="lead">Витамин C сам не превращается в коллаген. Но без него организм не может построить коллаген. Поэтому в хороших коллагеновых стиках он есть.</p>
   </div>
@@ -411,7 +469,7 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
     </div>
     <ol class="points">
       <li><span class="dot">1</span><div><h4>Клетки кожи строят коллаген</h4><p>Особые клетки кожи создают новые коллагеновые волокна. Как кирпичи, они используют аминокислоты из пищи и из коллагеновых добавок.</p></div></li>
-      <li><span class="dot">2</span><div><h4>Витамин C — инструмент строителя</h4><p>Чтобы соединить цепочки в прочное волокно, клеткам нужны два фермента, и оба работают только с витамином C. Без него новый коллаген получается слабым и разрушается. Поэтому при сильной нехватке витамина C (цинге) кровоточат дёсны и плохо заживают раны.</p></div></li>
+      <li><span class="dot">2</span><div><h4>Витамин C — инструмент строителя</h4><p>Чтобы соединить цепочки в прочное волокно, клеткам нужны два фермента, и оба работают только с витамином C.<sup>8</sup> Без него новый коллаген получается слабым и разрушается. Поэтому при сильной нехватке витамина C (цинге) кровоточат дёсны и плохо заживают раны.</p></div></li>
       <li><span class="dot">3</span><div><h4>Организм не запасает его</h4><p>Организм человека не умеет вырабатывать витамин C и почти не хранит его. Нам нужно получать его каждый день с едой или добавками.</p></div></li>
     </ol>
   </div>
@@ -428,7 +486,7 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
     </svg>
   </div>
   <ol class="points" start="4">
-    <li><span class="dot">4</span><div><h4>Сколько нужно</h4><p>В Корее суточная норма витамина C — 100 мг. Стик со 100 мг покрывает её полностью. Стик с 30 мг — меньше трети. Если витамин C не указан на коробке, считайте, что его нет.</p></div></li>
+    <li><span class="dot">4</span><div><h4>Сколько нужно</h4><p>В Корее суточная норма потребления витамина C — 100 мг.<sup>9</sup> Стик со 100 мг покрывает её полностью. Стик с 30 мг — меньше трети. Если витамин C не указан на коробке, считайте, что его нет.</p></div></li>
     <li><span class="dot">5</span><div><h4>Чего витамин C не делает</h4><p>Витамин C не помогает коллагену попасть в кровь. Его работа начинается позже — в коже, где он помогает строить новый коллаген. Больше 100 мг — это нормально, но в нашем рейтинге оценка от этого не растёт.</p></div></li>
   </ol>
   <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Запомните</small>Ищите около 100 мг витамина C в одном стике.</span></div>
@@ -437,9 +495,9 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 <!-- ================= PAGE 6: EXTRAS ================= -->
 <section class="page" aria-labelledby="p6">
   <div class="page-head">
-    <div class="page-no">Страница 6 · Дополнительные ингредиенты</div>
+    <div class="page-no">Дополнительные ингредиенты</div>
     <h2 id="p6">Дополнительные ингредиенты: хватает ли их для пользы?</h2>
-    <p class="lead">На многих коробках крупно рекламируют добавки: глутатион, биотин или гиалуроновую кислоту. Но ингредиент помогает, только если его достаточно. Ниже зелёный круг показывает количество из исследований, а красная точка — сколько его в одном стике.</p>
+    <p class="lead">На многих коробках крупно рекламируют добавки: глутатион, биотин или гиалуроновую кислоту. Но ингредиент помогает, только если его достаточно. Ниже зелёный круг показывает количество из исследования, а красная точка — сколько его в одном стике.</p>
   </div>
   <div class="drops" id="drops"></div>
   <div class="rule"><svg aria-hidden="true"><use href="#i-bulb"/></svg><span><small>Запомните</small>Известное название ингредиента — не признак качества. Смотрите количество в мг и сравнивайте его с количеством из исследований.</span></div>
@@ -448,24 +506,44 @@ table.compare { border-collapse: separate; border-spacing: 0; width: 100%; min-w
 <!-- ================= PAGE 7: CHECKLIST ================= -->
 <section class="page" aria-labelledby="p7">
   <div class="page-head">
-    <div class="page-no">Страница 7 · Чек-лист</div>
+    <div class="page-no">Чек-лист</div>
     <h2 id="p7">6 вопросов перед покупкой</h2>
     <p class="lead">Эти вопросы подходят для любого коллагенового продукта, в том числе для тех, которых нет в этом обзоре.</p>
   </div>
   <ul class="checks">
     <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Это рыбный коллаген?</b><p>Рыбный коллаген в основном относится к типу I — тому, что есть в коже. В нём нет свинины и говядины.</p></div></li>
     <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Указано ли на коробке число Да? Оно 300 Да или меньше?</b><p>Мелкие кусочки усваиваются легче. Если Да не указано, спросите у продавца.</p></div></li>
-    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>В одном стике есть хотя бы 1000 мг коллагена?</b><p>Лучше — 2000 мг и больше. В исследованиях кожи использовали от 2500 мг в день.</p></div></li>
+    <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>В одном стике есть хотя бы 1000 мг коллагена?</b><p>Лучше — 2000 мг и больше. В исследованиях кожи часто использовали от 2500 мг в день.</p></div></li>
     <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>В одном стике около 100 мг витамина C?</b><p>Без витамина C организм не может строить коллаген. 100 мг покрывают суточную норму.</p></div></li>
     <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Добавки есть в полезном количестве?</b><p>Смотрите количество в мг. Известное название в крошечной дозе ничего не даёт.</p></div></li>
     <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Количество указано на один стик?</b><p>На некоторых коробках указано количество на всю коробку. Всегда сравнивайте один стик с одним стиком.</p></div></li>
   </ul>
+  <div class="refs">
+    <h3>Источники</h3>
+    <ol>
+      <li>Shoulders MD, Raines RT. Collagen structure and stability. <i>Annu Rev Biochem.</i> 2009;78:929–958.</li>
+      <li>Varani J, Dame MK, Rittie L, et al. Decreased collagen production in chronologically aged skin. <i>Am J Pathol.</i> 2006;168(6):1861–1868.</li>
+      <li>Iwai K, Hasegawa T, Taguchi Y, et al. Identification of food-derived collagen peptides in human blood after oral ingestion of gelatin hydrolysates. <i>J Agric Food Chem.</i> 2005;53(16):6531–6536.</li>
+      <li>Shigemura Y, Iwai K, Morimatsu F, et al. Effect of prolyl-hydroxyproline (Pro-Hyp), a food-derived collagen peptide in human blood, on growth of fibroblasts from mouse skin. <i>J Agric Food Chem.</i> 2009;57(2):444–449.</li>
+      <li>Daniel H. Molecular and integrative physiology of intestinal peptide transport. <i>Annu Rev Physiol.</i> 2004;66:361–384.</li>
+      <li>Proksch E, Segger D, Degwert J, et al. Oral supplementation of specific collagen peptides has beneficial effects on human skin physiology: a double-blind, placebo-controlled study. <i>Skin Pharmacol Physiol.</i> 2014;27(1):47–55.</li>
+      <li>Pu SY, Huang YL, Pu CM, et al. Effects of oral collagen for skin anti-aging: a systematic review and meta-analysis. <i>Nutrients.</i> 2023;15(9):2080.</li>
+      <li>Pullar JM, Carr AC, Vissers MCM. The roles of vitamin C in skin health. <i>Nutrients.</i> 2017;9(8):866.</li>
+      <li>Ministry of Food and Drug Safety (Korea). Standards for Labeling of Foods (식품등의 표시기준): nutrient reference values.</li>
+      <li>U.S. Food and Drug Administration. Daily Value on the Nutrition and Supplement Facts Labels.</li>
+      <li>Regulation (EU) No 1169/2011 on the provision of food information to consumers, Annex XIII: nutrient reference values.</li>
+      <li>Richie JP Jr, Nichenametla S, Neidig W, et al. Randomized controlled trial of oral glutathione supplementation on body stores of glutathione. <i>Eur J Nutr.</i> 2015;54(2):251–263.</li>
+      <li>Kawada C, Yoshida T, Yoshida H, et al. Ingested hyaluronan moisturizes dry skin. <i>Nutr J.</i> 2014;13:70.</li>
+      <li>Ministry of Health and Welfare, The Korean Nutrition Society. 2020 Dietary Reference Intakes for Koreans.</li>
+      <li>Patel DP, Swink SM, Castelo-Soccio L. A review of the use of biotin for hair loss. <i>Skin Appendage Disord.</i> 2017;3(3):166–169.</li>
+    </ol>
+  </div>
   <p class="disclaimer">Оценки основаны на количествах, указанных на этикетке каждого продукта или на сайте продавца. Этот обзор сравнивает этикетки, чтобы помочь с решением о закупке. Он не является медицинской рекомендацией.</p>
 </section>
 </div>
 
 <script>
-const T = {"units": {"mg": "мг", "mcg": "мкг", "g": "г", "da": "Да", "thou": " ", "dec": ",", "groupMin": 5}, "js": {"hScore": "Оценка", "hScoreHint": "из 10, чем выше, тем лучше", "hDose": "Коллаген в стике", "hDoseHint": "чем больше, тем лучше", "hDa": "Размер частиц (Да)", "hDaHint": "чем меньше, тем лучше", "hVitc": "Витамин C в стике", "hVitcHint": "идеально — 100 мг", "hClean": "Чистый состав", "hCleanHint": "без бесполезных добавок", "hBox": "В одной коробке", "hBoxHint": "стики × вес", "w8": "Отлично", "w7": "Очень хорошо", "w6": "Хорошо", "w5": "Средне", "w3": "Слабо", "w0": "Не брать", "cGood": "Хорошо", "cFiller": "Есть наполнители", "cTiny": "Микродозы", "notOnBox": "Не указано", "under": "Менее {n} Да", "noneListed": "Не указан", "sticks": "{n} стиков × {g} г", "glut": "Глутатион", "glutDesc": "Антиоксидант, который на коробках часто связывают с «осветлением» кожи. В исследованиях его принимали внутрь по 250–1000 мг в день.", "ha": "Гиалуроновая кислота", "haDesc": "Вещество, которое удерживает воду в коже. В исследованиях её принимали внутрь примерно по 120–240 мг в день.", "biotin": "Биотин", "biotinDesc": "Витамин группы B (витамин B7). Взрослому нужно около 30 мкг в день. мкг — это микрограмм: 1 мг = 1000 мкг.", "useful": "Полезная доза", "inStick": "В 1 стике:", "nSticks": "{n} стиков", "dropText": "Столько стиков пришлось бы принимать в день, чтобы получить количество из исследований.", "food1": "Обычная еда", "food2": "даёт достаточно", "oneStick": "1 стик", "noExtra": "Пользы не добавит", "biotinText": "Один стик покрывает суточную норму биотина, но обычная еда и так даёт достаточно. Дополнительный биотин не улучшает кожу и волосы, если в организме нет его недостатка."}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide"}, "hurum-sm": {"name": "HURUM низкомолеку­лярный рыбный коллаген"}, "ssf": {"name": "SSF желе-стик с гранатом и коллагеном"}, "bb-goodnight": {"name": "BB LAB Goodnight коллаген"}, "bb-biotin": {"name": "BB LAB коллаген с биотином"}, "boto": {"name": "BOTO коллаген с глутатионом White"}, "mippeum": {"name": "MIPPEUM набор коллагеновых желе"}, "hurum-biotin": {"name": "HURUM коллаген-пептид с биотином"}, "vitasub": {"name": "VITASUB Slim Collagen Plus"}}};
+const T = {"units": {"mg": "мг", "mcg": "мкг", "g": "г", "da": "Да", "thou": " ", "dec": ",", "groupMin": 5}, "js": {"hScore": "Оценка", "hScoreHint": "средневзвешенное 4 оцениваемых строк", "hDose": "Коллаген в стике", "hDoseHint": "чем больше, тем лучше · 2 части", "hDa": "Размер частиц (Да)", "hDaHint": "чем меньше, тем лучше · 2 части", "hVitc": "Витамин C в стике", "hVitcHint": "идеально — 100 мг · 1,5 части", "hClean": "Чистый состав", "hCleanHint": "без бесполезных добавок · 1,5 части", "hBox": "В одной коробке", "hBoxHint": "для информации, не оценивается", "w8": "Отлично", "w7": "Очень хорошо", "w6": "Хорошо", "w5": "Средне", "w3": "Слабо", "w0": "Не брать", "cGood": "Хорошо", "cFiller": "Есть наполнители", "cTiny": "Микродозы", "notOnBox": "Не указано", "under": "Менее {n} Да", "noneListed": "Не указан", "sticks": "{n} стиков × {g} г", "glut": "Глутатион", "glutDesc": "Антиоксидант, который на коробках часто связывают с «осветлением». В самом известном исследовании взрослые принимали 250 или 1000 мг в день в течение 6 месяцев, чтобы повысить уровень глутатиона в организме.<sup>12<\/sup>", "ha": "Гиалуроновая кислота", "haDesc": "Вещество, которое удерживает воду в коже. В исследовании на людях с сухой кожей её принимали по 120 мг в день.<sup>13<\/sup>", "biotin": "Биотин", "biotinDesc": "Витамин группы B (витамин B7). Взрослому нужно около 30 мкг в день.<sup>14<\/sup> мкг — это микрограмм: 1 мг = 1000 мкг.", "useful": "Полезная доза", "inStick": "В 1 стике:", "nSticks": "{n} стиков", "dropText": "В исследовании использовали в {n} раз больше, чем содержится в одном стике. Это только сравнение количеств, а не совет принимать больше стиков.", "food1": "Обычная еда", "food2": "даёт достаточно", "oneStick": "1 стик", "noExtra": "Пользы не добавит", "biotinText": "Один стик покрывает суточную потребность в биотине, но обычная еда и так даёт достаточно. Нет убедительных данных, что дополнительный биотин улучшает кожу и волосы, если в организме нет его недостатка.<sup>15<\/sup>", "pts": "{n} / 10", "cmpLabel": "Математическое сравнение"}, "products": {"yorosum": {"name": "YOROSUM Glow Peptide"}, "hurum-sm": {"name": "HURUM низкомолеку­лярный рыбный коллаген", "short": "HURUM низкомолекулярный"}, "ssf": {"name": "SSF желе-стик с гранатом и коллагеном"}, "bb-goodnight": {"name": "BB LAB Goodnight коллаген"}, "bb-biotin": {"name": "BB LAB коллаген с биотином", "short": "BB LAB с биотином"}, "boto": {"name": "BOTO коллаген с глутатионом White", "short": "BOTO"}, "mippeum": {"name": "MIPPEUM набор коллагеновых желе"}, "hurum-biotin": {"name": "HURUM коллаген-пептид с биотином", "short": "HURUM с биотином"}, "vitasub": {"name": "VITASUB Slim Collagen Plus", "short": "VITASUB"}}};
 const P = [
   { id: "yorosum", own: true, sticks: 30, stickG: 3, collagen: 2000, da: 300, vitc: 100, honesty: 5 },
   { id: "hurum-sm", sticks: 60, stickG: 2, collagen: 1200, da: 300, vitc: 120, honesty: 4 },
@@ -498,7 +576,7 @@ P.forEach(p => {
 const ranked = [...P].sort((a, b) => b.score - a.score);
 
 const blocks = s => `<div class="blocks" style="--tone:${tone(s)}">${Array.from({ length: 10 }, (_, i) => `<i class="${i < Math.round(s) ? "on" : ""}"></i>`).join("")}</div>`;
-const cell = (s, val) => `<div class="cell">${blocks(s)}<span class="val">${val}</span></div>`;
+const cell = (s, val) => `<div class="cell">${blocks(s)}<span class="val">${val}</span><span class="pts">${T.js.pts.replace("{n}", r1(s))}</span></div>`;
 const rowLabel = (icon, label, hint) => `<th scope="row"><div class="rl"><svg aria-hidden="true"><use href="#${icon}"/></svg><b>${label}</b><small>${hint}</small></div></th>`;
 const row = (head, fn) => `<tr>${head}${ranked.map(p => `<td class="${p.own ? "own" : ""}">${fn(p)}</td>`).join("")}</tr>`;
 const clean = h => h >= 5 ? T.js.cGood : h >= 3 ? T.js.cFiller : T.js.cTiny;
@@ -508,13 +586,13 @@ document.getElementById("compare").innerHTML =
   `<thead><tr><td></td>${ranked.map((p, i) => `<td class="${p.own ? "own" : ""}"><div class="prod">
       <span class="medal ${i < 3 ? "m" + (i + 1) : ""}">${i + 1}</span>
       <span class="thumb"><img src="${p.img}" alt="${p.name}"></span>
-      <span class="pname">${p.name}</span></div></td>`).join("")}</tr></thead><tbody>` +
+      <span class="pname">${p.name}</span>
+      <span class="sticks" title="${T.js.hBox}">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span></div></td>`).join("")}</tr></thead><tbody>` +
   row(rowLabel("i-star", T.js.hScore, T.js.hScoreHint), p => `<div class="score" style="--tone:${tone(p.score)}"><span class="big">${r1(p.score)}<small>/10</small></span><span class="word">${word(p.score)}</span></div>`) +
   row(rowLabel("i-dose", T.js.hDose, T.js.hDoseHint), p => cell(p.s.dose, mg(p.collagen))) +
   row(rowLabel("i-size", T.js.hDa, T.js.hDaHint), p => cell(p.s.da, daText(p))) +
   row(rowLabel("i-vitc", T.js.hVitc, T.js.hVitcHint), p => cell(p.s.vitc, mg(p.vitc))) +
   row(rowLabel("i-clean", T.js.hClean, T.js.hCleanHint), p => cell(p.s.honesty, clean(p.honesty))) +
-  row(rowLabel("i-box", T.js.hBox, T.js.hBoxHint), p => `<span class="sticks">${T.js.sticks.replace("{n}", p.sticks).replace("{g}", fmt(p.stickG)).replace(/ (\S+)$/, "\u00a0$1")}</span>`) +
   "</tbody>";
 
 const byId = id => P.find(p => p.id === id);
@@ -524,7 +602,7 @@ const drops = [
   { what: T.js.ha, desc: T.js.haDesc, items: ["hurum-sm"], inStick: 0.4, need: 120 }
 ];
 const head = d => `<div class="hd"><div class="imgs">${d.items.map(id => `<img src="${byId(id).img}" alt="${byId(id).name}">`).join("")}</div>
-  <div><h3>${d.what}</h3><div class="desc" style="font-size:13px">${d.items.map(id => byId(id).name).join(", ")}</div></div></div>`;
+  <div><h3>${d.what}</h3><div class="desc" style="font-size:13px">${d.items.map(id => byId(id).short || byId(id).name).join(", ")}</div></div></div>`;
 document.getElementById("drops").innerHTML = drops.map(d => {
   const ratio = Math.round(d.need / d.inStick);
   const rBig = 52, rSmall = Math.max(1.5, rBig * Math.sqrt(d.inStick / d.need));
@@ -536,7 +614,7 @@ document.getElementById("drops").innerHTML = drops.map(d => {
       <circle cx="180" cy="58" r="${rSmall.toFixed(1)}" style="fill:var(--bad)"/>
       <text x="180" y="124" text-anchor="middle" class="svg-text" style="font-size:12.5px">${T.js.inStick} ${fmt(d.inStick, d.inStick < 1 ? 1 : 0)} ${u.mg}</text>
     </svg>
-    <div class="big">${T.js.nSticks.replace("{n}", fmt(ratio))}</div><p>${T.js.dropText}</p></div>`;
+    <div class="cmp">${T.js.cmpLabel}</div><div class="big">${fmt(ratio)}×</div><p>${T.js.dropText.replace("{n}", fmt(ratio))}</p></div>`;
 }).join("") + `<div class="drop">${head({ what: T.js.biotin, items: ["bb-biotin", "hurum-biotin"] })}<p class="desc">${T.js.biotinDesc}</p>
     <svg viewBox="0 0 240 130" aria-hidden="true"><circle cx="62" cy="62" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="62" y="58" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.food1}</text><text x="62" y="74" text-anchor="middle" class="svg-text" style="font-size:11px">${T.js.food2}</text>
     <text x="122" y="70" text-anchor="middle" class="svg-text" style="font-size:22px">+</text><circle cx="182" cy="62" r="54" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/><text x="182" y="58" text-anchor="middle" class="svg-text" style="font-size:11px;font-weight:600">${T.js.oneStick}</text><text x="182" y="74" text-anchor="middle" class="svg-text" style="font-size:11px">30 ${u.mcg}</text></svg>

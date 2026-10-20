@@ -6,7 +6,7 @@ c_f1,1,Very small collagen pieces,Очень маленькие частицы �
 c_f2,1,Fish collagen in every stick,Рыбный коллаген в каждом стике,Har bir stikda baliq kollageni
 c_f3,1,Vitamin C · 100% of daily value,Витамин C · 100% суточной нормы,C vitamini · kunlik me’yorning 100%
 c_chip1,1,Peach flavour,Вкус персика,Shaftoli ta’mi
-c_chip2,1,3 g × 30 sticks,3 г × 30 стиков,3 g × 30 stik
+c_chip2,1,30 sticks · 1-month supply,30 стиков · запас на месяц,30 stik · 1 oylik zaxira
 c_chip3,1,1 stick a day,1 стик в день,Kuniga 1 stik
 p2_label,2,"Collagen, simply",Коллаген простыми словами,Kollagen haqida sodda qilib
 p2_title,2,Collagen is the body’s building protein,Коллаген — строительный белок организма,Kollagen — organizmning qurilish oqsili
@@ -66,7 +66,7 @@ pick,0,Choose your language,Выберите язык,Tilni tanlang
 m1_k,5,Minimum order,Минимальный заказ,Minimal buyurtma
 m1,5,1 carton · 6.5 kg,"1 коробка · 6,5 кг","1 karton · 6,5 kg"
 m2_k,5,One carton,В одной коробке,Bitta kartonda
-m2,5,"42 boxes · 1,260 sticks",42 упаковки · 1 260 стиков,42 quti · 1 260 stik
+m2,5,42 boxes,42 упаковки,42 quti
 m3_k,5,Carton size,Размер коробки,Karton o‘lchami
 m3,5,48 × 33 × 31 cm,48 × 33 × 31 см,48 × 33 × 31 sm
 p4_bar,4,Vitamin C in one stick,Витамин C в одном стике,Bitta stikdagi C vitamini

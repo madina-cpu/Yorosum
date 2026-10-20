@@ -90,11 +90,11 @@ body > .pg:first-child { break-before: auto; }
 /* 1 cover */
 .cover { display: flex; flex-direction: column; }
 .cover .photo { position: relative; flex: 1 1 auto; min-height: 220px; overflow: hidden; }
-.cover .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 80% 50%; }
+.cover .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 27%; }
 .cover .photo::after { content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(251, 248, 243, .7) 0%, rgba(251, 248, 243, 0) 34%, rgba(251, 248, 243, 0) 78%, var(--bone) 100%); }
+  background: linear-gradient(180deg, rgba(251, 248, 243, .7) 0%, rgba(251, 248, 243, 0) 34%, rgba(251, 248, 243, 0) 88%, var(--bone) 100%); }
 .cover .logo { position: absolute; z-index: 3; top: 26px; left: var(--pad); width: 140px; height: auto; }
-.with-switch .cover .logo { top: 72px; }
+.with-switch .cover .logo { left: auto; right: var(--pad); }
 .cover .body { flex: none; padding: var(--s5) var(--pad) var(--foot); display: flex; flex-direction: column; }
 .pg .facts { border-top: 1px solid var(--line); }
 .pg .fact { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: var(--s4); align-items: center; padding: var(--s3) 0; border-bottom: 1px solid var(--line); }
@@ -270,7 +270,7 @@ def pages(lang, t, switch=""):
 
     facts = "".join(f'<div class="fact">{fig(v, u)}<p class="t-body">{t[k]}</p></div>' for v, u, k in [
         ("300", t["u_da"], "c_f1"), (t["n2000"], t["u_mg"], "c_f2"), ("100", t["u_mg"], "c_f3")])
-    chips = "".join(f'<span class="chip">{t[f"c_chip{i}"]}</span>' for i in (1, 2, 3))
+    chips = "".join(f'<span class="chip">{t[f"c_chip{i}"]}</span>' for i in (1, 2))
     areas = "".join(f'<div class="area"><div class="ic">{AREA_ICONS[i]}</div><p>{t[f"p2_i{i + 1}"]}</p></div>' for i in range(4))
     gut, wall, blood = zone_svgs()
     pieces, vitc, helix = eq_svgs()
@@ -283,7 +283,7 @@ def pages(lang, t, switch=""):
 
     return "".join([
         f'''<section class="pg cover" lang="{L}" id="lang-{lang}">{switch}
-  <div class="photo"><img src="../assets/img/cover.jpg" alt=""></div>{LOGO.format(cls="logo")}
+  <div class="photo"><img src="../assets/img/cover-box.jpg" alt=""></div>{LOGO.format(cls="logo")}
   <div class="body">
     <p class="t-eb">{t["c_eb"]}</p>
     <h1 class="t-display gap-8">{t["c_title"]}</h1>
@@ -356,7 +356,7 @@ def chooser(copy):
     buttons = "".join(f'<a class="lang" href="#lang-{l}" lang="{l}"><img src="../assets/flags/{FLAG[l]}.svg" alt="">'
                       f'<span><b>{t["lang_name"]}</b><small>{t["pick"]}</small></span><span class="go">→</span></a>' for l, t in copy.items())
     return f'''<section class="pg cover pick" id="home">
-  <div class="photo"><img src="../assets/img/cover.jpg" alt=""></div>{LOGO.format(cls="logo")}
+  <div class="photo"><img src="../assets/img/cover-box.jpg" alt=""></div>{LOGO.format(cls="logo")}
   <div class="body">
     <p class="t-eb">Product guide · 2026</p>
     <h1 class="t-display gap-8">Yorosum Glow <em>Peptide</em></h1>

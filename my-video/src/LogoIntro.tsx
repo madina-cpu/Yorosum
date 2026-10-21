@@ -1,4 +1,5 @@
 import { loadFont } from "@remotion/fonts";
+import { Audio } from "@remotion/media";
 import {
   AbsoluteFill,
   Easing,
@@ -9,8 +10,10 @@ import {
 } from "remotion";
 
 // Fonts are bundled in public/fonts so the video renders without internet.
+// Typefaces follow the Yorosum Brand Design Guide v1.0 ("three voices").
 const wordmarkFont = "Schibsted Grotesk";
-const koreanFont = "Noto Sans KR";
+const koreanFont = "Pretendard";
+const voiceFont = "Instrument Serif";
 loadFont({
   family: wordmarkFont,
   url: staticFile("fonts/SchibstedGrotesk-ExtraBold.woff2"),
@@ -18,13 +21,21 @@ loadFont({
 });
 loadFont({
   family: koreanFont,
-  url: staticFile("fonts/NotoSansKR-Regular-subset.woff2"),
+  url: staticFile("fonts/Pretendard-Regular.woff2"),
+  weight: "400",
+});
+loadFont({
+  family: voiceFont,
+  url: staticFile("fonts/InstrumentSerif-Italic.woff2"),
+  style: "italic",
   weight: "400",
 });
 
-const BURGUNDY = "#8E2149";
-const GOLD = "#B08A62";
-const CREAM = "#F7F1EA";
+// Brand colours. Rosewater is the resting field; gold is only ever a line.
+const ROSEWATER = "#F0D5DD";
+const DEEP_BERRY = "#8E2149";
+const ANTIQUE_GOLD = "#B08A62";
+const WARM_GREY = "#5A4A50";
 
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
 const clamp = {
@@ -34,8 +45,8 @@ const clamp = {
 
 const WORDMARK = "YOROSUM";
 
-// Logo symbol: a dot with two arcs radiating from it, as in Yorosum_Logo.svg.
-const Symbol: React.FC = () => {
+// The Breath Mark: a still centre dot with two open arcs — breath moving outward.
+const BreathMark: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -43,51 +54,34 @@ const Symbol: React.FC = () => {
     ...clamp,
     easing: Easing.spring({ damping: 12 }),
   });
-  const arc1 = interpolate(frame, [0.4 * fps, 1.2 * fps], [1, 0], {
+  const arc1 = interpolate(frame, [0.5 * fps, 1.3 * fps], [1, 0], {
     ...clamp,
     easing: ease,
   });
-  const arc2 = interpolate(frame, [0.75 * fps, 1.6 * fps], [1, 0], {
+  const arc2 = interpolate(frame, [0.9 * fps, 1.8 * fps], [1, 0], {
     ...clamp,
     easing: ease,
   });
-  // Gentle "breathing" of the arcs once they are drawn.
+  // The arcs breathe gently once drawn; the dot stays still.
   const breath =
-    1 + 0.04 * Math.sin(((frame - 1.6 * fps) / fps) * Math.PI * 0.9) *
-      interpolate(frame, [1.6 * fps, 2.2 * fps], [0, 1], clamp);
+    1 +
+    0.035 *
+      Math.sin(((frame - 1.8 * fps) / fps) * Math.PI * 0.8) *
+      interpolate(frame, [1.8 * fps, 2.4 * fps], [0, 1], clamp);
 
   return (
     <svg viewBox="-31 -10 140 120" width={700} height={600} overflow="visible">
-      {[0, 1, 2].map((i) => {
-        const start = (1.3 + i * 0.45) * fps;
-        const progress = interpolate(frame, [start, start + 1.6 * fps], [0, 1], {
-          ...clamp,
-          easing: Easing.out(Easing.quad),
-        });
-        return (
-          <circle
-            key={i}
-            cx={14}
-            cy={50}
-            r={9 + progress * 70}
-            fill="none"
-            stroke={i === 1 ? GOLD : BURGUNDY}
-            strokeWidth={1.2}
-            opacity={progress > 0 ? 0.35 * (1 - progress) : 0}
-          />
-        );
-      })}
       <circle
         cx={14}
         cy={50}
         r={9}
-        fill={BURGUNDY}
+        fill={DEEP_BERRY}
         style={{ scale: dotScale, transformOrigin: "14px 50px" }}
       />
       <g style={{ scale: breath, transformOrigin: "14px 50px" }}>
         <path
           d="M36 30 A27 27 0 0 1 36 70"
-          stroke={BURGUNDY}
+          stroke={DEEP_BERRY}
           strokeWidth={7}
           fill="none"
           strokeLinecap="round"
@@ -98,7 +92,7 @@ const Symbol: React.FC = () => {
         />
         <path
           d="M54 22 A38 38 0 0 1 54 78"
-          stroke={GOLD}
+          stroke={ANTIQUE_GOLD}
           strokeWidth={7}
           fill="none"
           strokeLinecap="round"
@@ -122,14 +116,14 @@ export const LogoIntro: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: CREAM,
-        backgroundImage:
-          "radial-gradient(circle at 50% 45%, #FFFFFF 0%, rgba(255,255,255,0) 60%)",
+        backgroundColor: ROSEWATER,
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      {/* Symbol starts large in the centre, then settles above the wordmark */}
+      <Audio src={staticFile("audio/yorosum-intro.wav")} />
+
+      {/* Mark starts large in the centre, then settles above the wordmark */}
       <div
         style={{
           position: "absolute",
@@ -143,7 +137,7 @@ export const LogoIntro: React.FC = () => {
           translate: interpolate(
             frame,
             [2.4 * fps, 3.4 * fps],
-            ["0px 0px", "0px -260px"],
+            ["0px 0px", "0px -330px"],
             { ...clamp, easing: ease },
           ),
           scale: interpolate(frame, [2.4 * fps, 3.4 * fps], [1.25, 0.75], {
@@ -152,18 +146,18 @@ export const LogoIntro: React.FC = () => {
           }),
         }}
       >
-        <Symbol />
+        <BreathMark />
       </div>
 
       <div
         style={{
           position: "absolute",
-          top: 1010,
+          top: 930,
           display: "flex",
           fontFamily: wordmarkFont,
           fontWeight: 800,
           fontSize: 120,
-          color: BURGUNDY,
+          color: DEEP_BERRY,
           letterSpacing: "0.19em",
           marginRight: "-0.19em",
         }}
@@ -193,10 +187,32 @@ export const LogoIntro: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 1230,
-          height: 3,
-          backgroundColor: GOLD,
-          width: interpolate(frame, [4.0 * fps, 4.8 * fps], [0, 220], {
+          top: 1110,
+          fontFamily: koreanFont,
+          fontSize: 50,
+          color: WARM_GREY,
+          letterSpacing: "0.8em",
+          marginRight: "-0.8em",
+          opacity: interpolate(frame, [4.0 * fps, 4.9 * fps], [0, 1], clamp),
+          translate: interpolate(
+            frame,
+            [4.0 * fps, 4.9 * fps],
+            ["0px 20px", "0px 0px"],
+            { ...clamp, easing: ease },
+          ),
+        }}
+      >
+        여러숨
+      </div>
+
+      {/* Antique Gold hairline rule */}
+      <div
+        style={{
+          position: "absolute",
+          top: 1250,
+          height: 2,
+          backgroundColor: ANTIQUE_GOLD,
+          width: interpolate(frame, [4.8 * fps, 5.6 * fps], [0, 260], {
             ...clamp,
             easing: ease,
           }),
@@ -206,22 +222,21 @@ export const LogoIntro: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 1275,
-          fontFamily: koreanFont,
-          fontSize: 58,
-          color: BURGUNDY,
-          letterSpacing: "0.8em",
-          marginRight: "-0.8em",
-          opacity: interpolate(frame, [4.4 * fps, 5.3 * fps], [0, 0.75], clamp),
+          top: 1300,
+          fontFamily: voiceFont,
+          fontStyle: "italic",
+          fontSize: 64,
+          color: DEEP_BERRY,
+          opacity: interpolate(frame, [5.6 * fps, 6.6 * fps], [0, 1], clamp),
           translate: interpolate(
             frame,
-            [4.4 * fps, 5.3 * fps],
-            ["0px 20px", "0px 0px"],
+            [5.6 * fps, 6.6 * fps],
+            ["0px 16px", "0px 0px"],
             { ...clamp, easing: ease },
           ),
         }}
       >
-        여러숨
+        “A small breath for yourself, every day.”
       </div>
     </AbsoluteFill>
   );

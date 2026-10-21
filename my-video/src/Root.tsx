@@ -10,7 +10,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="YorosumLogoIntro"
           component={LogoIntro}
-          durationInFrames={240}
+          durationInFrames={270}
           fps={30}
           width={1080}
           height={1920}

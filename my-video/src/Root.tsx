@@ -1,9 +1,21 @@
+import { Composition, Folder } from "remotion";
 import { MyComposition } from "./Composition";
+import { LogoIntro } from "./LogoIntro";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <MyComposition />
+      <Folder name="Instagram">
+        <Composition
+          id="YorosumLogoIntro"
+          component={LogoIntro}
+          durationInFrames={240}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
     </>
   );
 };
